@@ -11,9 +11,12 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "axios": "^1.7.9",
-    "owl.carousel": "^2.3.4",
+    "date-fns": "^4.1.0",
     "react": "^19.0.0",
+    "react-datepicker": "^7.6.0",
     "react-dom": "^19.0.0",
+    "react-flatpickr": "^3.10.13",
+    "react-modal-video": "^2.0.2",
     "react-router-dom": "^7.1.3",
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2",
@@ -44,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.32"
+    "@types/react-flatpickr": "^3.8.11",
+    "@types/react-modal-video": "^1.2.3"
   }
 }

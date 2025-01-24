@@ -9119,7 +9119,8 @@ textarea.form-control {
   .sidebar-wrap .range-slider input[type=range] {
     position: absolute;
     left: 0;
-    bottom: 0; }
+    bottom: 0;
+    z-index: 0; }
   .sidebar-wrap input[type=number] {
     border: 1px solid transparent;
     text-align: center;

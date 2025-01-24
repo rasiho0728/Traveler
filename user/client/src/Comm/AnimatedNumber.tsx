@@ -22,7 +22,7 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({ value, duration = 7000 
     const elapsed = timestamp - (startTime.current || 0); // 경과 시간 계산
     const progress = Math.min(elapsed / duration, 1); // 진행률 (0 ~ 1)
     const newValue = Math.floor(startValue.current + progress * (value - startValue.current));
-    
+
     setCurrentValue(newValue); // 현재 숫자 업데이트
 
     if (progress < 1) {
@@ -35,16 +35,16 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({ value, duration = 7000 
     const elements = document.querySelectorAll<HTMLElement>(".number");
     if (!elements) return;
     const observer = new IntersectionObserver(_ => {
-        startValue.current = currentValue; // 초기 값을 현재 값으로 설정
-        startTime.current = null; // 시작 시간 초기화
-        requestAnimationFrame(animate); // 애니메이션 실행
+      startValue.current = currentValue; // 초기 값을 현재 값으로 설정
+      startTime.current = null; // 시작 시간 초기화
+      requestAnimationFrame(animate); // 애니메이션 실행
     }, { threshold: 0.1 })
     elements.forEach((el) => observer.observe(el));
-
     return () => {
-        elements.forEach((el) => observer.unobserve(el));
+      elements.forEach((el) => observer.unobserve(el));
     };
-  }, []); // value나 duration이 변경될 때 실행
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <strong className="number">{formatNumber(currentValue)}</strong>;
 };

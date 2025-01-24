@@ -1,7 +1,22 @@
 // 2025.01.22. 11:00 생성자: 이학수, 헤더 분리 
 import React, { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
+    const { pathname } = useLocation();
+    
+    // 2025.01.24. 19:50 추가: 이학수, 현재 경로에 따라 네이게이션 버튼의 색깔이 동적이 되도록 추가
+    useEffect(() => {
+        const entity = document.querySelectorAll<HTMLLinkElement>('div#header nav ul li a');
+        entity.forEach((e, i) => {
+            if (e.getAttribute('href') === pathname){
+                e.parentElement?.classList.add('active')
+                console.log(pathname)
+            } else {
+                e.parentElement?.classList.remove('active')
+            }
+        })
+    },[pathname])
 
     // 스크롤에 따라 헤더 상단 고정 및 스타일 변경을 위한 함수
     const navPosition = () => {
@@ -46,19 +61,19 @@ const Header: React.FC = () => {
         <div id='header'>
             <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
                 <div className="container">
-                    <a className="navbar-brand" href="index.html">dirEngine.</a>
+                    <Link to="/traveler/home" className="navbar-brand">dirEngine.</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="oi oi-menu"></span> Menu
                     </button>
                     <div className="collapse navbar-collapse" id="ftco-nav">
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item active"><a href="index.html" className="nav-link">Home</a></li>
-                            <li className="nav-item"><a href="about.html" className="nav-link">About</a></li>
-                            <li className="nav-item"><a href="tour.html" className="nav-link">Tour</a></li>
-                            <li className="nav-item"><a href="hotel.html" className="nav-link">Hotels</a></li>
-                            <li className="nav-item"><a href="blog.html" className="nav-link">Blog</a></li>
-                            <li className="nav-item"><a href="contact.html" className="nav-link">Contact</a></li>
-                            <li className="nav-item cta"><a href="contact.html" className="nav-link"><span>Add listing</span></a></li>
+                            <li className="nav-item active"><Link to="/traveler/home" className="nav-link">Home</Link></li>
+                            <li className="nav-item"><Link to="/traveler/about" className="nav-link">About</Link></li>
+                            <li className="nav-item"><Link to="/traveler/tour" className="nav-link">Tour</Link></li>
+                            <li className="nav-item"><Link to="/traveler/hotels" className="nav-link">Hotels</Link></li>
+                            <li className="nav-item"><Link to="/traveler/blog" className="nav-link">Blog</Link></li>
+                            <li className="nav-item"><Link to="/traveler/contact" className="nav-link">Contact</Link></li>
+                            <li className="nav-item cta"><Link to="/traveler/contact" className="nav-link"><span>Add listing</span></Link></li>
                         </ul>
                     </div>
                 </div>

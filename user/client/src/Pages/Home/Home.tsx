@@ -1,47 +1,23 @@
 // 2025.01.21. 19:35 생성자: 이학수, HTML템플릿을 리엑트로 조정
 import React, { useEffect } from 'react'
-import { appear_animate } from '../Comm/CommomFunc';
-import GalleryCarousel from '../Comm/GalleryCarousel';
-import CardCarousel from '../Comm/CardCarousel';
-import AnimatedNumber from '../Comm/AnimatedNumber';
+import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import GalleryCarousel from '../../Comm/GalleryCarousel';
+import AnimatedNumber from '../../Comm/AnimatedNumber';
+import CardCarousel from '../../Comm/CardCarousel';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
     useEffect(() => {
-        // 스크롤 이동을 감지해서 위치 변환 및 투명도 조절 함수
-        const handleScroll = () => {
-            const elements = document.querySelectorAll("[data-scrollax]")
-            const scrollPosition = window.scrollY;
-            elements.forEach((element: any) => {
-                const config = JSON.parse(element.getAttribute("data-scrollax") || "{}").properties;
-                const translateY = config.translateY || "0px";
-                const translateX = config.translateX || "0px";
-                const opacity = config.opacity || 1;
-
-                const yValue = parseFloat(translateY) * (1 - Math.exp(-0.01 * scrollPosition));
-                const xValue = parseFloat(translateX) * (1 - Math.exp(-0.01 * scrollPosition));
-                const opacityValue = opacity / (opacity + scrollPosition * 0.1);
-
-                element.style.transform = `translate(${xValue}px, ${yValue}%)`;
-                element.style.opacity = opacityValue;
-            });
-        };
-
+        // 요소의 [data-scrollax] 옵션을 분석 적용
+        handleScroll()
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
-
     useEffect(() => {
-        // 요소의 높이를 화면의 크기로 갱신해주는 함수
-        const updateHeight = () => {
-            const elements = document.querySelectorAll('.js-fullheight')
-            elements.forEach((element: any) => {
-                element.style.height = `${window.innerHeight}px`;
-            });
-
-        };
+        // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
         updateHeight();
         window.addEventListener("resize", updateHeight);
         return () => {
@@ -50,7 +26,7 @@ const Home: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        // 등장 효과 적용 함수 호출
+        // ftco-animate 클래스를 가진 요소에 등장 효과 적용
         appear_animate()
     }, []);
 
@@ -81,7 +57,7 @@ const Home: React.FC = () => {
                                         </div>
                                         <div className="select-wrap one-third">
                                             <div className="icon"><span className="ion-ios-arrow-down"></span></div>
-                                            <select name="" id="" className="form-control" aria-placeholder="Keyword search">
+                                            <select name="" id="" className="form-control">
                                                 <option value="">Where</option>
                                                 <option value="">San Francisco USA</option>
                                                 <option value="">Berlin Germany</option>
@@ -95,10 +71,10 @@ const Home: React.FC = () => {
                             </div>
                             <p>Or browse the highlights</p>
                             <p className="browse d-md-flex">
-                                <span className="d-flex justify-content-md-center align-items-md-center"><a href="#"><i className="flaticon-fork"></i>Restaurant</a></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center"><a href="#"><i className="flaticon-hotel"></i>Hotel</a></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center"><a href="#"><i className="flaticon-meeting-point"></i>Places</a></span>
-                                <span className="d-flex justify-content-md-center align-items-md-	center"><a href="#"><i className="flaticon-shopping-bag"></i>Shopping</a></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>Restaurant</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-hotel"></i>Hotel</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-meeting-point"></i>Places</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-	center"><Link to="#"><i className="flaticon-shopping-bag"></i>Shopping</Link></span>
                             </p>
                         </div>
                     </div>
@@ -177,15 +153,15 @@ const Home: React.FC = () => {
                     <div className="row">
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Paris, Italy</a></h3>
+                                            <h3><Link to="#">Paris, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -204,22 +180,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Discover</a></span>
+                                        <span className="ml-auto"><Link to="#">Discover</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-2.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-2.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Paris, Italy2</a></h3>
+                                            <h3><Link to="#">Paris, Italy2</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -238,22 +214,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Discover</a></span>
+                                        <span className="ml-auto"><Link to="#">Discover</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-3.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-3.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Paris, Italy</a></h3>
+                                            <h3><Link to="#">Paris, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -272,22 +248,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Discover</a></span>
+                                        <span className="ml-auto"><Link to="#">Discover</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-4.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-4.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Paris, Italy</a></h3>
+                                            <h3><Link to="#">Paris, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -306,22 +282,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Discover</a></span>
+                                        <span className="ml-auto"><Link to="#">Discover</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-5.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-5.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Paris, Italy</a></h3>
+                                            <h3><Link to="#">Paris, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -340,7 +316,7 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Discover</a></span>
+                                        <span className="ml-auto"><Link to="#">Discover</Link></span>
                                     </p>
                                 </div>
                             </div>
@@ -412,15 +388,15 @@ const Home: React.FC = () => {
                     <div className="row">
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-1.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-1.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Hotel, Italy</a></h3>
+                                            <h3><Link to="#">Hotel, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -438,22 +414,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-2.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-2.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Hotel, Italy</a></h3>
+                                            <h3><Link to="#">Hotel, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -471,22 +447,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-3.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-3.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Hotel, Italy</a></h3>
+                                            <h3><Link to="#">Hotel, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -504,22 +480,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-4.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-4.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Hotel, Italy</a></h3>
+                                            <h3><Link to="#">Hotel, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -537,22 +513,22 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-sm col-md-6 col-lg ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-5.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-5.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
                                     <div className="d-flex">
                                         <div className="one">
-                                            <h3><a href="#">Hotel, Italy</a></h3>
+                                            <h3><Link to="#">Hotel, Italy</Link></h3>
                                             <p className="rate">
                                                 <i className="icon-star"></i>
                                                 <i className="icon-star"></i>
@@ -570,7 +546,7 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
@@ -587,7 +563,7 @@ const Home: React.FC = () => {
                             <h2 className="mb-4 pb-3"><strong>Why</strong> Choose Us?</h2>
                             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                             <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life.</p>
-                            <p><a href="#" className="btn btn-primary btn-outline-primary mt-4 px-4 py-3">Read more</a></p>
+                            <p><Link to="#" className="btn btn-primary btn-outline-primary mt-4 px-4 py-3">Read more</Link></p>
                         </div>
                         <div className="col-md-1"></div>
                         <div className="col-md-6 heading-section ftco-animate">
@@ -614,13 +590,13 @@ const Home: React.FC = () => {
                     <div className="row">
                         <div className="col-md-6 col-lg-3 ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-1.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-1.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
-                                    <h3><a href="#">Luxury Restaurant</a></h3>
+                                    <h3><Link to="#">Luxury Restaurant</Link></h3>
                                     <p className="rate">
                                         <i className="icon-star"></i>
                                         <i className="icon-star"></i>
@@ -633,20 +609,20 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Discover</a></span>
+                                        <span className="ml-auto"><Link to="#">Discover</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-6 col-lg-3 ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-2.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-2.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
-                                    <h3><a href="#">Luxury Restaurant</a></h3>
+                                    <h3><Link to="#">Luxury Restaurant</Link></h3>
                                     <p className="rate">
                                         <i className="icon-star"></i>
                                         <i className="icon-star"></i>
@@ -659,20 +635,20 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-6 col-lg-3 ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-3.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-3.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
-                                    <h3><a href="#">Luxury Restaurant</a></h3>
+                                    <h3><Link to="#">Luxury Restaurant</Link></h3>
                                     <p className="rate">
                                         <i className="icon-star"></i>
                                         <i className="icon-star"></i>
@@ -685,20 +661,20 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-6 col-lg-3 ftco-animate">
                             <div className="destination">
-                                <a href="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-4.jpg)" }}>
+                                <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/restaurant-4.jpg)" }}>
                                     <div className="icon d-flex justify-content-center align-items-center">
                                         <span className="icon-search2"></span>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="text p-3">
-                                    <h3><a href="#">Luxury Restaurant</a></h3>
+                                    <h3><Link to="#">Luxury Restaurant</Link></h3>
                                     <p className="rate">
                                         <i className="icon-star"></i>
                                         <i className="icon-star"></i>
@@ -711,7 +687,7 @@ const Home: React.FC = () => {
                                     <hr />
                                     <p className="bottom-area d-flex">
                                         <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                        <span className="ml-auto"><a href="#">Book Now</a></span>
+                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
                                     </p>
                                 </div>
                             </div>
@@ -731,60 +707,60 @@ const Home: React.FC = () => {
                     <div className="row d-flex">
                         <div className="col-md-3 d-flex ftco-animate">
                             <div className="blog-entry align-self-stretch">
-                                <a href="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_1.jpg')" }}>
-                                </a>
+                                <Link to="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_1.jpg')" }}>
+                                </Link>
                                 <div className="text p-4 d-block">
                                     <span className="tag">Tips, Travel</span>
-                                    <h3 className="heading mt-3"><a href="#">8 Best homestay in Philippines that you don't miss out</a></h3>
+                                    <h3 className="heading mt-3"><Link to="#">8 Best homestay in Philippines that you don't miss out</Link></h3>
                                     <div className="meta mb-3">
-                                        <div><a href="#">August 12, 2018</a></div>
-                                        <div><a href="#">Admin</a></div>
-                                        <div><a href="#" className="meta-chat"><span className="icon-chat"></span> 3</a></div>
+                                        <div><Link to="#">August 12, 2018</Link></div>
+                                        <div><Link to="#">Admin</Link></div>
+                                        <div><Link to="#" className="meta-chat"><span className="icon-chat"></span> 3</Link></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-3 d-flex ftco-animate">
                             <div className="blog-entry align-self-stretch">
-                                <a href="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_2.jpg')" }}>
-                                </a>
+                                <Link to="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_2.jpg')" }}>
+                                </Link>
                                 <div className="text p-4">
                                     <span className="tag">Culture</span>
-                                    <h3 className="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                                    <h3 className="heading mt-3"><Link to="#">Even the all-powerful Pointing has no control about the blind texts</Link></h3>
                                     <div className="meta mb-3">
-                                        <div><a href="#">August 12, 2018</a></div>
-                                        <div><a href="#">Admin</a></div>
-                                        <div><a href="#" className="meta-chat"><span className="icon-chat"></span> 3</a></div>
+                                        <div><Link to="#">August 12, 2018</Link></div>
+                                        <div><Link to="#">Admin</Link></div>
+                                        <div><Link to="#" className="meta-chat"><span className="icon-chat"></span> 3</Link></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-3 d-flex ftco-animate">
                             <div className="blog-entry align-self-stretch">
-                                <a href="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_3.jpg')" }}>
-                                </a>
+                                <Link to="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_3.jpg')" }}>
+                                </Link>
                                 <div className="text p-4">
                                     <span className="tag">Tips, Travel</span>
-                                    <h3 className="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                                    <h3 className="heading mt-3"><Link to="#">Even the all-powerful Pointing has no control about the blind texts</Link></h3>
                                     <div className="meta mb-3">
-                                        <div><a href="#">August 12, 2018</a></div>
-                                        <div><a href="#">Admin</a></div>
-                                        <div><a href="#" className="meta-chat"><span className="icon-chat"></span> 3</a></div>
+                                        <div><Link to="#">August 12, 2018</Link></div>
+                                        <div><Link to="#">Admin</Link></div>
+                                        <div><Link to="#" className="meta-chat"><span className="icon-chat"></span> 3</Link></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-3 d-flex ftco-animate">
                             <div className="blog-entry align-self-stretch">
-                                <a href="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_4.jpg')" }}>
-                                </a>
+                                <Link to="blog-single.html" className="block-20" style={{ backgroundImage: "url('/images/image_4.jpg')" }}>
+                                </Link>
                                 <div className="text p-4">
                                     <span className="tag">Tips, Travel</span>
-                                    <h3 className="heading mt-3"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                                    <h3 className="heading mt-3"><Link to="#">Even the all-powerful Pointing has no control about the blind texts</Link></h3>
                                     <div className="meta mb-3">
-                                        <div><a href="#">August 12, 2018</a></div>
-                                        <div><a href="#">Admin</a></div>
-                                        <div><a href="#" className="meta-chat"><span className="icon-chat"></span> 3</a></div>
+                                        <div><Link to="#">August 12, 2018</Link></div>
+                                        <div><Link to="#">Admin</Link></div>
+                                        <div><Link to="#" className="meta-chat"><span className="icon-chat"></span> 3</Link></div>
                                     </div>
                                 </div>
                             </div>
