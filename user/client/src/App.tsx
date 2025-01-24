@@ -1,17 +1,17 @@
 // 2025.01.21. 19:35 생성자: 이학수, HTML템플릿을 리엑트로 조정
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './css/style.css'
-import "./css/open-iconic-bootstrap.min.css"
-import "./css/animate.css"
-import "./css/owl.carousel.min.css"
-import "./css/owl.theme.default.min.css"
-import "./css/magnific-popup.css"
-// import "./css/aos.css"
-import "./css/ionicons.min.css"
-import "./css/jquery.timepicker.css"
-import "./css/flaticon.css"
-import "./css/icomoon.css"
+// import "./css/magnific-popup.css" // 알수 없음. 문제가 생길시 주석을 해제해 볼 것
+// import "./css/aos.css" // 알수 없음. 문제가 생길시 주석을 해제해 볼 것
+// import "./css/jquery.timepicker.css" // 알수 없음. 문제가 생길시 주석을 해제해 볼 것
+import './css/style.css' // 전체 스타일 관련 css
+import "./css/animate.css" // 동적 UI 관련 css
+import "./css/open-iconic-bootstrap.min.css" // 아이콘 관련 css
+import "./css/ionicons.min.css" // 아이콘 관련 css
+import "./css/flaticon.css" // 아이콘 관련 css
+import "./css/icomoon.css" // 아이콘 관련 css
+import "./css/owl.carousel.min.css" // 캐러셀 관련 css
+import "./css/owl.theme.default.min.css" // 캐러셀 관련 css
 import "./css/react-datepicker.css" // 날짜 선택 모듈 css
 import "react-modal-video/css/modal-video.min.css"; // 비디오 모달 css
 import Test from './Test/Test';
@@ -30,6 +30,7 @@ import Tour from './Pages/Tour/Tour';
 function App() {
   return (
     <BrowserRouter>
+      {/* 페이지 이동시 스크롤 상당으로 이동 시켜주는 컴포넌트 */}
       <ScrollToTop />
       <Header />
       <Routes>

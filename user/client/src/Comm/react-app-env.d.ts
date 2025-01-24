@@ -1,3 +1,4 @@
+//2025.01.24. 17:20 생성자: 이학수, react-modal-video 타입 정의를 강제로 재정의
 declare module "react-modal-video" {
     import { Component } from "react";
   
