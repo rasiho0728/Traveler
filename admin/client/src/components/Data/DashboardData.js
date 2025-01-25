@@ -314,7 +314,7 @@ export const ClientInvoicesData={
     columns:[
         {
             name: "NO",
-            selector: ()=>{},
+            // selector: ()=>{},
             sortable: true,
             cell:(row)=> <a href="invoices" className="fw-bold text-secondary">#{row.no}</a>
         },
@@ -340,7 +340,7 @@ export const ClientInvoicesData={
         },
         {
             name: "STATUS",
-            selector: row=>{},
+            // selector: row=>{},
             sortable: true,
             cell:(row)=><span className={`badge ${row.status==="Paid"?"bg-success":row.status==="Pending"?`bg-warning`:'bg-lavender-purple'}`}>{row.status}</span>
         }

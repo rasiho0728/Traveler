@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ApexCharts from "apexcharts"
 import { Dropdown } from "react-bootstrap";
 
-const GeneralChartCardDropDown: React.FC<{ identity: any, Title: any, TitleRight: any, extraDivBody: any, data: any }> = (props) => {
+const GeneralChartCardDropDown: React.FC<{ identity: any, Title: any, TitleRight?: any, extraDivBody?: any, data: any }> = (props) => {
     const { identity, Title, TitleRight, extraDivBody } = props;
     const { data } = props;
 

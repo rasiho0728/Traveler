@@ -20,7 +20,7 @@ function App(props: any) {
 
   return (
     <div id="mytask-layout" className="theme-indigo">
-      <Sidebar activekey={activekey()} history={props.history} />
+      <Sidebar activekey={activekey()} />
       <MainIndex activekey={activekey()} />
     </div>
   );

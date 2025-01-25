@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Chart from 'react-apexcharts';
 
-const GeneralChartCard: React.FC<{ identity: any, Title: any, TitleRight: any, extraDivBody: any, data: any }> = (props) => {
+const GeneralChartCard: React.FC<{ identity?: any, Title: any, TitleRight?: any, extraDivBody?: any, data: any }> = (props) => {
     const { identity, Title, TitleRight, extraDivBody, data } = props;
     const [option, setOption] = useState(data.options);
     const [series, setSeries] = useState(data.options.series);
