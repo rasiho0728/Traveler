@@ -12,8 +12,8 @@ const Sidebar: React.FC<{ activekey: any }> = (props) => {
   const [updateRtl, setUpdateRtl] = useState(false);
 
   const navigate = useNavigate();
-
   useEffect(() => {
+    // console.log(activekey)
     window.document.children[0].setAttribute("data-theme", "light");
   }, []);
 
@@ -135,7 +135,7 @@ const Sidebar: React.FC<{ activekey: any }> = (props) => {
               }
               if (d.children.length === 0) {
                 return <li key={"dsfshsdg" + i} className=" collapsed">
-                  <Link to={`${process.env.REACT_APP_BASE_URL}/{d.routerLink[0]}`} className={`m-link ${(d.routerLink[0] === activekey) ? "active" : ""}`} >
+                  <Link to={`${process.env.REACT_APP_BASE_URL}/${d.routerLink[0]}`} className={`m-link ${(d.routerLink[0] === activekey) ? "active" : ""}`} >
                     <i className={d.iconClass}></i>
                     <span>{d.name}</span>
                     <span className="arrow icofont-dotted-down ms-auto text-end fs-5">
@@ -154,6 +154,7 @@ const Sidebar: React.FC<{ activekey: any }> = (props) => {
                   d.children.length > 0 ?
                     <ul className="sub-menu collapse has-children" id={"menu-Pages" + i}>
                       {d.children.map((data, ind) => {
+                        // console.log(data.routerLink[0])
                         if (d.children.length > 0) {
                           if (activekey === "/" + data.routerLink[0]) {
                             setTimeout(() => {

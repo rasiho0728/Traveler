@@ -57,7 +57,7 @@ import Help from "./Dashboard/Help";
 const MainIndex: React.FC<{activekey:string|undefined}> = (props) => {
 
     const { activekey } = props;
-    console.log(process.env.REACT_APP_BASE_URL)
+    // console.log(process.env.REACT_APP_BASE_URL)
     return (
         <div className="main px-lg-4 px-md-4">
             {activekey !== "/chat-app" ? activekey === "/documentation" ? <PageHeader1 /> : <Header /> : ""}
