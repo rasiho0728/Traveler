@@ -65,7 +65,7 @@ const MainIndex: React.FC = () => {
         setActivekey('/' + pathList[pathList.length - 1])
         // console.log('/' + pathList[pathList.length - 1])
     }, [pathname])
-
+//tes
     return (
         <div className="main px-lg-4 px-md-4">
             {activekey !== "/chat-app" ? activekey === "/documentation" ? <PageHeader1 /> : <Header /> : ""}
