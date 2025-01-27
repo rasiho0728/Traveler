@@ -63,7 +63,7 @@ const MainIndex: React.FC = () => {
     useEffect(() => {
         const pathList = pathname.split('/')
         setActivekey('/' + pathList[pathList.length - 1])
-        // console.log('/' + pathList[pathList.length - 1])
+        // console.log('/' + pathList[pathList.length - 1]) aa
     }, [pathname])
 
     return (
