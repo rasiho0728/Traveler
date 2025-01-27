@@ -5,7 +5,7 @@ import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 
 const BasicToast: React.FC = () => {
-  const Avatar1 = "../../assets/images/xs/avatar1.jpg"
+  const Avatar1 = require("../../assets/images/xs/avatar1.jpg")
   const [basicT, setBasicT] = useState("Preview");
 
 

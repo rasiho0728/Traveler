@@ -1,10 +1,11 @@
 import React from "react";
 import { Dropdown, Modal } from "react-bootstrap";
-const Avatar2 = "../../assets/images/xs/avatar2.jpg";
-const Avatar3 = "../../assets/images/xs/avatar3.jpg";
-const Avatar8 = "../../assets/images/xs/avatar8.jpg";
+
 
 const AddNewUserModal: React.FC<{ onClose: any, show: any }> = (props) => {
+  const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
+  const Avatar3 = require("../../assets/images/xs/avatar3.jpg");
+  const Avatar8 = require("../../assets/images/xs/avatar8.jpg");
   const { onClose, show } = props;
   return (
     <Modal centered size="lg" show={show} onHide={onClose}>

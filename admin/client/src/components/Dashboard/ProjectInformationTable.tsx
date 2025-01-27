@@ -1,13 +1,13 @@
 import React from "react";
 
 const ProjectInformationTable:React.FC = () => {
-    const Avatar1 = "../../assets/images/xs/avatar1.jpg";
-    const Avatar2 = "../../assets/images/xs/avatar2.jpg";
-    const Avatar3 = "../../assets/images/xs/avatar3.jpg";
-    const Avatar4 = "../../assets/images/xs/avatar4.jpg";
-    const Avatar5 = "../../assets/images/xs/avatar5.jpg";
-    const Avatar6 = "../../assets/images/xs/avatar6.jpg";
-    const Avatar7 = "../../assets/images/xs/avatar7.jpg";
+    const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
+    const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
+    const Avatar3 = require("../../assets/images/xs/avatar3.jpg");
+    const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
+    const Avatar5 = require("../../assets/images/xs/avatar5.jpg");
+    const Avatar6 = require("../../assets/images/xs/avatar6.jpg");
+    const Avatar7 = require("../../assets/images/xs/avatar7.jpg");
 
     return (
         <div className="card mb-3">

@@ -4,7 +4,7 @@ import { SyntaxHighlighter } from './SyntaxHighlighter';
 import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const StackingToast: React.FC = () => {
-  const Avatar3 = "../../assets/images/xs/avatar3.jpg"
+  const Avatar3 = require("../../assets/images/xs/avatar3.jpg")
   const [basicT, setBasicT] = useState("Preview");
 
 

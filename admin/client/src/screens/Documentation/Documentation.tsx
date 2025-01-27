@@ -1,8 +1,8 @@
 import React from "react";
 
 const Documentation: React.FC = () => {
-  const OpenMenu = "../../assets/images/document/menu-open.png";
-  const CloseMenu = "../../assets/images/document/menu-close.png";
+  const OpenMenu = require("../../assets/images/document/menu-open.png");
+  const CloseMenu = require("../../assets/images/document/menu-close.png");
   return (
     <div className="container">
       <div className="row">

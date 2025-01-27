@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SignIn: React.FC = () => {
-  const GoogleImg = "../../assets/images/google.svg";
+  const GoogleImg = require("../../assets/images/google.svg");
   return (
     <div className="col-lg-6 d-flex justify-content-center align-items-center border-0 rounded-lg auth-h100">
       <div className="w-100 p-3 p-md-5 card border-0 bg-dark text-light" style={{ maxWidth: "32rem" }}>
@@ -14,7 +14,7 @@ const SignIn: React.FC = () => {
           <div className="col-12 text-center mb-4">
             <a className="btn btn-lg btn-outline-secondary btn-block" href="#!">
               <span className="d-flex justify-content-center align-items-center">
-                <img className="avatar xs me-2" src={GoogleImg} alt="Imag Description" />
+                <img className="avatar xs me-2" src={GoogleImg.default} alt="Imag Description" />
                 Sign in with Google
               </span>
             </a>

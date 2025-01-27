@@ -1,12 +1,12 @@
 import React from "react";
 
 const AllocatedTask: React.FC = () => {
-  const Avatar10 = "../../assets/images/xs/avatar10.jpg";
-  const Avatar11 = "../../assets/images/xs/avatar11.jpg";
-  const Avatar3 = "../../assets/images/xs/avatar3.jpg";
-  const Avatar4 = "../../assets/images/xs/avatar4.jpg";
-  const Avatar9 = "../../assets/images/xs/avatar9.jpg";
-  const Avatar6 = "../../assets/images/xs/avatar6.jpg";
+  const Avatar10 = require("../../assets/images/xs/avatar10.jpg");
+  const Avatar11 = require("../../assets/images/xs/avatar11.jpg");
+  const Avatar3 = require("../../assets/images/xs/avatar3.jpg");
+  const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
+  const Avatar9 = require("../../assets/images/xs/avatar9.jpg");
+  const Avatar6 = require("../../assets/images/xs/avatar6.jpg");
   return (
     <div className="card">
       <div className="card-header py-3">

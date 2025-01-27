@@ -1,10 +1,10 @@
 import React from "react";
 
 const ReviewCommnetCard: React.FC = () => {
-  const Avatar1 = "../../assets/images/xs/avatar1.jpg";
-  const Avatar2 = "../../assets/images/xs/avatar2.jpg";
-  const Avatar3 = "../../assets/images/xs/avatar3.jpg";
-  const Avatar4 = "../../assets/images/xs/avatar4.jpg";
+  const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
+  const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
+  const Avatar3 = require("../../assets/images/xs/avatar3.jpg");
+  const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
 
   return (
     <ul className="list-unstyled mb-4 res-set">

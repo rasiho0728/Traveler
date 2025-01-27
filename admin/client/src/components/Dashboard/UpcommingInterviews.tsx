@@ -1,12 +1,12 @@
 import React from "react";
 
 const UpcommingInterviews = () => {
-    const Avatar2 = "../../assets/images/lg/avatar2.jpg";
-    const Avatar3 = "../../assets/images/lg/avatar3.jpg";
-    const Avatar7 = "../../assets/images/lg/avatar7.jpg";
-    const Avatar8 = "../../assets/images/lg/avatar8.jpg";
-    const Avatar9 = "../../assets/images/lg/avatar9.jpg";
-    const Avatar12 = "../../assets/images/lg/avatar12.jpg";
+    const Avatar2 = require("../../assets/images/lg/avatar2.jpg");
+    const Avatar3 = require("../../assets/images/lg/avatar3.jpg");
+    const Avatar7 = require("../../assets/images/lg/avatar7.jpg");
+    const Avatar8 = require("../../assets/images/lg/avatar8.jpg");
+    const Avatar9 = require("../../assets/images/lg/avatar9.jpg");
+    const Avatar12 = require("../../assets/images/lg/avatar12.jpg");
 
     return (
         <div className="card">

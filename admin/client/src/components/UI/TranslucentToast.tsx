@@ -4,7 +4,7 @@ import { SyntaxHighlighter } from './SyntaxHighlighter';
 import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const TranslucentToast: React.FC = () => {
-  const Avatar2 = "../../assets/images/xs/avatar2.jpg"
+  const Avatar2 = require("../../assets/images/xs/avatar2.jpg")
   const [basicT, setBasicT] = useState("Preview");
 
   return (

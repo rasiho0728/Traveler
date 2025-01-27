@@ -2,7 +2,7 @@ import React from "react";
 
 
 const LeftSide:React.FC = () => {
-  const loginImg = "../../assets/images/login-img.svg";
+  const loginImg = require("../../assets/images/login-img.svg");
   return (
     <div className="col-lg-6 d-none d-lg-flex justify-content-center align-items-center rounded-lg auth-h100">
       <div style={{ maxWidth: "25rem" }}>
@@ -17,7 +17,7 @@ const LeftSide:React.FC = () => {
           <h2 className="color-900 text-center">My-Task Let's Management Better</h2>
         </div>
         <div className="">
-          <img src={loginImg} alt="login-img" />
+          <img src={loginImg.default} alt="login-img" />
         </div>
       </div>
     </div>

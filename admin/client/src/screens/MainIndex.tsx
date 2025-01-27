@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes as ReactRoutes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Routes as ReactRoutes, useLocation } from "react-router-dom";
 import Header from "../components/common/Header";
 import Expenses from "./Accounts/Expenses";
 import Invoices from "./Accounts/Invoices";
@@ -53,11 +53,19 @@ import PageHeader1 from "../components/common/PageHeader1";
 import Documentation from "./Documentation/Documentation";
 import Changelog from "./Changelog/Changelog";
 import Help from "./Dashboard/Help";
+import SignIn from "../components/Auth/SignIn";
+import Signup from "../components/Auth/Signup";
 
-const MainIndex: React.FC<{activekey:string|undefined}> = (props) => {
+const MainIndex: React.FC = () => {
+    const { pathname } = useLocation();
+    const [activekey, setActivekey] = useState('')
 
-    const { activekey } = props;
-    // console.log(process.env.REACT_APP_BASE_URL)
+    useEffect(() => {
+        const pathList = pathname.split('/')
+        setActivekey('/' + pathList[pathList.length - 1])
+        console.log('/' + pathList[pathList.length - 1])
+    }, [pathname])
+
     return (
         <div className="main px-lg-4 px-md-4">
             {activekey !== "/chat-app" ? activekey === "/documentation" ? <PageHeader1 /> : <Header /> : ""}
@@ -115,6 +123,8 @@ const MainIndex: React.FC<{activekey:string|undefined}> = (props) => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/documentation`} element={<Documentation/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/changelog`} element={<Changelog/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/help`} element={<Help/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/sign-in`} element={<SignIn/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/sign-up`} element={<Signup/>} />
             </ReactRoutes>
             </div>
         </div>

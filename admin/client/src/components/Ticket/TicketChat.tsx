@@ -1,9 +1,9 @@
 import React from "react";
 
 const TicketChat: React.FC = () => {
-  const Avatar1 = "../../assets/images/xs/avatar1.jpg";
-  const Avatar2 = "../../assets/images/xs/avatar2.jpg";
-  const Avatar3 = "../../assets/images/xs/avatar3.jpg";
+  const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
+  const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
+  const Avatar3 = require("../../assets/images/xs/avatar3.jpg");
   return (
     <div className="card">
       <div className="card-body card-body-height py-4">

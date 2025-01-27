@@ -4,17 +4,16 @@ import { Link } from "react-router-dom";
 import AddNewUserModal from "./AddNewUserModal";
 
 const Header: React.FC = () => {
-  const Avatar1 = "../../assets/images/xs/avatar1.jpg";
-  const Avatar2 = "../../assets/images/xs/avatar2.jpg";
-  const Avatar3 = "../../assets/images/xs/avatar3.jpg";
-  const Avatar4 = "../../assets/images/xs/avatar4.jpg";
-  const Avatar5 = "../../assets/images/xs/avatar5.jpg";
-  const Avatar6 = "../../assets/images/xs/avatar6.jpg";
-  const Avatar7 = "../../assets/images/xs/avatar7.jpg";
-  const Avatar8 = "../../assets/images/xs/avatar8.jpg";
-  const ProfileImg = "../../assets/images/profile_av.png";
+  const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
+  const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
+  const Avatar3 = require("../../assets/images/xs/avatar3.jpg");
+  const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
+  const Avatar5 = require("../../assets/images/xs/avatar5.jpg");
+  const Avatar6 = require("../../assets/images/xs/avatar6.jpg");
+  const Avatar7 = require("../../assets/images/xs/avatar7.jpg");
+  const Avatar8 = require("../../assets/images/xs/avatar8.jpg");
+  const ProfileImg = require("../../assets/images/profile_av.png");
   const [isAddUserModa, setIsAddUserModa] = useState(false);
-
   return (
     <div className="header">
       <nav className="navbar py-4">

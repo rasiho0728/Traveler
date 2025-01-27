@@ -3,7 +3,7 @@ import React from "react";
 
 const ClientProfileCard: React.FC<{ designation?: any, details?: any }> = (props) => {
   const { designation, details } = props;
-  const profileImg = "../../assets/images/lg/avatar3.jpg";
+  const profileImg = require("../../assets/images/lg/avatar3.jpg");
 
   return (
     <div className="card teacher-card  mb-3">

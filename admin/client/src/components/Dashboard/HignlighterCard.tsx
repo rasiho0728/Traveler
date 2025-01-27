@@ -1,7 +1,7 @@
 import React from "react";
 
 const HignlighterCard:React.FC = () => {
-    const InterviewImg = "../../assets/images/interview.svg";
+    const InterviewImg = require("../../assets/images/interview.svg");
 
     return (
         <div className="card bg-primary">
@@ -12,7 +12,7 @@ const HignlighterCard:React.FC = () => {
                     <span className="text-white">Applications</span>
                 </div>
                 <div className="col">
-                    <img className="img-fluid" src={InterviewImg} alt="interview" />
+                    <img className="img-fluid" src={InterviewImg.default} alt="interview" />
                 </div>
             </div>
         </div>

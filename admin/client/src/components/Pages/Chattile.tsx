@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 
 const Chattile: React.FC<{ data: any }> = (props) => {
-  const Avatar1 = "../../assets/images/xs/avatar1.jpg";
-  const Avatar2 = "../../assets/images/xs/avatar2.jpg";
-  const Avatar4 = "../../assets/images/xs/avatar4.jpg";
-  const Avatar6 = "../../assets/images/xs/avatar6.jpg";
-  const Avatar7 = "../../assets/images/xs/avatar7.jpg";
-  const Avatar10 = "../../assets/images/xs/avatar10.jpg";
+  const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
+  const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
+  const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
+  const Avatar6 = require("../../assets/images/xs/avatar6.jpg");
+  const Avatar7 = require("../../assets/images/xs/avatar7.jpg");
+  const Avatar10 = require("../../assets/images/xs/avatar10.jpg");
   const { data } = props;
   const [chatData, setChatData] = useState([...data]);
   const [activeChatIndex, setActiveChatIndex] = useState(0);

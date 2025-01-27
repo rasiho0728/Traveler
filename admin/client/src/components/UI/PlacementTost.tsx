@@ -4,7 +4,7 @@ import { SyntaxHighlighter } from './SyntaxHighlighter';
 import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const PlacementTost: React.FC = () => {
-  const Avatar10 = "../../assets/images/xs/avatar10.jpg"
+  const Avatar10 = require("../../assets/images/xs/avatar10.jpg")
   const [basicT, setBasicT] = useState("Preview");
 
 

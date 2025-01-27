@@ -3,10 +3,10 @@ import { SyntaxHighlighter } from './SyntaxHighlighter';
 import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const BasicListGroup: React.FC = () => {
-  const Avatar1 = "../../assets/images/xs/avatar1.jpg"
-  const Avatar3 = "../../assets/images/xs/avatar3.jpg"
-  const Avatar4 = "../../assets/images/xs/avatar4.jpg"
-  const Avatar5 = "../../assets/images/xs/avatar5.jpg"
+  const Avatar1 = require("../../assets/images/xs/avatar1.jpg")
+  const Avatar3 = require("../../assets/images/xs/avatar3.jpg")
+  const Avatar4 = require("../../assets/images/xs/avatar4.jpg")
+  const Avatar5 = require("../../assets/images/xs/avatar5.jpg")
   const tabEvent = (evt: any, panid: any, tabClass: any, navClass: any) => {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName(tabClass);

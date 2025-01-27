@@ -2,7 +2,7 @@ import React from "react";
 import PageHeader from "../../components/common/PageHeader";
 
 const Changelog: React.FC = () => {
-  const ChageIMG = "../../assets/images/change-log.svg";
+  const ChageIMG = require("../../assets/images/change-log.svg");
 
   return (
     <div className="container-xxl">
@@ -16,7 +16,7 @@ const Changelog: React.FC = () => {
         <div className="col-12">
           <div className="card">
             <div className="card-body text-center p-5">
-              <img src={ChageIMG} className="img-fluid mx-size" alt="No Data" />
+              <img src={ChageIMG.default} className="img-fluid mx-size" alt="No Data" />
             </div>
           </div>
         </div>

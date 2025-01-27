@@ -3,17 +3,17 @@ import { SyntaxHighlighter } from './SyntaxHighlighter';
 import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const CardsLyouts: React.FC = () => {
-  const Thumbnail1 = "../../assets/images/gallery/1.jpg";
-  const Thumbnail2 = "../../assets/images/gallery/2.jpg";
-  const Thumbnail3 = "../../assets/images/gallery/3.jpg";
-  const Thumbnail4 = "../../assets/images/gallery/4.jpg";
-  const Thumbnail5 = "../../assets/images/gallery/5.jpg";
-  const Thumbnail6 = "../../assets/images/gallery/6.jpg";
-  const Thumbnail7 = "../../assets/images/gallery/7.jpg";
-  const Thumbnail8 = "../../assets/images/gallery/8.jpg";
-  const Thumbnail9 = "../../assets/images/gallery/9.jpg";
-  const Thumbnail10 = "../../assets/images/gallery/10.jpg";
-  const Thumbnail11 = "../../assets/images/gallery/11.jpg";
+  const Thumbnail1 = require("../../assets/images/gallery/1.jpg");
+  const Thumbnail2 = require("../../assets/images/gallery/2.jpg");
+  const Thumbnail3 = require("../../assets/images/gallery/3.jpg");
+  const Thumbnail4 = require("../../assets/images/gallery/4.jpg");
+  const Thumbnail5 = require("../../assets/images/gallery/5.jpg");
+  const Thumbnail6 = require("../../assets/images/gallery/6.jpg");
+  const Thumbnail7 = require("../../assets/images/gallery/7.jpg");
+  const Thumbnail8 = require("../../assets/images/gallery/8.jpg");
+  const Thumbnail9 = require("../../assets/images/gallery/9.jpg");
+  const Thumbnail10 = require("../../assets/images/gallery/10.jpg");
+  const Thumbnail11 = require("../../assets/images/gallery/11.jpg");
   return (
     <div className="col-lg-8 col-sm-12">
       <div className="card">
