@@ -17,7 +17,7 @@ function App(props: any) {
     const activeKey1 = res;
     return activeKey1
   }
-  console.log(`${activekey()}머지마지막테스트!`)
+  console.log(`${activekey()}`)
   return (
     <div id="mytask-layout" className="theme-indigo">
       <Sidebar activekey={activekey()} />
