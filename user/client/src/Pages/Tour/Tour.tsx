@@ -143,7 +143,7 @@ const Tour: React.FC = () => {
                             <div className="row">
                                 <div className="col-md-4 ftco-animate">
                                     <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
+                                        <Link to="/traveler/tour/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
                                                 <span className="icon-search2"></span>
                                             </div>
@@ -151,14 +151,14 @@ const Tour: React.FC = () => {
                                         <div className="text p-3">
                                             <div className="d-flex">
                                                 <div className="one">
-                                                    <h3><Link to="#">파리, 이탈리아</Link></h3>
+                                                    <h3><Link to="/traveler/tour/1">파리, 이탈리아</Link></h3>
                                                     <p className="rate">
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star-o"></i>
-                                                        <span style={{ color: "#f85959", fontWeight: "bold",fontSize: "11px", }}>{8} / 10 별점</span>
+                                                        <span style={{ color: "#f85959", fontWeight: "bold",fontSize: "11px", }}>{4} / 5 별점</span>
                                                         {/* <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}><Link to = "#">리뷰 {32} 개</Link></span> */}
                                                         <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}>리뷰 {32} 개</span>
                                                     </p>
