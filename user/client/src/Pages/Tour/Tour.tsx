@@ -63,46 +63,28 @@ const Tour: React.FC = () => {
                     <div className="row">
                         <div className="col-lg-3 sidebar ftco-animate">
                             <div className="sidebar-wrap bg-light ftco-animate">
-                                <h3 className="heading mb-4">Find City</h3>
+                                <h3 className="heading mb-4">여행지 검색</h3>
                                 <form action="#">
                                     <div className="fields">
                                         <div className="form-group">
-                                            <input type="text" className="form-control" placeholder="Destination, City" />
+                                        <input
+                                            type="text"
+                                            className="form-control search-input"
+                                            placeholder="검색어를 입력하세요"
+                                            style={{ color: "black" }} // 입력값은 검은색
+                                        />
                                         </div>
                                         <div className="form-group">
                                             <div className="select-wrap one-third">
-                                                <div className="icon"><span className="ion-ios-arrow-down"></span></div>
+                                                <div className="icon" color='gray'><span className="ion-ios-arrow-down"></span></div>
                                                 <select name="" id="" className="form-control">
-                                                    <option value="">Select Location</option>
-                                                    <option value="">San Francisco USA</option>
-                                                    <option value="">Berlin Germany</option>
-                                                    <option value="">Lodon United Kingdom</option>
-                                                    <option value="">Paris Italy</option>
+                                                    <option value="">일반</option>
+                                                    <option value="">테마</option>
+                                                    <option value="">지역</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="form-group">
-                                            <DatePicker
-                                                selected={selectedFDate}
-                                                onChange={(date: Date | null) => setSelectedFDate(date)}
-                                                dateFormat="yyyy년 MM월 dd일" // 날짜 형식
-                                                className="form-control" // Bootstrap 스타일
-                                                locale="ko" // 로케일 설정
-                                                id="checkin_date"
-                                                placeholderText="Date from" // 플레이스홀더
-                                            />
-                                        </div>
-                                        <div className="form-group">
-                                            <DatePicker
-                                                selected={selectedTDate}
-                                                onChange={(date: Date | null) => setSelectedTDate(date)}
-                                                dateFormat="yyyy년 MM월 dd일" // 날짜 형식
-                                                className="form-control" // Bootstrap 스타일
-                                                locale="ko" // 로케일 설정
-                                                id="checkin_date"
-                                                placeholderText="Date to" // 플레이스홀더
-                                            />
-                                        </div>
+                                    
                                         <div className="form-group">
                                             <div className="range-slider">
                                                 <span>
@@ -115,12 +97,12 @@ const Tour: React.FC = () => {
                                             </div>
                                         </div>
                                         <div className="form-group">
-                                            <input type="submit" value="Search" className="btn btn-primary py-3 px-5" />
+                                            <input type="submit" value="검색" className="btn btn-primary py-3 px-5" />
                                         </div>
                                     </div>
+                                    
                                 </form>
-                            </div>
-                            <div className="sidebar-wrap bg-light ftco-animate"  style={{ position: 'relative', zIndex: -1 }}>
+                               
                                 <h3 className="heading mb-4">Star Rating</h3>
                                 <form method="post" className="star-rating">
                                     <div className="form-check">
@@ -155,7 +137,8 @@ const Tour: React.FC = () => {
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                            </div>
+                            
                         <div className="col-lg-9">
                             <div className="row">
                                 <div className="col-md-4 ftco-animate">
@@ -168,200 +151,35 @@ const Tour: React.FC = () => {
                                         <div className="text p-3">
                                             <div className="d-flex">
                                                 <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
+                                                    <h3><Link to="#">파리, 이탈리아</Link></h3>
                                                     <p className="rate">
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
+                                                        <span style={{ color: "#f85959", fontWeight: "bold",fontSize: "11px", }}>{8} / 10 별점</span>
+                                                        {/* <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}><Link to = "#">리뷰 {32} 개</Link></span> */}
+                                                        <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}>리뷰 {32} 개</span>
                                                     </p>
                                                 </div>
                                                 <div className="two">
-                                                    <span className="price">$200</span>
+                                                    <span className="price">₩{200}</span>
                                                 </div>
+                                    
                                             </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
+                                            <p>낭만과 예술이 살아 숨 쉬는 파리, 감성과 역사로 가득한 이탈리아로 떠나보세요!</p>
+                                            <p className="days"><span>2 박 3 일</span></p>
+                                            
                                             <hr />
                                             <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
+                                                <span><i className="icon-map-o"></i> 샌 프란시스코, CA</span>
+                                                <span className="ml-auto"><Link to="#">상세보기</Link></span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-2.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-3.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-4.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-5.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-6.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div className="row mt-5">
                                 <div className="col text-center">
@@ -381,6 +199,17 @@ const Tour: React.FC = () => {
                         </div>
                     </div>
                 </div >
+                <style>
+                    {`
+                        .search-input::placeholder {
+                            color: lightgray !important;
+                            opacity: 1;
+                        }
+                        .search-input {
+                            color: black;
+                        }
+                    `}
+                </style>
             </section >
         </div >
     )
