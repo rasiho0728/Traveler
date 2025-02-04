@@ -9,7 +9,7 @@ import ImgCarousel from '../../Comm/ImgCarousel';
 
 registerLocale("ko", ko);
 
-const Tour_Detail: React.FC = () => {
+const TourDetail: React.FC = () => {
     // 차후 사용시 주석 해제
     // const num = useParams()
     const [isOpen, setIsOpen] = useState(false);
@@ -426,4 +426,4 @@ const Tour_Detail: React.FC = () => {
     )
 }
 
-export default Tour_Detail
+export default TourDetail
