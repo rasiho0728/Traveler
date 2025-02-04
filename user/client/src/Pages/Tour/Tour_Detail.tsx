@@ -12,20 +12,13 @@ registerLocale("ko", ko);
 const Tour_Detail: React.FC = () => {
     // 차후 사용시 주석 해제
     // const num = useParams()
-    const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
-    const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 
     const [rating, setRating] = useState<number>(0);
     const [review, setReview] = useState<string>("");
     const [reviews, setReviews] = useState<{ rating: number; text: string }[]>([]);
 
-    // 별점 선택 핸들러
-    const handleStarClick = (selectedRating: number) => {
-        setRating(selectedRating);
-    };
-
-    // 리뷰 제출 핸들러
+    // 리뷰 제출 핸들러 => 리뷰 보기로 기능 변경 필요
     const handleSubmit = () => {
         if (!review.trim()) return alert("리뷰 내용을 입력해주세요!");
         setReviews([...reviews, { rating, text: review }]);
@@ -204,36 +197,8 @@ const Tour_Detail: React.FC = () => {
                                         </figure>
                                     </div>
                                     <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                        <h4 className="mb-4">리뷰 남기기</h4>
-
-                                        {/* 별점 선택 UI */}
-                                        <div className="star-rating mb-3">
-                                            {[1, 2, 3, 4, 5].map((star) => (
-                                                <span
-                                                    key={star}
-                                                    style={{
-                                                        cursor: "pointer",
-                                                        fontSize: "24px",
-                                                        color: star <= rating ? "#FFD700" : "#ccc",
-                                                    }}
-                                                    onClick={() => setRating(star)}
-                                                >
-                                                    ★
-                                                </span>
-                                            ))}
-                                        </div>
-
-                                        {/* 리뷰 입력 폼 */}
-                                        <textarea
-                                            className="form-control"
-                                            placeholder="리뷰를 입력하세요..."
-                                            value={review}
-                                            onChange={(e) => setReview(e.target.value)}
-                                            rows={3}
-                                        />
-
                                         <button className="btn btn-primary mt-3" onClick={handleSubmit}>
-                                            리뷰 등록
+                                            리뷰 보기
                                         </button>
 
                                         {/* 등록된 리뷰 목록 */}

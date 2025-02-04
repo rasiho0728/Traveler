@@ -28,6 +28,7 @@ import Tour from './Pages/Tour/Tour';
 import Test from './Test/Test';
 import Coalition from './Pages/Coalition/Coalition';
 import Tour_Detail from './Pages/Tour/Tour_Detail';
+import CoalitionAccount from './Pages/Coalition/CoalitionAccount';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
+        <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
       </Routes>
       <Footer />
     </BrowserRouter>
