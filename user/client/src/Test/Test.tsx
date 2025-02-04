@@ -1,9 +1,8 @@
-// 2025.02.02. 21:00 생성자: 이학수, 제휴페이지 메인 
 import React, { useEffect } from 'react'
 import { updateHeight } from '../Comm/CommomFunc';
 
 const Test: React.FC = () => {
-  
+
   useEffect(() => {
     // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
     updateHeight();
