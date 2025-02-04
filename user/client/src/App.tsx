@@ -27,6 +27,7 @@ import HotelDetail from './Pages/Hotel/HotelDetail';
 import Tour from './Pages/Tour/Tour';
 import Test from './Test/Test';
 import Coalition from './Pages/Coalition/Coalition';
+import Tour_Detail from './Pages/Tour/Tour_Detail';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path='/traveler/home' element={<Home />} />
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
+        <Route path='/traveler/tour/:num' element={<Tour_Detail />} />
         <Route path='/traveler/hotels' element={<Hotel />} />
         <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
         <Route path='/traveler/blog' element={<Blog />} />
