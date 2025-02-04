@@ -79,6 +79,17 @@
                     "isCategory": false,
                     "isApp": false,
                     "children": []
+                },
+
+                {
+                    "name": "TourList",
+                    "routerLink": ["tourlist"],
+                    "identifier": "TourList",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
                 }
 
             ]
