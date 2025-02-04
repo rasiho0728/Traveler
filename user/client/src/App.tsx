@@ -14,7 +14,6 @@ import "./css/owl.carousel.min.css" // 캐러셀 관련 css
 import "./css/owl.theme.default.min.css" // 캐러셀 관련 css
 import "./css/react-datepicker.css" // 날짜 선택 모듈 css
 import "react-modal-video/css/modal-video.min.css"; // 비디오 모달 css
-import Test from './Test/Test';
 import Header from './Comm/Header';
 import Footer from './Comm/Footer';
 import Home from './Pages/Home/Home';
@@ -26,6 +25,8 @@ import Contact from './Pages/Contact/Contact';
 import Hotel from './Pages/Hotel/Hotel';
 import HotelDetail from './Pages/Hotel/HotelDetail';
 import Tour from './Pages/Tour/Tour';
+import Test from './Test/Test';
+import Coalition from './Pages/Coalition/Coalition';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path='/traveler/blog' element={<Blog />} />
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
+        <Route path='/traveler/coalition' element={<Coalition />} />
       </Routes>
       <Footer />
     </BrowserRouter>
