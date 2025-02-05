@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import { Link } from 'react-router-dom';
+import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 
 const Backpack: React.FC = () => {
     useEffect(() => {
