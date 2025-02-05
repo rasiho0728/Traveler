@@ -1,6 +1,6 @@
 // 2025.01.21. 19:35 생성자: 이학수, HTML템플릿을 리엑트로 조정
 import React, { useEffect } from 'react'
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFuncAd';
 import GalleryCarousel from '../../Comm/GalleryCarousel';
 import AnimatedNumber from '../../Comm/AnimatedNumber';
 import CardCarousel from '../../Comm/CardCarousel';

@@ -1,7 +1,7 @@
 // 2025.02.02. 21:00 생성자: 이학수, 제휴페이지 메인 
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFuncAd';
 import Pagenation from '../../Comm/Pagenation';
 
 interface CoalitionHotel {
