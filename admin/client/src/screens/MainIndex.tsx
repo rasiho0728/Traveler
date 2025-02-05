@@ -56,6 +56,7 @@ import Help from "./Dashboard/Help";
 import SignIn from "../components/Auth/SignIn";
 import Signup from "../components/Auth/Signup";
 import TourList from "./Projects/TourList";
+import TourListDetail from "./Projects/TourListDetail";
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();
@@ -77,6 +78,7 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/project-dashboard`} element={<ProjectDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:num`} element={<TourListDetail/>} /> 
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tasks`} element={<Tasks/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/timesheet`} element={<Timesheet/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/leaders`} element={<Leaders/>} />
