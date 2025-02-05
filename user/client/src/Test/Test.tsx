@@ -1,14 +1,23 @@
-import React from 'react'
-import ImgCarousel from '../Comm/ImgCarousel'
+import React, { useEffect } from 'react'
+import { updateHeight } from '../Comm/CommomFunc';
 
 const Test: React.FC = () => {
-    return (
-        <div>
-            <div className="col-md-12 ftco-animate">
-                <ImgCarousel data = {[1,2,3]}/>
-            </div>
-        </div>
-    )
+
+  useEffect(() => {
+    // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, []);
+
+  return (
+    <div>
+      <div className="hero-wrap js-fullheight" style={{ /*backgroundImage: "url('/images/bg_5.jpg')",*/ backgroundColor: "black" }}>
+      </div>
+    </div>
+  )
 }
 
 export default Test
