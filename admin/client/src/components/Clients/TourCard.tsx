@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 
-const TestCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl: any, id:number,onClickEdit?: any, onClickDelete?: any, onClickAdd?: any }> = (props) => {
+const TourCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl: any, id:number,onClickEdit?: any, onClickDelete?: any, onClickAdd?: any }> = (props) => {
   const { teamImage, logo, logoBg, title, sl, id, onClickEdit, onClickDelete, onClickAdd } = props;
 
   const [hover, setHover] = useState(false);
@@ -131,4 +131,4 @@ const TestCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, s
 
 
 
-export default TestCard;
+export default TourCard;
