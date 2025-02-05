@@ -9340,3 +9340,16 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
+/* --------------2025-02-05 서브메뉴추가 / 장지원-------------- */
+.sub-menu{
+  list-style: none;
+  display: none;
+  position: absolute;
+  padding-left: 12px;
+}
+
+.nav-item:hover ul.sub-menu{
+  display: block;
+}
