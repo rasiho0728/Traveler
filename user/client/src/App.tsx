@@ -34,7 +34,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* 페이지 이동시 스크롤 상당으로 이동 시켜주는 컴포넌트 */}
-      {/* <ScrollToTop /> */}
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path='/' element={<Test />} />
