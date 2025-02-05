@@ -69,7 +69,7 @@ function App() {
         <Route path='/traveler/singup' element={<SingUp />} />
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
-      {/**최의진 2025-02-05 */}
+
       </Routes>
       <Footer />
       <Chat />
