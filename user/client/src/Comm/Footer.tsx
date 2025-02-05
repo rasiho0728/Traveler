@@ -1,6 +1,6 @@
 // 2025.01.22. 11:00 생성자: 이학수, 풋터 분리 
 import React, { useEffect } from 'react'
-import { appear_animate } from './CommomFunc'
+import { appear_animate } from './CommomFuncAd'
 
 const Footer: React.FC = () => {
     useEffect(() => {

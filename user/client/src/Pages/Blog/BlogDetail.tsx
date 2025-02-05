@@ -1,6 +1,6 @@
 // 2025.01.24. 09:00 생성자: 이학수, HTML템플릿을 리엑트로 조정
 import React, { useEffect } from 'react'
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFuncAd';
 import { Link } from 'react-router-dom';
 
 const BlogDetail: React.FC = () => {

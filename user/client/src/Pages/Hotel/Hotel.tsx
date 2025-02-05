@@ -1,6 +1,6 @@
 // 2025.01.24. 09:40 생성자: 이학수, HTML템플릿을 리엑트로 조정
 import React, { useEffect, useState } from 'react'
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFuncAd';
 import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
