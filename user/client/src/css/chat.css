@@ -225,4 +225,8 @@
         left: -9px;
         bottom: 0px;
     }
+
+    li{
+        list-style: none;
+    }
 }

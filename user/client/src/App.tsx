@@ -29,6 +29,13 @@ import Test from './Test/Test';
 import Coalition from './Pages/Coalition/Coalition';
 import TourDetail from './Pages/Tour/TourDetail';
 import CoalitionAccount from './Pages/Coalition/CoalitionAccount';
+import Chat from './Pages/Chat/Chat';
+import Like from './Pages/Community/Like';
+import LikeDetail from './Pages/Community/LikeDetail';
+import Backpack from './Pages/Community/Backpack';
+import BackpackDetail from './Pages/Community/BackpackDetail';
+import Login from './Pages/Login/Login';
+import SingUp from './Pages/Login/SingUp';
 
 function App() {
   return (
@@ -49,8 +56,16 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
+        <Route path='/traveler/community' element={<Like />} />
+        <Route path='/traveler/community/:num' element={<LikeDetail />} />
+        <Route path='/traveler/backpack' element={<Backpack />} />
+        <Route path='/traveler/backpack/:num' element={<BackpackDetail />} />
+        <Route path='/traveler/contact' element={<Contact />} />
+        <Route path='/traveler/login' element={<Login />} />
+        <Route path='/traveler/singup' element={<SingUp />} />
       </Routes>
       <Footer />
+      <Chat />
     </BrowserRouter>
   );
 }
