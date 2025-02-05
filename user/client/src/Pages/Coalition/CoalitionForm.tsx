@@ -1,6 +1,7 @@
+// 2025.02.02. 21:00 생성자: 이학수, 제휴업체 호텔 등록 폼 
 import React, { useEffect } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const CoalitionForm: React.FC = () => {
     const { pathname } = useLocation();
@@ -40,9 +41,39 @@ const CoalitionForm: React.FC = () => {
             window.removeEventListener("resize", updateHeight);
         };
     }, []);
+
     return (
         <div>
+            <div className="hero-wrap js-fullheight" style={{ /*backgroundImage: "url('/images/bg_5.jpg')",*/ backgroundColor: "black" }}>
+                <div className="overlay"></div>
+                <div className="container">
+                    <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                        <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
+                            <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">홈</Link></span> <span>제휴</span></p>
+                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>제휴</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section className="ftco-section ftco-degree-bg">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-3 sidebar">
+                            <div className="sidebar-wrap bg-light ftco-animate">
+                                <h3 className="heading mb-4">제휴 업체</h3>
+                                <div className="fields list-group">
+                                    <Link to="/traveler/coalition" className='list-group-item-action'><h4><i className='ion-md-clipboard' /> 관리</h4></Link>
+                                    <hr />
+                                    <Link to="/traveler/coalition/new" className='list-group-item-action'><h4><i className='icon-plus' /> 등록</h4></Link>
+                                    <hr />
+                                    <Link to="/traveler/coalition/account" className='list-group-item-action'><h4><i className='icon-user' /> 계정 관리</h4></Link>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </section >
         </div>
     )
 }
