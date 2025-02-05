@@ -57,6 +57,7 @@ import SignIn from "../components/Auth/SignIn";
 import Signup from "../components/Auth/Signup";
 import TourList from "./Projects/TourList";
 import TourListDetail from "./Projects/TourListDetail";
+import Transport from "./Projects/Transport";
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();
@@ -77,6 +78,7 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/hr-dashboard`} element={<HrDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/project-dashboard`} element={<ProjectDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} /> 
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tasks`} element={<Tasks/>} />
