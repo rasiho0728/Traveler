@@ -36,6 +36,9 @@ import Backpack from './Pages/Community/Backpack';
 import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
 import SingUp from './Pages/Login/SingUp';
+import TransportDetail from './Transport/TransportDetail';
+import Transport from './Transport/Transport';
+import CoalitionForm from './Pages/Coalition/CoalitionForm';
 
 function App() {
   return (
@@ -55,6 +58,7 @@ function App() {
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
+        <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
         <Route path='/traveler/community' element={<Like />} />
         <Route path='/traveler/community/:num' element={<LikeDetail />} />
@@ -63,7 +67,9 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
-      {/**최의진 */}
+        <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
+        <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
+      {/**최의진 2025-02-05 */}
       </Routes>
       <Footer />
       <Chat />
