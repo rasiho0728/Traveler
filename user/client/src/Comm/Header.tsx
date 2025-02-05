@@ -9,7 +9,7 @@ const Header: React.FC = () => {
     useEffect(() => {
         const entity = document.querySelectorAll<HTMLLinkElement>('div#header nav ul li a');
         entity.forEach((e, i) => {
-            if (e.getAttribute('href') === pathname){
+            if (pathname.includes(e.getAttribute('href') as string)){
                 e.parentElement?.classList.add('active')
                 console.log(pathname)
             } else {
