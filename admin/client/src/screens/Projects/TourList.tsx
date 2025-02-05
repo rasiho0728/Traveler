@@ -46,8 +46,9 @@ const TourList: React.FC = () => {
                         <span className="icon-search2"></span>
                     </div>
                 </Link>
-                <div className="text p-3">  
-                  </div> */}
+                <div className="text p-3"> 
+                </div> 
+            </div> */}
 
 
 
@@ -61,7 +62,7 @@ const TourList: React.FC = () => {
                   {
                     TourData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl} id={i+1}
                           onClickEdit={() => { setIsModal(true); setModalHeader("Edit Project"); setEditModeldata(d); }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}
@@ -76,7 +77,7 @@ const TourList: React.FC = () => {
                   {
                     TourData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl} id={i+1}
                           onClickEdit={() => { setIsModal(true) }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}
@@ -91,7 +92,7 @@ const TourList: React.FC = () => {
                   {
                     TourData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl} id={i+1}
                           onClickEdit={() => { setIsModal(true) }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}
@@ -106,7 +107,7 @@ const TourList: React.FC = () => {
                   {
                     TourData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <TestCard teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl} id={i+1}
                           onClickEdit={() => { setIsModal(true) }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}

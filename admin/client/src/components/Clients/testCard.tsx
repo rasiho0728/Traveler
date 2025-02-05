@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 
-const TestCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl: any, onClickEdit?: any, onClickDelete?: any, onClickAdd?: any }> = (props) => {
-  const { teamImage, logo, logoBg, title, sl, onClickEdit, onClickDelete, onClickAdd } = props;
 
-  
+const TestCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl: any, id:number,onClickEdit?: any, onClickDelete?: any, onClickAdd?: any }> = (props) => {
+  const { teamImage, logo, logoBg, title, sl, id, onClickEdit, onClickDelete, onClickAdd } = props;
+
+  const [hover, setHover] = useState(false);
   const [tourperiod, setTourperiod] = useState("");
 
   const images = [
@@ -33,6 +36,28 @@ const TestCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, s
     const randomIndex = Math.floor(Math.random() * period.length);
     setTourperiod(period[randomIndex]);
   }, []);
+
+
+  const iconStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    opacity: hover ? 1 : 0, // hover 상태일 때만 보이도록 변경
+    transition: "opacity 0.3s ease-in-out",
+    color: "white",
+    fontSize: "30px",
+    padding: "10px",
+    borderRadius: "50%",
+  };
+
+  const imageStyle: React.CSSProperties = {
+    width: "350px",
+    height: "200px",
+    transition: "filter 0.3s ease-in-out",
+    filter: hover ? "brightness(0.5)" : "brightness(1)", // hover 시 어두워짐
+  };
+
   
 
   return (
@@ -53,9 +78,15 @@ const TestCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, s
         </div>
         {/* 이미지 */}
         <div className="d-flex align-items-center justify-content-center">
-          <div>
-            <img src={process.env.PUBLIC_URL + images[randomIndex]} alt="Random Image" width="350" height="200" />
-          </div>
+          <Link to={`detail/${id}`}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              <img src={process.env.PUBLIC_URL + images[randomIndex]} style={imageStyle} alt="Random Image"/>
+              <span style={iconStyle}>
+              <FaSearch />
+              </span>
+          </Link>
         </div>
         <div className="row g-2 pt-4">
           <div className="col-6">
@@ -97,6 +128,7 @@ const TestCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, s
     </div>
   )
 }
+
 
 
 export default TestCard;
