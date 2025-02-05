@@ -22,7 +22,7 @@ import Blog from './Pages/Blog/Blog';
 import BlogDetail from './Pages/Blog/BlogDetail';
 import ScrollToTop from './Comm/ScrollToTop';
 import Contact from './Pages/Contact/Contact';
-import Hotel from './Pages/Hotel/Hotel';
+import Hotel2 from './Pages/Hotel/Hotel2';
 import HotelDetail from './Pages/Hotel/HotelDetail';
 import Tour from './Pages/Tour/Tour';
 import Test from './Test/Test';
@@ -49,7 +49,7 @@ function App() {
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
         <Route path='/traveler/tour/:num' element={<TourDetail />} />
-        <Route path='/traveler/hotels' element={<Hotel />} />
+        <Route path='/traveler/hotels' element={<Hotel2 />} />
         <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
         <Route path='/traveler/blog' element={<Blog />} />
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
