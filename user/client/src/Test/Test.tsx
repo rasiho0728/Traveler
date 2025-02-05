@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { updateHeight } from '../Comm/CommomFuncAd';
+import { updateHeight } from '../Comm/CommomFunc';
 
 const Test: React.FC = () => {
 
