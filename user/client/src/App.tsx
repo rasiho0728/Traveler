@@ -36,6 +36,7 @@ import Backpack from './Pages/Community/Backpack';
 import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
 import SingUp from './Pages/Login/SingUp';
+import CoalitionForm from './Pages/Coalition/CoalitionForm';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
+        <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
         <Route path='/traveler/community' element={<Like />} />
         <Route path='/traveler/community/:num' element={<LikeDetail />} />
