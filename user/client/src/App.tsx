@@ -63,6 +63,7 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
+      {/**최의진 */}
       </Routes>
       <Footer />
       <Chat />
