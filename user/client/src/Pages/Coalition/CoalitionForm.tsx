@@ -1,10 +1,17 @@
 // 2025.02.02. 21:00 생성자: 이학수, 제휴업체 호텔 등록 폼 
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import { Link, useLocation } from 'react-router-dom';
 
 const CoalitionForm: React.FC = () => {
     const { pathname } = useLocation();
+    // input에 연결해주기 위한 useRef 훅 사용
+    const imageInputRef = useRef<HTMLInputElement | null>(null);
+
+    // 버튼 클릭 시 호출하는 함수 (클릭 이벤트) 
+    const onCickImageUploadHandler = (): void => {
+        imageInputRef.current?.click();
+    };
 
     useEffect(() => {
         // 현재 경로에 따라 사이드 네이게이션 버튼의 색깔이 동적 변화
@@ -70,7 +77,67 @@ const CoalitionForm: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-
+                        <div className="col-lg-9">
+                            <div className='testimony-wrap ftco-animate'>
+                                <div className='row mb-4'>
+                                    <div className='col-md-3'>
+                                        <p>대표사진</p>
+                                        <button
+                                            className='btn border'
+                                            onClick={() => {
+                                                onCickImageUploadHandler();
+                                            }}
+                                            style={{
+                                                width: "150px",
+                                                height: "150px"
+                                            }}
+                                        >
+                                            <i className='icon-plus'></i>
+                                            <input
+                                                // input의 ref 속성을 이용해 버튼 클릭 이벤트를 input과 연결
+                                                ref={imageInputRef}
+                                                type="file"
+                                                name="file"
+                                                // onChange={handleFileChange}
+                                                style={{ display: "none" }}
+                                            />
+                                        </button>
+                                    </div>
+                                    <div className='col-md-9 pt-4'>
+                                        <div className='row'>
+                                            <div className='col-md-2'>
+                                                <label htmlFor="name" className='col-form-label-lg'>이름</label>
+                                            </div>
+                                            <div className='col-md-9'>
+                                                <input type="text" name='name' className='form-control' />
+                                            </div>
+                                        </div>
+                                        <div className='row'>
+                                            <div className='col-md-2'>
+                                                <label htmlFor="name" className='col-form-label-lg'>1박당<br />가격</label>
+                                            </div>
+                                            <div className='col-md-9 d-flex align-items-center'>
+                                                <input type="number" name='name' className='form-control' step={1000} min={0} />
+                                            </div>
+                                        </div>
+                                        <div className='row'>
+                                            <div className='col-md-2'>
+                                                <label htmlFor="name" className='col-form-label-lg'>위치</label>
+                                            </div>
+                                            <div className='col-md-9'>
+                                                <input type="text" name='name' className='form-control' placeholder='누르면 위치 찍도록 변경' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='row'>
+                                    <p>세부 내용</p>
+                                    <div className='col-md-11'>
+                                        <textarea name="" id="" className='w-100 form-control-lg' style={{height: "200px", resize: "none"}}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section >
