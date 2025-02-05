@@ -36,6 +36,8 @@ import Backpack from './Pages/Community/Backpack';
 import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
 import SingUp from './Pages/Login/SingUp';
+import TransportDetail from './Transport/TransportDetail';
+import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
 
 function App() {
@@ -65,6 +67,8 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
+        <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
+        <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
       {/**최의진 */}
       </Routes>
       <Footer />
