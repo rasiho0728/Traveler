@@ -1,6 +1,6 @@
 // 2025.02.04. 17:45 생성자: 이학수, 제휴페이지 계정 관리 
 import React, { useEffect, useState } from 'react'
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFuncAd';
+import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import { Link, useLocation } from 'react-router-dom';
 
 interface CoalitionData {
