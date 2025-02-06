@@ -56,6 +56,7 @@ const Tour: React.FC = () => {
                     </div>
                 </div>
             </div>
+            
 
 
             <section className="ftco-section ftco-degree-bg">
@@ -63,7 +64,13 @@ const Tour: React.FC = () => {
                     <div className="row">
                         <div className="col-lg-3 sidebar ftco-animate">
                             <div className="sidebar-wrap bg-light ftco-animate">
+                            <div className="form-group text-center">
+                        <Link to="/traveler/tour/recommended" className="btn btn-info py-3 px-5 w-100">
+                            AI 여행지 추천 !
+                        </Link>
+                    </div>
                                 <h3 className="heading mb-4">여행지 검색</h3>
+                                
                                 <form action="#">
                                     <div className="fields">
                                         <div className="form-group">

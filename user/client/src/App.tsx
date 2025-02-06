@@ -39,6 +39,8 @@ import SingUp from './Pages/Login/SingUp';
 import TransportDetail from './Transport/TransportDetail';
 import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
+import TourRecommended from './Pages/Tour/TourRecommended';
+import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
 
 function App() {
   return (
@@ -52,6 +54,8 @@ function App() {
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
         <Route path='/traveler/tour/:num' element={<TourDetail />} />
+        <Route path='/traveler/tour/recommended' element={<TourRecommended/>} />
+        <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => {}} />} />
         <Route path='/traveler/hotels' element={<Hotel2 />} />
         <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
         <Route path='/traveler/blog' element={<Blog />} />
