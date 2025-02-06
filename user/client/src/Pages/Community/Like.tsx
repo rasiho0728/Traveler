@@ -86,6 +86,7 @@ const Like: React.FC = () => {
                         </div>
                     </Provider>
                     <div className="row mt-5">
+                    <Link to='/traveler/LikeMemo' className='write-button'>작성하기</Link>
                         <div className="col text-center">
                             <div className="block-27">
                                 <ul>

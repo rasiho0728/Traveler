@@ -39,6 +39,7 @@ import SingUp from './Pages/Login/SingUp';
 import TransportDetail from './Transport/TransportDetail';
 import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
+import LikeMemo from './Pages/Community/LikeMemo';
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
         <Route path='/traveler/community' element={<Like />} />
         <Route path='/traveler/community/:num' element={<LikeDetail />} />
+        <Route path='/traveler/LikeMemo' element={<LikeMemo/>} />
         <Route path='/traveler/backpack' element={<Backpack />} />
         <Route path='/traveler/backpack/:num' element={<BackpackDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
@@ -69,6 +71,8 @@ function App() {
         <Route path='/traveler/singup' element={<SingUp />} />
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
+        
+
 
       </Routes>
       <Footer />
