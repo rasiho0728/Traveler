@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
-import CurrentClientProject from "../../components/Clients/CurrentClientProject";
+import CurrentClientProject from "../../components/Clients/Transport";
 import AddNewUserModal from "../../components/common/AddNewUserModal";
 import PageHeader from "../../components/common/PageHeader";
-import { ProjectCardData } from "../../components/Data/AppData";
+import { ProjectCardData } from "../../components/Data/Transport";
 /// 20250205최의진 추가
 const Transport: React.FC = () => {
 
