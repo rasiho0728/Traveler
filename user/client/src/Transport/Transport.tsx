@@ -44,7 +44,7 @@ const Transport: React.FC = () => {
             }
         }, 1);
     }, [])
-    const hanleClick = () => {
+    const hanleRoadClick = () => {
         navigate('/traveler/Transport/Road');
     }
     const hanleSubWayClick = () => {
@@ -201,8 +201,42 @@ const Transport: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-2.jpg)" }}>
+                                    <div className="destination">                                                                                                {/*images\transport\Seoulsubway.png */}                                 
+                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/Seoulsubway.png)" }}>
+                                            <div className="icon d-flex justify-content-center align-items-center">
+                                                <span className="icon-search2"></span>
+                                            </div>
+                                        </Link>
+                                        <div className="text p-3">
+                                            <div className="d-flex">
+                                                <div className="one">
+                                                    <h3><Link to="#">Paris, Italy</Link></h3>
+                                                    <p className="rate">
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star-o"></i>
+                                                        <span>8 Rating</span>
+                                                    </p>
+                                                </div>
+                                                <div className="two">
+                                                    <span className="price">$200</span>
+                                                </div>
+                                            </div>
+                                            <p>Far far away, behind the word mountains, far from the countries</p>
+                                            <p className="days"><span>2 days 3 nights</span></p>
+                                            <hr />
+                                            <p className="bottom-area d-flex">
+                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
+                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 ftco-animate">
+                                    <div className="destination">                                                                                                                               
+                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/airline.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
                                                 <span className="icon-search2"></span>
                                             </div>
@@ -236,7 +270,7 @@ const Transport: React.FC = () => {
                                 </div>
                             </div>
                             <div>
-                                <button onClick={hanleClick}>도로 교통 현황</button>    {/**20250206수정 */}
+                                <button onClick={hanleRoadClick}>도로 교통 현황</button>    {/**20250206수정 */}
                                 <button onClick={hanleSubWayClick}>지하철현황</button>  {/**20250206수정 */}
                             </div>
                             <div className="row mt-5">
