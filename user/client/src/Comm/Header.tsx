@@ -74,6 +74,7 @@ const Header: React.FC = () => {
                             <li className="nav-item"><Link to="/traveler/blog" className="nav-link">Blog</Link></li>
                             <li className="nav-item"><Link to="/traveler/contact" className="nav-link">Contact</Link></li>
                             <li className="nav-item"><Link to="/traveler/coalition" className="nav-link">제휴</Link></li>
+                            <li className="nav-item"><Link to="/traveler/Transport" className="nav-link">대중교통</Link></li>
                             <li className="nav-item">
                                 {/* <Link to="/traveler/contact" className="nav-link">Contact</Link> */}
                                 <a href='#' className="nav-link">Community</a>
