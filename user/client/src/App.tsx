@@ -22,7 +22,7 @@ import Blog from './Pages/Blog/Blog';
 import BlogDetail from './Pages/Blog/BlogDetail';
 import ScrollToTop from './Comm/ScrollToTop';
 import Contact from './Pages/Contact/Contact';
-import Hotel from './Pages/Hotel/Hotel';
+import Hotel2 from './Pages/Hotel/Hotel2';
 import HotelDetail from './Pages/Hotel/HotelDetail';
 import Tour from './Pages/Tour/Tour';
 import Test from './Test/Test';
@@ -36,6 +36,9 @@ import Backpack from './Pages/Community/Backpack';
 import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
 import SingUp from './Pages/Login/SingUp';
+import TransportDetail from './Transport/TransportDetail';
+import Transport from './Transport/Transport';
+import CoalitionForm from './Pages/Coalition/CoalitionForm';
 
 function App() {
   return (
@@ -49,12 +52,13 @@ function App() {
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
         <Route path='/traveler/tour/:num' element={<TourDetail />} />
-        <Route path='/traveler/hotels' element={<Hotel />} />
+        <Route path='/traveler/hotels' element={<Hotel2 />} />
         <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
         <Route path='/traveler/blog' element={<Blog />} />
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
+        <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
         <Route path='/traveler/community' element={<Like />} />
         <Route path='/traveler/community/:num' element={<LikeDetail />} />
@@ -63,6 +67,9 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
+        <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
+        <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
+
       </Routes>
       <Footer />
       <Chat />
