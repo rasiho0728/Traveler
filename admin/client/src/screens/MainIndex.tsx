@@ -55,9 +55,10 @@ import Changelog from "./Changelog/Changelog";
 import Help from "./Dashboard/Help";
 import SignIn from "../components/Auth/SignIn";
 import Signup from "../components/Auth/Signup";
-import TourList from "./Projects/TourList";
-import TourListDetail from "./Projects/TourListDetail";
 import Transport from "./Projects/Transport";
+import TourList from "./Tour/TourList";
+import TourListDetail from "./Tour/TourListDetail";
+import TourUpload from "./Tour/TourUpload";
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();
@@ -80,7 +81,8 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
-                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} /> 
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} />
+                <Route path={`/tour-upload`} element={<TourUpload/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tasks`} element={<Tasks/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/timesheet`} element={<Timesheet/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/leaders`} element={<Leaders/>} />

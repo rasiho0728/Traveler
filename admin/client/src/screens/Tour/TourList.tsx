@@ -5,7 +5,7 @@ import AddNewUserModal from "../../components/common/AddNewUserModal";
 import PageHeader from "../../components/common/PageHeader";
 import { TourData } from "../../components/Data/AppDataTest";
 import TourCard from "../../components/Clients/TourCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TourList: React.FC = () => {
 
@@ -15,13 +15,22 @@ const TourList: React.FC = () => {
   const [modalHeader, setModalHeader] = useState("");
   const [editModeldata, setEditModeldata] = useState<any>();
 
+  const navigate = useNavigate();
+
   return (
     <div className="container-xxl">
       <Tab.Container defaultActiveKey="All">
         <PageHeader headerTitle="Tour List"
           renderRight={() => {
             return <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
-              <button type="button" className="btn btn-dark w-sm-100" onClick={() => { setIsModal(true); setModalHeader("Create Project") }}><i className="icofont-plus-circle me-2 fs-6"></i>Create Project</button>
+              {/* <button type="button" className="btn btn-dark w-sm-100" onClick={() => { setIsModal(true); setModalHeader("Create Project") }}><i className="icofont-plus-circle me-2 fs-6"></i>Create Project</button> */}
+              <button
+                type="button"
+                className="btn btn-dark w-sm-100"
+                onClick={() => navigate("/tour-upload")}
+              >
+                <i className="icofont-plus-circle me-2 fs-6"></i>투어 업로드
+              </button>
               <Nav variant="pills" className="nav nav-tabs tab-body-header rounded ms-3 prtab-set w-sm-100">
                 <Nav.Item>
                   <Nav.Link eventKey="All">All</Nav.Link>
