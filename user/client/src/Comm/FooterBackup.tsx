@@ -16,8 +16,7 @@ const Footer: React.FC = () => {
                         <div className="col-md">
                             <div className="ftco-footer-widget mb-4">
                                 <h2 className="ftco-heading-2">dirEngine</h2>
-                                <p>국내 구석구석 숨은 명소부터 인기 여행지까지,  
-       당신만의 특별한 여행을 떠나보세요.</p>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                                 <ul className="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                                     <li className="ftco-animate"><a href="#"><span className="icon-twitter"></span></a></li>
                                     <li className="ftco-animate"><a href="#"><span className="icon-facebook"></span></a></li>
@@ -27,36 +26,37 @@ const Footer: React.FC = () => {
                         </div>
                         <div className="col-md">
                             <div className="ftco-footer-widget mb-4 ml-md-5">
-                                <h2 className="ftco-heading-2">정보</h2>
+                                <h2 className="ftco-heading-2">Information</h2>
                                 <ul className="list-unstyled">
-                                    <li><a href="#" className="py-2 d-block">회사소개</a></li>
-                                    <li><a href="#" className="py-2 d-block">서비스</a></li>
-                                    <li><a href="#" className="py-2 d-block">이용약관</a></li>
-                                    <li><a href="#" className="py-2 d-block">파트너쉽</a></li>
-                                    <li><a href="#" className="py-2 d-block">개인정보 보호 정책</a></li>
+                                    <li><a href="#" className="py-2 d-block">About</a></li>
+                                    <li><a href="#" className="py-2 d-block">Service</a></li>
+                                    <li><a href="#" className="py-2 d-block">Terms and Conditions</a></li>
+                                    <li><a href="#" className="py-2 d-block">Become a partner</a></li>
+                                    <li><a href="#" className="py-2 d-block">Best Price Guarantee</a></li>
+                                    <li><a href="#" className="py-2 d-block">Privacy and Policy</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div className="col-md">
                             <div className="ftco-footer-widget mb-4">
-                                <h2 className="ftco-heading-2">고객 지원</h2>
+                                <h2 className="ftco-heading-2">Customer Support</h2>
                                 <ul className="list-unstyled">
-                                    <li><a href="#" className="py-2 d-block">자주 하는 질문</a></li>
-                                    <li><a href="#" className="py-2 d-block">결제 방법</a></li>
-                                    <li><a href="#" className="py-2 d-block">예약 팁</a></li>
-                                    <li><a href="#" className="py-2 d-block">이용 방법</a></li>
-                                    <li><a href="#" className="py-2 d-block">문의하기</a></li>
+                                    <li><a href="#" className="py-2 d-block">FAQ</a></li>
+                                    <li><a href="#" className="py-2 d-block">Payment Option</a></li>
+                                    <li><a href="#" className="py-2 d-block">Booking Tips</a></li>
+                                    <li><a href="#" className="py-2 d-block">How it works</a></li>
+                                    <li><a href="#" className="py-2 d-block">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div className="col-md">
                             <div className="ftco-footer-widget mb-4">
-                                <h2 className="ftco-heading-2">고객 센터</h2>
+                                <h2 className="ftco-heading-2">Have a Questions?</h2>
                                 <div className="block-23 mb-3">
                                     <ul>
-                                        <li><span className="icon icon-map-marker"></span><span className="text">서울 서초구 서초대로77길 41 4층</span></li>
-                                        <li><a href="#"><span className="icon icon-phone"></span><span className="text">0507-1395-6865</span></a></li>
-                                        <li><a href="#"><span className="icon icon-envelope"></span><span className="text">tess@naver.com</span></a></li>
+                                        <li><span className="icon icon-map-marker"></span><span className="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+                                        <li><a href="#"><span className="icon icon-phone"></span><span className="text">+2 392 3929 210</span></a></li>
+                                        <li><a href="#"><span className="icon icon-envelope"></span><span className="text">info@yourdomain.com</span></a></li>
                                     </ul>
                                 </div>
                             </div>

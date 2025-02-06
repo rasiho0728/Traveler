@@ -1,7 +1,7 @@
 // 2025.02.05. 19:00 생성자:최의진, HTML템플릿을 리엑트로 조정
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate,handleScroll,updateHeight } from '../Comm/CommomFunc';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 registerLocale("ko", ko);
@@ -12,28 +12,28 @@ const Transport: React.FC = () => {
     const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
     const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
 
-    // useEffect(() => {
-    //     // 요소의 [data-scrollax] 옵션을 분석 적용
-    //     handleScroll()
-    //     window.addEventListener("scroll", handleScroll);
-    //     return () => {
-    //         window.removeEventListener("scroll", handleScroll);
-    //     };
-    // }, []);
+    useEffect(() => {
+        // 요소의 [data-scrollax] 옵션을 분석 적용
+        handleScroll()
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
-    // useEffect(() => {
-    //     // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
-    //     updateHeight();
-    //     window.addEventListener("resize", updateHeight);
-    //     return () => {
-    //         window.removeEventListener("resize", updateHeight);
-    //     };
-    // }, []);
+    useEffect(() => {
+        // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
+        updateHeight();
+        window.addEventListener("resize", updateHeight);
+        return () => {
+            window.removeEventListener("resize", updateHeight);
+        };
+    }, []);
 
-    // useEffect(() => {
-    //     // ftco-animate 클래스를 가진 요소에 등장 효과 적용
-    //     appear_animate()
-    // }, []);
+    useEffect(() => {
+        // ftco-animate 클래스를 가진 요소에 등장 효과 적용
+        appear_animate()
+    }, []);
 
     useEffect(() => {
         // 로딩이 필요할때 로딩화면 출력, 설정한 시간만큼 출력
