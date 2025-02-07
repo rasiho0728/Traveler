@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { ProgressBar } from "react-bootstrap";
+import { Button, Carousel, Modal, ProgressBar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-
+import TourUpdate from "../../screens/Tour/TourUpdate";
 
 const TourCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl: any, id:number,onClickEdit?: any, onClickDelete?: any, onClickAdd?: any }> = (props) => {
   const { teamImage, logo, logoBg, title, sl, id, onClickEdit, onClickDelete, onClickAdd } = props;
 
   const [hover, setHover] = useState(false);
   const [tourperiod, setTourperiod] = useState("");
+  
+  const [show, setShow] = useState(false);
 
   const images = [
     "/imgs/img1.jpg",
@@ -72,7 +74,24 @@ const TourCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, s
             <h6 className="mb-0 fw-bold  fs-6  mb-2">{title}</h6>
           </div>
           <div className="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" className="btn btn-outline-secondary" onClick={onClickEdit}><i className="icofont-edit text-success"></i></button>
+          {/* 수정모달버튼 */}
+          <button type="button" className="btn btn-outline-secondary" onClick={() => setShow(true)}><i className="icofont-edit text-success"></i></button> 
+          <Modal show={show} onHide={() => setShow(false)} size="lg">
+            <Modal.Header closeButton>
+              <Modal.Title>투어 수정페이지</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {/* TourUpload 컴포넌트를 모달 안에 표시 */}
+              <TourUpdate />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShow(false)}>
+                닫기
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+            {/* 삭제버튼 */}
             <button type="button" className="btn btn-outline-secondary" onClick={onClickDelete}><i className="icofont-ui-delete text-danger"></i></button>
           </div>
         </div>
@@ -104,7 +123,7 @@ const TourCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, s
           <div className="col-6">
             <div className="d-flex align-items-center">
               <i className="icofont-group-students "></i>
-              <span className="ms-2">15 Members</span>
+              <span className="ms-2">15명</span>
             </div>
           </div>
           <div className="col-6">
@@ -124,6 +143,9 @@ const TourCard: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, s
           <ProgressBar variant="secondary" now={30} style={{ width: "25%", marginLeft: 10 }} />
           <ProgressBar variant="secondary" now={10} style={{ width: "25%", marginLeft: 10 }} />
         </ProgressBar> */}
+
+
+
       </div>
     </div>
   )
