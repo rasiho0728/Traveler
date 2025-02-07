@@ -51,7 +51,7 @@ export const chartOverView =[
         subTitle1:"",
         subTitle2:"",
         linkText:"",
-        showHeader:false,
+        showHeader:false,          
         hideDownload:true,
         chartData:{
             options: {
