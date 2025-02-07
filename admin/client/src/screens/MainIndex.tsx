@@ -60,6 +60,7 @@ import TourList from "./Tour/TourList";
 import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
 import Hotel from "./Tickets/Hotel";
+import TourUpdate from "./Tour/TourUpdate";
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();
@@ -83,7 +84,8 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} />
-                <Route path={`/tour-upload`} element={<TourUpload/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload/>} />{/*250206 민다빈*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-update`} element={<TourUpdate/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tasks`} element={<Tasks/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/timesheet`} element={<Timesheet/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/leaders`} element={<Leaders/>} />

@@ -93,9 +93,9 @@
                 },
 
                 {
-                    "name": "TourList",
+                    "name": "투어",
                     "routerLink": ["tourlist"],
-                    "identifier": "TourList",
+                    "identifier": "투어",
                     "iconClass": "",
                     "breadcrumbMessage": "",
                     "isCategory": false,

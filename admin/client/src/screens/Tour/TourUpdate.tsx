@@ -22,7 +22,7 @@ interface Tour {
   locations: Location[]
 }
 
-const TourUpload: React.FC = () => {
+const TourUpdate: React.FC = () => {
   const [newTour, setNewTour] = useState<Tour>({
     name: "",
     description: "",
@@ -129,7 +129,6 @@ const TourUpload: React.FC = () => {
     <div>
       {/* Tour Upload Form */}
       <div className="container mt-5">
-        <h1 className="mb-4">새 투어 등록</h1>
         <form>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
@@ -229,7 +228,6 @@ const TourUpload: React.FC = () => {
           </div>
 
           <div className="mb-3">
-           
             <div className="row mt-2">
               {newTour.additionalImages.map((img, index) => (
                 <div key={index} className="col-md-3 mb-2">
@@ -245,7 +243,9 @@ const TourUpload: React.FC = () => {
           </div>
 
           <div className="mb-3">
-            
+            <button type="button" className="btn btn-primary mb-2" onClick={addLocation}>
+              장소 추가
+            </button>
             {newTour.locations.map((location, index) => (
               <div key={index} className="card mb-3">
                 <div className="card-body">
@@ -274,20 +274,13 @@ const TourUpload: React.FC = () => {
                     )}
                   </div>
                   <div className="d-flex justify-content-end">
-                  <div className="d-flex justify-content-end">
                     <button type="button" className="btn btn-danger" onClick={() => removeLocation(index)}>
                       삭제
                     </button>
                   </div>
-                  </div>
                 </div>
               </div>
             ))}
-           
-              <button type="button" className="btn btn-primary mb-2" onClick={addLocation}>
-                장소 추가
-              </button>
-            
           </div>
 
           <div className="mb-3">
@@ -316,5 +309,5 @@ const TourUpload: React.FC = () => {
   )
 }
 
-export default TourUpload
+export default TourUpdate
 

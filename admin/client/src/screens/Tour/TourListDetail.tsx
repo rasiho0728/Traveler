@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { appear_animate, handleScroll, updateHeight } from '../../components/common/CommonFunc';
-import ImgCarouselAd from '../../components/common/ImgCariuselAd';
 import ModalVideo from 'react-modal-video';
 import 'react-modal-video/css/modal-video.min.css';
+import { Carousel } from 'react-bootstrap';
+import ReviewTask from '../../components/Projects/ReviewTask';
+import RecommendTask from '../../components/Projects/RecommendTask';
 
 
 
@@ -17,13 +19,12 @@ const TourListDetail: React.FC = () => {
   // const [review, setReview] = useState<string>("");
   const [reviews, setReviews] = useState<{ rating: number; text: string }[]>([]);
 
-  // 리뷰 제출 핸들러 => 리뷰 보기로 기능 변경 필요
-  // const handleSubmit = () => {
-  //     if (!review.trim()) return alert("리뷰 내용을 입력해주세요!");
-  //     setReviews([...reviews, { rating, text: review }]);
-  //     setRating(0);
-  //     setReview("");
-  // };
+
+  const Thumbnail2 = "/imgs/img1.jpg"
+  const Thumbnail5 = "/imgs/img2.jpg"
+  const Thumbnail7 = "/imgs/img3.jpg"
+
+  const images = [Thumbnail2, Thumbnail5, Thumbnail7];
 
   const openModal = () => {
       setIsOpen(true);
@@ -53,7 +54,7 @@ const TourListDetail: React.FC = () => {
   }, []);
   return (
       <div>
-          <div className="hero-wrap js-fullheight" style={{ backgroundImage: "url('/imgs/img1.jpg')" }}>
+          {/* <div className="hero-wrap js-fullheight" style={{ backgroundImage: "url('/imgs/img1.jpg')" }}>
               <div className="overlay"></div>
               <div className="container">
                   <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -66,16 +67,33 @@ const TourListDetail: React.FC = () => {
                       </div>
                   </div>
               </div>
-          </div>
+          </div> */}
 
+            
 
           <section className="ftco-section ftco-degree-bg">
               <div className="container">
                   <div className="row">
-                      {/* 여행지검색 자리 */}
 
                       <div className="col-lg-9">
                           <div className="row">
+
+
+                            {/* 이미지 */}
+                            <div className="img-carousel-test">
+                            <Carousel controls={true}>
+                                {images.map((image, index) => (
+                                <Carousel.Item key={index}>
+                                    <img
+                                    src={image}
+                                    alt={`Slide ${index + 1}`}
+                                    style={{ width: "100%", height: "500px", objectFit: "cover" }}
+                                    />
+                                </Carousel.Item>
+                                ))}
+                            </Carousel>
+                            </div>
+
                               
                               <div className="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
                                   <span>Our Best hotels &amp; Rooms</span>
@@ -107,124 +125,75 @@ const TourListDetail: React.FC = () => {
                                   </div>
                                   <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                               </div>
-                              <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                  <h4 className="mb-4">여행지 미리 둘러보기</h4>
 
-                                  <div className="block-16">
-                                    <figure>
-                                      {/* ✅ 이미지 클릭 시 영상 재생 */}
-                                      <img 
+
+                              <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                                <h4 className="mb-4">여행지 미리 둘러보기</h4>
+
+                                <div className="block-16" style={{ display: "flex", justifyContent: "center", position: "relative" }}>
+                                    <figure style={{ position: "relative", display: "inline-block" }}>
+                                    {/* 이미지 */}
+                                    <img 
                                         src="/imgs/img1.jpg" 
                                         alt="placeholder" 
                                         className="img-fluid" 
-                                        onClick={openModal} // ✅ 클릭 이벤트 추가
-                                        style={{ cursor: "pointer" }} // ✅ 클릭 가능한 UI 변경
-                                      />
+                                        onClick={openModal} 
+                                        style={{ cursor: "pointer", width: 600, height: 400, margin: "0 auto" }} 
+                                    />
+                                    
+                                    {/* 영상 아이콘 (오버레이) */}
+                                    <div 
+                                        style={{
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        transform: "translate(-50%, -50%)",
+                                        backgroundColor: "rgba(0, 0, 0, 0.6)",  // 반투명 배경
+                                        width: "80px",
+                                        height: "80px",
+                                        borderRadius: "50%",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        cursor: "pointer",
+                                        }}
+                                        onClick={openModal} // 아이콘도 클릭 가능하게
+                                    >
+                                        {/* 아이콘 (▶ 모양) */}
+                                        <svg 
+                                        width="40" height="40" viewBox="0 0 24 24" fill="white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                        <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
                                     </figure>
-                                  </div>
+                                </div>
 
-                                  {/* 리뷰보기 자리 */}
-                              </div> 
+                               
+                            <div className='management mt-5'>
+                                <h3 style={{marginBottom: "10px"}}>관리</h3>
+                                <div className="row d-flex justify-content-between" >
+                                    {/* 리뷰 보기 */}
+                                    <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-12" >
+                                        <ReviewTask />
+                                    </div>
+
+                                    {/* 비슷한 테마 */}
+                                    <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-12" >
+                                        <RecommendTask />
+                                    </div>
+                                </div>
+                            </div>
 
 
                              
-                              <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                  <h4 className="mb-4">비슷한 테마의 다른 여행지</h4>
-                                  <div className="row">
-                                      <div className="col-md-4">
-                                          <div className="destination">
-                                              <Link to="/traveler-admin/tourlist/detail/1" className="img img-2" style={{ backgroundImage: "url(/imgs/img2.jpg)" }}></Link>
-                                              <div className="text p-3">
-                                                  <div className="d-flex">
-                                                      <div className="one">
-                                                          <h3><Link to="/traveler-admin/tourlist/detail/1">Hotel, Italy</Link></h3>
-                                                          <p className="rate">
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star-o"></i>
-                                                              <span>8 Rating</span>
-                                                          </p>
-                                                      </div>
-                                                      <div className="two">
-                                                          <span className="price per-price">$40<br /><small>/night</small></span>
-                                                      </div>
-                                                  </div>
-                                                  <p>Far far away, behind the word mountains, far from the countries</p>
-                                                  <hr />
-                                                  <p className="bottom-area d-flex">
-                                                      <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                      <span className="ml-auto"><Link to="#">Book Now</Link></span>
-                                                  </p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div className="col-md-4">
-                                          <div className="destination">
-                                              <Link to="/traveler-admin/tourlist/detail/2" className="img img-2" style={{ backgroundImage: "url(/imgs/img3.jpg)" }}></Link>
-                                              <div className="text p-3">
-                                                  <div className="d-flex">
-                                                      <div className="one">
-                                                          <h3><Link to="/traveler-admin/tourlist/detail/2">Hotel, Italy</Link></h3>
-                                                          <p className="rate">
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star-o"></i>
-                                                              <span>8 Rating</span>
-                                                          </p>
-                                                      </div>
-                                                      <div className="two">
-                                                          <span className="price per-price">$40<br /><small>/night</small></span>
-                                                      </div>
-                                                  </div>
-                                                  <p>Far far away, behind the word mountains, far from the countries</p>
-                                                  <hr />
-                                                  <p className="bottom-area d-flex">
-                                                      <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                      <span className="ml-auto"><Link to="#">Book Now</Link></span>
-                                                  </p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div className="col-md-4">
-                                          <div className="destination">
-                                              <Link to="/traveler-admin/tourlist/detail/3" className="img img-2" style={{ backgroundImage: "url(/imgs/img4.jpg)" }}></Link>
-                                              <div className="text p-3">
-                                                  <div className="d-flex">
-                                                      <div className="one">
-                                                          <h3><Link to="/traveler-admin/tourlist/detail/3">Hotel, Italy</Link></h3>
-                                                          <p className="rate">
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star"></i>
-                                                              <i className="icon-star-o"></i>
-                                                              <span>8 Rating</span>
-                                                          </p>
-                                                      </div>
-                                                      <div className="two">
-                                                          <span className="price per-price">$40<br /><small>/night</small></span>
-                                                      </div>
-                                                  </div>
-                                                  <p>Far far away, behind the word mountains, far from the countries</p>
-                                                  <hr />
-                                                  <p className="bottom-area d-flex">
-                                                      <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                      <span className="ml-auto"><Link to="#">Book Now</Link></span>
-                                                  </p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
                               </div>
 
                           </div>
                       </div>
                   </div>
-              </div>
+            </div>
           </section>
 
           {/* Modal Video */}

@@ -1454,63 +1454,63 @@ export const TourData = [
     //teamImage: [lgAvatar1, lgAvatar3, lgAvatar4, lgAvatar4, Avatar8],
     logo: "icofont-island-alt",
     logoBg: "light-info-bg",
-    title: "TourTitle1",
+    title: "투어 title1",
     sl: "힐링"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3, lgAvatar4, lgAvatar4],
     logo: "icofont-file-flv",
     logoBg: "bg-lightgreen",
-    title: "TourTitle2",
+    title: "투어 title2",
     sl: "드라마"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3, lgAvatar4, lgAvatar8, lgAvatar5, lgAvatar5, lgAvatar7],
     logo: "icofont-game",
     logoBg: "bg-lightyellow",
-    title: "TourTitle3",
+    title: "투어 title3",
     sl: "액티비티"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3],
     logo: "icofont-file-mov",
     logoBg: "light-success-bg",
-    title: "TourTitle4",
+    title: "투어 title4",
     sl: "영화"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3, lgAvatar1, lgAvatar3, lgAvatar4, lgAvatar8, lgAvatar5, lgAvatar5, lgAvatar7],
     logo: "icofont-user-alt-6",
     logoBg: "light-orange-bg",
-    title: "TourTitle5",
+    title: "투어 title5",
     sl: "I 추천테마"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3, lgAvatar4, lgAvatar8, lgAvatar5, lgAvatar5, lgAvatar7],
     logo: "icofont-users-social",
     logoBg: "bg-lightblue",
-    title: "TourTitle6",
+    title: "투어 title6",
     sl: "E 추천테마"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3, lgAvatar4, lgAvatar8],
     logo: "icofont-file-flv",
     logoBg: "bg-lightgreen",
-    title: "TourTitle7",
+    title: "투어 title7",
     sl: "드라마"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3],
     logo: "fa-solid fa-utensils",
     logoBg: "light-success-bg",
-    title: "TourTitle8",
+    title: "투어 title8",
     sl: "식도락"
   },
   {
     //teamImage: [lgAvatar1, lgAvatar3, lgAvatar1, lgAvatar3, lgAvatar4, lgAvatar8, lgAvatar5, lgAvatar5, lgAvatar7],
     logo: "icofont-island-alt",
     logoBg: "light-info-bg",
-    title: "TourTitle9",
+    title: "투어 title9",
     sl: "힐링"
   },
 ]
