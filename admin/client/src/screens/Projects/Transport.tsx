@@ -115,8 +115,17 @@ const Transport: React.FC = () => {
           <div className="mb-3">
             <label className="form-label">Project Category</label>
             <select className="form-select" value={editModeldata ? editModeldata.title : ""}>
-             
+              <option >UI/UX Design</option>
+              <option value="1">Website Design</option>
+              <option value="2">App Development</option>
+              <option value="3">Quality Assurance</option>
               <option value="4">Development</option>
+              <option value="5">Backend Development</option>
+              <option value="6">Software Testing</option>
+              <option value="7">Website Design</option>
+              <option value="8">Marketing</option>
+              <option value="9">SEO</option>
+              <option value="10">Other</option>
             </select>
           </div>
           <div className="mb-3">
