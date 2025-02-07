@@ -1,123 +1,196 @@
-import React, { useState } from "react";
-import DataTable from "react-data-table-component";
-import { Modal } from "react-bootstrap";
-import PageHeader from "../../components/common/PageHeader";
-import { TicketsViewData } from "../../components/Data/AppData.js";
+import type React from "react"
+import { Trash2 } from "lucide-react"
+
+interface TourEntry {
+  id: number
+  title: string
+  author: {
+    name: string
+    avatar: string
+  }
+  date: string
+  emotion: "기쁨" | "중립" | "슬픔" |"분노" | "당황"
+}
+
+const tourData: TourEntry[] = [
+  {
+    id: 1,
+    title: "여행의 모든 것: 코스, 후기, 꿀팁 정리",
+    author: {
+      name: "Victore Rampling",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    date: "25-02-2021",
+    emotion: "기쁨",
+  },
+  {
+    id: 2,
+    title: "오늘도 여행 중! 도시별 리얼 후기",
+    author: {
+      name: "Joan Dyer",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    date: "21-03-2021",
+    emotion: "분노",
+  },
+  {
+    id: 3,
+    title: "여행 플래너 & 다이어리 - 일정부터 소감까지",
+    author: {
+      name: "Sally Grahanm",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    date: "16-02-2021",
+    emotion: "슬픔",
+  },
+  {
+    id: 4,
+    title: "발길 닿는 대로, 여행 리포트",
+    author: {
+      name: "Phil Glover",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    date: "16-03-2021",
+    emotion: "중립",
+  },
+  {
+    id: 5,
+    title: "여행 브이로그 대신 다이어리로 남기기",
+    author: {
+      name: "Robert Anderson",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    date: "18-01-2021",
+    emotion: "기쁨",
+  },
+  {
+    id: 6,
+    title: "트래블 노트",
+    author: {
+      name: "Ryan Randall",
+      avatar: "/placeholder.svg?height=40&width=40",
+    },
+    date: "12-03-2021",
+    emotion: "슬픔",
+  },
+]
 
 const TourDiary: React.FC = () => {
-  const [isModal, setIsModal] = useState(false);
-  const [siEditModal, setSiEditModal] = useState<any>();
-
-  const columnT = [
-    {
-      name: "TICKET ID",
-      selector: (row: any) => row.ticketid,
-      sortable: true,
-      cell: (row: any) => <a href="tickets-detail" className="fw-bold text-secondary">{row.ticketid}</a>
-    },
-    {
-      name: "SUBJECT",
-      selector: (row: any) => row.subject,
-      sortable: true
-    },
-    {
-      name: "ASSIGNED",
-      selector: (row: any) => row.assigned,
-      sortable: true,
-      cell: (row: any) => <div><img className="avatar rounded-circle" src={row.image} alt="" /> <span className="fw-bold ms-1">{row.assigned}</span></div>,
-      minWidth: "250px"
-    },
-    {
-      name: "CREATD DATE",
-      selector: (row: any) => row.createdate,
-      sortable: true
-    },
-    {
-      name: "STATUS",
-      selector: (row: any) => { },
-      sortable: true,
-      cell: (row: any) => <span className={`badge ${row.status === "Completed" ? 'bg-success' : "bg-warning"}`}>{row.status}</span>
-    },
-    {
-      name: "ACTION",
-      selector: (row: any) => { },
-      sortable: true,
-      cell: (row: any) => <div className="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" className="btn btn-outline-secondary" onClick={() => { setIsModal(true); setSiEditModal(row) }}><i className="icofont-edit text-success"></i></button>
-        <button type="button" className="btn btn-outline-secondary deleterow"><i className="icofont-ui-delete text-danger"></i></button>
-      </div>
+  const getEmotionBadgeClass = (emotion: string) => {
+    switch (emotion) {
+      case "기쁨":
+        return "bg-primary text-white"
+      case "중립":
+        return "bg-info text-dark"
+      case "슬픔":
+        return "bg-secondary text-white"
+      case "분노":
+        return "bg-danger text-white"
+      case "당황":
+        return "bg-warning text-white"
+      default:
+        return "bg-secondary text-white"
     }
-
-  ]
-
+  }
 
   return (
-    <div className="container-xxl">
-      <PageHeader headerTitle="투어 다이어리" renderRight={() => {
-        return <div className="col-auto d-flex w-sm-100">
-          <button className="btn btn-dark btn-set-task w-sm-100" onClick={() => { setIsModal(true) }}><i className="icofont-plus-circle me-2 fs-6"></i>Add Tickets</button>
+    <div className="container-fluid py-5">
+      <h2 className="mb-4">투어 다이어리</h2>
+      <div className="card">
+        <div className="card-body p-0">
+          <div className="table-responsive">
+            <table className="table table-hover mb-0">
+              <thead className="bg-light">
+                <tr>
+                  <th className="px-4" style={{ width: "80px" }}>
+                    번호
+                  </th>
+                  <th className="px-4">제목</th>
+                  <th className="px-4" style={{ width: "200px" }}>
+                    닉네임
+                  </th>
+                  <th className="px-4" style={{ width: "180px" }}>
+                    작성일
+                  </th>
+                  <th className="px-4" style={{ width: "120px" }}>
+                    대표감정
+                  </th>
+                  <th className="px-4" style={{ width: "80px" }}>
+                    삭제
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {tourData.map((entry) => (
+                  <tr key={entry.id}>
+                    <td className="px-4">{entry.id}</td>
+                    <td className="px-4">
+                      <a href="#" className="text-decoration-none text-dark">
+                        {entry.title}
+                      </a>
+                    </td>
+                    <td className="px-4">
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={entry.author.avatar || "/placeholder.svg"}
+                          alt={entry.author.name}
+                          className="rounded-circle me-2"
+                          width="24"
+                          height="24"
+                        />
+                        <span>{entry.author.name}</span>
+                      </div>
+                    </td>
+                    <td className="px-4">{entry.date}</td>
+                    <td className="px-4">
+                      <span className={`badge ${getEmotionBadgeClass(entry.emotion)} rounded-pill`}>
+                        {entry.emotion}
+                      </span>
+                    </td>
+                    <td className="px-4">
+                      <button className="btn btn-link text-danger p-0" title="삭제">
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      }} />
-      <div className="row clearfix g-3">
-        <div className="col-md-12">
-          <div className="card">
-            <div className="card-body">
-              <DataTable
-                title={TicketsViewData.title}
-                columns={columnT}
-                data={TicketsViewData.rows}
-                // defaultSortField="title"
-                pagination
-                selectableRows={false}
-                className="table myDataTable table-hover align-middle mb-0 d-row nowrap dataTable no-footer dtr-inline"
-                highlightOnHover={true}
-              />
+        <div className="card-footer bg-white border-0">
+          <div className="d-flex justify-content-between align-items-center px-4 py-2">
+            <div className="d-flex align-items-center">
+              <span className="me-2">Rows per page:</span>
+              <select className="form-select form-select-sm" style={{ width: "70px" }}>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <div className="d-flex align-items-center">
+              <span className="me-3">1-6 of 6</span>
+              <div className="btn-group">
+                <button className="btn btn-outline-secondary btn-sm" disabled>
+                  <span>&laquo;</span>
+                </button>
+                <button className="btn btn-outline-secondary btn-sm" disabled>
+                  <span>&lsaquo;</span>
+                </button>
+                <button className="btn btn-outline-secondary btn-sm" disabled>
+                  <span>&rsaquo;</span>
+                </button>
+                <button className="btn btn-outline-secondary btn-sm" disabled>
+                  <span>&raquo;</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <Modal centered show={isModal} onHide={() => { setIsModal(false); setSiEditModal("") }}>
-        <Modal.Header closeButton>
-          <Modal.Title className="fw-bold">{siEditModal !== "" ? "Edit" : "Add"} Ticket</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="mb-3">
-            <label htmlFor="sub" className="form-label">Subject</label>
-            <input type="text" className="form-control" id="sub" onChange={() => { }} value={siEditModal ? siEditModal.subject : ""} />
-          </div>
-          <div className="deadline-form">
-            <form>
-              <div className="row g-3 mb-3">
-                <div className="col-lg-6">
-                  <label htmlFor="depone" className="form-label">Assign Name</label>
-                  <input type="text" className="form-control" id="depone" onChange={() => { }} value={siEditModal ? siEditModal.assigned : ""} />
-                </div>
-                <div className="col-lg-6">
-                  <label htmlFor="deptwo" className="form-label">Creted Date</label>
-                  <input type="date" className="form-control" id="deptwo" onChange={() => { }} value={siEditModal ? siEditModal.createdate : ""} />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Status</label>
-            <select className="form-select">
-              <option >In Progress</option>
-              <option value="1">Completed</option>
-              <option value="2">Wating</option>
-              <option value="3">Decline</option>
-            </select>
-          </div>
-
-        </Modal.Body>
-        <Modal.Footer>
-          <button type="button" className="btn btn-secondary" onClick={() => { setIsModal(false) }}>Done</button>
-          <button type="button" className="btn btn-primary">Sent</button>
-        </Modal.Footer>
-      </Modal>
     </div>
   )
-
 }
 
-export default TourDiary;
+export default TourDiary
+

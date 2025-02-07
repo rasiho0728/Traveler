@@ -95,11 +95,11 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
-                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} />
-                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload/>} />{/*250206 민다빈*/}
-                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-update`} element={<TourUpdate/>} />
-                <Route path={`${process.env.REACT_APP_BASE_URL}/tourstaus`} element={<TourDashboard/>} />
-                <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary`} element={<TourDiary/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} />{/*250207 민다빈 완료*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload/>} />{/*250206 민다빈 완료*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-update`} element={<TourUpdate/>} />{/*250207 민다빈 완료*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourstaus`} element={<TourDashboard/>} />{/*250207 민다빈 수정*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary`} element={<TourDiary/>} />{/*250206 민다빈 수정*/}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tasks`} element={<Tasks/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/timesheet`} element={<Timesheet/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/leaders`} element={<Leaders/>} />

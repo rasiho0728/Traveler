@@ -100,7 +100,7 @@
                     "isApp": false,
                     "children": []
                 },
-                
+
                 {
                     "name": "투어 목록",
                     "routerLink": ["tourlist"],
@@ -115,7 +115,7 @@
                 {
                     "name": "여행다이어리",
                     "routerLink": ["tourdiary"],
-                    "identifier": "여행다이어리리",
+                    "identifier": "여행다이어리",
                     "iconClass": "",
                     "breadcrumbMessage": "",
                     "isCategory": false,

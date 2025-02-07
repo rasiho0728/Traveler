@@ -566,44 +566,44 @@ export const LeadersListData = {
   ]
 }
 
-export const TicketsViewData = {
-  title: "Tickets List",
+export const DiaryViewData = {
+  title: "Diary list",
   columns: [
     {
-      name: "TICKET ID",
-      selector: (row) => row.ticketid,
+      name: "번호",
+      selector: (row) => row.num,
       sortable: true,
-      cell: (row) => <a href="tickets-detail" className="fw-bold text-secondary">{row.ticketid}</a>
     },
     {
-      name: "SUBJECT",
-      selector: (row) => row.subject,
-      sortable: true
+      name: "제목",
+      selector: (row) => row.title,
+      sortable: true,
+      cell: (row) => <a href="tickets-detail" className="fw-bold text-secondary">{row.title}</a>
     },
     {
-      name: "ASSIGNED",
+      name: "닉네임",
       selector: (row) => row.assigned,
       sortable: true,
       cell: row => <div><img className="avatar rounded-circle" src={row.image} alt="" /> <span className="fw-bold ms-1">{row.assigned}</span></div>,
       minWidth: "250px"
     },
     {
-      name: "CREATD DATE",
+      name: "작성일",
       selector: (row) => row.createdate,
       sortable: true
     },
     {
-      name: "STATUS",
+      name: "대표감정",
       selector: (row) => { },
       sortable: true,
       cell: row => <span className={`badge ${row.status === "Completed" ? 'bg-success' : "bg-warning"}`}>{row.status}</span>
     },
     {
-      name: "ACTION",
+      name: "삭제",
       selector: (row) => { },
       sortable: true,
       cell: () => <div className="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" className="btn btn-outline-secondary"><i className="icofont-edit text-success"></i></button>
+        {/* <button type="button" className="btn btn-outline-secondary"><i className="icofont-edit text-success"></i></button> */}
         <button type="button" className="btn btn-outline-secondary deleterow"><i className="icofont-ui-delete text-danger"></i></button>
       </div>
     }
@@ -611,52 +611,52 @@ export const TicketsViewData = {
   ],
   rows: [
     {
-      ticketid: "#Tc-00011",
+      num: "1",
       image: Avatar4,
-      subject: "punching time not proper",
+      title: "여행의 모든 것: 코스, 후기, 꿀팁 정리",
       assigned: "Victore Rampling",
       createdate: "25-02-2021",
-      status: "Completed"
+      status: "기쁨"
     },
     {
-      ticketid: "#Tc-0002",
+      num: "2",
       image: Avatar1,
-      subject: "Internet Not Working",
+      title: "오늘도 여행 중! 도시별 리얼 후기",
       assigned: "Joan Dyer",
       createdate: "21-03-2021",
-      status: "In Progress"
+      status: "기쁨"
     },
     {
-      ticketid: "#Tc-00021",
+      num: "3",
       image: Avatar5,
-      subject: "Internet Not Working",
+      title: "여행 플래너 & 다이어리 - 일정부터 소감까지",
       assigned: "Sally Grahanm",
       createdate: "16-02-2021",
-      status: "Completed"
+      status: "당황"
     },
     {
-      ticketid: "#Tc-0004",
+      num: "4",
       image: Avatar3,
-      subject: "Internet Not Working",
+      title: "발길 닿는 대로, 여행 리포트",
       assigned: "Phil Glover",
       createdate: "16-03-2021",
-      status: "In Progress"
+      status: "분노"
     },
     {
-      ticketid: "#Tc-00041",
+      num: "5",
       image: Avatar6,
-      subject: "Internet Not Working",
+      title: "여행 브이로그 대신 다이어리로 남기기",
       assigned: "Robert Anderson",
       createdate: "18-01-2021",
-      status: "Completed"
+      status: "기쁨"
     },
     {
-      ticketid: "#Tc-0006",
+      num: "6",
       image: Avatar2,
-      subject: "Internet Not Working",
+      title: "트래블 노트",
       assigned: "Ryan Randall",
       createdate: "12-03-2021",
-      status: "In Progress"
+      status: "중립"
     }
   ]
 }
