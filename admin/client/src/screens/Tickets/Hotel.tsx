@@ -3,7 +3,7 @@ import { Modal, Nav, Tab } from "react-bootstrap";
 import CurrentClientProject from "../../components/Clients/CurrentClientProject";
 import AddNewUserModal from "../../components/common/AddNewUserModal";
 import PageHeader from "../../components/common/PageHeader";
-import { TourData } from "../../components/Data/AppDataTest";
+import { TourData } from "../../components/Data/AppDataTour";
 import TourCard from "../../components/Clients/TourCard";
 import { Link } from "react-router-dom";
 
