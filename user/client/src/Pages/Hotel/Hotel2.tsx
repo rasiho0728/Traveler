@@ -1,10 +1,11 @@
-// 2025.01.24. 09:40 생성자: 이학수, HTML템플릿을 리엑트로 조정
+// 2025.02.04. 09:40 생성자: 황보도연, HTML템플릿을 리엑트로 조정
 import React, { useEffect, useState } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
+import '../../css/hotel.css';
 
 
 registerLocale("ko", ko);
@@ -12,8 +13,9 @@ registerLocale("ko", ko);
 const Hotel: React.FC = () => {
     const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
     const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        window.open('https://www.google.com/maps?q=Seodaemun+gu,+Seoul');
+    const handleClick = (address: string) => {
+        const formattedAddress = encodeURIComponent(address);
+        window.open('https://www.google.com/maps?q=${formattedAddress}');
     };
 
     useEffect(() => {
@@ -171,7 +173,16 @@ const Hotel: React.FC = () => {
                             <div className="row">
                                 <div className="col-md-4 ftco-animate">
                                     <div className="destination">
-                                        <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-1.jpg)" }}>
+                                        {/* <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-1.jpg)" }}>
+                                            <div className="icon d-flex justify-content-center align-items-center">
+                                                <span className="icon-search2"></span>
+                                            </div>
+                                        </Link> */}
+                                        <Link
+                                            to="/traveler/hotels/1"
+                                            className="img img-2 d-flex justify-content-center align-items-center"
+                                            style={{ backgroundImage: "url(https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20221213_58%2F1670914399809NgIsu_JPEG%2F%25C5%25A9%25B1%25E2%25BA%25AF%25C8%25AFShilla_Stay_Gwanghwamun_Exterior.jpg)" }}
+                                        >
                                             <div className="icon d-flex justify-content-center align-items-center">
                                                 <span className="icon-search2"></span>
                                             </div>
@@ -179,7 +190,8 @@ const Hotel: React.FC = () => {
                                         <div className="text p-3">
                                             <div className="d-flex">
                                                 <div className="one">
-                                                    <h3><Link to="/traveler/hotels/1">힐튼 호텔</Link></h3>
+                                                    <h3><Link to="/traveler/hotels/1">
+                                                        신라스테이 광화문</Link></h3>
                                                     <p className="rate">
                                                         <i className="icon-star"></i>
                                                         <i className="icon-star"></i>
@@ -194,11 +206,12 @@ const Hotel: React.FC = () => {
                                                 </div>
                                             </div>
                                             <p>
-                                                본 숙소는 Hilton CleanStay 인증이 완료되었으므로 예약 시 더욱 안심하실 수 있습니다. 서울의 명동에 위치한 본 숙소는 관광 명소 및 흥미로운 레스토랑과 가깝습니다. 본 5성급 숙소는 숙박의 질과 즐거움을 향상시키기 위한 숙소 내 다양한 편의시설로 가득 차 있습니다.</p>
+                                                한국관광협회중앙회 호텔업등급관리국에서 3성으로 인증받은 호텔입니다.</p>
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span>
-                                                    <i className="icon-map-o" onClick={handleClick}></i> 서울, 서대문구
+                                                    <i className="icon-map-o" onClick={() => handleClick("서울 종로구 삼봉로 71")}></i>
+                                                    서울 종로구
                                                 </span>
                                                 <span className="ml-auto"><Link to="/traveler/hotels/:num">예약</Link></span>
                                             </p>

@@ -1,4 +1,4 @@
-// 2025.01.24. 15:15 생성자: 이학수, HTML템플릿을 리엑트로 조정
+// 2025.01.24. 15:15 생성자: 황보도연, HTML템플릿을 리엑트로 조정
 import React, { useEffect, useState } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import DatePicker, { registerLocale } from 'react-datepicker';
@@ -6,6 +6,7 @@ import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 import { Link } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
 import ImgCarousel from '../../Comm/ImgCarousel';
+import '../../css/hotel.css';
 
 registerLocale("ko", ko);
 
@@ -15,6 +16,14 @@ const HotelDetail: React.FC = () => {
     const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
     const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
     const [isOpen, setIsOpen] = useState(false);
+    const address = "291 South 21th Street, Suite 721 New York NY 10016";
+
+
+    const handleClick = (address: string) => {
+        const formattedAddress = encodeURIComponent(address);
+        window.open(`https://www.google.com/maps?q=${formattedAddress}`);  // 백틱으로 감싸야 합니다.
+    };
+
 
     const openModal = () => {
         setIsOpen(true);
@@ -50,7 +59,7 @@ const HotelDetail: React.FC = () => {
                     <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span className="mr-2"><Link to="/traveler/hotels">Hotel</Link></span> <span>Hotel Single</span></p>
-                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>Hotels Details</h1>
+                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>호텔 소개</h1>
                         </div>
                     </div>
                 </div>
@@ -167,11 +176,20 @@ const HotelDetail: React.FC = () => {
                                     <ImgCarousel data={[1, 2, 3]} />
                                 </div>
                                 <div className="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
-                                    <span>Our Best hotels &amp; Rooms</span>
-                                    <h2>Luxury Hotel in Paris</h2>
+                                    <span>베스트 호텔 & 객실</span>
+                                    <h2>신라스테이 광화문</h2>
                                     <p className="rate mb-5">
-                                        <span className="loc"><Link to="#"><i className="icon-map"></i> 291 South 21th Street, Suite 721 New York NY 10016</Link></span>
-                                        <span className="star">
+                                        {/* <span className="loc"><Link to="#"><i className="icon-map"></i> 291 South 21th Street, Suite 721 New York NY 10016</Link></span>
+                                        <span className="star"> */}
+                                        <span>
+                                            <span className="loc">
+                                                <Link
+                                                    to="#"
+                                                    onClick={() => handleClick(address)} // handleClick 함수 호출
+                                                >
+                                                    <i className="icon-map"></i> {address}
+                                                </Link>
+                                            </span>
                                             <i className="icon-star"></i>
                                             <i className="icon-star"></i>
                                             <i className="icon-star"></i>
@@ -238,7 +256,7 @@ const HotelDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="/traveler/hotels/ReservationForm">Book Now</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -267,7 +285,7 @@ const HotelDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="/traveler/hotels/ReservationForm">Book Now</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -296,14 +314,14 @@ const HotelDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="/traveler/hotels/ReservationForm">Book Now</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                                {/* <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                     <h4 className="mb-5">Check Availability &amp; Booking</h4>
                                     <div className="fields">
                                         <div className="row">
@@ -379,7 +397,7 @@ const HotelDetail: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4" style={{ position: 'relative', zIndex: -1 }}>
                                     <h4 className="mb-4">리뷰 &amp; 평점</h4>
                                     <div className="row">
