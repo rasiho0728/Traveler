@@ -1,0 +1,49 @@
+.backpackDetail{
+    padding: 80px 30px 60px 30px;
+    display: flex;
+    justify-content: center;
+
+    .question{
+        display: flex;
+    }
+
+    .question > img{
+        border-radius: 50%;
+        width: 100px;
+        margin-right: 20px;
+    }
+
+    .profile > p{
+        font-size: 28px;
+        font-weight: 500;
+        padding: 0;
+        margin: 0;
+    }
+    .profile > span{
+        font-size: 20px;
+        padding-left: 5px;
+    }
+
+    .text-box{
+        margin-top: 20px;
+    }
+    .text-box > h2{
+        font-size: 22px;
+        margin-top: 0;
+    }
+    .text-box > p{
+        font-size: 18px;
+    }
+
+    .comments-box{
+        margin-top: 40px;
+        border-top: 1px solid #ccc;
+    }
+
+    .inner{
+        border-radius: 5px;
+        box-sizing: border-box;
+        padding: 65px 100px;
+        box-shadow: 0px 3px 14px 6px #ccc;
+    }
+}
