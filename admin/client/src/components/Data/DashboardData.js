@@ -8,12 +8,12 @@ import Avatar6 from "../../assets/images/xs/avatar6.jpg";
 
 
 export const EmployeeInfoChartData = {
-    options:{
+    options: {
         series: [{
             name: 'Available',
-            data: [4, 19, 7, 35, 14, 27, 9, 12],
+            data: [4, 19, 7, 35, 14, 27],  // 데이터 개수 12개로 맞추기
         }],
-            chart: {
+        chart: {
             height: 140,
             type: 'line',
             toolbar: {
@@ -39,12 +39,12 @@ export const EmployeeInfoChartData = {
             colors: ['var(--chart-color2)'],
         },
         xaxis: {
-            type: 'datetime',
-            categories: ['1/11/2021', '2/11/2021', '3/11/2021', '4/11/2021', '5/11/2021', '6/11/2021', '7/11/2021', '8/11/2021'],
-            tickAmount: 10,
+            categories: ['10월','11월','12월', '1월', '2월', '3월'],
+            tickAmount: 6,
             labels: {
-                formatter: function(value, timestamp, opts) {
-                    return opts.dateFormatter(new Date(timestamp), 'dd MMM')
+                show: true,
+                formatter: function(value) {
+                    return value; // 값 그대로 출력
                 }
             }
         },
@@ -52,7 +52,7 @@ export const EmployeeInfoChartData = {
             type: 'gradient',
             gradient: {
                 shade: 'dark',
-                gradientToColors: [ "var(--chart-color3)" ],
+                gradientToColors: ["var(--chart-color3)"],
                 shadeIntensity: 1,
                 type: 'horizontal',
                 opacityFrom: 1,
