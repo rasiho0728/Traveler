@@ -77,14 +77,13 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
-<<<<<<< HEAD
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
-        <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
-=======
+        {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
+
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
->>>>>>> 46643383dfcdba70324c112da4f7f42e69986068
+
       </Routes>
       <Footer />
       <Chat />
