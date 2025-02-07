@@ -18,7 +18,7 @@ const TourList: React.FC = () => {
 
   const [show, setShow] = useState(false);
 
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
   return (
     <div className="container-xxl">

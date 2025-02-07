@@ -56,17 +56,8 @@ import Help from "./Dashboard/Help";
 import SignIn from "../components/Auth/SignIn";
 import Signup from "../components/Auth/Signup";
 import Transport from "./Projects/Transport";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import TourList from "./Tour/TourList";
-import TourListDetail from "./Tour/TourListDetail";
-import TourUpload from "./Tour/TourUpload";
-=======
-=======
-import TourList from "./Tour/TourList";
-import TourListDetail from "./Tour/TourListDetail";
-import TourUpload from "./Tour/TourUpload";
->>>>>>> d12ee4842816df097a70fdc74bf7fd45d96c5e21
+
+
 import Hotel from "./Tickets/Hotel";
 import TourUpdate from "./Tour/TourUpdate";
 import TourDashboard from "./Tour/TourDashboard";
@@ -76,10 +67,10 @@ import Members_C from "./Dashboard/Members_C";
 import Talk from "./Dashboard/Talk";
 import MailSending from "./Dashboard/MailSending";
 import AiBlackList from "./Dashboard/AiBlackList";
-<<<<<<< HEAD
->>>>>>> 46643383dfcdba70324c112da4f7f42e69986068
-=======
->>>>>>> d12ee4842816df097a70fdc74bf7fd45d96c5e21
+import TourList from "./Tour/TourList";
+import TourListDetail from "./Tour/TourListDetail";
+import TourUpload from "./Tour/TourUpload";
+
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();

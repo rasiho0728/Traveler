@@ -1,5 +1,12 @@
 import type React from "react"
-import { Trash2 } from "lucide-react"
+import { useState } from "react"
+// import avatar1 from "assets/images/xs/avatar1.jpg";
+// import avatar2 from "assets/images/xs/avatar2.jpg";
+// import avatar3 from "assets/images/xs/avatar3.jpg";
+// import avatar4 from "assets/images/xs/avatar4.jpg";
+// import avatar5 from "assets/images/xs/avatar5.jpg";
+// import avatar6 from "assets/images/xs/avatar6.jpg";
+
 
 interface TourEntry {
   id: number
@@ -12,13 +19,21 @@ interface TourEntry {
   emotion: "기쁨" | "중립" | "슬픔" |"분노" | "당황"
 }
 
+const avatar1 = require("../../assets/images/xs/avatar1.jpg");
+const avatar2 = require("../../assets/images/xs/avatar2.jpg");
+const avatar3 = require("../../assets/images/xs/avatar3.jpg");
+const avatar4 = require("../../assets/images/xs/avatar4.jpg");
+const avatar5 = require("../../assets/images/xs/avatar5.jpg");
+const avatar6 = require("../../assets/images/xs/avatar6.jpg");
+
+
 const tourData: TourEntry[] = [
   {
     id: 1,
     title: "여행의 모든 것: 코스, 후기, 꿀팁 정리",
     author: {
       name: "Victore Rampling",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: avatar1,
     },
     date: "25-02-2021",
     emotion: "기쁨",
@@ -28,7 +43,7 @@ const tourData: TourEntry[] = [
     title: "오늘도 여행 중! 도시별 리얼 후기",
     author: {
       name: "Joan Dyer",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: avatar2,
     },
     date: "21-03-2021",
     emotion: "분노",
@@ -38,7 +53,7 @@ const tourData: TourEntry[] = [
     title: "여행 플래너 & 다이어리 - 일정부터 소감까지",
     author: {
       name: "Sally Grahanm",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: avatar3,
     },
     date: "16-02-2021",
     emotion: "슬픔",
@@ -48,7 +63,7 @@ const tourData: TourEntry[] = [
     title: "발길 닿는 대로, 여행 리포트",
     author: {
       name: "Phil Glover",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: avatar4,
     },
     date: "16-03-2021",
     emotion: "중립",
@@ -58,7 +73,7 @@ const tourData: TourEntry[] = [
     title: "여행 브이로그 대신 다이어리로 남기기",
     author: {
       name: "Robert Anderson",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: avatar5,
     },
     date: "18-01-2021",
     emotion: "기쁨",
@@ -68,7 +83,7 @@ const tourData: TourEntry[] = [
     title: "트래블 노트",
     author: {
       name: "Ryan Randall",
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: avatar6,
     },
     date: "12-03-2021",
     emotion: "슬픔",
@@ -93,6 +108,20 @@ const TourDiary: React.FC = () => {
     }
   }
 
+
+  const emotionImages: { [key in TourEntry["emotion"]]: string } = {
+    기쁨: "/imgs/emotion/happy.PNG",
+    중립: "/imgs/emotion/soso.PNG",
+    슬픔: "/imgs/emotion/sad.PNG",
+    분노: "/imgs/emotion/angry.PNG",
+    당황: "/imgs/emotion/embressed.PNG",
+  };
+
+  // 삭제 핸들러 함수
+  const onClickDelete = () => {
+    
+  };
+
   return (
     <div className="container-fluid py-5">
       <h2 className="mb-4">투어 다이어리</h2>
@@ -109,10 +138,10 @@ const TourDiary: React.FC = () => {
                   <th className="px-4" style={{ width: "200px" }}>
                     닉네임
                   </th>
-                  <th className="px-4" style={{ width: "180px" }}>
+                  <th className="px-4" style={{ width: "150px" }}>
                     작성일
                   </th>
-                  <th className="px-4" style={{ width: "120px" }}>
+                  <th className="px-4" style={{ width: "100px" }}>
                     대표감정
                   </th>
                   <th className="px-4" style={{ width: "80px" }}>
@@ -131,25 +160,40 @@ const TourDiary: React.FC = () => {
                     </td>
                     <td className="px-4">
                       <div className="d-flex align-items-center">
-                        <img
+                        {/* <img
                           src={entry.author.avatar || "/placeholder.svg"}
                           alt={entry.author.name}
                           className="rounded-circle me-2"
                           width="24"
                           height="24"
-                        />
+                        /> */}
+                        <img className="avatar rounded-circle" src={entry.author.avatar} ></img>
                         <span>{entry.author.name}</span>
                       </div>
                     </td>
                     <td className="px-4">{entry.date}</td>
+
+
                     <td className="px-4">
-                      <span className={`badge ${getEmotionBadgeClass(entry.emotion)} rounded-pill`}>
-                        {entry.emotion}
-                      </span>
+                      <div className="d-flex align-items-center">
+                        <img
+                          style={{ marginRight: "10px" }}
+                          src={emotionImages[entry.emotion]} 
+                          alt={entry.emotion} 
+                          width="24" 
+                          height="24" 
+                        />
+                        <span className={`badge ${getEmotionBadgeClass(entry.emotion)} rounded-pill`}>
+                          {entry.emotion}
+                        </span>
+                      </div>
                     </td>
+
+
+
                     <td className="px-4">
                       <button className="btn btn-link text-danger p-0" title="삭제">
-                        <Trash2 className="w-4 h-4" />
+                      <button type="button" className="btn btn-outline-secondary" onClick={onClickDelete}><i className="icofont-ui-delete text-danger"></i></button>
                       </button>
                     </td>
                   </tr>
