@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
 import ImgCarousel from '../../Comm/ImgCarousel';
 import '../../css/hotel.css';
+import { roomDetails } from "./ReservationForm";
 
 registerLocale("ko", ko);
 
@@ -197,22 +198,25 @@ const HotelDetail2: React.FC = () => {
                                             <i className="icon-star-o"></i>
                                             8 Rating</span>
                                     </p>
-                                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+                                    <p>신라스테이 광화문은 서울의 역사, 경제, 문화의 뿌리인 종로구 광화문에 위치해 있다.
+                                        서울시청, 정부서울청사, 외교부 등 주요 공공기관과 외국 대사관 등이 밀집해 있는 동시에 경복궁, 경희궁, 창경궁, 창덕궁 등 4대 고궁과 종묘를 비롯해 남대문, 인사동, 삼청동, 북촌한옥마을 등 한국을 대표하는 전통과 문화 관광요소가 밀집되어 있다.
+                                        계절별로 서울을 대표하는 다양한 축제가 열리는 청계천과 도보로 5분 거리이며, 지하철 1호선 종각역과 5호선 광화문역, 3호선 안국역에서 유명 관광지로 도보 이동이 가능하다. 총 339개의 객실과 부대 시설, △로비, △로비 바, △미팅룸, △비즈니스코너, △뷔페레스토랑, △피트니스센터 등을 운영한다.
+                                        특히, 도심 속 사찰인 조계사와 삼청동이 한눈에 보이는 전망을 자랑한다. 뷔페 레스토랑 ‘카페’ (cafe)는 108석 규모의 좌석을 갖추고 있으며, 조식과 런치 뷔페를 상시 운영한다.</p>
                                     <div className="d-md-flex mt-5 mb-5">
-                                        <ul>
+                                        {/* <ul>
                                             <li>The Big Oxmox advised her not to do so</li>
                                             <li>When she reached the first hills of the Italic Mountains</li>
                                             <li>She had a last view back on the skyline of her hometown </li>
                                             <li>Bookmarksgrove, the headline of Alphabet </li>
-                                        </ul>
-                                        <ul className="ml-md-5">
+                                        </ul> */}
+                                        {/* <ul className="ml-md-5">
                                             <li>Question ran over her cheek, then she continued</li>
                                             <li>Pityful a rethoric question ran</li>
                                             <li>Mountains, she had a last view back on the skyline</li>
                                             <li>Headline of Alphabet Village and the subline</li>
-                                        </ul>
+                                        </ul> */}
                                     </div>
-                                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+                                    {/* <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p> */}
                                 </div>
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                     <h4 className="mb-4">Take A Tour</h4>
@@ -230,98 +234,62 @@ const HotelDetail2: React.FC = () => {
 
                                 </div>
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                    <h4 className="mb-4">Our Rooms</h4>
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <div className="destination">
-                                                <Link to="/traveler/hotels/1" className="img img-2" style={{ backgroundImage: "url(/images/room-4.jpg)" }}></Link>
-                                                <div className="text p-3">
-                                                    <div className="d-flex">
-                                                        <div className="one">
-                                                            <h3><Link to="/traveler/hotels/1">Hotel, Italy</Link></h3>
-                                                            <p className="rate">
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star-o"></i>
-                                                                <span>8 Rating</span>
+                                    <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                                        <h4 className="mb-4">객실 안내</h4>
+                                        <div className="row">
+                                            {roomDetails.map((room) => (
+                                                <div key={room.id} className="col-md-4">
+                                                    <div className="destination">
+                                                        <Link
+                                                            to={`/traveler/hotels/${room.id}`}
+                                                            className="img img-2"
+                                                            style={{
+                                                                backgroundImage: `url(${room.imageUrl})`,
+                                                            }}
+                                                        ></Link>
+                                                        <div className="text p-3">
+                                                            <div className="d-flex">
+                                                                <div className="one">
+                                                                    <h3>
+                                                                        <Link to={`/traveler/hotels/${room.id}`}>{room.name}</Link>
+                                                                    </h3>
+                                                                    <p className="rate">
+                                                                        <i className="icon-star"></i>
+                                                                        <i className="icon-star"></i>
+                                                                        <i className="icon-star"></i>
+                                                                        <i className="icon-star"></i>
+                                                                        <i className="icon-star-o"></i>
+                                                                        <span>8</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div className="two">
+                                                                    <span className="price per-price">
+                                                                        {room.price}
+                                                                        <br />
+                                                                        <small>/박</small>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <p>{room.description}</p>
+                                                            <hr />
+                                                            <p className="bottom-area d-flex">
+                                                                <span>
+                                                                    <i className="icon-map-o"></i> Miami, Fl
+                                                                </span>
+                                                                <span className="ml-auto">
+                                                                    <Link to="/traveler/hotels/ReservationForm" state={{ roomDetails }}>
+                                                                        객실 예약
+                                                                    </Link>
+                                                                </span>
                                                             </p>
                                                         </div>
-                                                        <div className="two">
-                                                            <span className="price per-price">$40<br /><small>/night</small></span>
-                                                        </div>
                                                     </div>
-                                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                                    <hr />
-                                                    <p className="bottom-area d-flex">
-                                                        <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="/traveler/hotels/ReservationForm">Book Now</Link></span>
-                                                    </p>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="destination">
-                                                <Link to="/traveler/hotels/1" className="img img-2" style={{ backgroundImage: "url(/images/room-5.jpg)" }}></Link>
-                                                <div className="text p-3">
-                                                    <div className="d-flex">
-                                                        <div className="one">
-                                                            <h3><Link to="/traveler/hotels/1">Hotel, Italy</Link></h3>
-                                                            <p className="rate">
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star-o"></i>
-                                                                <span>8 Rating</span>
-                                                            </p>
-                                                        </div>
-                                                        <div className="two">
-                                                            <span className="price per-price">$40<br /><small>/night</small></span>
-                                                        </div>
-                                                    </div>
-                                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                                    <hr />
-                                                    <p className="bottom-area d-flex">
-                                                        <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="/traveler/hotels/ReservationForm">Book Now</Link></span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="destination">
-                                                <Link to="/traveler/hotels/1" className="img img-2" style={{ backgroundImage: "url(/images/room-6.jpg)" }}></Link>
-                                                <div className="text p-3">
-                                                    <div className="d-flex">
-                                                        <div className="one">
-                                                            <h3><Link to="/traveler/hotels/1">Hotel, Italy</Link></h3>
-                                                            <p className="rate">
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star"></i>
-                                                                <i className="icon-star-o"></i>
-                                                                <span>8 Rating</span>
-                                                            </p>
-                                                        </div>
-                                                        <div className="two">
-                                                            <span className="price per-price">$40<br /><small>/night</small></span>
-                                                        </div>
-                                                    </div>
-                                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                                    <hr />
-                                                    <p className="bottom-area d-flex">
-                                                        <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="/traveler/hotels/ReservationForm">Book Now</Link></span>
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                                <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                     <h4 className="mb-5">Check Availability &amp; Booking</h4>
                                     <div className="fields">
                                         <div className="row">
@@ -397,8 +365,8 @@ const HotelDetail2: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div> */}
-                                <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4" style={{ position: 'relative', zIndex: -1 }}>
+                                </div>
+                                <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4" style={{ position: 'relative', zIndex: 1 }}>
                                     <h4 className="mb-4">리뷰 &amp; 평점</h4>
                                     <div className="row">
                                         <div className="col-md-6">
@@ -438,7 +406,7 @@ const HotelDetail2: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-5">
-                                    <h4 className="mb-4">Related Hotels</h4>
+                                    <h4 className="mb-4">추천 호텔</h4>
                                     <div className="row">
                                         <div className="col-md-4">
                                             <div className="destination">

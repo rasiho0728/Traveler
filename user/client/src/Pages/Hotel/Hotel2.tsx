@@ -213,12 +213,12 @@ const Hotel: React.FC = () => {
                                                     <i className="icon-map-o" onClick={() => handleClick("서울 종로구 삼봉로 71")}></i>
                                                     서울 종로구
                                                 </span>
-                                                <span className="ml-auto"><Link to="/traveler/hotels/:num">예약</Link></span>
+                                                <span className="ml-auto"><Link to="/traveler/hotels/:num">상세정보</Link></span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-4 ftco-animate">
+                                {/* <div className="col-md-4 ftco-animate">
                                     <div className="destination">
                                         <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-2.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
@@ -246,12 +246,12 @@ const Hotel: React.FC = () => {
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                <span className="ml-auto"><Link to="/traveler/hotels/:num">예약</Link></span>
+                                                <span className="ml-auto"><Link to="/traveler/hotels/:num">상세정보</Link></span>
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-md-4 ftco-animate">
+                                </div> */}
+                                {/* <div className="col-md-4 ftco-animate">
                                     <div className="destination">
                                         <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-3.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
@@ -316,8 +316,8 @@ const Hotel: React.FC = () => {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-md-4 ftco-animate">
+                                </div> */}
+                                {/* <div className="col-md-4 ftco-animate">
                                     <div className="destination">
                                         <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-5.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
@@ -349,7 +349,7 @@ const Hotel: React.FC = () => {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-md-4 ftco-animate">
                                     <div className="destination">
                                         <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-6.jpg)" }}>
