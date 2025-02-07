@@ -1,35 +1,141 @@
-  /* 호텔 객실 css */
-  .col-md-6 {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%; 
-    padding-right: 50px; 
-    padding-left: 50px; 
-  }
-  .col-md-6.custom-margin {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-    padding-right: 50px; /* 오른쪽 여백 추가 */
-    padding-left: 50px;
+.hotel-reservForm {
+ margin-top: 36px;
+  padding: 20px;
+  /* background-color: #f9f9f9; */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-  .select-wrap select.form-control {
-    width: 100%; /* 부모 요소에 맞춰서 전체 너비를 설정 */
-    max-width: 300px; /* 최대 너비 제한 (원하는 크기로 설정 가능) */
-    padding: 6px 10px; /* 여백은 그대로 두되 크기를 조정 */
-    height: 35px; /* 높이는 그대로 두고, 너비만 조정 */
-  }
-.room-details img {
-    max-width: 100%; /* 부모 요소의 너비에 맞게 크기를 조정 */
-    height: auto; /* 비율을 유지하며 높이를 자동으로 설정 */
-    max-height: 200px; /* 최대 높이를 설정하여 크기를 제한 */
-  }
-  .custom-margin {
-    margin-left: 20px; /* 왼쪽 여백 추가 */
+
+.hotel-reservForm__fields {
+  margin: 0;
 }
-  .reservation-form {
-  margin-top: 80px; /* 헤더와 예약 폼 사이에 30px 여백을 추가 */
-  
+
+.hotel-reservForm__custom-margin {
+  margin-bottom: 20px;
+}
+
+.hotel-reservForm__select-wrap {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  padding-right: 30px;
+}
+
+.hotel-reservForm__select-wrap select.form-control {
+  width: 100%;
+  height: 40px;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.hotel-reservForm__select-wrap .icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.hotel-reservForm__room-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.hotel-reservForm__room-details img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+
+.hotel-reservForm__room-details h5 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.hotel-reservForm__room-details p {
+  font-size: 16px;
+}
+
+.hotel-reservForm__room-details p strong {
+  font-size: 18px;
+  color: #007bff;
+}
+
+.hotel-reservForm__submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hotel-reservForm__submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.hotel-reservForm__go-back-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.hotel-reservForm__go-back-btn:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+  .hotel-reservForm__room-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hotel-reservForm__room-details img {
+    max-width: 80%;
+    margin-left: 0;
+    margin-top: 15px;
+  }
+
+  .hotel-reservForm__submit-btn,
+  .hotel-reservForm__go-back-btn {
+    width: 100%;
+  }
+  .hotel-reservForm__title {
+  font-size: 77px; /* 더 큰 글씨 크기 */
+  font-weight: bold; /* 두껍게 */
+  text-align: center; /* 가운데 정렬 */
+  color: #333; /* 어두운 회색 글자 색 */
+  margin-bottom: 30px; /* 아래쪽 여백 추가 */
+  position: relative; /* 장식 추가를 위한 위치 지정 */
+}
+
+.hotel-reservForm__title::after {
+  margin-top: 300px;
+  content: ""; /* 장식용 선 */
+  display: block;
+  width: 50px; /* 선의 너비 */
+  height: 3px; /* 선의 높이 */
+  background-color: #007bff; /* 파란색 */
+  margin: 10px auto 0; /* 위아래 여백과 가운데 정렬 */
+  border-radius: 2px; /* 둥근 모서리 */
+}
 }
