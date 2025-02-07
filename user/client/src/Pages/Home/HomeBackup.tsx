@@ -1,15 +1,12 @@
 // 2025.01.21. 19:35 생성자: 이학수, HTML템플릿을 리엑트로 조정
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import GalleryCarousel from '../../Comm/GalleryCarousel';
 import AnimatedNumber from '../../Comm/AnimatedNumber';
 import CardCarousel from '../../Comm/CardCarousel';
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
-import TourMusicRecommended from '../Tour/TourMusicRecommended';
 
 const Home: React.FC = () => {
-    const [isMusicModalOpen, setIsMusicModalOpen] = useState(false); // 모달 상태 관리
     useEffect(() => {
         // 요소의 [data-scrollax] 옵션을 분석 적용
         handleScroll()
@@ -53,61 +50,32 @@ const Home: React.FC = () => {
                         <div className="col-md-9 ftco-animate" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <h1 className="mb-4" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><strong>Explore <br /></strong> your amazing city</h1>
                             <p data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>Find great places to stay, eat, shop, or visit from local experts</p>
-                            <SearchBar />
+                            <div className="block-17 my-4">
+                                <form action="" method="post" className="d-block d-flex">
+                                    <div className="fields d-block d-flex">
+                                        <div className="textfield-search one-third">
+                                            <input type="text" className="form-control" placeholder="Ex: food, service, hotel" />
+                                        </div>
+                                        <div className="select-wrap one-third">
+                                            <div className="icon"><span className="ion-ios-arrow-down"></span></div>
+                                            <select name="" id="" className="form-control">
+                                                <option value="">Where</option>
+                                                <option value="">San Francisco USA</option>
+                                                <option value="">Berlin Germany</option>
+                                                <option value="">Lodon United Kingdom</option>
+                                                <option value="">Paris Italy</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="submit" className="search-submit btn btn-primary" value="검색" />
+                                </form>
+                            </div>
                             <p>Or browse the highlights</p>
                             <p className="browse d-md-flex">
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>식당</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-hotel"></i>숙소</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-meeting-point"></i>지역</Link></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center">
-    <button 
-        onClick={() => setIsMusicModalOpen(true)}
-        style={{
-            backgroundColor: "#ff6b6b",
-            color: "white",
-            padding: "10px 16px",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-            fontWeight: "bold",
-            transition: "all 0.3s ease-in-out",
-            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
-        }}
-        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
-        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
-    >
-        🎵 노래 추천받기
-    </button>
-</span>
-<span className="d-flex justify-content-md-center align-items-md-center">
-    <Link 
-        to="/traveler/tour/recommended" 
-        style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#ff6b6b",
-            color: "white",
-            padding: "10px 16px",
-            borderRadius: "8px",
-            fontSize: "16px",
-            fontWeight: "bold",
-            textDecoration: "none",
-            transition: "all 0.3s ease-in-out",
-            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
-        }}
-        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
-        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
-    >
-        🧳 여행지 추천받기
-    </Link>
-</span>
-
-            {/* 모달이 열릴 때만 TourMusicRecommended 표시 */}
-            {isMusicModalOpen && <TourMusicRecommended onClose={() => setIsMusicModalOpen(false)} />}
-
+                                <span className="d-flex justify-content-md-center align-items-md-	center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span>
                             </p>
                         </div>
                     </div>
@@ -825,7 +793,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </section >
- 
+          
 
             {/* <!-- loader --> */}
             <div id="ftco-loader" className="show fullscreen"><svg className="circular" width="48px" height="48px"><circle className="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle className="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>

@@ -134,6 +134,16 @@
                     "isCategory": false,
                     "isApp": false,
                     "children": []
+                },
+                {
+                    "name": "Hotel",
+                    "routerLink": ["Hotel"],
+                    "identifier": "Hotel",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
                 }
             ]
         },

@@ -20,7 +20,7 @@ const TourDetail: React.FC = () => {
 
     // 리뷰 제출 핸들러 => 리뷰 보기로 기능 변경 필요
     const handleSubmit = () => {
-        if (!review.trim()) return alert("리뷰 내용을 입력해주세요!");
+        if (!review.trim()) return alert("아직 등록된 리뷰가 없습니다!");
         setReviews([...reviews, { rating, text: review }]);
         setRating(0);
         setReview("");
@@ -198,7 +198,7 @@ const TourDetail: React.FC = () => {
                                     </div>
                                     <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                         <button className="btn btn-primary mt-3" onClick={handleSubmit}>
-                                            리뷰 보기
+                                            리뷰 더보기
                                         </button>
 
                                         {/* 등록된 리뷰 목록 */}

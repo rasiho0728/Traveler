@@ -36,9 +36,12 @@ import Backpack from './Pages/Community/Backpack';
 import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
 import SingUp from './Pages/Login/SingUp';
-import TransportDetail from './Transport/TransportDetail';
 import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
+import TourRecommended from './Pages/Tour/TourRecommended';
+import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
+import RoadDetail from './Transport/RoadDetail';
+import SubwayDetail from './Transport/SubwayDetail';
 
 function App() {
   return (
@@ -52,6 +55,8 @@ function App() {
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
         <Route path='/traveler/tour/:num' element={<TourDetail />} />
+        <Route path='/traveler/tour/recommended' element={<TourRecommended/>} />
+        <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => {}} />} />
         <Route path='/traveler/hotels' element={<Hotel2 />} />
         <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
         <Route path='/traveler/blog' element={<Blog />} />
@@ -68,8 +73,8 @@ function App() {
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
-        <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
-
+        <Route path='/traveler/Transport/Road' element={<RoadDetail/>} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport/Train' element={<SubwayDetail/>} />{/*2025-02-06최의진 추가 */}
       </Routes>
       <Footer />
       <Chat />

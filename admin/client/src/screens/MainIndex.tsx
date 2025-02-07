@@ -59,6 +59,7 @@ import Transport from "./Projects/Transport";
 import TourList from "./Tour/TourList";
 import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
+import Hotel from "./Tickets/Hotel";
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();
@@ -87,6 +88,7 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/timesheet`} element={<Timesheet/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/leaders`} element={<Leaders/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tickets-view`} element={<TicketsView/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/hotel`} element={<Hotel/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tickets-detail`} element={<TicketsDetail/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/clients`} element={<Clients/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/client-profile`} element={<ClientProfile/>} />
