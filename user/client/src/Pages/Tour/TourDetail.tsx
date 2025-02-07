@@ -6,6 +6,7 @@ import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 import { Link } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
 import ImgCarousel from '../../Comm/ImgCarousel';
+import TourSchedule from './TourSchedule';
 
 registerLocale("ko", ko);
 
@@ -13,6 +14,7 @@ const TourDetail: React.FC = () => {
     // 차후 사용시 주석 해제
     // const num = useParams()
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(1);
 
     const [rating, setRating] = useState<number>(0);
     const [review, setReview] = useState<string>("");
@@ -153,6 +155,7 @@ const TourDetail: React.FC = () => {
                                     <ImgCarousel data={[1, 2, 3]} />
                                 </div>
                                 <div className="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
+                                 
                                     <span>Our Best hotels &amp; Rooms</span>
                                     <h2>파리,이탈리아</h2>
                                     <p className="rate mb-5">
@@ -183,6 +186,7 @@ const TourDetail: React.FC = () => {
                                     <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                                 </div>
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                                <TourSchedule />
                                     <h4 className="mb-4">여행지 미리 둘러보기</h4>
 
                                     <div className="block-16">
@@ -427,3 +431,4 @@ const TourDetail: React.FC = () => {
 }
 
 export default TourDetail
+

@@ -93,17 +93,6 @@ const Tour: React.FC = () => {
                                         </div>
                                     
                                         <div className="form-group">
-                                            <div className="range-slider">
-                                                <span>
-                                                    <input type="number" value="25000" min="0" max="120000" />	-
-                                                    <input type="number" value="50000" min="0" max="120000" />
-                                                </span>
-                                                <input value="1000" min="0" max="120000" step="500" type="range" />
-                                                <input value="50000" min="0" max="120000" step="500" type="range" />
-
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
                                             <input type="submit" value="검색" className="btn btn-primary py-3 px-5" />
                                         </div>
                                     </div>
@@ -170,10 +159,6 @@ const Tour: React.FC = () => {
                                                         <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}>리뷰 {32} 개</span>
                                                     </p>
                                                 </div>
-                                                <div className="two">
-                                                    <span className="price">₩{200}</span>
-                                                </div>
-                                    
                                             </div>
                                             <p>낭만과 예술이 살아 숨 쉬는 파리, 감성과 역사로 가득한 이탈리아로 떠나보세요!</p>
                                             <p className="days"><span>2 박 3 일</span></p>
