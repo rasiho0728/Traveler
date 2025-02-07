@@ -10,7 +10,6 @@ import BestUser from "../../components/Dashboard/BestUser";
 const Community: React.FC = () => {
   return (
     <div className="container-xxl">
-
       <div className="row clearfix g-3">
         <div className="col-xl-8 col-lg-12 col-md-12 flex-column">
           <div className="row g-3">

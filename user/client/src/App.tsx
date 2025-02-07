@@ -44,6 +44,7 @@ import RoadDetail from './Transport/RoadDetail';
 import SubwayDetail from './Transport/SubwayDetail';
 import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
+import LikeMemo from './Pages/Community/LikeMemo';
 
 function App() {
   return (
@@ -68,10 +69,11 @@ function App() {
         <Route path='/traveler/coalition' element={<Coalition />} />
         <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
-        <Route path='/traveler/community' element={<Like />} />
-        <Route path='/traveler/community/:num' element={<LikeDetail />} />
-        <Route path='/traveler/backpack' element={<Backpack />} />
-        <Route path='/traveler/backpack/:num' element={<BackpackDetail />} />
+        <Route path='/traveler/community' element={<Like />} /> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/community/:num' element={<LikeDetail />} /> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/LikeMemo' element={<LikeMemo/>}/> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/backpack' element={<Backpack />} /> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />

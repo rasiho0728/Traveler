@@ -9,7 +9,7 @@ const BlackList:React.FC = () => {
                 <h6 className="mb-0 fw-bold ">블랙리스트 현황</h6>
             </div>
             <div className="card-body">
-                <div className="row g-2 row-deck">
+                <div className="row g-2 row-deck" style={{"height":"100%"}}>
                     <div className="col-md-6 col-sm-6">
                         <div className="card">
                             <div className="card-body ">
