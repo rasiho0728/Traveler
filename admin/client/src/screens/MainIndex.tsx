@@ -59,6 +59,11 @@ import TourList from "./Projects/TourList";
 import TourListDetail from "./Projects/TourListDetail";
 import Transport from "./Projects/Transport";
 import Hotel from "./Tickets/Hotel";
+import Community from "./Dashboard/Community";
+import Members_C from "./Dashboard/Members_C";
+import Talk from "./Dashboard/Talk";
+import MailSending from "./Dashboard/MailSending";
+import AiBlackList from "./Dashboard/AiBlackList";
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();
@@ -77,6 +82,11 @@ const MainIndex: React.FC = () => {
             <ReactRoutes>
                 <Route path={`${process.env.REACT_APP_BASE_URL}/`} element={<HrDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/hr-dashboard`} element={<HrDashboard/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/community`} element={<Community/>} /> {/*2025 02 07 장지원 커뮤니티 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/mailsending`} element={<MailSending/>} /> {/*2025 02 07 장지원 블랙리스트 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/memberlist`} element={<Members_C/>} /> {/*2025 02 07 장지원 멤버리스트 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/bagtalk`} element={<Talk/>} /> {/*2025 02 07 장지원 배낭톡 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/blacklist`} element={<AiBlackList/>} /> {/*2025 02 07 장지원 배낭톡 수정중 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/project-dashboard`} element={<ProjectDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
