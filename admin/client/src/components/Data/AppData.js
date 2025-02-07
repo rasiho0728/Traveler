@@ -9,14 +9,11 @@ import Avatar5 from "../../assets/images/xs/avatar5.jpg";
 import Avatar6 from "../../assets/images/xs/avatar6.jpg";
 import Avatar7 from "../../assets/images/xs/avatar7.jpg";
 import Avatar8 from "../../assets/images/xs/avatar8.jpg";
-
-
 import lgAvatar1 from "../../assets/images/lg/avatar1.jpg";
 import lgAvatar2 from "../../assets/images/lg/avatar2.jpg";
 import lgAvatar3 from "../../assets/images/lg/avatar3.jpg";
 import lgAvatar4 from "../../assets/images/lg/avatar4.jpg";
 import lgAvatar5 from "../../assets/images/lg/avatar5.jpg";
-
 import lgAvatar7 from "../../assets/images/lg/avatar7.jpg";
 import lgAvatar8 from "../../assets/images/lg/avatar8.jpg";
 import lgAvatar10 from "../../assets/images/lg/avatar10.jpg";
@@ -25,77 +22,77 @@ import lgAvatar12 from "../../assets/images/lg/avatar12.jpg";
 
 export const chatAppData = [
   {
-    Name: "Chris Fox",
+    Name: "나그네",
     image: Avatar1,
     lastSeen: "12:37 PM",
     messages: [
       {
-        message: "Hi Aiden, how are you?",
+        message: "안녕하세요, 다음주 월~수 호텔 000 예약했는데 수영장 운영하나요?",
         type: 'received',
         images: [],
         time: "10:10 AM, Today"
       },
       {
-        message: "How many task are working?",
+        message: "네 문의해보니 시간은 1300~1800 입니다",
         type: 'send',
         images: [],
         time: "10:10 AM, Today"
       },
       {
-        message: "I am working on 10 tasks.5 tasks Completed and 5 inprogress",
+        message: "감사합니다 입장료 무료맞죠?",
         type: 'received',
         images: [],
         time: "10:10 AM, Today"
       },
       {
-        message: "Why Map job is launched when I run SELECT * FROM tablename;",
-        type: 'received',
-        images: [],
-        time: "10:10 AM, Today"
-      },
-      {
-        message: "This behaviour is directed by some of the hive performance tuning settings of the hive.fetch.* family They decide on whether a shortcut to just go at the (table)file in HDFS without any MR/Tez is wanted and/or feasible.",
+        message: "네 맞습니다",
         type: 'send',
         images: [],
         time: "10:10 AM, Today"
       },
       {
-        message: "Please find attached images",
+        message: "감사합니다",
         type: 'received',
-        images: [
-          Thumbnail1,
-          Thumbnail2
-        ],
-        time: "10:10 AM, Today"
-      },
-      {
-        message: "Okay, will check and let you know.",
-        type: 'send',
         images: [],
         time: "10:10 AM, Today"
-      }
+      },
+      // {
+      //   message: "Please find attached images",
+      //   type: 'received',
+      //   images: [
+      //     Thumbnail1,
+      //     Thumbnail2
+      //   ],
+      //   time: "10:10 AM, Today"
+      // },
+      // {
+      //   message: "Okay, will check and let you know.",
+      //   type: 'send',
+      //   images: [],
+      //   time: "10:10 AM, Today"
+      // }
     ]
   },
   {
-    Name: "Robert Hammer",
+    Name: "핑핑이 엄마",
     image: Avatar2,
     lastSeen: "10:45 AM",
     messages: [
       {
-        message: "It is a long established fact that a reader will be distracted",
-        type: 'send',
+        message: "00 펜션 바베큐 이벤트 실행중인가요?",
+        type: 'received',
         images: [],
         time: "10:45 AM, Today"
       }
     ]
   },
   {
-    Name: "Orlando Lentz",
+    Name: "공무원원",
     image: Avatar3,
     lastSeen: "10:11 AM",
     messages: [
       {
-        message: "There are many variations of passages",
+        message: "00호텔 화이트데이에에 남는 방 있나요?",
         type: 'send',
         images: [],
         time: "10:11 AM, Today"
@@ -103,12 +100,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Barbara Kelly",
+    Name: "바비비",
     image: Avatar4,
     lastSeen: "sat",
     messages: [
       {
-        message: "Contrary to popular belief",
+        message: "00펜션 주차 최대 몇대 가능한가요요?",
         type: 'send',
         images: [],
         time: "send"
@@ -116,12 +113,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Robert Hammer",
+    Name: "에그마요요",
     image: Avatar5,
     lastSeen: "sat",
     messages: [
       {
-        message: "Please find attached images",
+        message: "00펜션 야외취사 바베큐 가능한가요?",
         type: 'received',
         images: [
           Thumbnail1,
@@ -130,7 +127,7 @@ export const chatAppData = [
         time: "sat"
       },
       {
-        message: "making it over 2000 years old",
+        message: "바베큐장 별도로 없습니다",
         type: 'send',
         images: [],
         time: "sat"
@@ -138,12 +135,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Orlando Lentz",
+    Name: "두리아빠빠",
     image: Avatar6,
     lastSeen: "Fri",
     messages: [
       {
-        message: "There are many variations of passages",
+        message: "00호텔 크리스마스 이벤트 언제부터 시작하나요?",
         type: 'send',
         images: [],
         time: "Fri"
@@ -151,12 +148,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Rose Rivera",
+    Name: "로사리오오",
     image: Avatar6,
     lastSeen: "Wed",
     messages: [
       {
-        message: "changed an issue from In Progress to",
+        message: "00호텔 어린이 5살 조식식가격이 어떻게 되나요?",
         type: 'send',
         images: [],
         time: "wed"
@@ -164,18 +161,18 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Chris Fox",
+    Name: "크리스",
     image: Avatar1,
     lastSeen: "wed",
     messages: [
       {
-        message: "Hi Aiden, how are you?",
+        message: "00모텔 인원추가 최대 몇명가능한가요?",
         type: 'received',
         images: [],
         time: "wed"
       },
       {
-        message: "Please find attached images",
+        message: "인원은 최대 3명까지만 추가가능합니다",
         type: 'received',
         images: [
           Thumbnail1,
@@ -184,7 +181,7 @@ export const chatAppData = [
         time: "wed"
       },
       {
-        message: "Okay, will check and let you know.",
+        message: "네 감사합니다다",
         type: 'send',
         images: [],
         time: "wed"
@@ -192,12 +189,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Robert Hammer",
+    Name: "로봇봇",
     image: Avatar2,
     lastSeen: "10:45 AM",
     messages: [
       {
-        message: "It is a long established fact that a reader will be distracted",
+        message: "교통예약 시 00쿠폰 사용가능한가요?",
         type: 'send',
         images: [],
         time: "10:45 AM, Today"
@@ -205,12 +202,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Orlando Lentz",
+    Name: "뛰뛰빵빵빵",
     image: Avatar3,
     lastSeen: "wed",
     messages: [
       {
-        message: "There are many variations of passages",
+        message: "노약자 75세이신데 KTX 금액이 어떻게 되나요?",
         type: 'send',
         images: [],
         time: "wed"
@@ -218,12 +215,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Barbara Kelly",
+    Name: "치킨이닭",
     image: Avatar4,
     lastSeen: "13/10/2020",
     messages: [
       {
-        message: "Contrary to popular belief",
+        message: "비행기 업그레이드 직접 항공사에 문의해야하나요?",
         type: 'send',
         images: [],
         time: "13/10/2020"
@@ -253,12 +250,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Orlando Lentz",
+    Name: "밥아저씨씨",
     image: Avatar6,
     lastSeen: "13/10/2020",
     messages: [
       {
-        message: "There are many variations of passages",
+        message: "숙소 환불받고 싶은데 어떻게 해야하죠?",
         type: 'send',
         images: [],
         time: "13/10/2020"
@@ -266,12 +263,12 @@ export const chatAppData = [
     ]
   },
   {
-    Name: "Rose Rivera",
+    Name: "해바라기기",
     image: Avatar6,
     lastSeen: "15/10/2020",
     messages: [
       {
-        message: "changed an issue from In Progress to",
+        message: "여행 날짜 옮기고 싶어요",
         type: 'send',
         images: [],
         time: "15/10/2020"
@@ -801,62 +798,62 @@ export const MembersData = [
   {
     avatar: lgAvatar3,
     post: "",
-    name: "UI/UX Designer",
-    Companyname: "Luke Short"
+    name: "대표",
+    Companyname: "이학수"
   },
   {
     avatar: lgAvatar2,
     post: "",
-    name: "Quality Assurance",
-    Companyname: "Lillian Powell"
+    name: "팀장",
+    Companyname: "전준영"
   },
   {
     avatar: lgAvatar2,
     post: "",
-    name: "Website Designer",
-    Companyname: "Rachel Parsons"
+    name: "팀장",
+    Companyname: "조유경"
   },
   {
     avatar: lgAvatar10,
     post: "",
-    name: "Developer",
-    Companyname: "John Hardacre"
+    name: "팀장",
+    Companyname: "장지원"
   },
   {
     avatar: lgAvatar11,
     post: "",
-    name: "QA/QC Engineer",
-    Companyname: "Jan Ince"
+    name: "사원",
+    Companyname: "이승환"
   },
   {
     avatar: lgAvatar12,
     post: "",
-    name: "Mobile developer",
-    Companyname: "Steven Butler"
+    name: "사원",
+    Companyname: "황보도연"
   },
   {
     avatar: lgAvatar11,
     post: "",
-    name: "UI/UX Designer",
-    Companyname: "Robert Hammer"
+    name: "사원",
+    Companyname: "민다빈"
   },
   {
     avatar: lgAvatar12,
     post: "",
-    name: "Quality Assurance",
-    Companyname: "Paul Slater"
+    name: "사원",
+    Companyname: "최의진"
   },
   {
     avatar: lgAvatar7,
     post: "",
-    name: "Website Designer",
-    Companyname: "Rachel Parsons"
+    name: "인턴",
+    Companyname: "무기명"
   },
   {
     avatar: lgAvatar7,
     post: "",
-    name: "Website Designer",
-    Companyname: "Rachel Parsons"
+    name: "인턴",
+    Companyname: "무기명"
   }
 ]
 
