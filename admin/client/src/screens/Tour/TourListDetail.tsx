@@ -100,13 +100,17 @@ const TourListDetail: React.FC = () => {
                                   <h2>파리,이탈리아 - {id}페이지</h2>
                                   <p className="rate mb-5">
                                       <span className="loc"><Link to="#"><i className="icon-map"></i> 291 South 21th Street, Suite 721 New York NY 10016</Link></span>
-                                      <span className="star"style={{ color: "#f85959", fontWeight: "bold",fontSize: "11px", }}>
-                                          <i className="icon-star"></i>
-                                          <i className="icon-star"></i>
-                                          <i className="icon-star"></i>
-                                          <i className="icon-star"></i>
-                                          <i className="icon-star-o"></i>
-                                          {4} / 5 별점</span>
+                                      
+                                      <div className="d-flex align-items-center">
+                                            <span className="mb-2 me-3">
+                                            <a href="#!" className="rating-link active"><i className="bi bi-star-fill text-warning"></i></a>
+                                            <a href="#!" className="rating-link active"><i className="bi bi-star-fill text-warning"></i></a>
+                                            <a href="#!" className="rating-link active"><i className="bi bi-star-fill text-warning"></i></a>
+                                            <a href="#!" className="rating-link active"><i className="bi bi-star-fill text-warning"></i></a>
+                                            <a href="#!" className="rating-link active"><i className="bi bi-star-half text-warning"></i></a>
+                                            <a style={{color:"red", marginLeft:"10px"  }}>{4} / 5 별점</a>
+                                            </span>
+                                        </div>
                                   </p>
                                   <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                                   <div className="d-md-flex mt-5 mb-5">
