@@ -49,18 +49,18 @@ const LikeDetail: React.FC = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8 ftco-animate">
-                                <h2 className="mb-3">10 Tips For The Traveler</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                                <h2 className="mb-3">여행자를 위한 10가지 팁</h2>
+                                <p>#1. 여행 전 계획 세우기</p>
                                 <p><img src="/images/image_7.jpg" alt="" className="img-fluid" /></p>
-                                <p>Molestiae cupiditate inventore animi, maxime sapiente optio...</p>
+                                <p>여행지의 날씨, 필수 아이템, 이동 방법 등을 미리 조사하세요</p>
 
                                 
 
-                                <h2 className="mb-3 mt-5">#2. Creative WordPress Themes</h2>
-                                <p>Temporibus ad error suscipit exercitationem hic molestiae...</p>
+                                <h2 className="mb-3 mt-5">#2. 가벼운 짐 꾸리기</h2>
+                                <p>불필요한 짐을 줄이고 다용도로 활용할 수 있는 옷과 아이템을 챙기세요</p>
                                 <p><img src="/images/image_8.jpg" alt="" className="img-fluid" /></p>
-                                <p>Quisquam esse aliquam fuga distinctio, quidem delectus...</p>
-                                <p>Odit voluptatibus, eveniet vel nihil cum ullam dolores...</p>
+                                <p>현지 대중교통, 택시, 렌터카 이용 방법을 미리 조사하세요</p>
+                                <p>사진, 영상, 다이어리 등을 활용해 소중한 여행 순간을 기록하세요</p>
 
                                 {/* 두 번째 좋아요/싫어요 버튼
                                 <div className="like-button-container">
@@ -69,10 +69,10 @@ const LikeDetail: React.FC = () => {
 
                                 <div className="tag-widget post-tag-container mb-5 mt-5">
                                     <div className="tagcloud">
-                                        <Link to="#" className="tag-cloud-link">Life</Link>
-                                        <Link to="#" className="tag-cloud-link">Sport</Link>
-                                        <Link to="#" className="tag-cloud-link">Tech</Link>
-                                        <Link to="#" className="tag-cloud-link">Travel</Link>
+                                        <Link to="#" className="tag-cloud-link">체험</Link>
+                                        <Link to="#" className="tag-cloud-link">문화</Link>
+                                        <Link to="#" className="tag-cloud-link">교통</Link>
+                                        <Link to="#" className="tag-cloud-link">여행</Link>
                                     </div>
                                 </div>
                             </div>

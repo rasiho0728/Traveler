@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
-import CurrentClientProject from "../../components/Clients/Transport";
+import CurrentClientProject from "../../components/Clients/CurrentClientProject";
 import AddNewUserModal from "../../components/common/AddNewUserModal";
 import PageHeader from "../../components/common/PageHeader";
 import { ProjectCardData } from "../../components/Data/Transport";
@@ -25,13 +25,13 @@ const Transport: React.FC = () => {
                   <Nav.Link eventKey="All">All</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="Started">Started</Nav.Link>
+                  <Nav.Link eventKey="Started">기차</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="Approval">Approval</Nav.Link>
+                  <Nav.Link eventKey="Approval">버스스</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="Completed">Completed</Nav.Link>
+                  <Nav.Link eventKey="Completed">비행기</Nav.Link>
                 </Nav.Item>
               </Nav>
             </div>
