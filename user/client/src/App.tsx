@@ -42,6 +42,7 @@ import TourRecommended from './Pages/Tour/TourRecommended';
 import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
 import RoadDetail from './Transport/RoadDetail';
 import SubwayDetail from './Transport/SubwayDetail';
+import ReservationForm from './Pages/Hotel/ReservationForm';
 
 function App() {
   return (
@@ -55,10 +56,11 @@ function App() {
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
         <Route path='/traveler/tour/:num' element={<TourDetail />} />
-        <Route path='/traveler/tour/recommended' element={<TourRecommended/>} />
-        <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => {}} />} />
+        <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
+        <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
         <Route path='/traveler/hotels' element={<Hotel2 />} />
         <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
+        <Route path='/traveler/hotels/ReservationForm' element={<ReservationForm />} />
         <Route path='/traveler/blog' element={<Blog />} />
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
@@ -72,9 +74,9 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
-        <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
-        <Route path='/traveler/Transport/Road' element={<RoadDetail/>} />{/*2025-02-06최의진 추가 */}
-        <Route path='/traveler/Transport/Train' element={<SubwayDetail/>} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
+        <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
       </Routes>
       <Footer />
       <Chat />
