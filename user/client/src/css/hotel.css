@@ -1,0 +1,35 @@
+  /* 호텔 객실 css */
+  .col-md-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%; 
+    padding-right: 50px; 
+    padding-left: 50px; 
+  }
+  .col-md-6.custom-margin {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 50px; /* 오른쪽 여백 추가 */
+    padding-left: 50px;
+}
+  .select-wrap select.form-control {
+    width: 100%; /* 부모 요소에 맞춰서 전체 너비를 설정 */
+    max-width: 300px; /* 최대 너비 제한 (원하는 크기로 설정 가능) */
+    padding: 6px 10px; /* 여백은 그대로 두되 크기를 조정 */
+    height: 35px; /* 높이는 그대로 두고, 너비만 조정 */
+  }
+.room-details img {
+    max-width: 100%; /* 부모 요소의 너비에 맞게 크기를 조정 */
+    height: auto; /* 비율을 유지하며 높이를 자동으로 설정 */
+    max-height: 200px; /* 최대 높이를 설정하여 크기를 제한 */
+  }
+  .custom-margin {
+    margin-left: 20px; /* 왼쪽 여백 추가 */
+}
+  .reservation-form {
+  margin-top: 80px; /* 헤더와 예약 폼 사이에 30px 여백을 추가 */
+  
+}
