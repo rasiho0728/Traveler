@@ -43,6 +43,7 @@ import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
 import RoadDetail from './Transport/RoadDetail';
 import SubwayDetail from './Transport/SubwayDetail';
 import ReservationForm from './Pages/Hotel/ReservationForm';
+import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 
 function App() {
   return (
@@ -59,7 +60,7 @@ function App() {
         <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
         <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
         <Route path='/traveler/hotels' element={<Hotel2 />} />
-        <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
+        <Route path='/traveler/hotels/:num' element={<HotelDetail2 />} />
         <Route path='/traveler/hotels/ReservationForm' element={<ReservationForm />} />
         <Route path='/traveler/blog' element={<Blog />} />
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />

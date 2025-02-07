@@ -10,7 +10,7 @@ import '../../css/hotel.css';
 
 registerLocale("ko", ko);
 
-const HotelDetail: React.FC = () => {
+const HotelDetail2: React.FC = () => {
     // 차후 사용시 주석 해제
     // const num = useParams()
     const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
@@ -547,4 +547,4 @@ const HotelDetail: React.FC = () => {
     )
 }
 
-export default HotelDetail
+export default HotelDetail2
