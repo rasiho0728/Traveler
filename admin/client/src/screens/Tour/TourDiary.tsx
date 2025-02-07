@@ -1,12 +1,6 @@
 import type React from "react"
 import { useState } from "react"
-// import avatar1 from "assets/images/xs/avatar1.jpg";
-// import avatar2 from "assets/images/xs/avatar2.jpg";
-// import avatar3 from "assets/images/xs/avatar3.jpg";
-// import avatar4 from "assets/images/xs/avatar4.jpg";
-// import avatar5 from "assets/images/xs/avatar5.jpg";
-// import avatar6 from "assets/images/xs/avatar6.jpg";
-
+import { Link } from "react-router-dom";
 
 interface TourEntry {
   id: number
@@ -124,7 +118,7 @@ const TourDiary: React.FC = () => {
 
   return (
     <div className="container-fluid py-5">
-      <h2 className="mb-4">투어 다이어리</h2>
+      <h2 className="mb-4">여행 다이어리</h2>
       <div className="card">
         <div className="card-body p-0">
           <div className="table-responsive">
@@ -153,20 +147,17 @@ const TourDiary: React.FC = () => {
                 {tourData.map((entry) => (
                   <tr key={entry.id}>
                     <td className="px-4">{entry.id}</td>
-                    <td className="px-4">
-                      <a href="#" className="text-decoration-none text-dark">
+                    <td className="px-4 text-orange title-hover">
+                      {/* <a href="#">
                         {entry.title}
-                      </a>
+                      </a> */}
+                      <Link to={`detail/${entry.id}`}>
+                        {entry.title}
+                      </Link>
                     </td>
                     <td className="px-4">
                       <div className="d-flex align-items-center">
-                        {/* <img
-                          src={entry.author.avatar || "/placeholder.svg"}
-                          alt={entry.author.name}
-                          className="rounded-circle me-2"
-                          width="24"
-                          height="24"
-                        /> */}
+                        
                         <img className="avatar rounded-circle" src={entry.author.avatar} ></img>
                         <span>{entry.author.name}</span>
                       </div>

@@ -70,6 +70,7 @@ import AiBlackList from "./Dashboard/AiBlackList";
 import TourList from "./Tour/TourList";
 import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
+import TourDiaryDetail from "./Tour/TourDiaryDetail";
 
 
 const MainIndex: React.FC = () => {
@@ -103,6 +104,7 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-update`} element={<TourUpdate/>} />{/*250207 민다빈 완료*/}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourstaus`} element={<TourDashboard/>} />{/*250207 민다빈 수정*/}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary`} element={<TourDiary/>} />{/*250206 민다빈 수정*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary/detail/:id`} element={<TourDiaryDetail/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tasks`} element={<Tasks/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/timesheet`} element={<Timesheet/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/leaders`} element={<Leaders/>} />
