@@ -1,7 +1,7 @@
 // 2025.02.05. 19:00 생성자:최의진, HTML템플릿을 리엑트로 조정
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { appear_animate,handleScroll,updateHeight } from '../Comm/CommomFunc';
+import { Link, useNavigate } from 'react-router-dom'
+import { appear_animate, handleScroll, updateHeight } from '../Comm/CommomFunc';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 registerLocale("ko", ko);
@@ -11,7 +11,7 @@ registerLocale("ko", ko);
 const Transport: React.FC = () => {
     const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
     const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         // 요소의 [data-scrollax] 옵션을 분석 적용
         handleScroll()
@@ -44,6 +44,12 @@ const Transport: React.FC = () => {
             }
         }, 1);
     }, [])
+    const hanleRoadClick = () => {
+        navigate('/traveler/Transport/Road');
+    }
+    const hanleSubWayClick = () => {
+        navigate('/traveler/Transport/Train');
+    }
 
     return (
         <div>
@@ -122,7 +128,7 @@ const Transport: React.FC = () => {
                                     </div>
                                 </form>
                             </div>
-                            <div className="sidebar-wrap bg-light ftco-animate"  style={{ position: 'relative', zIndex: -1 }}>
+                            <div className="sidebar-wrap bg-light ftco-animate" style={{ position: 'relative', zIndex: -1 }}>
                                 <h3 className="heading mb-4">Star Rating</h3>
                                 <form method="post" className="star-rating">
                                     <div className="form-check">
@@ -195,8 +201,8 @@ const Transport: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-2.jpg)" }}>
+                                    <div className="destination">                                                                                                {/*images\transport\Seoulsubway.png */}                                 
+                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/Seoulsubway.png)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
                                                 <span className="icon-search2"></span>
                                             </div>
@@ -229,8 +235,8 @@ const Transport: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="col-md-4 ftco-animate">
-                                    {/* <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-3.jpg)" }}>
+                                    <div className="destination">                                                                                                                               
+                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/airline.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
                                                 <span className="icon-search2"></span>
                                             </div>
@@ -260,110 +266,12 @@ const Transport: React.FC = () => {
                                                 <span className="ml-auto"><Link to="#">Discover</Link></span>
                                             </p>
                                         </div>
-                                    </div> */}
+                                    </div>
                                 </div>
-                                <div className="col-md-4 ftco-animate">
-                                    {/* <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-4.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div> */}
-                                </div>
-                                <div className="col-md-4 ftco-animate">
-                                    {/* <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-5.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div> */}
-                                </div>
-                                <div className="col-md-4 ftco-animate">
-                                    {/* <div className="destination">
-                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-6.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="#">Paris, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
-                                                <span className="ml-auto"><Link to="#">Discover</Link></span>
-                                            </p>
-                                        </div>
-                                    </div> */}
-                                </div>
+                            </div>
+                            <div>
+                                <button onClick={hanleRoadClick}>도로 교통 현황</button>    {/**20250206수정 */}
+                                <button onClick={hanleSubWayClick}>지하철현황</button>  {/**20250206수정 */}
                             </div>
                             <div className="row mt-5">
                                 <div className="col text-center">

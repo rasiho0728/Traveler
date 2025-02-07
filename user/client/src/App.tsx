@@ -36,9 +36,15 @@ import Backpack from './Pages/Community/Backpack';
 import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
 import SingUp from './Pages/Login/SingUp';
-import TransportDetail from './Transport/TransportDetail';
 import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
+import TourRecommended from './Pages/Tour/TourRecommended';
+import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
+import RoadDetail from './Transport/RoadDetail';
+import SubwayDetail from './Transport/SubwayDetail';
+import ReservationForm from './Pages/Hotel/ReservationForm';
+import HotelDetail2 from './Pages/Hotel/HotelDetail2';
+import LikeMemo from './Pages/Community/LikeMemo';
 
 function App() {
   return (
@@ -52,23 +58,33 @@ function App() {
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
         <Route path='/traveler/tour/:num' element={<TourDetail />} />
+        <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
+        <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
         <Route path='/traveler/hotels' element={<Hotel2 />} />
-        <Route path='/traveler/hotels/:num' element={<HotelDetail />} />
+        <Route path='/traveler/hotels/:num' element={<HotelDetail2 />} />
+        <Route path='/traveler/hotels/ReservationForm' element={<ReservationForm />} />
         <Route path='/traveler/blog' element={<Blog />} />
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
         <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
-        <Route path='/traveler/community' element={<Like />} />
-        <Route path='/traveler/community/:num' element={<LikeDetail />} />
-        <Route path='/traveler/backpack' element={<Backpack />} />
-        <Route path='/traveler/backpack/:num' element={<BackpackDetail />} />
+        <Route path='/traveler/community' element={<Like />} /> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/community/:num' element={<LikeDetail />} /> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/LikeMemo' element={<LikeMemo/>}/> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/backpack' element={<Backpack />} /> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
+<<<<<<< HEAD
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/:num' element={<TransportDetail/>} />
+=======
+        <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
+        <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
+>>>>>>> 46643383dfcdba70324c112da4f7f42e69986068
       </Routes>
       <Footer />
       <Chat />
