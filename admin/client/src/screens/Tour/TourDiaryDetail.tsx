@@ -82,11 +82,7 @@ const TourDiaryDetail: React.FC = () => {
                   </div>
                 </div>
 
-                {/* 댓글 섹션 */}
-                
 
-
-                
               </div>
             </div>
 
