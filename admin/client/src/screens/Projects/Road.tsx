@@ -1,6 +1,6 @@
 import React from 'react'
 //2025-02-09 오후 11시 추가-최의진
-const RoadDetail: React.FC = () => {
+const Road: React.FC = () => {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
           <iframe
@@ -12,4 +12,4 @@ const RoadDetail: React.FC = () => {
   )
 }
 
-export default RoadDetail
+export default Road

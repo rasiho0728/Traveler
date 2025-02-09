@@ -1,7 +1,7 @@
 import React from 'react'
 //2025-02-09 오후 11시  -최의진
 
-const AirlineDetail: React.FC = () => {
+const Airline: React.FC = () => {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
     <iframe
@@ -13,4 +13,4 @@ const AirlineDetail: React.FC = () => {
   )
 }
 
-export default AirlineDetail
+export default Airline

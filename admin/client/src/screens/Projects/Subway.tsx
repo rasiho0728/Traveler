@@ -1,7 +1,7 @@
 import React from 'react'
 //2025-02-09 오후 11시  -최의진
 
-const SubwayDetail: React.FC = () => {
+const Subway: React.FC = () => {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
     <iframe
@@ -14,4 +14,4 @@ const SubwayDetail: React.FC = () => {
   )
 }
 
-export default SubwayDetail
+export default Subway
