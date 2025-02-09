@@ -45,7 +45,11 @@ import SubwayDetail from './Transport/SubwayDetail';
 import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
+<<<<<<< HEAD
 import MyPage from './Pages/MyPage/MyPage';
+=======
+import Airline from './Transport/Airline';
+>>>>>>> 94472fa765728bbcef86a7855eb0107137c2951b
 
 function App() {
   return (
@@ -79,12 +83,10 @@ function App() {
         <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
-        <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
-        {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
-
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport/Airline' element={<Airline/>} />{/*2025-02-09최의진 추가 */}
 
       </Routes>
       <Footer />

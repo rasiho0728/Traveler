@@ -1,4 +1,4 @@
-import transport from "../../assets/images/transport/subway.png"
+import transport from "../../assets/images/transport/Seoulsubway.png"
 
 export const ProjectCardData = [
  

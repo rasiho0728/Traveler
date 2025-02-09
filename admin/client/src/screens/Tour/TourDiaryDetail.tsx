@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommonFuncAd';
 import { Link } from 'react-router-dom';
+import DiaryComment from '../../components/Projects/DiaryComment';
 
 const TourDiaryDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -80,6 +81,20 @@ const TourDiaryDetail: React.FC = () => {
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!
                     </p>
                   </div>
+                </div>
+
+
+
+
+                <div className='management mt-5'>
+                    <div className="row d-flex justify-content-between" >
+                        {/* 리뷰 보기 */}
+                        <div className="col-12" >
+                            <DiaryComment />
+                        </div>
+
+                      
+                    </div>
                 </div>
 
 
