@@ -9,7 +9,7 @@ const Members_C: React.FC = () => {
 
   return (
     <div className="container-xxl">
-      <PageHeader headerTitle="누리다원" renderRight={() => {
+      <PageHeader headerTitle="누리다원 직원관리" renderRight={() => {
         return <div className="col-auto d-flex w-sm-100">
           <button className="btn btn-dark btn-set-task w-sm-100 me-2" onClick={() => { setIsModal(true) }}><i className="icofont-plus-circle me-2 fs-6"></i>Add Employee</button>
           {/* <Dropdown>
