@@ -4,39 +4,21 @@ import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 
-const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl: any, id:number,onClickEdit?: any, onClickDelete?: any, onClickAdd?: any }> = (props) => {
-  const { teamImage, logo, logoBg, title, sl, id, onClickEdit, onClickDelete, onClickAdd } = props;
+const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl: any, onClickEdit?: any, onClickDelete?: any, onClickAdd?: any ,id?:any}> = (props) => {
+  const { teamImage, logo, logoBg, title, sl,id, onClickEdit, onClickDelete, onClickAdd } = props;
 
   const [hover, setHover] = useState(false);
-  const [tourperiod, setTourperiod] = useState("");
+  // const [tourperiod, setTourperiod] = useState("");
 
   const images = [
-    "/imgs/img1.jpg",
-    "/imgs/img2.jpg",
-    "/imgs/img3.jpg",
-    "/imgs/img4.jpg",
-    "/imgs/img5.jpg",
-    "/imgs/img6.jpg",
+    "/images/airline.jpg",
+    "/images/bus.jpg",
+    "/images/subway.jpg",
   ];
 
-  const period =[
-    "1개월",
-    "3개월",
-    "1주일",
-    "2주일",
-    "2박3일",
-    "3박4일",
-  ]
-    
   const randomIndex = Math.floor(Math.random() * images.length);
 
-  
-  // 랜덤 값 하나를 선택하여 상태 업데이트
-  useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * period.length);
-    setTourperiod(period[randomIndex]);
-  }, []);
-
+ 
 
   const iconStyle: React.CSSProperties = {
     position: "absolute",
@@ -97,12 +79,6 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
           </div>
           <div className="col-6">
             <div className="d-flex align-items-center">
-              <i className="icofont-sand-clock"></i>
-              <span className="ms-2">{tourperiod}</span>
-            </div>
-          </div>
-          <div className="col-6">
-            <div className="d-flex align-items-center">
               <i className="icofont-group-students "></i>
               <span className="ms-2">15 Members</span>
             </div>
@@ -114,16 +90,6 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
             </div>
           </div>
         </div>
-        {/* <div className="dividers-block"></div>
-        <div className="d-flex align-items-center justify-content-between mb-2">
-          <h4 className="small fw-bold mb-0">Progress</h4>
-          <span className="small light-danger-bg  p-1 rounded"><i className="icofont-ui-clock"></i> 35 Days Left</span>
-        </div>
-        <ProgressBar style={{ height: "8px" }}>
-          <ProgressBar variant="secondary" now={15} style={{ width: "25%" }} />
-          <ProgressBar variant="secondary" now={30} style={{ width: "25%", marginLeft: 10 }} />
-          <ProgressBar variant="secondary" now={10} style={{ width: "25%", marginLeft: 10 }} />
-        </ProgressBar> */}
       </div>
     </div>
   )
