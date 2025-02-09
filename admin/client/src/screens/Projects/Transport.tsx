@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Modal, Nav, Tab } from "react-bootstrap";
-import CurrentClientProject from "../../components/Clients/CurrentClientProject";
+// import CurrentClientProject from "../../components/Clients/CurrentClientProject";
 import AddNewUserModal from "../../components/common/AddNewUserModal";
 import PageHeader from "../../components/common/PageHeader";
 import { ProjectCardData } from "../../components/Data/Transport";
+import Traffic from "../../components/Clients/Traffic";
 /// 20250205최의진 추가
 const Transport: React.FC = () => {
 
@@ -28,7 +29,7 @@ const Transport: React.FC = () => {
                   <Nav.Link eventKey="Started">기차</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="Approval">버스스</Nav.Link>
+                  <Nav.Link eventKey="Approval">버스</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="Completed">비행기</Nav.Link>
@@ -44,7 +45,7 @@ const Transport: React.FC = () => {
                   {
                     ProjectCardData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <CurrentClientProject teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <Traffic teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
                           onClickEdit={() => { setIsModal(true); setModalHeader("Edit Project"); setEditModeldata(d); }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}
@@ -59,7 +60,7 @@ const Transport: React.FC = () => {
                   {
                     ProjectCardData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <CurrentClientProject teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <Traffic teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
                           onClickEdit={() => { setIsModal(true) }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}
@@ -74,7 +75,7 @@ const Transport: React.FC = () => {
                   {
                     ProjectCardData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <CurrentClientProject teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <Traffic teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
                           onClickEdit={() => { setIsModal(true) }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}
@@ -84,12 +85,12 @@ const Transport: React.FC = () => {
                   }
                 </div>
               </Tab.Pane>
-              <Tab.Pane eventKey="Completed">
+              {/* <Tab.Pane eventKey="Completed">
                 <div className="row g-3 gy-5 py-3 row-deck">
                   {
                     ProjectCardData.map((d: any, i: number) => {
                       return <div key={"ljsdhl" + i} className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <CurrentClientProject teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
+                        <Traffic teamImage={d.teamImage} logo={d.logo} logoBg={d.logoBg} title={d.title} sl={d.sl}
                           onClickEdit={() => { setIsModal(true) }}
                           onClickDelete={() => { setDeleteModal(true) }}
                           onClickAdd={() => { setAddUserModal(true) }}
@@ -98,7 +99,7 @@ const Transport: React.FC = () => {
                     })
                   }
                 </div>
-              </Tab.Pane>
+              </Tab.Pane> */}
             </Tab.Content>
           </div>
         </div>
