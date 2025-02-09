@@ -11,7 +11,8 @@ const Airline: React.FC = () => {
             style={{ width: '100%', height: '100%', border: 'none' }}
             title="TOPIS"
           />
-        </div>)
+        </div>
+        )
 
 }
 export default Airline

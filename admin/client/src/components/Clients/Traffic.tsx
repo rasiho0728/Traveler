@@ -60,7 +60,7 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
         </div>
         {/* 이미지 */}
         <div className="d-flex align-items-center justify-content-center">
-          <Link to={`detail/${id}`}
+          <Link to={`/Transport/airline`}
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
             >
@@ -85,7 +85,7 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
           </div>
           <div className="col-6">
             <div className="d-flex align-items-center">
-              <i className="icofont-ui-text-chat"></i>
+              <i className="icofont-ui-text-chat"></i>0
               <span className="ms-2">10</span>
             </div>
           </div>

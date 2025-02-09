@@ -71,6 +71,9 @@ import TourList from "./Tour/TourList";
 import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
 import TourDiaryDetail from "./Tour/TourDiaryDetail";
+import AirlineDetail from "./Projects/AirlineDetail";
+import RoadDetail from "./Projects/RoadDetail";
+import SubwayDetail from "./Projects/SubwayDetail";
 
 
 const MainIndex: React.FC = () => {
@@ -98,6 +101,9 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/project-dashboard`} element={<ProjectDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transport/airline`} element={<SubwayDetail/>} /> {/**20250209최의진 추가 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transport/Road`} element={<AirlineDetail/>} /> {/**20250209최의진 추가 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transport/Subway`} element={<RoadDetail/>} /> {/**20250209최의진 추가 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} />{/*250207 민다빈 완료*/}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload/>} />{/*250206 민다빈 완료*/}
