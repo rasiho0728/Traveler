@@ -1,12 +1,15 @@
 // 2025.02.02. 21:00 생성자: 이학수, 제휴업체 호텔 등록 폼 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import { Link, useLocation } from 'react-router-dom';
+import ModalVideo from 'react-modal-video';
 
 const CoalitionForm: React.FC = () => {
     const { pathname } = useLocation();
     // input에 연결해주기 위한 useRef 훅 사용
     const imageInputRef = useRef<HTMLInputElement | null>(null);
+
+    const [isOpen, setIsOpen] = useState(true);
 
     // 버튼 클릭 시 호출하는 함수 (클릭 이벤트) 
     const onCickImageUploadHandler = (): void => {
@@ -130,10 +133,28 @@ const CoalitionForm: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='row'>
+                                <div className='row '>
                                     <p>세부 내용</p>
                                     <div className='col-md-11'>
-                                        <textarea name="" id="" className='w-100 form-control-lg' style={{height: "200px", resize: "none"}}/>
+                                        <textarea name="" id="" className='w-100 form-control-lg' style={{ height: "200px", resize: "none" }} />
+                                    </div>
+                                </div>
+                                <div className='row'>
+                                    <p>영상링크</p>
+
+                                    <div className='col-md-2 text-center'>
+                                        <label htmlFor="name" className='col-form-label-lg'>링크</label>
+                                    </div>
+                                    <div className='col-md-9'>
+                                        <input type="url" name='name' className='form-control'  />
+                                    </div>
+                                    <div className='col-md-11'>
+                                        <ModalVideo
+                                            channel="youtube" // vimeo 플랫폼 설정
+                                            isOpen={isOpen}
+                                            videoId="DSH3mBWpfqQ" // Vimeo의 비디오 ID
+                                            onClose={() => setIsOpen(false)}
+                                        />
                                     </div>
                                 </div>
                             </div>
