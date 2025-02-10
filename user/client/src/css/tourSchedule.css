@@ -42,7 +42,7 @@
 }
 
 .tour-schedule-tab-btn.active {
-    background: #007bff;
+    background: #f85959;
     color: white;
     border-radius: 5px;
     box-shadow: 0px 3px 5px rgba(0, 123, 255, 0.4);
@@ -52,7 +52,7 @@
 .tour-schedule-timeline {
     position: relative;
     padding-left: 30px;
-    border-left: 3px solid #007bff;
+    border-left: 3px solid #f85959;
 }
 
 .tour-schedule-step {
@@ -65,7 +65,7 @@
 .tour-schedule-step-number {
     width: 32px;
     height: 32px;
-    background: #007bff;
+    background: #f85959;
     color: white;
     font-weight: bold;
     font-size: 16px;
@@ -122,7 +122,7 @@
     gap: 12px;
 }
 
-.tour-schedule-save-btn, .tour-schedule-edit-btn {
+.tour-schedule-save-btn, .tour-schedule-edit-btn,.tour-schedule-ref-btn {
     padding: 12px 18px;
     border: none;
     font-size: 16px;
@@ -148,6 +148,11 @@
     box-shadow: 0px 4px 8px rgba(255, 153, 0, 0.4);
 }
 
+/* .tour-schedule-ref-btn {
+    background: linear-gradient(135deg, #ffffff);
+    box-shadow: 0px 4px 8px rgba(255, 152, 0, 0.4);
+} */
+
 .tour-schedule-edit-btn:hover {
     transform: scale(1.05);
 }
@@ -165,6 +170,7 @@
 }
 
 .tour-schedule-edit-input:focus {
-    border-color: #007bff;
+    border-color: #f85959;
     box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.4);
 }
+
