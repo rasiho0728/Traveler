@@ -121,7 +121,16 @@
                     "isApp": false,
                     "children": []
                 },
-                
+                {
+                    "name": "제휴업체 관리",
+                    "routerLink": ["coalition"],
+                    "identifier": "제휴업체 관리",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },                
                 {
                     "name": "여행다이어리",
                     "routerLink": ["tourdiary"],
