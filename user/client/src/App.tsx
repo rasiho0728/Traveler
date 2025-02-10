@@ -45,6 +45,8 @@ import SubwayDetail from './Transport/SubwayDetail';
 import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
+import MyPage from './Pages/MyPage/MyPage';
+
 
 function App() {
   return (
@@ -75,8 +77,12 @@ function App() {
         <Route path='/traveler/backpack' element={<Backpack />} /> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/contact' element={<Contact />} />
+        <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
+        <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
+        {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
+
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}

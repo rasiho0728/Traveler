@@ -51,6 +51,16 @@
                 },
                 {
                     "name": "회원관리",
+                    "routerLink": ["memberlist_user"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "직원관리",
                     "routerLink": ["memberlist"],
                     "identifier": "community",
                     "iconClass": "",
@@ -81,6 +91,51 @@
                 }
             ]
         },
+        {
+            "name": "여행",
+            "routerLink": [""],
+            "identifier": "Projects",
+            "iconClass": "icofont-briefcase",
+            "breadcrumbMessage": "",
+            "isCategory": false,
+            "isApp": false,
+            "children": [
+                {
+                    "name": "투어 통계",
+                    "routerLink": ["tourstaus"],
+                    "identifier": "투어 통계",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+
+                {
+                    "name": "투어 목록",
+                    "routerLink": ["tourlist"],
+                    "identifier": "투어 목록",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                
+                {
+                    "name": "여행다이어리",
+                    "routerLink": ["tourdiary"],
+                    "identifier": "여행다이어리",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                }
+
+            ]
+        },
+        
         {
             "name": "Projects",
             "routerLink": [""],
@@ -139,18 +194,9 @@
                     "isCategory": false,
                     "isApp": false,
                     "children": []
-                },
-
-                {
-                    "name": "TourList",
-                    "routerLink": ["tourlist"],
-                    "identifier": "TourList",
-                    "iconClass": "",
-                    "breadcrumbMessage": "",
-                    "isCategory": false,
-                    "isApp": false,
-                    "children": []
                 }
+
+                
 
             ]
         },
