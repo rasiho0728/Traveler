@@ -46,6 +46,7 @@ import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
+import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
+        <Route path='/traveler/coalition/:num' element={<CoalitionDetail />} />
         <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
         <Route path='/traveler/community' element={<Like />} /> {/*2025-02-07 조유경 추가 */}
