@@ -44,9 +44,9 @@ const Like: React.FC = () => {
                         <div className="col-md-9 ftco-animate text-center" data-scrollax='{"properties": {"translateY": "70%"}}'>
                             <p className="breadcrumbs" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>
                                 <span className="mr-2"><Link to="/traveler/home">Home</Link></span> 
-                                <span>Blog</span>
+                                <span>커뮤니티</span>
                             </p>
-                            <h1 className="mb-3 bread" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>Tips &amp; Articles</h1>
+                            <h1 className="mb-3 bread" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>나의 배낭</h1>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ const Like: React.FC = () => {
                                 className="btn btn-primary"
                                 style={{
                                     display: 'inline-block',
-                                    backgroundColor: '#FF5A5F', // ✅ 로그인 버튼과 동일한 색상
+                                    backgroundColor: '#FF5A5F', // 로그인 버튼과 동일한 색상
                                     color: 'white',
                                     padding: '12px 20px',
                                     borderRadius: '30px',  // 로그인 버튼처럼 둥글게
@@ -101,7 +101,7 @@ const Like: React.FC = () => {
                                     cursor: 'pointer',
                                     border: 'none',
                                     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // 그림자 효과 추가
-                                    width: '150px', // ✅ 버튼 크기를 등록하기 버튼과 동일하게
+                                    width: '150px', // 버튼 크기를 등록하기 버튼과 동일하게
                                     textAlign: 'center' // 텍스트 중앙 정렬
                                 }}
                                 onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#E04848'} // hover 효과
