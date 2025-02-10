@@ -3,8 +3,13 @@ import '@toast-ui/editor/dist/i18n/ko-kr';
 import { Editor } from '@toast-ui/react-editor';
 import colorPlugin from '@toast-ui/editor-plugin-color-syntax';
 import '@toast-ui/editor/dist/toastui-editor.css';
+<<<<<<< HEAD
 import codeSyntaxHighlightPlugin from '@toast-ui/editor-plugin-code-syntax-highlight';
 import { Link } from 'react-router-dom';
+=======
+import { Link } from 'react-router-dom';
+import codeSyntaxHighlightPlugin from '@toast-ui/editor-plugin-code-syntax-highlight';
+>>>>>>> fb211b8f8d5f216e315c8cdb746230b156bcf87e
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import "prismjs/themes/prism.css";

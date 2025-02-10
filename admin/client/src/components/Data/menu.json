@@ -1,7 +1,7 @@
 {
     "menu": [
         {
-            "name": "Dashboard",
+            "name": "회원팀",
             "routerLink": [""],
             "identifier": "dashboard",
             "iconClass": "icofont-home fs-5",
@@ -20,6 +20,66 @@
                     "children": []
                 },
                 {
+                    "name": "커뮤니티",
+                    "routerLink": ["community"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "AI 블랙리스트",
+                    "routerLink": ["blacklist"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "메일관리",
+                    "routerLink": ["mailsending"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "회원관리",
+                    "routerLink": ["memberlist_user"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "직원관리",
+                    "routerLink": ["memberlist"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "배낭톡",
+                    "routerLink": ["bagtalk"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
                     "name": "Project Dashboard",
                     "routerLink": ["project-dashboard"],
                     "identifier": "Project Dashboard",
@@ -31,6 +91,51 @@
                 }
             ]
         },
+        {
+            "name": "여행",
+            "routerLink": [""],
+            "identifier": "Projects",
+            "iconClass": "icofont-briefcase",
+            "breadcrumbMessage": "",
+            "isCategory": false,
+            "isApp": false,
+            "children": [
+                {
+                    "name": "투어 통계",
+                    "routerLink": ["tourstaus"],
+                    "identifier": "투어 통계",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+
+                {
+                    "name": "투어 목록",
+                    "routerLink": ["tourlist"],
+                    "identifier": "투어 목록",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                
+                {
+                    "name": "여행다이어리",
+                    "routerLink": ["tourdiary"],
+                    "identifier": "여행다이어리",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                }
+
+            ]
+        },
+        
         {
             "name": "Projects",
             "routerLink": [""],
@@ -89,18 +194,9 @@
                     "isCategory": false,
                     "isApp": false,
                     "children": []
-                },
-
-                {
-                    "name": "TourList",
-                    "routerLink": ["tourlist"],
-                    "identifier": "TourList",
-                    "iconClass": "",
-                    "breadcrumbMessage": "",
-                    "isCategory": false,
-                    "isApp": false,
-                    "children": []
                 }
+
+                
 
             ]
         },
@@ -128,6 +224,16 @@
                     "name": "Tickets Detail",
                     "routerLink": ["tickets-detail"],
                     "identifier": "Tickets Detail",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "Hotel",
+                    "routerLink": ["Hotel"],
+                    "identifier": "Hotel",
                     "iconClass": "",
                     "breadcrumbMessage": "",
                     "isCategory": false,

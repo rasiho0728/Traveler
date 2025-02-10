@@ -1,12 +1,15 @@
 // 2025.01.21. 19:35 생성자: 이학수, HTML템플릿을 리엑트로 조정
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import GalleryCarousel from '../../Comm/GalleryCarousel';
 import AnimatedNumber from '../../Comm/AnimatedNumber';
 import CardCarousel from '../../Comm/CardCarousel';
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
+import TourMusicRecommended from '../Tour/TourMusicRecommended';
 
 const Home: React.FC = () => {
+    const [isMusicModalOpen, setIsMusicModalOpen] = useState(false); // 모달 상태 관리
     useEffect(() => {
         // 요소의 [data-scrollax] 옵션을 분석 적용
         handleScroll()
@@ -15,6 +18,7 @@ const Home: React.FC = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
 
     useEffect(() => {
         // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
@@ -49,32 +53,61 @@ const Home: React.FC = () => {
                         <div className="col-md-9 ftco-animate" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <h1 className="mb-4" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><strong>Explore <br /></strong> your amazing city</h1>
                             <p data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>Find great places to stay, eat, shop, or visit from local experts</p>
-                            <div className="block-17 my-4">
-                                <form action="" method="post" className="d-block d-flex">
-                                    <div className="fields d-block d-flex">
-                                        <div className="textfield-search one-third">
-                                            <input type="text" className="form-control" placeholder="Ex: food, service, hotel" />
-                                        </div>
-                                        <div className="select-wrap one-third">
-                                            <div className="icon"><span className="ion-ios-arrow-down"></span></div>
-                                            <select name="" id="" className="form-control">
-                                                <option value="">Where</option>
-                                                <option value="">San Francisco USA</option>
-                                                <option value="">Berlin Germany</option>
-                                                <option value="">Lodon United Kingdom</option>
-                                                <option value="">Paris Italy</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <input type="submit" className="search-submit btn btn-primary" value="Search" />
-                                </form>
-                            </div>
+                            <SearchBar />
                             <p>Or browse the highlights</p>
                             <p className="browse d-md-flex">
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>Restaurant</Link></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-hotel"></i>Hotel</Link></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-meeting-point"></i>Places</Link></span>
-                                <span className="d-flex justify-content-md-center align-items-md-	center"><Link to="#"><i className="flaticon-shopping-bag"></i>Shopping</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>식당</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-hotel"></i>숙소</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-meeting-point"></i>지역</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center">
+    <button 
+        onClick={() => setIsMusicModalOpen(true)}
+        style={{
+            backgroundColor: "#ff6b6b",
+            color: "white",
+            padding: "10px 16px",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontSize: "16px",
+            fontWeight: "bold",
+            transition: "all 0.3s ease-in-out",
+            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
+        }}
+        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
+        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
+    >
+        🎵 노래 추천받기
+    </button>
+</span>
+<span className="d-flex justify-content-md-center align-items-md-center">
+    <Link 
+        to="/traveler/tour/recommended" 
+        style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#ff6b6b",
+            color: "white",
+            padding: "10px 16px",
+            borderRadius: "8px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            textDecoration: "none",
+            transition: "all 0.3s ease-in-out",
+            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
+        }}
+        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
+        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
+    >
+        🧳 여행지 추천받기
+    </Link>
+</span>
+
+            {/* 모달이 열릴 때만 TourMusicRecommended 표시 */}
+            {isMusicModalOpen && <TourMusicRecommended onClose={() => setIsMusicModalOpen(false)} />}
+
                             </p>
                         </div>
                     </div>
@@ -88,8 +121,8 @@ const Home: React.FC = () => {
                             <div className="media block-6 services d-block text-center">
                                 <div className="d-flex justify-content-center"><div className="icon"><span className="flaticon-guarantee"></span></div></div>
                                 <div className="media-body p-2 mt-2">
-                                    <h3 className="heading mb-3">Best Price Guarantee</h3>
-                                    <p>A small river named Duden flows by their place and supplies.</p>
+                                    <h3 className="heading mb-3">💰 최저가 보장</h3>
+                                    <p>믿을 수 있는 가격과 서비스로 최고의 여행을 만들어 드립니다.</p>
                                 </div>
                             </div>
                         </div>
@@ -97,8 +130,8 @@ const Home: React.FC = () => {
                             <div className="media block-6 services d-block text-center">
                                 <div className="d-flex justify-content-center"><div className="icon"><span className="flaticon-like"></span></div></div>
                                 <div className="media-body p-2 mt-2">
-                                    <h3 className="heading mb-3">Travellers Love Us</h3>
-                                    <p>A small river named Duden flows by their place and supplies.</p>
+                                    <h3 className="heading mb-3">💑 여행해 듀오</h3>
+                                    <p>당신의 성향과 맞는 새로운인연과 함께 여행해봐요!</p>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +139,8 @@ const Home: React.FC = () => {
                             <div className="media block-6 services d-block text-center">
                                 <div className="d-flex justify-content-center"><div className="icon"><span className="flaticon-detective"></span></div></div>
                                 <div className="media-body p-2 mt-2">
-                                    <h3 className="heading mb-3">Best Travel Agent</h3>
-                                    <p>A small river named Duden flows by their place and supplies.</p>
+                                    <h3 className="heading mb-3">🧳 최고의 여행 전문가</h3>
+                                    <p>전문가들이 엄선한 여행지를 추천해 드립니다.</p>
                                 </div>
                             </div>
                         </div>
@@ -115,8 +148,8 @@ const Home: React.FC = () => {
                             <div className="media block-6 services d-block text-center">
                                 <div className="d-flex justify-content-center"><div className="icon"><span className="flaticon-support"></span></div></div>
                                 <div className="media-body p-2 mt-2">
-                                    <h3 className="heading mb-3">Our Dedicated Support</h3>
-                                    <p>A small river named Duden flows by their place and supplies.</p>
+                                    <h3 className="heading mb-3">🤝 고객 지원팀 운영</h3>
+                                    <p>24시간 챗봇 기능 지원으로 언제든지 도움을 받을 수 있습니다.</p>
                                 </div>
                             </div>
                         </div>
@@ -128,8 +161,8 @@ const Home: React.FC = () => {
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate fadeInUp ftco-animated">
-                            <span className="subheading">Featured</span>
-                            <h2 className="mb-4"><strong>Featured</strong> Destination</h2>
+                            <span className="subheading">주목할만한</span>
+                            <h2 className="mb-4"><strong>추천하는</strong> 지역</h2>
                         </div>
                     </div>
                     <div className="row">
@@ -144,8 +177,8 @@ const Home: React.FC = () => {
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate">
-                            <span className="subheading">Special Offers</span>
-                            <h2 className="mb-4"><strong>Top</strong> Tour Packages</h2>
+                            <span className="subheading">특별한</span>
+                            <h2 className="mb-4"><strong>인기</strong> 여행 패키지</h2>
                         </div>
                     </div>
                 </div>
@@ -329,8 +362,8 @@ const Home: React.FC = () => {
                 <div className="container">
                     <div className="row justify-content-center mb-5 pb-3">
                         <div className="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                            <h2 className="mb-4">Some fun facts</h2>
-                            <span className="subheading">More than 100,000 websites hosted</span>
+                            <h2 className="mb-4">흥미롭고 재미있는 여행 기록들</h2>
+                            <span className="subheading">10만 개 이상의 웹사이트 호스팅</span>
                         </div>
                     </div>
                     <div className="row justify-content-center">
@@ -340,7 +373,7 @@ const Home: React.FC = () => {
                                     <div className="block-18 text-center">
                                         <div className="text">
                                             <AnimatedNumber value={100000} duration={5000} />
-                                            <span>Happy Customers</span>
+                                            <span>이용한 여행객</span>
                                         </div>
                                     </div>
                                 </div>
@@ -348,7 +381,7 @@ const Home: React.FC = () => {
                                     <div className="block-18 text-center">
                                         <div className="text">
                                             <AnimatedNumber value={40000} duration={5000} />
-                                            <span>Destination Places</span>
+                                            <span>다양한 여행지</span>
                                         </div>
                                     </div>
                                 </div>
@@ -356,7 +389,7 @@ const Home: React.FC = () => {
                                     <div className="block-18 text-center">
                                         <div className="text">
                                             <AnimatedNumber value={87000} duration={5000} />
-                                            <span>Hotels</span>
+                                            <span>다양한 숙소</span>
                                         </div>
                                     </div>
                                 </div>
@@ -364,7 +397,7 @@ const Home: React.FC = () => {
                                     <div className="block-18 text-center">
                                         <div className="text">
                                             <AnimatedNumber value={56400} duration={5000} />
-                                            <span>Restaurant</span>
+                                            <span>다양한 식당</span>
                                         </div>
                                     </div>
                                 </div>
@@ -379,8 +412,8 @@ const Home: React.FC = () => {
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate">
-                            <span className="subheading">Special Offers</span>
-                            <h2 className="mb-4"><strong>Popular</strong> Hotels &amp; Rooms</h2>
+                            <span className="subheading">특별한</span>
+                            <h2 className="mb-4"><strong>인기</strong> 숙소 &amp; 객실</h2>
                         </div>
                     </div>
                 </div>
@@ -583,8 +616,8 @@ const Home: React.FC = () => {
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate">
-                            <span className="subheading">Special Offers</span>
-                            <h2 className="mb-4"><strong>Popular</strong> Restaurants</h2>
+                            <span className="subheading">특별한</span>
+                            <h2 className="mb-4"><strong>인기</strong> 식당</h2>
                         </div>
                     </div>
                     <div className="row">
@@ -700,8 +733,8 @@ const Home: React.FC = () => {
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate">
-                            <span className="subheading">Recent Blog</span>
-                            <h2><strong>Tips</strong> &amp; Articles</h2>
+                            <span className="subheading">최근 다녀온</span>
+                            <h2><strong>여행팁 </strong> &amp; 리뷰</h2>
                         </div>
                     </div>
                     <div className="row d-flex">
@@ -774,14 +807,15 @@ const Home: React.FC = () => {
                     <div className="container">
                         <div className="row d-flex justify-content-center">
                             <div className="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                                <h2>Subcribe to our Newsletter</h2>
-                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in</p>
+                                <h2>최신 소식 받아보기</h2>
+                                <p>"여행을 떠나세요, 새로운 경험이 기다리고 있습니다."</p>
+                                <p>"세상의 다양한 여행지를 만나보세요!"</p>
                                 <div className="row d-flex justify-content-center mt-5">
                                     <div className="col-md-8">
                                         <form action="#" className="subscribe-form">
                                             <div className="form-group d-flex">
-                                                <input type="text" className="form-control" placeholder="Enter email address" />
-                                                <input type="submit" value="Subscribe" className="submit px-3" />
+                                                <input type="text" className="form-control" placeholder="이메일 주소 입력" />
+                                                <input type="submit" value="구독하기" className="submit px-3" />
                                             </div>
                                         </form>
                                     </div>
@@ -791,6 +825,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </section >
+ 
 
             {/* <!-- loader --> */}
             <div id="ftco-loader" className="show fullscreen"><svg className="circular" width="48px" height="48px"><circle className="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle className="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>

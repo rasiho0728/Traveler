@@ -55,9 +55,24 @@ import Changelog from "./Changelog/Changelog";
 import Help from "./Dashboard/Help";
 import SignIn from "../components/Auth/SignIn";
 import Signup from "../components/Auth/Signup";
-import TourList from "./Projects/TourList";
-import TourListDetail from "./Projects/TourListDetail";
 import Transport from "./Projects/Transport";
+
+
+import Hotel from "./Tickets/Hotel";
+import TourUpdate from "./Tour/TourUpdate";
+import TourDashboard from "./Tour/TourDashboard";
+import TourDiary from "./Tour/TourDiary";
+import Community from "./Dashboard/Community";
+import Members_C from "./Dashboard/Members_C";
+import Talk from "./Dashboard/Talk";
+import MailSending from "./Dashboard/MailSending";
+import AiBlackList from "./Dashboard/AiBlackList";
+import TourList from "./Tour/TourList";
+import TourListDetail from "./Tour/TourListDetail";
+import TourUpload from "./Tour/TourUpload";
+import TourDiaryDetail from "./Tour/TourDiaryDetail";
+import Members_U from "./Dashboard/Members_U";
+
 
 const MainIndex: React.FC = () => {
     const { pathname } = useLocation();
@@ -76,15 +91,27 @@ const MainIndex: React.FC = () => {
             <ReactRoutes>
                 <Route path={`${process.env.REACT_APP_BASE_URL}/`} element={<HrDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/hr-dashboard`} element={<HrDashboard/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/community`} element={<Community/>} /> {/*2025 02 07 장지원 커뮤니티 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/mailsending`} element={<MailSending/>} /> {/*2025 02 07 장지원 블랙리스트 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/memberlist_user`} element={<Members_U/>} /> {/*2025 02 08 장지원컴퓨터 멤버리스트_유저 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/memberlist`} element={<Members_C/>} /> {/*2025 02 07 장지원 멤버리스트 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/bagtalk`} element={<Talk/>} /> {/*2025 02 07 장지원 배낭톡 수정중 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/blacklist`} element={<AiBlackList/>} /> {/*2025 02 07 장지원 배낭톡 수정중 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/project-dashboard`} element={<ProjectDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
-                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} /> 
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} />{/*250207 민다빈 완료*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload/>} />{/*250206 민다빈 완료*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-update`} element={<TourUpdate/>} />{/*250207 민다빈 완료*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourstaus`} element={<TourDashboard/>} />{/*250207 민다빈 수정*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary`} element={<TourDiary/>} />{/*250206 민다빈 수정*/}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary/detail/:id`} element={<TourDiaryDetail/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tasks`} element={<Tasks/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/timesheet`} element={<Timesheet/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/leaders`} element={<Leaders/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tickets-view`} element={<TicketsView/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/hotel`} element={<Hotel/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tickets-detail`} element={<TicketsDetail/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/clients`} element={<Clients/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/client-profile`} element={<ClientProfile/>} />

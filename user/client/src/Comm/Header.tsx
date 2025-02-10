@@ -67,23 +67,24 @@ const Header: React.FC = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="ftco-nav">
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item active"><Link to="/traveler/home" className="nav-link">Home</Link></li>
-                            <li className="nav-item"><Link to="/traveler/about" className="nav-link">About</Link></li>
-                            <li className="nav-item"><Link to="/traveler/tour" className="nav-link">Tour</Link></li>
-                            <li className="nav-item"><Link to="/traveler/hotels" className="nav-link">Hotels</Link></li>
-                            <li className="nav-item"><Link to="/traveler/blog" className="nav-link">Blog</Link></li>
-                            <li className="nav-item"><Link to="/traveler/contact" className="nav-link">Contact</Link></li>
+                            <li className="nav-item active"><Link to="/traveler/home" className="nav-link">홈</Link></li>
+                            <li className="nav-item"><Link to="/traveler/about" className="nav-link">소개</Link></li>
+                            <li className="nav-item"><Link to="/traveler/tour" className="nav-link">여행</Link></li>
+                            <li className="nav-item"><Link to="/traveler/hotels" className="nav-link">숙박</Link></li>
+                            <li className="nav-item"><Link to="/traveler/blog" className="nav-link">블로그</Link></li>
+                            <li className="nav-item"><Link to="/traveler/contact" className="nav-link">문의하기</Link></li>
                             <li className="nav-item"><Link to="/traveler/coalition" className="nav-link">제휴</Link></li>
                             <li className="nav-item"><Link to="/traveler/Transport" className="nav-link">대중교통</Link></li>
                             <li className="nav-item">
                                 {/* <Link to="/traveler/contact" className="nav-link">Contact</Link> */}
-                                <a href='#' className="nav-link">Community</a>
+                                <a href='#' className="nav-link">커뮤니티</a>
                                 <ul className='sub-menu'>
                                     <li className="nav-item"><Link to="/traveler/community" className="nav-link sub-list">나의 배낭</Link></li>
                                     <li className="nav-item"><Link to="/traveler/backpack" className="nav-link sub-list">여행해듀오</Link></li>
                                 </ul>
                             </li>
-                            <li className="nav-item cta"><Link to="/traveler/login" className="nav-link"><span>Login</span></Link></li>
+                            <li className="nav-item"><Link to="/traveler/mypage" className="nav-link">마이페이지</Link></li>
+                            <li className="nav-item cta"><Link to="/traveler/login" className="nav-link"><span>로그인</span></Link></li>
                         </ul>
                     </div>
                 </div>
