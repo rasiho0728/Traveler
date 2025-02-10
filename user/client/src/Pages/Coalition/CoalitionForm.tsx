@@ -13,9 +13,9 @@ const CoalitionForm: React.FC = () => {
     const [thumbnailImg, setThumbnailImg] = useState<string | ArrayBuffer | null>();
     const [imgFiles, setImgFiles] = useState<File[]>([]);
     const [imgs, setImgs] = useState<string[]>([]);
-    const [videoLink, setVideoLink] = useState('')
-    const [videoId, setVideoId] = useState('')
-    const [isOpen, setIsOpen] = useState(false);
+    // const [videoLink, setVideoLink] = useState('')
+    // const [videoId, setVideoId] = useState('')
+    // const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
         // 현재 경로에 따라 사이드 네이게이션 버튼의 색깔이 동적 변화
@@ -23,7 +23,7 @@ const CoalitionForm: React.FC = () => {
         entitys.forEach((entity, i) => {
             const e = entity.children[0] as HTMLElement
             if (entity.getAttribute('href') === pathname) {
-                e.style.color = 'orange'
+                e.style.color = '#f85959'
             } else {
                 e.style.color = 'black'
             }
@@ -53,11 +53,11 @@ const CoalitionForm: React.FC = () => {
         };
     }, []);
 
-    useEffect(() => {
-        if(videoId !== ''){
-            setIsOpen(true);
-        }
-    },[videoId])
+    // useEffect(() => {
+    //     if (videoId !== '') {
+    //         setIsOpen(true);
+    //     }
+    // }, [videoId])
 
     // 버튼 클릭 시 호출하는 함수 (클릭 이벤트) 
     const onCickImageUploadHandler = (): void => {
@@ -102,7 +102,7 @@ const CoalitionForm: React.FC = () => {
         }
     }
 
-    // 이미지 제거 이벤트트
+    // 이미지 제거 이벤트
     const onCickImageDeleteHandler = (idx: number) => {
         const imageFiles = imgFiles
         const images = imgs
@@ -110,12 +110,12 @@ const CoalitionForm: React.FC = () => {
         setImgs(images.slice(0, idx).concat(images.slice(idx + 1, images.length)))
     }
 
-    // 영상 링크를 분석해서 비디오 아이디 추출하기
-    const handelShowVideo = () => {
-        const options = videoLink.split('?')[1].split('&');
-        const video = options.filter((option, _) => {return option.split('=').includes('v')})[0].split('=')[1];
-        setVideoId(video);
-    }
+    // // 영상 링크를 분석해서 비디오 아이디 추출하기
+    // const handelShowVideo = () => {
+    //     const options = videoLink.split('?')[1].split('&');
+    //     const video = options.filter((option, _) => { return option.split('=').includes('v') })[0].split('=')[1];
+    //     setVideoId(video);
+    // }
 
     return (
         <div>
@@ -272,7 +272,7 @@ const CoalitionForm: React.FC = () => {
                                         <textarea name="" id="" className='w-100 form-control-lg' style={{ height: "200px", resize: "none" }} />
                                     </div>
                                 </div>
-                                <div className='row'>
+                                {/* <div className='row'>
                                     <p>영상링크</p>
 
                                     <div className='col-md-2 text-center'>
@@ -289,11 +289,17 @@ const CoalitionForm: React.FC = () => {
                                         channel="youtube" // 플랫폼 설정
                                         isOpen={isOpen}
                                         videoId={videoId} // 비디오 ID
-                                        onClose={() => {setIsOpen(false); setVideoId('');}}
+                                        onClose={() => { setIsOpen(false); setVideoId(''); }}
                                     />
-                                </div>
-                                <div>
-                                    
+                                </div> */}
+                                <div
+                                 className='text-end px-4'
+                                >
+                                    <button
+                                     className='btn btn-danger mx-4'
+                                    >
+                                        등록
+                                    </button>
                                 </div>
                             </div>
                         </div>

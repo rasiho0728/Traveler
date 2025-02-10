@@ -68,10 +68,9 @@ import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
 import TourDiaryDetail from "./Tour/TourDiaryDetail";
 import Members_U from "./Dashboard/Members_U";
-import ServerManagement from "./OtherPages/ServerManagement";
-import HotelReservation from "./Tickets/HotelReservation";
 import HotelReservationDetail from "./Tickets/HotelReservationDetail";
-
+import HotelReservation from "./Tickets/HotelReservation";
+import ServerManagement from "./OtherPages/ServerManagement";
 
 
 const MainIndex: React.FC = () => {
@@ -159,7 +158,6 @@ const MainIndex: React.FC = () => {
                     <Route path={`${process.env.REACT_APP_BASE_URL}/sign-in`} element={<SignIn />} />
                     <Route path={`${process.env.REACT_APP_BASE_URL}/sign-up`} element={<Signup />} />
                     <Route path={`${process.env.REACT_APP_BASE_URL}/ServerManagement`} element={<ServerManagement />} /> {/* 20250210 황보도연 추가 */}
-
                 </ReactRoutes>
             </div>
         </div>

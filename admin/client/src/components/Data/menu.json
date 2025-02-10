@@ -194,8 +194,27 @@
                     "isCategory": false,
                     "isApp": false,
                     "children": []
+                },
+                {
+                    "name": "결제내역",
+                    "routerLink": ["pay"],
+                    "identifier": "pay",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "교통 이슈",
+                    "routerLink": ["Transportissue"],
+                    "identifier": "Transportissue",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
                 }
-
                 
 
             ]

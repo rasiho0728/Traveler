@@ -113,30 +113,6 @@ const Transport: React.FC = () => {
             <label htmlFor="formFileMultipleone" className="form-label">Project Images &amp; Document</label>
             <input className="form-control" type="file" id="formFileMultipleone" multiple={undefined} />
           </div>
-          <div className="deadline-form">
-            <form>
-              <div className="row g-3 mb-3">
-                <div className="col">
-                  <label htmlFor="datepickerded" className="form-label">Project Start Date</label>
-                  <input type="date" className="form-control" id="datepickerded" />
-                </div>
-                <div className="col">
-                  <label htmlFor="datepickerdedone" className="form-label">Project End Date</label>
-                  <input type="date" className="form-control" id="datepickerdedone" />
-                </div>
-              </div>
-              <div className="row g-3 mb-3">
-                <div className="col-sm-12">
-                  <label className="form-label">Notifation Sent</label>
-                  <select className="form-select" >
-                    <option >All</option>
-                    <option value="1">Team Leader Only</option>
-                    <option value="2">Team Member Only</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-          </div>
           <div className="mb-3">
             <label htmlFor="exampleFormControlTextarea78" className="form-label">Description (optional)</label>
             <textarea className="form-control" id="exampleFormControlTextarea78" rows={3} placeholder="Add any extra details about the request"></textarea>

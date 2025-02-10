@@ -39,7 +39,7 @@ const Coalition: React.FC = () => {
     entitys.forEach((entity, i) => {
       const e = entity.children[0] as HTMLElement
       if (entity.getAttribute('href') === pathname) {
-        e.style.color = 'orange'
+        e.style.color = '#f85959'
       } else {
         e.style.color = 'black'
       }
@@ -122,7 +122,7 @@ const Coalition: React.FC = () => {
                   <div className="row" key={index}>
                     <div className="col-md-4 ftco-animate">
                       <div className="destination">
-                        <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${item.thumbnail})` }}>
+                        <Link to="/traveler/coalition/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: `url(${item.thumbnail})` }}>
                           <div className="icon d-flex justify-content-center align-items-center">
                             <span className="icon-search-plus"></span>
                           </div>
