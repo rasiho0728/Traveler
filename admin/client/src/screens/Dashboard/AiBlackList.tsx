@@ -43,8 +43,12 @@ const AiBlackList: React.FC = () => {
             // selector: (row:any) => { },
             sortable: true,
             cell: () => <div className="btn-group" role="group" aria-label="Basic outlined example">
-                <button type="button" className="btn btn-outline-secondary" onClick={() => { setIsEditModal(true) }}><i className="icofont-check-circled text-success"></i></button>
-                <button type="button" className="btn btn-outline-secondary deleterow" onClick={() => { setIsDeleteModal(true) }}><i className="icofont-close-circled text-danger"></i></button>
+                <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        onClick={() => { setIsModal(true) }} // ✅ 모달을 띄우는 함수로 변경
+                    > 신고 사유
+                    </button>
             </div>
         }
 
@@ -55,7 +59,7 @@ const AiBlackList: React.FC = () => {
         <div className="container-xxl">
             <PageHeader headerTitle="AI 블랙리스트 검증 목록" renderRight={() => {
                 return <div className="col-auto d-flex w-sm-100">
-                    <button className="btn btn-dark btn-set-task w-sm-100" onClick={() => { setIsModal(true) }}><i className="icofont-plus-circle me-2 fs-6"></i>Add Leave</button>
+                    {/* <button className="btn btn-dark btn-set-task w-sm-100" onClick={() => { setIsModal(true) }}><i className="icofont-plus-circle me-2 fs-6"></i>Add Leave</button> */}
                 </div>
             }} />
             <div className="row clearfix g-3">
@@ -74,40 +78,36 @@ const AiBlackList: React.FC = () => {
             </div>
             <Modal centered show={isModal} onHide={() => { setIsModal(false) }}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="fw-bold">Add Leave</Modal.Title>
+                    <Modal.Title className="fw-bold">신고사유</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="mb-3">
-                        <label className="form-label">Select Leave type</label>
-                        <select className="form-select">
-                            <option >Medical Leave</option>
-                            <option value="1">Casual Leave</option>
-                            <option value="2">Maternity Leave</option>
-                        </select>
+                        <label className="form-label">신고된 글</label>
+                        <p><a href="#">대출 500만원을 공짜로 지급해드립니다 지금당장 연락하세요</a></p>
                     </div>
                     <div className="deadline-form">
                         <form>
                             <div className="row g-3 mb-3">
                                 <div className="col-sm-6">
-                                    <label htmlFor="datepickerdedass" className="form-label">Leave From Date</label>
+                                    <label htmlFor="datepickerdedass" className="form-label">작성된 날짜</label>
                                     <input type="date" className="form-control" id="datepickerdedass" />
                                 </div>
                                 <div className="col-sm-6">
-                                    <label htmlFor="datepickerdedoneddsd" className="form-label">Leave to Date</label>
+                                    <label htmlFor="datepickerdedoneddsd" className="form-label">신고된 날짜</label>
                                     <input type="date" className="form-control" id="datepickerdedoneddsd" />
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleFormControlTextarea78d" className="form-label">Leave Reason</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea78d" rows={3}></textarea>
+                        <label htmlFor="exampleFormControlTextarea78d" className="form-label">신고 사유</label>
+                        <p>본 글은 허위매물 및 불법 광고로 인해 신고되었습니다</p>
                     </div>
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <button type="button" className="btn btn-secondary" onClick={() => { setIsModal(false) }}>Done</button>
-                    <button type="button" className="btn btn-primary">Save</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => { setIsModal(false) }}>취소하기 </button>
+                    <button type="button" className="btn btn-primary">메일 발송하기</button>
                 </Modal.Footer>
             </Modal>
             <Modal centered show={isEditModal} onHide={() => { setIsEditModal(false) }}>
