@@ -85,16 +85,13 @@ const Transport: React.FC = () => {
                                                         <span>8 Rating</span>
                                                     </p>
                                                 </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
                                             </div>
                                             <p>서울에서 부산까지 고속버스</p>
                                             <p className="days"><span>2 days 3 nights</span></p>
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i>부산광역시</span>
-                                                <span className="ml-auto"><Link to="/traveler/Transport/Bus">Discover</Link></span>
+                                                <span className="ml-auto"><Link to="/traveler/Transport/Road">Discover</Link></span>
                                             </p>
                                         </div>
                                     </div>
@@ -119,15 +116,12 @@ const Transport: React.FC = () => {
                                                         <span>8 Rating</span>
                                                     </p>
                                                 </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
                                             </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
+                                            <p>세계 최고의 지하철 서비스</p>
                                             <p className="days"><span>2 days 3 nights</span></p>
                                             <hr />
                                             <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
+                                                <span><i className="icon-map-o"></i> 서울특별시</span>
                                                 <span className="ml-auto"><Link to="/traveler/Transport/Train">Discover</Link></span>
                                             </p>
                                         </div>
@@ -153,15 +147,12 @@ const Transport: React.FC = () => {
                                                         <span>8 Rating</span>
                                                     </p>
                                                 </div>
-                                                <div className="two">
-                                                    <span className="price">$200</span>
-                                                </div>
                                             </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
+                                            <p>세계에서 가장 바쁜 항로1위</p>
                                             <p className="days"><span>2 days 3 nights</span></p>
                                             <hr />
                                             <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> San Franciso, CA</span>
+                                                <span><i className="icon-map-o"></i>김포 to 제주</span>
                                                 <span className="ml-auto"><Link to="/traveler/Transport/Airline">Discover</Link></span>
                                             </p>
                                         </div>
