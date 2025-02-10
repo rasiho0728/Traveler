@@ -40,7 +40,7 @@
                     "children": []
                 },
                 {
-                    "name": "메일관리",
+                    "name": "회원목록",
                     "routerLink": ["mailsending"],
                     "identifier": "community",
                     "iconClass": "",
