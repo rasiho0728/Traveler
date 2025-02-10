@@ -1,4 +1,4 @@
-// 2025.01.24. 15:15 생성자: 황보도연, HTML템플릿을 리엑트로 조정
+// 2025.01.24. 15:15 생성자: 황보도연, UI 변경
 import React, { useEffect, useState } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import DatePicker, { registerLocale } from 'react-datepicker';
@@ -135,7 +135,7 @@ const HotelDetail2: React.FC = () => {
                                     </div>
                                 </form>
                             </div>
-                            <div className="sidebar-wrap bg-light ftco-animate" style={{ position: 'relative', zIndex: 0 }}>
+                            {/* <div className="sidebar-wrap bg-light ftco-animate" style={{ position: 'relative', zIndex: 0 }}>
                                 <h3 className="heading mb-4">Star Rating</h3>
                                 <form method="post" className="star-rating">
                                     <div className="form-check">
@@ -169,7 +169,7 @@ const HotelDetail2: React.FC = () => {
                                         </label>
                                     </div>
                                 </form>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="col-lg-9">
                             <div className="row">
@@ -218,7 +218,7 @@ const HotelDetail2: React.FC = () => {
                                     </div>
                                     {/* <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p> */}
                                 </div>
-                                <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                                {/* <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                     <h4 className="mb-4">Take A Tour</h4>
                                     <div className="block-16">
                                         <figure>
@@ -231,8 +231,7 @@ const HotelDetail2: React.FC = () => {
                                             </Link>
                                         </figure>
                                     </div>
-
-                                </div>
+                                </div> */}
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                     <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                         <h4 className="mb-4">객실 안내</h4>
@@ -263,7 +262,7 @@ const HotelDetail2: React.FC = () => {
                                                                     </p>
                                                                 </div>
                                                                 <div className="two">
-                                                                    <span className="price per-price">
+                                                                    <span className="hotel-detail-price per-price">
                                                                         {room.price}
                                                                         <br />
                                                                         <small>/박</small>
@@ -273,10 +272,10 @@ const HotelDetail2: React.FC = () => {
                                                             <p>{room.description}</p>
                                                             <hr />
                                                             <p className="bottom-area d-flex">
-                                                                <span>
+                                                                {/* <span>
                                                                     <i className="icon-map-o"></i> Miami, Fl
-                                                                </span>
-                                                                <span className="ml-auto">
+                                                                </span> */}
+                                                                <span className="hotel-detail-ml-auto">
                                                                     <Link to="/traveler/hotels/ReservationForm" state={{ roomDetails }}>
                                                                         객실 예약
                                                                     </Link>
