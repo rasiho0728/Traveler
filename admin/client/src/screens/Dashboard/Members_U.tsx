@@ -1,121 +1,101 @@
 import React, { useState } from "react";
-import { Dropdown, Modal } from "react-bootstrap";
-import OurClients from "../../components/Clients/OurClients";
+import ClientProfileCard from "../../components/Clients/ClientProfileCard";
 import PageHeader from "../../components/common/PageHeader";
-import { MembersData } from "../../components/Data/AppData";
+import { Modal, Button } from "react-bootstrap";
 
-const Members_U: React.FC = () => {
-  const [isModal, setIsModal] = useState(false);
+interface Employee {
+  id: number;
+  designation: string;
+  details: string;
+}
+
+const EmployeeProfile: React.FC = () => {
+  const [ismodal, setIsmodal] = useState(false);
+  const [modalData, setModalData] = useState<any>();
+  
+  // 직원 데이터 (8개 초기값 설정)
+  const [employees, setEmployees] = useState<Employee[]>(
+    Array.from({ length: 8 }, (_, i) => ({
+      id: i + 1,
+      designation: "Web Developer",
+      details: `Employee Id : 0000${i + 1}`,
+    }))
+  );
+
+  // 선택된 직원 목록 관리
+  const [selectedEmployees, setSelectedEmployees] = useState<number[]>([]);
+
+  // 체크박스 클릭 이벤트
+  const handleCheckboxChange = (id: number) => {
+    setSelectedEmployees((prev) =>
+      prev.includes(id) ? prev.filter((empId) => empId !== id) : [...prev, id]
+    );
+  };
+
+  // 선택된 직원 삭제
+  const handleDeleteSelected = () => {
+    setEmployees((prev) => prev.filter((emp) => !selectedEmployees.includes(emp.id)));
+    setSelectedEmployees([]); // 선택 목록 초기화
+  };
 
   return (
     <div className="container-xxl">
-      <PageHeader headerTitle="회원목록" renderRight={() => {
-        return <div className="col-auto d-flex w-sm-100">
-          <button className="btn btn-dark btn-set-task w-sm-100 me-2" onClick={() => { setIsModal(true) }}><i className="icofont-plus-circle me-2 fs-6"></i>Add Employee</button>
-        </div>
-      }} />
-      <div className="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 row-deck py-1 pb-4">
-        {
-          MembersData.map((data, i) => {
-            return <div key={"skhd" + i} className="col">
-              <OurClients avatar={data.avatar} post={data.post} name={data.name} Companyname={data.Companyname} isMember={true} />
-            </div>
-          })
-        }
-
+      <PageHeader headerTitle="회원관리" />
+      
+      {/* 삭제 버튼 추가 (선택된 항목이 있을 때만 활성화) */}
+      <div className="mb-3">
+        <Button 
+          variant="danger" 
+          onClick={handleDeleteSelected} 
+          disabled={selectedEmployees.length === 0}
+        >
+          선택한 회원 삭제
+        </Button>
       </div>
-      <Modal centered show={isModal} size="lg" onHide={() => { setIsModal(false) }}>
-        <Modal.Header closeButton>
-          <Modal.Title className="fw-bold">Add Employee</Modal.Title>
-        </Modal.Header>
+
+      <div className="row g-3">
+        <div className="col-xl-8 col-lg-12 col-md-12">
+          {/* 회원 목록 */}
+          {employees.map((employee) => (
+            <div key={employee.id} className="d-flex align-items-center border p-2">
+              {/* 체크박스 추가 */}
+              <input
+                type="checkbox"
+                className="me-3"
+                checked={selectedEmployees.includes(employee.id)}
+                onChange={() => handleCheckboxChange(employee.id)}
+              />
+              {/* 프로필 카드 */}
+              <ClientProfileCard designation={employee.designation} details={employee.details} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 모달 창 */}
+      <Modal centered show={ismodal} onHide={() => setIsmodal(false)}>
+        <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <div className="modal-body">
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlInput877" className="form-label">직원 이름</label>
-              <input type="text" className="form-control" id="exampleFormControlInput877" placeholder="이름을 입력해주세요." />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlInput977" className="form-label">직원 직급</label>
-              <input type="text" className="form-control" id="exampleFormControlInput977" placeholder="직급을 입력해주세요." />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="formFileMultipleoneone" className="form-label">사진</label>
-              <input className="form-control" type="file" id="formFileMultipleoneone" />
-            </div>
-            <div className="deadline-form">
-              <form>
-                <div className="row g-3 mb-3">
-                  <div className="col-sm-6">
-                    <label htmlFor="exampleFormControlInput1778" className="form-label">ID</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput1778" placeholder="직원 ID" />
-                  </div>
-                  <div className="col-sm-6">
-                    <label htmlFor="exampleFormControlInput2778" className="form-label">입사일</label>
-                    <input type="date" className="form-control" id="exampleFormControlInput2778" />
-                  </div>
-                </div>
-                <div className="row g-3 mb-3">
-                  <div className="col-lg-6">
-                    <label htmlFor="exampleFormControlInput177" className="form-label">로그인 ID</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput177" placeholder="직원 로그인 ID" />
-                  </div>
-                  <div className="col-lg-6">
-                    <label htmlFor="exampleFormControlInput277" className="form-label">비밀번호</label>
-                    <input type="Password" className="form-control" id="exampleFormControlInput277" placeholder="비밀번호를 입력해주세요." />
-                  </div>
-                </div>
-                <div className="row g-3 mb-3">
-                  <div className="col-lg-6">
-                    <label htmlFor="exampleFormControlInput477" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="exampleFormControlInput477" placeholder="이메일을 입력해주세요." />
-                  </div>
-                  <div className="col-lg-6">
-                    <label htmlFor="exampleFormControlInput777" className="form-label">Phone</label>
-                    <input type="text" className="form-control" id="exampleFormControlInput777" placeholder="전화번호를 입력해주세요." />
-                  </div>
-                </div>
-                <div className="row g-3 mb-3">
+          <div className="deadline-form">
+            <form>
+              {modalData?.information?.map((d: any, i: number) => (
+                <div key={`modal-field-${i}`} className="row g-3 mb-3">
                   <div className="col">
-                    <label className="form-label">출근</label>
-                    <select className="form-select" >
-                      <option >주 4일</option>
-                      <option value="1">월요일 ~ 목요일</option>
-                      <option value="2">화요일 ~ 금요일</option>
-                    </select>
-                  </div>
-                  <div className="col">
-                    <label className="form-label">직급</label>
-                    <select className="form-select" >
-                      <option >사원</option>
-                      <option value="1">대표</option>
-                      <option value="2">팀장</option>
-                      <option value="3">사원</option>
-                      {/* <option value="4">Development</option>
-                      <option value="5">Backend Development</option>
-                      <option value="6">Software Testing</option>
-                      <option value="7">Website Design</option>
-                      <option value="8">Marketing</option>
-                      <option value="9">SEO</option>
-                      <option value="10">Other</option> */}
-                    </select>
+                    <label className="form-label">{d.title}</label>
+                    <input type="text" className="form-control" value={d.value} readOnly />
                   </div>
                 </div>
-              </form>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlTextarea78" className="form-label">업무 요약 (범위)</label>
-              <textarea className="form-control" id="exampleFormControlTextarea78" rows={3} placeholder="해당 직원의 업무를 입력해주세요."></textarea>
-            </div>
+              ))}
+            </form>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <button type="button" className="btn btn-secondary" onClick={() => { setIsModal(false) }}>나가기</button>
-          <button type="button" className="btn btn-primary">저장</button>
+          <Button variant="secondary" onClick={() => setIsmodal(false)}>닫기</Button>
+          <Button variant="primary">전송</Button>
         </Modal.Footer>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-
-export default Members_U;
+export default EmployeeProfile;

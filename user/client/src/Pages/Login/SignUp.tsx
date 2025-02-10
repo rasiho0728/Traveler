@@ -11,33 +11,33 @@ const SingUp: React.FC = () => {
 
     // ID 중복 확인 핸들러
     const handleCheckDuplicateId = () => {
-        alert(`Checking availability for ID: ${id}`);
+        alert(`아이디 사용 가능 여부 확인: ${id}`);
     };
 
     // Email 인증 핸들러
     const handleVerifyEmail = () => {
-        alert(`Sending verification email to: ${email}`);
+        alert(`인증 이메일 보내는 중: ${email}`);
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         if (ssn.length !== 7) {
-            alert("SSN must be exactly 7 digits!");
+            alert("주민번호는 정확히 7자리여야합니다!");
             return;
         }
 
         if (password !== confirmPassword) {
-            alert("Passwords do not match!");
+            alert("비밀번호가 일치하지 않습니다");
             return;
         }
 
         if (!phone) {
-            alert("Phone number is required!");
+            alert("전화번호는 필수 입력 사항입니다!");
             return;
         }
 
-        console.log("Signing up with", { id, password, name, ssn, phone, email });
+        console.log("작성한 정보로 회원가입 진행 중", { id, password, name, ssn, phone, email });
     };
 
     // ✅ 스타일 객체 정의 (React에서 style은 객체 형태여야 함)
@@ -69,11 +69,11 @@ const SingUp: React.FC = () => {
             <div className="container-login100" style={{ backgroundImage: "url('/images/bg-01.jpg')" }}>
                 <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54 login-box">
                     <form className="login100-form validate-form" onSubmit={handleSubmit}>
-                        <span className="login100-form-title p-b-49">회원가입</span>
+                        <span className="login100-form-title p-b-49">일반 회원</span>
 
                         {/* Name 입력 */}
                         <div className="wrap-input100 validate-input m-b-15">
-                            <span className="label-input100">Name</span>
+                            <span className="label-input100">성명</span>
                             <input
                                 className="input100"
                                 type="text"
@@ -87,7 +87,7 @@ const SingUp: React.FC = () => {
 
                         {/* ID 입력 + 중복 확인 버튼 */}
                         <div className="wrap-input100 validate-input m-b-15" style={inputGroupStyle}>
-                            <span className="label-input100">ID</span>
+                            <span className="label-input100">아이디</span>
                             <div style={inputContainerStyle}>
                                 <input
                                     className="input100"
@@ -110,7 +110,7 @@ const SingUp: React.FC = () => {
 
                         {/* Password 입력 */}
                         <div className="wrap-input100 validate-input m-b-15">
-                            <span className="label-input100">Password</span>
+                            <span className="label-input100">비밀번호</span>
                             <input
                                 className="input100"
                                 type="password"
@@ -124,7 +124,7 @@ const SingUp: React.FC = () => {
 
                         {/* Password 확인 입력 */}
                         <div className="wrap-input100 validate-input m-b-15">
-                            <span className="label-input100">Confirm Password</span>
+                            <span className="label-input100">비밀번호 확인</span>
                             <input
                                 className="input100"
                                 type="password"
@@ -138,7 +138,7 @@ const SingUp: React.FC = () => {
 
                         {/* SSN 입력 (7자리) */}
                         <div className="wrap-input100 validate-input m-b-15">
-                            <span className="label-input100">SSN (7 Digits)</span>
+                            <span className="label-input100">주민등록번호 (7 자리까지)</span>
                             <input
                                 className="input100"
                                 type="text"
@@ -153,7 +153,7 @@ const SingUp: React.FC = () => {
 
                         {/* Phone 입력 */}
                         <div className="wrap-input100 validate-input m-b-15">
-                            <span className="label-input100">Phone</span>
+                            <span className="label-input100">휴대폰 번호</span>
                             <input
                                 className="input100"
                                 type="tel"
@@ -168,7 +168,7 @@ const SingUp: React.FC = () => {
 
                         {/* Email 입력 + 인증 버튼 */}
                         <div className="wrap-input100 validate-input m-b-23" style={inputGroupStyle}>
-                            <span className="label-input100">Email</span>
+                            <span className="label-input100">이메일</span>
                             <div style={inputContainerStyle}>
                                 <input
                                     className="input100"
@@ -195,6 +195,8 @@ const SingUp: React.FC = () => {
                                 <div className="login100-form-bgbtn"></div>
                                 <button type="submit" className="login100-form-btn">회원가입</button>
                             </div>
+            
+    
                         </div>
                     </form>
                 </div>
