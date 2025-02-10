@@ -6,7 +6,7 @@ import StatusCard from "../../components/Ticket/StatusCard";
 
 
 
-function TicketsDetail() {
+function HotelReservationDetail() {
 
     return (
         <div className="container-xxl">
@@ -53,4 +53,4 @@ function TicketsDetail() {
 }
 
 
-export default TicketsDetail;
+export default HotelReservationDetail;
