@@ -64,7 +64,7 @@ const TourSchedule: React.FC = () => {
             <div className="tour-schedule-buttons">
                 <button className="tour-schedule-save-btn" onClick={handleSaveSchedule}>내 일정으로 담기</button>
                 <button className="tour-schedule-edit-btn" onClick={toggleEditMode}>{editMode ? "완료" : "내 입맛대로 수정"}</button>
-                <button className="tour-schedule-ref-btn" ><Link to="/traveler/community">다른사람들 참고하기</Link></button>
+                <button className="tour-schedule-ref-btn" ><Link to="/traveler/community">다른 일정 구경하기</Link></button>
             </div>
         </div>
     );
