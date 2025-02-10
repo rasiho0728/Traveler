@@ -46,6 +46,7 @@ import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
+import TourDiary from './Pages/TourDiary/TourDiary';
 
 
 function App() {
@@ -86,6 +87,8 @@ function App() {
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
+
+        <Route path='/traveler/tourdiary' element={<TourDiary />}/>
       </Routes>
       <Footer />
       <Chat />
