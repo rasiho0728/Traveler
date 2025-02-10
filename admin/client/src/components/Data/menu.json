@@ -51,6 +51,16 @@
                 },
                 {
                     "name": "회원관리",
+                    "routerLink": ["memberlist_user"],
+                    "identifier": "community",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
+                {
+                    "name": "직원관리",
                     "routerLink": ["memberlist"],
                     "identifier": "community",
                     "iconClass": "",
