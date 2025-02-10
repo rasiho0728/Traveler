@@ -46,6 +46,10 @@ import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
+import Airline from './Transport/Airline';
+import RoadForm from './Transport/RoadForm';
+import MapRoad from './Transport/MapRoad';
+import Rate from './Transport/Rate';
 
 
 function App() {
@@ -59,8 +63,10 @@ function App() {
         <Route path='/traveler/home' element={<Home />} />
         <Route path='/traveler/about' element={<About />} />
         <Route path='/traveler/tour' element={<Tour />} />
+        <Route path='/traveler/tour/rate' element={<Rate/>} />
         <Route path='/traveler/tour/:num' element={<TourDetail />} />
         <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
+        <Route path='/traveler/tour/' element={<TourRecommended />} />
         <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
         <Route path='/traveler/hotels' element={<Hotel2 />} />
         <Route path='/traveler/hotels/:num' element={<HotelDetail2 />} />
@@ -81,11 +87,13 @@ function App() {
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/singup' element={<SingUp />} />
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
-        {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
-
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport/Road/Form' element={<RoadForm/>} />{/*2025-02-10최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport/Airline' element={<Airline/>} />{/*2025-02-06최의진 추가 */}
+        <Route path='/traveler/Transport/MapRoad' element={<MapRoad/>} />{/*2025-02-10최의진 추가 */}
+
       </Routes>
       <Footer />
       <Chat />

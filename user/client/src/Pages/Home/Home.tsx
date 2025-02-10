@@ -103,6 +103,31 @@ const Home: React.FC = () => {
     >
         🧳 여행지 추천받기
     </Link>
+    
+</span>
+<span className="d-flex justify-content-md-center align-items-md-center">
+    <Link 
+        to="/traveler/tour/rate" 
+        style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#ff6b6b",
+            color: "white",
+            padding: "10px 16px",
+            borderRadius: "8px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            textDecoration: "none",
+            transition: "all 0.3s ease-in-out",
+            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
+        }}
+        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
+        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
+    >
+        🧳실시간 환율
+    </Link>
+    
 </span>
 
             {/* 모달이 열릴 때만 TourMusicRecommended 표시 */}
