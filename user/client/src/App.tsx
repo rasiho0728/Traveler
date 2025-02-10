@@ -35,7 +35,7 @@ import LikeDetail from './Pages/Community/LikeDetail';
 import Backpack from './Pages/Community/Backpack';
 import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
-import SingUp from './Pages/Login/SingUp';
+import SignUp from './Pages/Login/SignUp';
 import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
 import TourRecommended from './Pages/Tour/TourRecommended';
@@ -46,7 +46,14 @@ import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
+<<<<<<< HEAD
 import BackpackMemo from './Pages/Community/BackpackMemo';
+=======
+import SignSelect from './Pages/Login/SignSelect';
+import Partner from './Pages/Login/Partner';
+import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
+
+>>>>>>> 7f2267760fc7dd763ea5812d2cd7559fe8849c48
 
 
 
@@ -71,6 +78,7 @@ function App() {
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
+        <Route path='/traveler/coalition/:num' element={<CoalitionDetail />} />
         <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
 
@@ -84,14 +92,19 @@ function App() {
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
         <Route path='/traveler/login' element={<Login />} />
-        <Route path='/traveler/singup' element={<SingUp />} />
+        <Route path='/traveler/signup' element={<SignUp />} />
+        <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
+        <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
 
         {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
+<<<<<<< HEAD
         
 
 
 
+=======
+>>>>>>> 7f2267760fc7dd763ea5812d2cd7559fe8849c48
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}

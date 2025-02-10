@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../css/tourSchedule.css';
+import { Link } from 'react-router-dom';
+import { color } from 'framer-motion';
 
 const TourSchedule: React.FC = () => {
+    
     const [selectedDay, setSelectedDay] = useState(1);
     const [editMode, setEditMode] = useState(false);
     const [scheduleData, setScheduleData] = useState<Record<number, { title: string; type: string; description: string }[]>>({
@@ -61,7 +64,7 @@ const TourSchedule: React.FC = () => {
             <div className="tour-schedule-buttons">
                 <button className="tour-schedule-save-btn" onClick={handleSaveSchedule}>내 일정으로 담기</button>
                 <button className="tour-schedule-edit-btn" onClick={toggleEditMode}>{editMode ? "완료" : "내 입맛대로 수정"}</button>
-                <button className="tour-schedule-edit-btn" onClick={toggleEditMode}>{editMode ? "완료" : "다른사람들꺼 보고 참고하기"}</button>
+                <button className="tour-schedule-ref-btn" ><Link to="/traveler/community">다른 일정 구경하기</Link></button>
             </div>
         </div>
     );

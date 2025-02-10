@@ -53,7 +53,7 @@ const CoalitionAccount: React.FC = () => {
         entitys.forEach((entity, i) => {
             const e = entity.children[0] as HTMLElement
             if (entity.getAttribute('href') === pathname) {
-                e.style.color = 'orange'
+                e.style.color = '#f85959'
             } else {
                 e.style.color = 'black'
             }

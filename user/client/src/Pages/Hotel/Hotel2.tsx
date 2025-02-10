@@ -1,4 +1,4 @@
-// 2025.02.04. 09:40 생성자: 황보도연, HTML템플릿을 리엑트로 조정
+// 2025.02.04. 09:40 생성자: 황보도연, UI 변경 
 import React, { useEffect, useState } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
 import { Link } from 'react-router-dom';
@@ -201,9 +201,9 @@ const Hotel: React.FC = () => {
                                                         <span>8 Rating</span>
                                                     </p>
                                                 </div>
-                                                <div className="two">
+                                                {/* <div className="two">
                                                     <span className="price per-price">$40<br /><small>/night</small></span>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             <p>
                                                 한국관광협회중앙회 호텔업등급관리국에서 3성으로 인증받은 호텔입니다.</p>
@@ -213,7 +213,7 @@ const Hotel: React.FC = () => {
                                                     <i className="icon-map-o" onClick={() => handleClick("서울 종로구 삼봉로 71")}></i>
                                                     서울 종로구
                                                 </span>
-                                                <span className="ml-auto"><Link to="/traveler/hotels/:num">상세정보</Link></span>
+                                                {/* <span className="ml-auto"><Link to="/traveler/hotels/:num">상세정보</Link></span> */}
                                             </p>
                                         </div>
                                     </div>
