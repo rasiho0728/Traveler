@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
                     <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span>Contact</span></p>
-                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>Contact Us</h1>
+                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>문의 하기</h1>
                         </div>
                     </div>
                 </div>
@@ -45,17 +45,17 @@ const Contact: React.FC = () => {
                 <div className="container">
                     <div className="row d-flex mb-5 contact-info">
                         <div className="col-md-12 mb-4">
-                            <h2 className="h4">Contact Information</h2>
+                            <h2 className="h4">연락처 정보</h2>
                         </div>
                         <div className="w-100"></div>
                         <div className="col-md-3">
-                            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                            <p><span>주소:</span> 서울 서초구 서초대로77길 41 4층</p>
                         </div>
                         <div className="col-md-3">
-                            <p><span>Phone:</span> <Link to="tel://1234567920">+ 1235 2355 98</Link></p>
+                            <p><span>전화번호:</span> <Link to="tel://1234567920">+ 1235 2355 98</Link></p>
                         </div>
                         <div className="col-md-3">
-                            <p><span>Email:</span> <Link to="mailto:info@yoursite.com">info@yoursite.com</Link></p>
+                            <p><span>이메일:</span> <Link to="mailto:info@yoursite.com">info@yoursite.com</Link></p>
                         </div>
                         <div className="col-md-3">
                             <p><span>Website</span> <Link to="#">yoursite.com</Link></p>
@@ -65,19 +65,19 @@ const Contact: React.FC = () => {
                         <div className="col-md-6 pr-md-5">
                             <form action="#">
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Your Name" />
+                                    <input type="text" className="form-control" placeholder="이름 입력" />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Your Email" />
+                                    <input type="text" className="form-control" placeholder="이메일 입력" />
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Subject" />
+                                    <input type="text" className="form-control" placeholder="제목 입력" />
                                 </div>
                                 <div className="form-group">
-                                    <textarea name="" id="" cols={30} rows={7} className="form-control" placeholder="Message"></textarea>
+                                    <textarea name="" id="" cols={30} rows={7} className="form-control" placeholder="메시지 입력"></textarea>
                                 </div>
                                 <div className="form-group">
-                                    <input type="submit" value="Send Message" className="btn btn-primary py-3 px-5" />
+                                    <input type="submit" value="메시지 보내기" className="btn btn-primary py-3 px-5" />
                                 </div>
                             </form>
 

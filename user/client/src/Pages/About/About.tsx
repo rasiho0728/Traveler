@@ -35,7 +35,7 @@ const About: React.FC = () => {
                     <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 text-center ftco-animate" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span>About</span></p>
-                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>About Us</h1>
+                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>회사 소개</h1>
                         </div>
                     </div>
                 </div>
@@ -50,11 +50,11 @@ const About: React.FC = () => {
                             <div className="row">
                                 <div className="col-md-12 nav-link-wrap mb-5">
                                     <div className="nav ftco-animate nav-pills nav-fill" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        <button className="nav-link active" id="v-pills-whatwedo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">What we do</button>
+                                        <button className="nav-link active" id="v-pills-whatwedo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">할수 있는것</button>
 
-                                        <button className="nav-link" id="v-pills-mission-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mission" role="tab" aria-controls="v-pills-mission" aria-selected="false">Our mission</button>
+                                        <button className="nav-link" id="v-pills-mission-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mission" role="tab" aria-controls="v-pills-mission" aria-selected="false">저희가 하는일</button>
 
-                                        <button className="nav-link" id="v-pills-goal-tab" data-bs-toggle="pill" data-bs-target="#v-pills-goal" role="tab" aria-controls="v-pills-goal" aria-selected="false">Our goal</button>
+                                        <button className="nav-link" id="v-pills-goal-tab" data-bs-toggle="pill" data-bs-target="#v-pills-goal" role="tab" aria-controls="v-pills-goal" aria-selected="false">저희가 해낸것</button>
                                     </div>
                                 </div>
                                 <div className="col-md-12 d-flex align-items-center">
@@ -96,8 +96,8 @@ const About: React.FC = () => {
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate">
-                            <span className="subheading">FAQS</span>
-                            <h2 className="mb-4"><strong>Frequently</strong> Ask Question</h2>
+                            <span className="subheading">FAQ</span>
+                            <h2 className="mb-4"><strong>자주묻는 질문</strong> </h2>
                         </div>
                     </div>
                     <div className="row">
