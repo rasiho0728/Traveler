@@ -50,7 +50,7 @@
                     "children": []
                 },
                 {
-                    "name": "회원관리",
+                    "name": "회원관리2",
                     "routerLink": ["memberlist_user"],
                     "identifier": "community",
                     "iconClass": "",
