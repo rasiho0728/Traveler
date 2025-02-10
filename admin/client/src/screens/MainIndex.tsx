@@ -70,15 +70,13 @@ import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
 import TourDiaryDetail from "./Tour/TourDiaryDetail";
 import Members_U from "./Dashboard/Members_U";
-<<<<<<< HEAD
 import Login from "./Login/Login";
-=======
 import MyPay from "./Projects/MyPay";
 import Transportissue from "./Projects/Transportissue";
 import Roadissue from "./Projects/Roadissue";
 import Trainissue from "./Projects/Trainissue";
 import Airline from "./Projects/Airline";
->>>>>>> 074867455ab34061aa271b811c499c055143e730
+
 
 
 const MainIndex: React.FC = () => {
