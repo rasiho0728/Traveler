@@ -44,18 +44,25 @@ const Transport: React.FC = () => {
             }
         }, 1);
     }, [])
-    // const hanleRoadClick = () => {
-    //     navigate('/traveler/Transport/Road');
-    // }
     return (
         <div>
-            <div className="hero-wrap js-fullheight" style={{ backgroundImage: "url('/images/transport/map.jpg')" }}>
+            <div className="hero-wrap js-fullheight" 
+            style={{ backgroundImage: "url('/images/map.jpg')",
+            backgroundSize: 'contain',
+            backgroundPosition: 'center', // 이미지 위치를 중앙에 맞추기
+            backgroundRepeat: 'no-repeat',
+            position: 'relative', // 요소의 위치를 상대적으로 설정
+            zIndex: -2,
+            backgroundColor:"rgba(0, 0, 0, 0.5);"
+            }}
+            >
+            <div className="overlay" style={{ pointerEvents: 'none' }}></div>
                 <div className="overlay"></div>
                 <div className="container">
                     <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
-                            <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span>Tour</span></p>
-                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>Destination</h1>
+                            {/* <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span>Tour</span></p> */}
+                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>실시간 교통</h1>
                         </div>
                     </div>
                 </div>
@@ -154,6 +161,37 @@ const Transport: React.FC = () => {
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i>김포 to 제주</span>
                                                 <span className="ml-auto"><Link to="/traveler/Transport/Airline">Discover</Link></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 ftco-animate">
+                                    <div className="destination">                                                                                                                               
+                                        <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/FastMap.jpg)" }}>
+                                            <div className="icon d-flex justify-content-center align-items-center">
+                                                <span className="icon-search2"></span>
+                                            </div>
+                                        </Link>
+                                        <div className="text p-3">
+                                            <div className="d-flex">
+                                                <div className="one">
+                                                    <h3><Link to="#">최단거리 경로 추천</Link></h3>
+                                                    <p className="rate">
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star-o"></i>
+                                                        <span>8 Rating</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p>최대한 빨리 이동합시다</p>
+                                            <p className="days"><span>2 days 3 nights</span></p>
+                                            <hr />
+                                            <p className="bottom-area d-flex">
+                                                <span><i className="icon-map-o"></i>Fast Route</span>
+                                                <span className="ml-auto"><Link to="/traveler/Transport/MapRoad">이동하기</Link></span>
                                             </p>
                                         </div>
                                     </div>

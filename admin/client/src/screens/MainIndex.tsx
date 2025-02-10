@@ -70,7 +70,15 @@ import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
 import TourDiaryDetail from "./Tour/TourDiaryDetail";
 import Members_U from "./Dashboard/Members_U";
+<<<<<<< HEAD
 import Login from "./Login/Login";
+=======
+import MyPay from "./Projects/MyPay";
+import Transportissue from "./Projects/Transportissue";
+import Roadissue from "./Projects/Roadissue";
+import Trainissue from "./Projects/Trainissue";
+import Airline from "./Projects/Airline";
+>>>>>>> 074867455ab34061aa271b811c499c055143e730
 
 
 const MainIndex: React.FC = () => {
@@ -100,6 +108,11 @@ const MainIndex: React.FC = () => {
                 <Route path={`${process.env.REACT_APP_BASE_URL}/project-dashboard`} element={<ProjectDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport/>} /> {/**20250205최의진 추가 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transport/Airline`} element={<Airline/>} /> {/**202502010최의진 수정 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/pay`} element={<MyPay/>} /> {/**20250210최의진 추가 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transportissue`} element={<Transportissue/>} /> {/**20250210최의진 추가 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transportissue/Roadissue`} element={<Roadissue/>} /> {/**20250210최의진 추가 */}
+                <Route path={`${process.env.REACT_APP_BASE_URL}/Transportissue/Trainissue`} element={<Trainissue/>} /> {/**20250210최의진 추가 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList/>} /> 
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail/>} />{/*250207 민다빈 완료*/}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload/>} />{/*250206 민다빈 완료*/}
