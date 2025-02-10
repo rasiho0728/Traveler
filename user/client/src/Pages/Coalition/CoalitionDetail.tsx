@@ -1,10 +1,11 @@
 // 2025.02.02. 21:00 생성자: 이학수, 제휴업체 호텔 등록 폼 
 import React, { useEffect, useRef, useState } from 'react'
 import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
 
 const CoalitionForm: React.FC = () => {
+    // const {num} = useParams();
     const { pathname } = useLocation();
     // input에 연결해주기 위한 useRef 훅 사용
     const imgInputRef = useRef<HTMLInputElement | null>(null);
