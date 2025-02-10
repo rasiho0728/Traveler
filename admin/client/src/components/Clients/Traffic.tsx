@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ProgressBar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 
@@ -8,8 +8,7 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
   const { teamImage, logo, logoBg, title, sl,id, onClickEdit, onClickDelete, onClickAdd } = props;
 
   const [hover, setHover] = useState(false);
-  // const [tourperiod, setTourperiod] = useState("");
-
+  const navigate =useNavigate()
   const images = [
     "/images/airline.jpg",
     "/images/bus.jpg",
@@ -37,10 +36,12 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
     width: "350px",
     height: "200px",
     transition: "filter 0.3s ease-in-out",
-    filter: hover ? "brightness(0.5)" : "brightness(1)", // hover 시 어두워짐
+    // filter: hover ? "brightness(0.5)" : "brightness(1)", // hover 시 어두워짐
   };
 
-  
+  const handleClick = () => {
+    navigate(`${process.env.REACT_APP_BASE_URL}/Transport/Airline`)
+  }
 
   return (
     <div className="card">
@@ -54,8 +55,9 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
             <h6 className="mb-0 fw-bold  fs-6  mb-2">{title}</h6>
           </div>
           <div className="btn-group" role="group" aria-label="Basic outlined example">
+          <button type="button" className="btn btn-outline-secondary" onClick={handleClick}><i className="bi bi-info-square-fill"></i></button>
             <button type="button" className="btn btn-outline-secondary" onClick={onClickEdit}><i className="icofont-edit text-success"></i></button>
-            <button type="button" className="btn btn-outline-secondary" onClick={onClickDelete}><i className="icofont-ui-delete text-danger"></i></button>
+            {/* <button type="button" className="btn btn-outline-secondary" onClick={onClickDelete}><i className="icofont-ui-delete text-danger"></i></button> */}
           </div>
         </div>
         {/* 이미지 */}
@@ -65,8 +67,8 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
               onMouseLeave={() => setHover(false)}
             >
               <img src={process.env.PUBLIC_URL + images[randomIndex]} style={imageStyle} alt="Random Image"/>
-              <span style={iconStyle}>
-              <FaSearch />
+              <span style={iconStyle}> 
+              <FaSearch/>
               </span>
           </Link>
         </div>
@@ -85,9 +87,13 @@ const Traffic: React.FC<{ teamImage: any, logo: any, logoBg: any, title: any, sl
           </div>
           <div className="col-6">
             <div className="d-flex align-items-center">
-              <i className="icofont-ui-text-chat"></i>0
+              <i className="icofont-ui-text-chat"></i>
               <span className="ms-2">10</span>
             </div>
+            {/* <div className="d-flex align-items-center">
+            <i className="bi bi-train-lightrail-front-fill"></i>0
+              <span className="ms-2">지하철</span>
+            </div> */}
           </div>
         </div>
       </div>

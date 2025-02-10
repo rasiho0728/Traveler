@@ -23,7 +23,7 @@ const CoalitionForm: React.FC = () => {
         entitys.forEach((entity, i) => {
             const e = entity.children[0] as HTMLElement
             if (entity.getAttribute('href') === pathname) {
-                e.style.color = 'orange'
+                e.style.color = '#f85959'
             } else {
                 e.style.color = 'black'
             }
@@ -102,7 +102,7 @@ const CoalitionForm: React.FC = () => {
         }
     }
 
-    // 이미지 제거 이벤트트
+    // 이미지 제거 이벤트
     const onCickImageDeleteHandler = (idx: number) => {
         const imageFiles = imgFiles
         const images = imgs
@@ -292,6 +292,15 @@ const CoalitionForm: React.FC = () => {
                                         onClose={() => { setIsOpen(false); setVideoId(''); }}
                                     />
                                 </div> */}
+                                <div
+                                 className='text-end px-4'
+                                >
+                                    <button
+                                     className='btn btn-danger mx-4'
+                                    >
+                                        등록
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

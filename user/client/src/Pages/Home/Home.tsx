@@ -60,53 +60,79 @@ const Home: React.FC = () => {
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-hotel"></i>숙소</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-meeting-point"></i>지역</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span>
+                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="/traveler/Weather/weather"><i className="icon-wb_sunny"></i>날씨</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center">
-    <button 
-        onClick={() => setIsMusicModalOpen(true)}
-        style={{
-            backgroundColor: "#ff6b6b",
-            color: "white",
-            padding: "10px 16px",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-            fontWeight: "bold",
-            transition: "all 0.3s ease-in-out",
-            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
-        }}
-        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
-        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
-    >
-        🎵 노래 추천받기
-    </button>
-</span>
-<span className="d-flex justify-content-md-center align-items-md-center">
-    <Link 
-        to="/traveler/tour/recommended" 
-        style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#ff6b6b",
-            color: "white",
-            padding: "10px 16px",
-            borderRadius: "8px",
-            fontSize: "16px",
-            fontWeight: "bold",
-            textDecoration: "none",
-            transition: "all 0.3s ease-in-out",
-            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
-        }}
-        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
-        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
-    >
-        🧳 여행지 추천받기
-    </Link>
-</span>
+                                    <button
+                                        onClick={() => setIsMusicModalOpen(true)}
+                                        style={{
+                                            backgroundColor: "#ff6b6b",
+                                            color: "white",
+                                            padding: "10px 16px",
+                                            border: "none",
+                                            borderRadius: "8px",
+                                            cursor: "pointer",
+                                            fontSize: "16px",
+                                            fontWeight: "bold",
+                                            transition: "all 0.3s ease-in-out",
+                                            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
+                                        }}
+                                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
+                                    >
+                                        🎵 노래 추천받기
+                                    </button>
+                                </span>
+                                <span className="d-flex justify-content-md-center align-items-md-center">
+                                    <Link
+                                        to="/traveler/tour/recommended"
+                                        style={{
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            backgroundColor: "#ff6b6b",
+                                            color: "white",
+                                            padding: "10px 16px",
+                                            borderRadius: "8px",
+                                            fontSize: "16px",
+                                            fontWeight: "bold",
+                                            textDecoration: "none",
+                                            transition: "all 0.3s ease-in-out",
+                                            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
+                                        }}
+                                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
+                                    >
+                                        🧳 여행지 추천받기
+                                    </Link>
 
-            {/* 모달이 열릴 때만 TourMusicRecommended 표시 */}
-            {isMusicModalOpen && <TourMusicRecommended onClose={() => setIsMusicModalOpen(false)} />}
+                                </span>
+                                <span className="d-flex justify-content-md-center align-items-md-center">
+                                    <Link
+                                        to="/traveler/tour/rate"
+                                        style={{
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            backgroundColor: "#ff6b6b",
+                                            color: "white",
+                                            padding: "10px 16px",
+                                            borderRadius: "8px",
+                                            fontSize: "16px",
+                                            fontWeight: "bold",
+                                            textDecoration: "none",
+                                            transition: "all 0.3s ease-in-out",
+                                            boxShadow: "2px 4px 10px rgba(0, 0, 0, 0.2)"
+                                        }}
+                                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#e85050"}
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#ff6b6b"}
+                                    >
+                                        🧳실시간 환율
+                                    </Link>
+
+                                </span>
+
+                                {/* 모달이 열릴 때만 TourMusicRecommended 표시 */}
+                                {isMusicModalOpen && <TourMusicRecommended onClose={() => setIsMusicModalOpen(false)} />}
 
                             </p>
                         </div>
@@ -825,7 +851,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </section >
- 
+
 
             {/* <!-- loader --> */}
             <div id="ftco-loader" className="show fullscreen"><svg className="circular" width="48px" height="48px"><circle className="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle className="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>

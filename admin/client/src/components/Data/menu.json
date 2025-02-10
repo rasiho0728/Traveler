@@ -40,7 +40,7 @@
                     "children": []
                 },
                 {
-                    "name": "메일관리",
+                    "name": "회원목록",
                     "routerLink": ["mailsending"],
                     "identifier": "community",
                     "iconClass": "",
@@ -121,7 +121,16 @@
                     "isApp": false,
                     "children": []
                 },
-                
+                {
+                    "name": "제휴업체 관리",
+                    "routerLink": ["coalition"],
+                    "identifier": "제휴업체 관리",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },                
                 {
                     "name": "여행다이어리",
                     "routerLink": ["tourdiary"],
@@ -194,26 +203,11 @@
                     "isCategory": false,
                     "isApp": false,
                     "children": []
-                }
-
-                
-
-            ]
-        },
-
-        {
-            "name": "Tickets",
-            "routerLink": [""],
-            "identifier": "Tickets",
-            "iconClass": "icofont-ticket",
-            "breadcrumbMessage": "",
-            "isCategory": false,
-            "isApp": true,
-            "children": [
+                },
                 {
-                    "name": "Tickets View",
-                    "routerLink": ["tickets-view"],
-                    "identifier": "Tickets View",
+                    "name": "결제내역",
+                    "routerLink": ["pay"],
+                    "identifier": "pay",
                     "iconClass": "",
                     "breadcrumbMessage": "",
                     "isCategory": false,
@@ -221,9 +215,33 @@
                     "children": []
                 },
                 {
-                    "name": "Tickets Detail",
-                    "routerLink": ["tickets-detail"],
-                    "identifier": "Tickets Detail",
+                    "name": "교통 이슈",
+                    "routerLink": ["Transportissue"],
+                    "identifier": "Transportissue",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                }
+                
+
+            ]
+        },
+
+        {
+            "name": "숙박 관리",
+            "routerLink": [""],
+            "identifier": "숙박 관리",
+            "iconClass": "icofont-ticket",
+            "breadcrumbMessage": "",
+            "isCategory": false,
+            "isApp": true,
+            "children": [
+                {
+                    "name": "예약자 리스트",
+                    "routerLink": ["HotelReservation"],
+                    "identifier": "예약자 리스트",
                     "iconClass": "",
                     "breadcrumbMessage": "",
                     "isCategory": false,
@@ -456,6 +474,16 @@
             "isCategory": false,
             "isApp": false,
             "children": [
+                                {
+                    "name": "서버 관리",
+                    "routerLink": ["ServerManagement"],
+                    "identifier": "서버 관리",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
                 {
                     "name": "Apex Charts",
                     "routerLink": ["apex-charts"],
