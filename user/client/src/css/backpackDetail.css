@@ -1,49 +1,91 @@
-.backpackDetail{
-    padding: 80px 30px 60px 30px;
+.backpackDetail {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 헤더 스타일 */
+.backpackDetail .hero-wrap {
+    width: 100%;
+    height: 175px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
 
-    .question{
-        display: flex;
-    }
+.backpackDetail .hero-wrap .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+}
 
-    .question > img{
-        border-radius: 50%;
-        width: 100px;
-        margin-right: 20px;
-    }
+.backpackDetail .hero-wrap h1 {
+    position: relative;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 2;
+}
 
-    .profile > p{
-        font-size: 28px;
-        font-weight: 500;
-        padding: 0;
-        margin: 0;
-    }
-    .profile > span{
-        font-size: 20px;
-        padding-left: 5px;
-    }
+/* 기존 내용과 간격 조정 */
+.backpackDetail .inner {
+    width: 80%;
+    background: white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 50px 80px;
+    box-shadow: 0px 3px 14px 6px #ccc;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
-    .text-box{
-        margin-top: 20px;
-    }
-    .text-box > h2{
-        font-size: 22px;
-        margin-top: 0;
-    }
-    .text-box > p{
-        font-size: 18px;
-    }
+/* 질문 영역 */
+.backpackDetail .question {
+    display: flex;
+    align-items: center;
+}
 
-    .comments-box{
-        margin-top: 40px;
-        border-top: 1px solid #ccc;
-    }
+.backpackDetail .question > img {
+    border-radius: 50%;
+    width: 80px;
+    margin-right: 15px;
+}
 
-    .inner{
-        border-radius: 5px;
-        box-sizing: border-box;
-        padding: 65px 100px;
-        box-shadow: 0px 3px 14px 6px #ccc;
-    }
+.backpackDetail .profile > p {
+    font-size: 24px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+
+.backpackDetail .profile > span {
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+/* 질문 텍스트 */
+.backpackDetail .text-box {
+    margin-top: 15px;
+}
+
+.backpackDetail .text-box > h2 {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.backpackDetail .text-box > p {
+    font-size: 16px;
+}
+
+/* 댓글 영역 */
+.backpackDetail .comments-box {
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
 }
