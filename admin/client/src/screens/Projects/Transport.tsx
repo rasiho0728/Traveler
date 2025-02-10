@@ -85,7 +85,7 @@ const Transport: React.FC = () => {
                   }
                 </div>
               </Tab.Pane>
-              {/* <Tab.Pane eventKey="Completed">
+              <Tab.Pane eventKey="Completed">
                 <div className="row g-3 gy-5 py-3 row-deck">
                   {
                     ProjectCardData.map((d: any, i: number) => {
@@ -99,7 +99,7 @@ const Transport: React.FC = () => {
                     })
                   }
                 </div>
-              </Tab.Pane> */}
+              </Tab.Pane>
             </Tab.Content>
           </div>
         </div>
@@ -109,26 +109,6 @@ const Transport: React.FC = () => {
           <Modal.Title className="fw-bold">{modalHeader}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="mb-3">
-            <label htmlFor="exampleFormControlInput77" className="form-label">Project Name</label>
-            <input type="text" className="form-control" id="exampleFormControlInput77" placeholder="Explain what the Project Name" value={editModeldata ? editModeldata.sl : ""} />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Project Category</label>
-            <select className="form-select" value={editModeldata ? editModeldata.title : ""}>
-              <option >UI/UX Design</option>
-              <option value="1">Website Design</option>
-              <option value="2">App Development</option>
-              <option value="3">Quality Assurance</option>
-              <option value="4">Development</option>
-              <option value="5">Backend Development</option>
-              <option value="6">Software Testing</option>
-              <option value="7">Website Design</option>
-              <option value="8">Marketing</option>
-              <option value="9">SEO</option>
-              <option value="10">Other</option>
-            </select>
-          </div>
           <div className="mb-3">
             <label htmlFor="formFileMultipleone" className="form-label">Project Images &amp; Document</label>
             <input className="form-control" type="file" id="formFileMultipleone" multiple={undefined} />
@@ -154,35 +134,8 @@ const Transport: React.FC = () => {
                     <option value="2">Team Member Only</option>
                   </select>
                 </div>
-                <div className="col-sm-12">
-                  <label htmlFor="formFileMultipleone" className="form-label">Task Assign Person</label>
-                  <select className="form-select" multiple={undefined} >
-                    <option >Lucinda Massey</option>
-                    <option value="1">Ryan Nolan</option>
-                    <option value="2">Oliver Black</option>
-                    <option value="3">Adam Walker</option>
-                    <option value="4">Brian Skinner</option>
-                    <option value="5">Dan Short</option>
-                    <option value="5">Jack Glover</option>
-                  </select>
-                </div>
               </div>
             </form>
-          </div>
-          <div className="row g-3 mb-3">
-            <div className="col-sm">
-              <label htmlFor="formFileMultipleone" className="form-label">Budget</label>
-              <input type="number" className="form-control" />
-            </div>
-            <div className="col-sm">
-              <label htmlFor="formFileMultipleone" className="form-label">Priority</label>
-              <select className="form-select" >
-                <option >Highest</option>
-                <option value="1">Medium</option>
-                <option value="2">Low</option>
-                <option value="3">Lowest</option>
-              </select>
-            </div>
           </div>
           <div className="mb-3">
             <label htmlFor="exampleFormControlTextarea78" className="form-label">Description (optional)</label>
