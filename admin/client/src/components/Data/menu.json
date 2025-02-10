@@ -221,28 +221,18 @@
         },
 
         {
-            "name": "Tickets",
+            "name": "숙박 관리",
             "routerLink": [""],
-            "identifier": "Tickets",
+            "identifier": "숙박 관리",
             "iconClass": "icofont-ticket",
             "breadcrumbMessage": "",
             "isCategory": false,
             "isApp": true,
             "children": [
                 {
-                    "name": "Tickets View",
-                    "routerLink": ["tickets-view"],
-                    "identifier": "Tickets View",
-                    "iconClass": "",
-                    "breadcrumbMessage": "",
-                    "isCategory": false,
-                    "isApp": false,
-                    "children": []
-                },
-                {
-                    "name": "Tickets Detail",
-                    "routerLink": ["tickets-detail"],
-                    "identifier": "Tickets Detail",
+                    "name": "예약자 리스트",
+                    "routerLink": ["HotelReservation"],
+                    "identifier": "예약자 리스트",
                     "iconClass": "",
                     "breadcrumbMessage": "",
                     "isCategory": false,
@@ -475,6 +465,16 @@
             "isCategory": false,
             "isApp": false,
             "children": [
+                                {
+                    "name": "서버 관리",
+                    "routerLink": ["ServerManagement"],
+                    "identifier": "서버 관리",
+                    "iconClass": "",
+                    "breadcrumbMessage": "",
+                    "isCategory": false,
+                    "isApp": false,
+                    "children": []
+                },
                 {
                     "name": "Apex Charts",
                     "routerLink": ["apex-charts"],
