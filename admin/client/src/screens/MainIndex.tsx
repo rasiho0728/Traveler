@@ -70,6 +70,7 @@ import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
 import TourDiaryDetail from "./Tour/TourDiaryDetail";
 import Members_U from "./Dashboard/Members_U";
+import Login from "./Login/Login";
 
 
 const MainIndex: React.FC = () => {
@@ -88,6 +89,7 @@ const MainIndex: React.FC = () => {
             <div className="body d-flex py-lg-3 py-md-2">
             <ReactRoutes>
                 <Route path={`${process.env.REACT_APP_BASE_URL}/`} element={<HrDashboard/>} />
+                <Route path={`${process.env.REACT_APP_BASE_URL}/login/login`} element={<Login/>} />{/*2025 02 10 전준영 관리자 로그인 완료 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/hr-dashboard`} element={<HrDashboard/>} />
                 <Route path={`${process.env.REACT_APP_BASE_URL}/community`} element={<Community/>} /> {/*2025 02 07 장지원 커뮤니티 수정중 */}
                 <Route path={`${process.env.REACT_APP_BASE_URL}/mailsending`} element={<MailSending/>} /> {/*2025 02 07 장지원 블랙리스트 수정중 */}
