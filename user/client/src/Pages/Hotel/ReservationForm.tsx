@@ -166,7 +166,7 @@ const ReservationForm = () => {
                     <div className="col-md-6">
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary py-3">
-                                Reserve Now
+                                지금 예약
                             </button>
                         </div>
                     </div>
@@ -175,7 +175,7 @@ const ReservationForm = () => {
                     <div className="col-md-6">
                         <div className="form-group">
                             <Link to="/traveler/hotels/:num" className="btn btn-secondary py-3">
-                                Go Back to Room List
+                                이전으로
                             </Link>
                         </div>
                     </div>
