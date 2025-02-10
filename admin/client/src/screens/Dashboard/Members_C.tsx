@@ -12,6 +12,9 @@ const Members_C: React.FC = () => {
       <PageHeader headerTitle="누리다원 직원관리" renderRight={() => {
         return <div className="col-auto d-flex w-sm-100">
           <button className="btn btn-dark btn-set-task w-sm-100 me-2" onClick={() => { setIsModal(true) }}><i className="icofont-plus-circle me-2 fs-6"></i>Add Employee</button>
+          <button className="btn btn-dark btn-set-task w-sm-100 me-2">
+            <i className="icofont-plus-circle me-2 fs-6"></i>Add Employees
+          </button>
           {/* <Dropdown>
             <Dropdown.Toggle as="button" className="btn btn-primary ">Status</Dropdown.Toggle>
             <Dropdown.Menu as="ul" className="dropdown-menu-end">
@@ -40,6 +43,7 @@ const Members_C: React.FC = () => {
         <Modal.Header closeButton>
           <Modal.Title className="fw-bold">Add Employee</Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <div className="modal-body">
             <div className="mb-3">

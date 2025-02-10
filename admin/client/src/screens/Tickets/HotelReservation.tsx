@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import PageHeader from "../../components/common/PageHeader";
 import { TicketsViewData } from "../../components/Data/AppData.js";
 
-const TicketsView: React.FC = () => {
+const HotelReservation: React.FC = () => {
   const [isModal, setIsModal] = useState(false);
   const [siEditModal, setSiEditModal] = useState<any>();
 
@@ -14,7 +14,7 @@ const TicketsView: React.FC = () => {
       name: "예약 번호",
       selector: (row: any) => row.ticketid,
       sortable: true,
-      cell: (row: any) => <a href="tickets-detail" className="fw-bold text-secondary">{row.ticketid}</a>
+      cell: (row: any) => <a href="HotelReservationDetail" className="fw-bold text-secondary">{row.ticketid}</a>
     },
     {
       name: "호텔명",
@@ -121,4 +121,4 @@ const TicketsView: React.FC = () => {
 
 }
 
-export default TicketsView;
+export default HotelReservation;
