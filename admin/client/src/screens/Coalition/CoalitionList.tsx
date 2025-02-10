@@ -28,7 +28,7 @@ const tourData: TourEntry[] = [
         price: 25000
       },
       {
-        roomName: '로얄얄',
+        roomName: '로얄',
         numRoom: 10,
         price: 50000
       }
@@ -50,7 +50,7 @@ const tourData: TourEntry[] = [
         price: 25000
       },
       {
-        roomName: '로얄얄',
+        roomName: '로얄',
         numRoom: 10,
         price: 50000
       }
@@ -72,7 +72,7 @@ const tourData: TourEntry[] = [
         price: 25000
       },
       {
-        roomName: '로얄얄',
+        roomName: '로얄',
         numRoom: 10,
         price: 50000
       }
@@ -94,7 +94,7 @@ const tourData: TourEntry[] = [
         price: 25000
       },
       {
-        roomName: '로얄얄',
+        roomName: '로얄',
         numRoom: 10,
         price: 50000
       }
@@ -116,7 +116,7 @@ const tourData: TourEntry[] = [
         price: 25000
       },
       {
-        roomName: '로얄얄',
+        roomName: '로얄',
         numRoom: 10,
         price: 50000
       }
@@ -138,7 +138,7 @@ const tourData: TourEntry[] = [
         price: 25000
       },
       {
-        roomName: '로얄얄',
+        roomName: '로얄',
         numRoom: 10,
         price: 50000
       }
@@ -202,16 +202,16 @@ const CoalitionList: React.FC = () => {
                     </div>
                   </div>
                   <Accordion.Collapse eventKey={`${idx}`}>
-                    <div>
+                    <div className="p-3">
                       {
                         entry.rooms.map((room, idx) => (
-                          <div key={idx} className="row text-center py-3">
-                            <div className="col-md-2"><h4>방 이름:</h4></div>
-                            <div className="col-md-2"><h4>{room.roomName}</h4></div>
-                            <div className="col-md-2"><h4>방 수:</h4></div>
-                            <div className="col-md-2"><h4>{room.numRoom}</h4></div>
-                            <div className="col-md-2"><h4>가격:</h4></div>
-                            <div className="col-md-2"><h4>{room.price}원/night</h4></div>
+                          <div key={idx} className="row text-center border">
+                            <div className="col-md-2 align-content-center text-end"><h4>방 이름:</h4></div>
+                            <div className="col-md-2 align-content-center text-start"><h4>{room.roomName}</h4></div>
+                            <div className="col-md-2 align-content-center text-end"><h4>방 수:</h4></div>
+                            <div className="col-md-2 align-content-center text-start"><h4>{room.numRoom}</h4></div>
+                            <div className="col-md-2 align-content-center text-end"><h4>가격:</h4></div>
+                            <div className="col-md-2 align-content-center text-start"><h4>{room.price}원/night</h4></div>
                           </div>
                         ))
                       }
