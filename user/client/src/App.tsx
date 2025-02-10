@@ -48,6 +48,9 @@ import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
 import SignSelect from './Pages/Login/SignSelect';
 import Partner from './Pages/Login/Partner';
+import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
+
+
 
 
 function App() {
@@ -71,6 +74,7 @@ function App() {
         <Route path='/traveler/blog/:num' element={<BlogDetail />} />
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/coalition' element={<Coalition />} />
+        <Route path='/traveler/coalition/:num' element={<CoalitionDetail />} />
         <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
         <Route path='/traveler/community' element={<Like />} /> {/*2025-02-07 조유경 추가 */}
@@ -83,10 +87,9 @@ function App() {
         <Route path='/traveler/login' element={<Login />} />
         <Route path='/traveler/signup' element={<SignUp />} />
         <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
-        <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
+        <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
         {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
-
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
