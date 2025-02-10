@@ -46,10 +46,14 @@ import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
+<<<<<<< HEAD
+import BackpackMemo from './Pages/Community/BackpackMemo';
+=======
 import SignSelect from './Pages/Login/SignSelect';
 import Partner from './Pages/Login/Partner';
 import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 
+>>>>>>> 7f2267760fc7dd763ea5812d2cd7559fe8849c48
 
 
 
@@ -77,11 +81,14 @@ function App() {
         <Route path='/traveler/coalition/:num' element={<CoalitionDetail />} />
         <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
         <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
+
         <Route path='/traveler/community' element={<Like />} /> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/community/:num' element={<LikeDetail />} /> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/LikeMemo' element={<LikeMemo/>}/> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/backpack' element={<Backpack />} /> {/*2025-02-07 조유경 추가 */}
         <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
+        <Route path='/traveler/BackpackMemo' element={<BackpackMemo/>}/> {/*2025-02-07 조유경 추가 */}
+
         <Route path='/traveler/contact' element={<Contact />} />
         <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
         <Route path='/traveler/login' element={<Login />} />
@@ -89,7 +96,15 @@ function App() {
         <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
         <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
+
         {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
+<<<<<<< HEAD
+        
+
+
+
+=======
+>>>>>>> 7f2267760fc7dd763ea5812d2cd7559fe8849c48
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
