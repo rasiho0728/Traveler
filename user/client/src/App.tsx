@@ -46,19 +46,16 @@ import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
-<<<<<<< HEAD
 import Airline from './Transport/Airline';
 import RoadForm from './Transport/RoadForm';
 import MapRoad from './Transport/MapRoad';
 import Rate from './Transport/Rate';
-=======
 import TourDiary from './Pages/TourDiary/TourDiary';
 import BackpackMemo from './Pages/Community/BackpackMemo';
 import SignSelect from './Pages/Login/SignSelect';
 import Partner from './Pages/Login/Partner';
 import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 
->>>>>>> 1219232b6809121864e21e2063f51c406953d7e5
 
 
 function App() {
@@ -102,24 +99,14 @@ function App() {
         <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
         <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
         <Route path='/traveler/Transport' element={<Transport/>} />  {/*2025-02-04최의진 추가 */}
-<<<<<<< HEAD
-=======
-
         {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
-
->>>>>>> 1219232b6809121864e21e2063f51c406953d7e5
         <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
         <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/Road/Form' element={<RoadForm/>} />{/*2025-02-10최의진 추가 */}
         <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
-<<<<<<< HEAD
         <Route path='/traveler/Transport/Airline' element={<Airline/>} />{/*2025-02-06최의진 추가 */}
         <Route path='/traveler/Transport/MapRoad' element={<MapRoad/>} />{/*2025-02-10최의진 추가 */}
-
-=======
-
         <Route path='/traveler/tourdiary' element={<TourDiary />}/>
->>>>>>> 1219232b6809121864e21e2063f51c406953d7e5
       </Routes>
       <Footer />
       <Chat />
