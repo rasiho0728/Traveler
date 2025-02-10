@@ -4,7 +4,7 @@ import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFun
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
 
-const CoalitionForm: React.FC = () => {
+const CoalitionDetail: React.FC = () => {
     // const {num} = useParams();
     const { pathname } = useLocation();
     // input에 연결해주기 위한 useRef 훅 사용
@@ -23,8 +23,8 @@ const CoalitionForm: React.FC = () => {
         const entitys = document.querySelectorAll<HTMLLinkElement>('div.list-group .list-group-item-action');
         entitys.forEach((entity, i) => {
             const e = entity.children[0] as HTMLElement
-            if (entity.getAttribute('href') === pathname) {
-                e.style.color = 'orange'
+            if (entity.getAttribute('href')?.includes(pathname)) {
+                e.style.color = '#f85959'
             } else {
                 e.style.color = 'black'
             }
@@ -302,4 +302,4 @@ const CoalitionForm: React.FC = () => {
     )
 }
 
-export default CoalitionForm
+export default CoalitionDetail
