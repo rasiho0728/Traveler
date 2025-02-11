@@ -42,7 +42,7 @@ const Transport: React.FC = () => {
     return (
         <div>
             <div className="hero-wrap js-fullheight" 
-            style={{ backgroundImage: "url('/images/map.jpg')",
+            style={{ backgroundImage: "url('/images/transport/palace.jpg')",
             backgroundSize: 'contain',
             backgroundPosition: 'center', // 이미지 위치를 중앙에 맞추기
             backgroundRepeat: 'no-repeat',
