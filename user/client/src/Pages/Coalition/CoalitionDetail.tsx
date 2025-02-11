@@ -9,6 +9,9 @@ interface Rooms {
     roomName: string;
     price: number;
     content: string;
+    numPerRoom: number;
+    numRoom: number;
+    numReservation: number;
 }
 
 const CoalitionDetail: React.FC = () => {
@@ -26,7 +29,10 @@ const CoalitionDetail: React.FC = () => {
         images: [],
         roomName: '',
         price: 0,
-        content: ''
+        content: '',
+        numPerRoom: 0,
+        numRoom: 0,
+        numReservation: 15
     });
     const [rooms, setRooms] = useState<Rooms[]>([]);
     const roomImgInputRef = useRef<HTMLInputElement | null>(null);
@@ -39,7 +45,10 @@ const CoalitionDetail: React.FC = () => {
             images: [],
             roomName: '스텐다드',
             price: 10000,
-            content: '멀쩡한 방입니다.'
+            content: '멀쩡한 방입니다.',
+            numPerRoom: 3,
+            numRoom: 50,
+            numReservation: 15,
         }])
     }, [])
 
@@ -165,10 +174,13 @@ const CoalitionDetail: React.FC = () => {
                     setNewRoom((prev) => {
                         const images = prev ? { ...prev, images: prev.images.concat([img]) } : {
                             thumbnailImg: '/images/hotel-6.jpg',
-                            images: ['', ''],
+                            images: [],
                             roomName: '스텐다드',
                             price: 10000,
-                            content: '멀쩡한 방입니다.'
+                            content: '멀쩡한 방입니다.',
+                            numPerRoom: 0,
+                            numRoom: 0,
+                            numReservation: 0,
                         }
                         return images
                     })
@@ -282,7 +294,7 @@ const CoalitionDetail: React.FC = () => {
                                         </div>
                                         <div className='row'>
                                             <div className='col-md-2'>
-                                                <label htmlFor="name" className='col-form-label-lg'>1박당<br />가격</label>
+                                                <label htmlFor="name" className='col-form-label-lg m-0 p-0'>1박당<br />가격</label>
                                             </div>
                                             <div className='col-md-9 d-flex align-items-center'>
                                                 <input type="number" name='name' className='form-control' step={1000} min={0} />
@@ -423,7 +435,7 @@ const CoalitionDetail: React.FC = () => {
                                                         </div>
                                                         <div className='row'>
                                                             <div className='col-md-2'>
-                                                                <label htmlFor="name" className='col-form-label-lg'>1박당<br />가격</label>
+                                                                <label htmlFor="name" className='col-form-label-lg m-0 p-0'>1박당<br />가격</label>
                                                             </div>
                                                             <div className='col-md-9 d-flex align-items-center'>
                                                                 <input type="number" name='name' value={newRoom?.price}
@@ -433,10 +445,18 @@ const CoalitionDetail: React.FC = () => {
                                                         </div>
                                                         <div className='row'>
                                                             <div className='col-md-2'>
-                                                                <label htmlFor="name" className='col-form-label-lg'>위치</label>
+                                                                <label htmlFor="name" className='col-form-label-lg m-0 p-0'>최대<br />인원</label>
                                                             </div>
                                                             <div className='col-md-9'>
-                                                                <input type="text" name='name' className='form-control' placeholder='누르면 위치 찍도록 변경' />
+                                                                <input type="text" name='name' className='form-control' placeholder='방에 들어올 수 있는 인원 수' />
+                                                            </div>
+                                                        </div>
+                                                        <div className='row'>
+                                                            <div className='col-md-2'>
+                                                                <label htmlFor="name" className='col-form-label-lg'>방 갯수</label>
+                                                            </div>
+                                                            <div className='col-md-9'>
+                                                                <input type="text" name='name' className='form-control' placeholder='총 방 갯수' />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -504,7 +524,7 @@ const CoalitionDetail: React.FC = () => {
                                         {
                                             rooms.map((room, idx) => (
                                                 <div className="row" key={idx}>
-                                                    <div className="col-md-3 ftco-animate">
+                                                    <div className="col-md-4 ftco-animate">
                                                         <div className="destination">
                                                             <div>
                                                                 <img src={room.thumbnailImg} alt="" width={'100%'} />
@@ -513,6 +533,7 @@ const CoalitionDetail: React.FC = () => {
                                                                 <div className="d-flex">
                                                                     <div className="one">
                                                                         <h3>{room.roomName}</h3>
+                                                                        <span>{room.numPerRoom}인실</span>
                                                                     </div>
                                                                     <div className="two">
                                                                         <span className="price per-price">${room.price}<br /><small>/night</small></span>
@@ -520,6 +541,7 @@ const CoalitionDetail: React.FC = () => {
                                                                 </div>
                                                                 <p>{room.content}</p>
                                                                 <hr />
+                                                                <span className='d-block text-end'>{room.numReservation}/{room.numRoom}</span>
                                                             </div>
                                                         </div>
                                                     </div>
