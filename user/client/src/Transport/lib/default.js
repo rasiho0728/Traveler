@@ -1,3 +1,5 @@
+// 2025.0211. 오후12시 추가: 최의진,
+
 (function () {
     exports.defaults = {
         "0.1": {

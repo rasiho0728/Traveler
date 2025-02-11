@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-// 2025.0206. 19:00 수정: 최의진,
-
+// 2025.0211. 19:00 수정: 최의진,
 import xml2js from 'xml2js';
-
 
 
 const SubwayDetail: React.FC = () => {
@@ -25,7 +23,7 @@ const SubwayDetail: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://swopenapi.seoul.go.kr/api/subway/534d626f6863686c38355961596644/xml/realtimeStationArrival/ALL');
+                const response = await fetch('http://swopenapi.seoul.go.kr/api/subway/sample/xml/realtimeStationArrival/ALL');
                 const text = await response.text();
                 parseXmlData(text);
             } catch (err) {

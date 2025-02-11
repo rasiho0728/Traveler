@@ -6,12 +6,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 registerLocale("ko", ko);
 
-
-
 const Transport: React.FC = () => {
-    const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
-    const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
-    const navigate = useNavigate();
     useEffect(() => {
         // 요소의 [data-scrollax] 옵션을 분석 적용
         handleScroll()
