@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 
 const BackpackMemo: React.FC = () => {
     useEffect(() => {
-        const handleResize = () => updateHeight();
+        const handleResize = () => updateHalfHeight();
         handleScroll();
         appear_animate();
 
@@ -26,10 +26,9 @@ const BackpackMemo: React.FC = () => {
         <div className="BackpackMemo">
             {/* 헤더 부분 - height 조정 */}
             <div 
-                className="hero-wrap BackpackMemo-header"
+                className="hero-wrap BackpackMemo-header js-halfheight"
                 style={{ 
                     backgroundImage: "url('/images/bg_4.jpg')",
-                    height: '100vh',  // 전체 높이를 명확하게 설정
                     minHeight: '500px', // 최소 높이 설정 (400px → 500px 조정)
                     backgroundSize: 'cover', // cover 유지하여 화면에 맞춤
                     backgroundPosition: 'center', 
