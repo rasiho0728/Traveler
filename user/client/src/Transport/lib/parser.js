@@ -1,3 +1,5 @@
+// 2025.0211. 오후12시 추가: 최의진,
+
 (function () {
     var bom, defaults, defineProperty, events, isEmpty, processItem, processors, sax, setImmediate,
         bind = function (fn, me) { return function () { return fn.apply(me, arguments); }; },

@@ -79,7 +79,7 @@ const MapRoad: React.FC = () => {
   return (
     <div className="map-road-container">
       {/* 제목 */}
-      <h1 className="MRheading">오시는 길</h1>
+      <h1 className="MRheading">여행루트</h1>
 
       {/* 지도 영역 */}
       <div id="map" className="map-container"></div>
@@ -98,7 +98,7 @@ const MapRoad: React.FC = () => {
       <p className="MRinfo">
         <span>
           <img
-            src="images/transport/MapMarker.png"
+            src="images\transport\MapMarker.png"
             width="42"
             height="34"
             alt="지도 마커"
