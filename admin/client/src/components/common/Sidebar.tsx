@@ -125,14 +125,14 @@ const Sidebar: React.FC<{ activekey: any }> = (props) => {
         <ul className="menu-list flex-grow-1 mt-3">
           {
             menuData.map((d, i) => {
-              if (d.isToggled) {
-                return <li key={"shsdg" + i}>
-                  <a className={`m-link `} href="#!" onClick={(e) => { e.preventDefault(); GotoChangeMenu(d.name); }}>
-                    <i className={d.iconClass}></i>
-                    <span>{d.name}</span>
-                  </a>
-                </li>
-              }
+              // if (d.isToggled) {
+              //   return <li key={"shsdg" + i}>
+              //     <a className={`m-link `} href="#!" onClick={(e) => { e.preventDefault(); GotoChangeMenu(d.name); }}>
+              //       <i className={d.iconClass}></i>
+              //       <span>{d.name}</span>
+              //     </a>
+              //   </li>
+              // }
               if (d.children.length === 0) {
                 return <li key={"dsfshsdg" + i} className=" collapsed">
                   <Link to={`${process.env.REACT_APP_BASE_URL}/${d.routerLink[0]}`} className={`m-link ${(d.routerLink[0] === activekey) ? "active" : ""}`} >
