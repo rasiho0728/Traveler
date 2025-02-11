@@ -118,62 +118,67 @@ const MyPage: React.FC = () => {
         </div>
 
         <div className='log'>
-            <div className='my-bag'>
-                <h2>예약내역 확인</h2>
-                <div>
-                    <ul className="bag-list">
-                        <li><a href="/traveler/tour">✅ 경주 불국사 & 첨성대 야경 투어</a></li>
-                        <li><a href="/traveler/tour">✅ 부산 힐튼호텔 - 오션뷰룸</a></li>
-                        <li><a href="/traveler/tour">✅ 전주 한옥마을 전통 한정식 예약</a></li>
-                        <li><a href="/traveler/tour">✅ 강릉 씨마크 호텔 - 디럭스룸</a></li>
-                        <li><a href="/traveler/tour">✅ 제주 우도 스쿠터 투어</a></li>
-                    </ul>
-                </div>
-            </div>
+            <div className='my-Box'>
+                <div className='my-list'>
+                    <div className='my-bag'>
+                        <h2>예약내역 확인</h2>
+                        <div>
+                            <ul className="bag-list">
+                                <li><a href="/traveler/tour">✅ 경주 불국사 & 첨성대 야경 투어</a></li>
+                                <li><a href="/traveler/tour">✅ 부산 힐튼호텔 - 오션뷰룸</a></li>
+                                <li><a href="/traveler/tour">✅ 전주 한옥마을 전통 한정식 예약</a></li>
+                                <li><a href="/traveler/tour">✅ 강릉 씨마크 호텔 - 디럭스룸</a></li>
+                                <li><a href="/traveler/tour">✅ 제주 우도 스쿠터 투어</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <div className='my-blog'>
-                <div className='my-blog-text'>
-                    <h2>나의 최근 게시물</h2>
-                    <a href='/traveler/community'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
+                    <div className='my-blog'>
+                        <div className='my-blog-text'>
+                            <h2>나의 최근 게시물</h2>
+                            <a href='/traveler/community'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
+                        </div>
+                        <ol>
+                            <li>여행 고수들이 추천하는 히든 플레이스 TOP 10</li>
+                            <li>봄맞이 여행! 제주부터 경주까지 꼭 가봐야 할 여행지 5곳</li>
+                            <li>먹방 투어로 떠나는 전주와 부산: 한 입 베어물면 떠오르는 한국의 맛</li>
+                        </ol>
+                    </div>
                 </div>
-                <ol>
-                    <li>여행 고수들이 추천하는 히든 플레이스 TOP 10</li>
-                    <li>봄맞이 여행! 제주부터 경주까지 꼭 가봐야 할 여행지 5곳</li>
-                    <li>먹방 투어로 떠나는 전주와 부산: 한 입 베어물면 떠오르는 한국의 맛</li>
-                </ol>
-            </div>
 
-            <div className='foot'>
-                <h2>발자국</h2>
-                <div className='table-container'>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>여행</th>
-                                <th>교통</th>
-                                <th>플레이리스트</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>한적한 자연 속 힐링! 강원도 감성 캠핑 & 트레킹 2박 3일 패키지</td>
-                                <td>렌터카 + 유류비 포함! 자유로운 드라이브 여행 패키지</td>
-                                <td>여행 - 볼빨간사춘기기</td>
-                            </tr>
-                            <tr>
-                                <td>전통과 현대의 만남! 전주 한옥마을 & 남부시장 야시장 투어 1박 2일</td>
-                                <td>서울 ↔ 강원도 왕복 셔틀버스 패키지!</td>
-                                <td>바람이 불었으면 좋겠어 - 박명수&거미미</td>
-                            </tr>
-                            <tr>
-                                <td>오션뷰 숙소에서 힐링! 부산 드라이브 3박 4일 패키지</td>
-                                <td>KTX & 렌터카 완벽 패키지! 서울에서 부산까지 편리한 여행 코스</td>
-                                <td>떠나자 - 크라잉넛</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div className='foot'>
+                    <h2>발자국</h2>
+                    <div className='table-container'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>여행</th>
+                                    <th>교통</th>
+                                    <th>플레이리스트</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>한적한 자연 속 힐링! 강원도 감성 캠핑 & 트레킹 2박 3일 패키지</td>
+                                    <td>렌터카 + 유류비 포함! 자유로운 드라이브 여행 패키지</td>
+                                    <td>여행 - 볼빨간사춘기기</td>
+                                </tr>
+                                <tr>
+                                    <td>전통과 현대의 만남! 전주 한옥마을 & 남부시장 야시장 투어 1박 2일</td>
+                                    <td>서울 ↔ 강원도 왕복 셔틀버스 패키지!</td>
+                                    <td>바람이 불었으면 좋겠어 - 박명수&거미미</td>
+                                </tr>
+                                <tr>
+                                    <td>오션뷰 숙소에서 힐링! 부산 드라이브 3박 4일 패키지</td>
+                                    <td>KTX & 렌터카 완벽 패키지! 서울에서 부산까지 편리한 여행 코스</td>
+                                    <td>떠나자 - 크라잉넛</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+            
         </div>
       </div>
     </div>
