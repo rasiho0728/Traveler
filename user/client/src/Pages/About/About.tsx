@@ -50,11 +50,11 @@ const About: React.FC = () => {
                             <div className="row">
                                 <div className="col-md-12 nav-link-wrap mb-5">
                                     <div className="nav ftco-animate nav-pills nav-fill" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        <button className="nav-link active" id="v-pills-whatwedo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">할수 있는것</button>
+                                        <button className="nav-link active" id="v-pills-whatwedo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-whatwedo" role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">가능성</button>
 
-                                        <button className="nav-link" id="v-pills-mission-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mission" role="tab" aria-controls="v-pills-mission" aria-selected="false">저희가 하는일</button>
+                                        <button className="nav-link" id="v-pills-mission-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mission" role="tab" aria-controls="v-pills-mission" aria-selected="false">지금 하는 일</button>
 
-                                        <button className="nav-link" id="v-pills-goal-tab" data-bs-toggle="pill" data-bs-target="#v-pills-goal" role="tab" aria-controls="v-pills-goal" aria-selected="false">저희가 해낸것</button>
+                                        <button className="nav-link" id="v-pills-goal-tab" data-bs-toggle="pill" data-bs-target="#v-pills-goal" role="tab" aria-controls="v-pills-goal" aria-selected="false">이뤄낸 것</button>
                                     </div>
                                 </div>
                                 <div className="col-md-12 d-flex align-items-center">
