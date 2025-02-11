@@ -215,7 +215,7 @@ const CoalitionForm: React.FC = () => {
                                         </div>
                                         <div className='row'>
                                             <div className='col-md-2'>
-                                                <label htmlFor="name" className='col-form-label-lg'>1박당<br />가격</label>
+                                                <label htmlFor="name" className='col-form-label-lg m-0 p-0'>1박당<br />가격</label>
                                             </div>
                                             <div className='col-md-9 d-flex align-items-center'>
                                                 <input type="number" name='name' className='form-control' step={1000} min={0} />
