@@ -106,6 +106,7 @@ const MainIndex: React.FC = () => {
                     <Route path={`${process.env.REACT_APP_BASE_URL}/pay`} element={<MyPay/>} />{/*250211 최의진 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/Transportissue`} element={<Transportissue/>} />{/*250211 최의진 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/Transportissue/Roadissue`} element={<Roadissue/>} />{/*250211 최의진 완료*/}
+                    <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList />} />{/*250207 민다빈 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail />} />{/*250207 민다빈 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload />} />{/*250206 민다빈 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-update`} element={<TourUpdate />} />{/*250207 민다빈 완료*/}
