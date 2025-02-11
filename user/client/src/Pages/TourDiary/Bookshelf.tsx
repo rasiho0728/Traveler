@@ -36,7 +36,7 @@ const Bookshelf: React.FC = () => {
             <Link to={`${book.id}`}>
             <div className="bookCover">
               <img
-                src={book.cover || "/placeholder.svg"}
+                src={book.cover}
                 alt={book.title}
                 className="shelfImage"
                 style={{boxShadow : "5px 5px 25px rgba(0, 0, 0, 0.5)"}}
