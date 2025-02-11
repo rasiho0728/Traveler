@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/MapRoad.css";
+import { updateHalfHeight } from "../Comm/CommomFunc";
 declare global {
   interface Window {
     kakao: any;
@@ -75,57 +76,78 @@ const MapRoad: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    updateHalfHeight();
+    window.addEventListener("resize", updateHalfHeight);
+    return () => {
+      window.removeEventListener("resize", updateHalfHeight);
+    };
+  }, []);
 
   return (
-    <div className="map-road-container">
-      {/* 제목 */}
-      <h1 className="MRheading">여행루트</h1>
+    <div>
 
-      {/* 지도 영역 */}
-      <div id="map" className="map-container"></div>
+      <div className='js-halfheight mb-4'
+        style={{
+          backgroundImage: "url('/images/transport/palace.jpg')",
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center', // 이미지 위치를 중앙에 맞추기
+        }}>
 
-      <div className="MRbuttons">
-        <Link
-          className="MRbutton"
-          target="_blank"
-          to="https://map.kakao.com/?from=roughmap&eName=%EC%84%9C%EC%9A%B8%20%EC%84%9C%EC%B4%88%EA%B5%AC%20%EC%84%9C%EC%B4%88%EB%8C%80%EB%A1%9C77%EA%B8%B8%2041"
-        >
-          길찾기
-        </Link>
       </div>
+      <div className="container">
+        <div className="map-road-container">
+          {/* 제목 */}
+          <h1 className="MRheading">여행루트</h1>
 
-      {/* 주소 및 연락처 */}
-      <p className="MRinfo">
-        <span>
-          <img
-            src="images\transport\MapMarker.png"
-            width="42"
-            height="34"
-            alt="지도 마커"
-          />
-          <h3>서울시 서초구 서초대로 77길 4층 (누리군청)</h3>
-        </span>
+          {/* 지도 영역 */}
+          <div id="map" className="map-container"></div>
 
-        <div className="MRinfo-contact">
-          <span className="MRinfo-contact-item">
-            <img src="images/transport/Tel.png" width="32" height="24" alt="전화" />
+          <div className="MRbuttons">
+            <Link
+              className="MRbutton"
+              target="_blank"
+              to="https://map.kakao.com/?from=roughmap&eName=%EC%84%9C%EC%9A%B8%20%EC%84%9C%EC%B4%88%EA%B5%AC%20%EC%84%9C%EC%B4%88%EB%8C%80%EB%A1%9C77%EA%B8%B8%2041"
+            >
+              길찾기
+            </Link>
+          </div>
+
+          {/* 주소 및 연락처 */}
+          <p className="MRinfo">
             <span>
-              <b>TEL</b>
-              <br />
-              <b>02-1234-1234</b>
+              <img
+                src="images\transport\MapMarker.png"
+                width="42"
+                height="34"
+                alt="지도 마커"
+              />
+              <h3>서울시 서초구 서초대로 77길 4층 (누리군청)</h3>
             </span>
-          </span>
-          <br/>
-          <span className="MRinfo-contact-item">
-            <img src="images/transport/Fax.png" width="32" height="24" alt="팩스" />
-            <span>
-              <b>FAX</b>
+
+            <div className="MRinfo-contact">
+              <span className="MRinfo-contact-item">
+                <img src="images/transport/Tel.png" width="32" height="24" alt="전화" />
+                <span>
+                  <b>TEL</b>
+                  <br />
+                  <b>02-1234-1234</b>
+                </span>
+              </span>
               <br />
-              <b>02-1234-1234</b>
-            </span>
-          </span>
+              <span className="MRinfo-contact-item">
+                <img src="images/transport/Fax.png" width="32" height="24" alt="팩스" />
+                <span>
+                  <b>FAX</b>
+                  <br />
+                  <b>02-1234-1234</b>
+                </span>
+              </span>
+            </div>
+          </p>
         </div>
-      </p>
+      </div>
     </div>
   );
 };

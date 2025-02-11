@@ -1,6 +1,6 @@
 // 2025.02.02. 21:00 생성자: 이학수, 제휴업체 호텔 등록 폼 
 import React, { useEffect, useRef, useState } from 'react'
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import { Link, useLocation } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
 
@@ -45,11 +45,11 @@ const CoalitionForm: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
-        updateHeight();
-        window.addEventListener("resize", updateHeight);
+        // js-halfheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
+        updateHalfHeight();
+        window.addEventListener("resize", updateHalfHeight);
         return () => {
-            window.removeEventListener("resize", updateHeight);
+            window.removeEventListener("resize", updateHalfHeight);
         };
     }, []);
 
@@ -119,10 +119,10 @@ const CoalitionForm: React.FC = () => {
 
     return (
         <div>
-            <div className="hero-wrap js-fullheight" style={{ /*backgroundImage: "url('/images/bg_5.jpg')",*/ backgroundColor: "black" }}>
+            <div className="hero-wrap js-halfheight" style={{ /*backgroundImage: "url('/images/bg_5.jpg')",*/ backgroundColor: "black" }}>
                 <div className="overlay"></div>
                 <div className="container">
-                    <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                    <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">홈</Link></span> <span>제휴</span></p>
                             <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>제휴</h1>
