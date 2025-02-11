@@ -1,27 +1,22 @@
 /* 전체 책 스타일 */
-.album-web {
-    /* background: rgb(255, 251, 251); */
-    width: 60%;  /* 전체 너비의 80% */
-    max-width: 600px;  /* 최대 너비 설정 */
+.book .album-web {
+    width: 60%;
+    max-width: 600px;
     height: auto;
     text-align: center;
-
-    
 }
 
 /* 각 페이지에 그림자 추가 */
-.page {
-    /* background: rgb(255, 251, 251); */
+.book .page {
     background-image: url('/public/images/Diaryinner.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
-
 }
 
 /* 커버 페이지 스타일 */
-.cover {
+.book .cover {
     background-color: rgb(248, 255, 225);
     box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
     display: flex;
@@ -29,11 +24,9 @@
     align-items: center;
     height: 100%;
     text-align: center;
-
-    
 }
 
-.cover h2 {
+.book .cover h2 {
     white-space: nowrap;
     position: absolute;
     top: 50%;
@@ -41,58 +34,41 @@
     transform: translate(-50%, -50%);
     font-size: 2em;
     font-weight: bold;
-
-
-    
 }
-
-
 
 /* 첫 번째, 마지막 페이지 스타일 */
-.firstcover {
+.book .firstcover, 
+.book .lastcover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('/public/images/Diarycover.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    /* background-color: rgb(251, 225, 139);  노란색 배경 */
-    box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69); /* 그림자 */
-    height: 100%;  /* 페이지 높이를 꽉 채우도록 */
-    width: 100%;  /* 페이지 너비를 꽉 채우도록 */
-    position: absolute;  /* 절대 위치로 가운데 정렬 */
+    box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
+    height: 100%;
+    width: 100%;
+    position: absolute;
     top: 0;
     left: 0;
-
     border: 2px solid #000;
-    border-top-right-radius: 10px;  /* 우측 상단 */
-    border-bottom-right-radius: 10px;  /* 우측 하단 */
 }
 
-.lastcover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('/public/images/Diarycoverback.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    /* background-color: rgb(251, 225, 139);  노란색 배경 */
-    box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69); /* 그림자 */
-    height: 100%;  /* 페이지 높이를 꽉 채우도록 */
-    width: 100%;  /* 페이지 너비를 꽉 채우도록 */
-    position: absolute;  /* 절대 위치로 가운데 정렬 */
-    top: 0;
-    left: 0;
+.book .firstcover {
+    background-image: url('/public/images/Diarycover.jpg');
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 
-    border: 2px solid #000;
-    border-top-left-radius: 10px;  
+.book .lastcover {
+    background-image: url('/public/images/Diarycoverback.png');
+    border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
 /* 텍스트 가운데 정렬 */
-.firstcover h2, .lastcover h2 {
+.book .firstcover h2, 
+.book .lastcover h2 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -103,24 +79,17 @@
     white-space: nowrap;
 }
 
-/* 페이지의 그림자와 배경을 제거하여 커버만 하나의 페이지로 보이게 설정 */
-.page:first-child .content,
-.page:last-child .content {
-    padding-top: 0; /* 여백을 없애서 한 페이지처럼 보이게 설정 */
-    margin-top: 0;
-}
-
 /* 첫 번째와 마지막 페이지 배경 제거 */
-.page:first-child,
-.page:last-child {
-    background-color: transparent; /* 배경을 투명으로 */
-    box-shadow: none;  /* 그림자 제거 */
+.book .page:first-child,
+.book .page:last-child {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 /* 페이지 번호 스타일 */
-.page-number {
+.book .page-number {
     position: absolute;
-    bottom: 10px; /* 페이지 번호 하단 위치 */
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 14px;
@@ -130,40 +99,37 @@
 
 /* 책 배경 스타일 */
 .book {
-    background-image: url('/public/images/diary.jpg'); /* 이미지 경로 */
-    background-size: cover;  /* 배경 이미지가 요소를 꽉 채우도록 */
-    background-position: center center;  /* 이미지 중앙 정렬 */
-    background-repeat: no-repeat;  /* 이미지 반복되지 않도록 */
+    background-image: url('/public/images/diary.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     display: flex;
-    justify-content: center;  /* 중앙 정렬 */
-    align-items: center;  /* 세로 중앙 정렬 */
-    height: 100vh;  /* 전체 화면 높이 */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* 책 내용 스타일 */
-.bookinfo {
-    width: 70vw;  /* 전체 화면 너비의 70% */
-    max-width: 1000px;  /* 최대 너비 제한 */
+.book .bookinfo {
+    width: 70vw;
+    max-width: 1000px;
     height: auto;
     padding: 20px;
 }
 
 /* 버튼과 폼 스타일 */
-.btn,
-.form-control {
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    color: inherit;
-    appearance: none;
-    font-size: 1em;
-    line-height: 1.2;
+.book .btn,
+.book .form-control {
     padding: 0.5em var(--padding-x);
     border-width: 2px;
     border-style: solid;
+    font-size: 1em;
+    line-height: 1.2;
+    color: inherit;
+    appearance: none;
 }
 
-.btn {
+.book .btn {
     background-color: aquamarine;
     display: inline-flex;
     justify-content: center;
@@ -172,18 +138,16 @@
     border-color: transparent;
 }
 
-.form-control {
+.book .form-control {
     --padding-x: 0.5em;
 }
 
-input {
+.book input {
     text-align: center;
 }
 
-.formContainer {
-    align-items: center;
+.book .formContainer {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
