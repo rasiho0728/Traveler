@@ -71,7 +71,7 @@ const Header: React.FC = () => {
                             <li className="nav-item"><Link to="/traveler/about" className="nav-link">소개</Link></li>
                             <li className="nav-item"><Link to="/traveler/tour" className="nav-link">여행</Link></li>
                             <li className="nav-item"><Link to="/traveler/hotels" className="nav-link">숙박</Link></li>
-                            <li className="nav-item"><Link to="/traveler/blog" className="nav-link">블로그</Link></li>
+                            {/* <li className="nav-item"><Link to="/traveler/blog" className="nav-link">블로그</Link></li> */}
                             <li className="nav-item"><Link to="/traveler/contact" className="nav-link">문의하기</Link></li>
                             <li className="nav-item"><Link to="/traveler/coalition" className="nav-link">제휴</Link></li>
                             <li className="nav-item"><Link to="/traveler/Transport" className="nav-link">대중교통</Link></li>
