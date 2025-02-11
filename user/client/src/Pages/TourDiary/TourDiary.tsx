@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "./TourDiary.css";
+import { useParams } from "react-router-dom";
 
 // PageCoverProps에서 children을 옵셔널로 처리
 interface PageCoverProps {
@@ -45,6 +46,10 @@ interface PageProps {
 }
 
 const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
+
+  const { id } = useParams<{ id: string }>();
+
+
   return (
     <div className="page" ref={ref}>
       <h3 style={{marginTop: "10px"}}>{props.user} Diary</h3>
@@ -149,6 +154,15 @@ const TourDiary: React.FC = () => {
               </div>
             </Page>
           ))}
+
+            {/* <Page key={pages.length} number={`${pages.length}`} user={user.name}>
+            
+              <div>
+                <input type="File" accept="image/*" style={{ width: "90%", height: "auto" ,boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",borderRadius: "5px" }}/>
+                <input type="text" typeof="p" style={{marginTop: "5px"}}></input>
+                <input type="text" typeof="h4" style={{marginTop: "15px"}}></input>                
+              </div>
+            </Page> */}
           <PageCover></PageCover>
           <LastPageCover></LastPageCover>
         </HTMLFlipBook>
