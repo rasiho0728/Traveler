@@ -1,0 +1,13 @@
+.ai-tour-recommended{
+    background-color: #2f89fc; 
+    color: white; 
+    border: none;
+    width: 213px;
+    height: 58px;
+    font-weight: 400;
+}
+.ai-tour-recommended:hover{
+    background-color: white; 
+    color: #2f89fc; 
+    border: 1px solid #2f89fc; 
+}

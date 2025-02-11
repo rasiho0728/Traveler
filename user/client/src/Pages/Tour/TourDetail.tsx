@@ -61,19 +61,22 @@ const TourDetail: React.FC = () => {
                 <div className="container">
                     <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
-                            <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span className="mr-2"><Link to="/traveler/tour">Tour</Link></span> <span>Hotel Single</span></p>
-                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>Tour Details</h1>
+                            <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span className="mr-2"><Link to="/traveler/tour">Tour</Link></span></p>
+                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>파리,이탈리아</h1>
                         </div>
                     </div>
                 </div>
             </div>
-
-
             <section className="ftco-section ftco-degree-bg">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-3 sidebar">
                             <div className="sidebar-wrap bg-light ftco-animate">
+                                <div className="form-group text-center">
+                                    <Link to="/traveler/tour/recommended" className="btn btn-info py-3 px-5 w-100" >
+                                        AI 여행지 추천 !
+                                    </Link>
+                                </div>
                                 <h3 className="heading mb-4">여행지 검색</h3>
                                 <form action="#">
                                     <div className="fields">
@@ -93,18 +96,6 @@ const TourDetail: React.FC = () => {
                                                     <option value="">테마</option>
                                                     <option value="">지역</option>
                                                 </select>
-                                            </div>
-                                        </div>
-
-                                        <div className="form-group">
-                                            <div className="range-slider">
-                                                <span>
-                                                    <input type="number" value="25000" min="0" max="120000" />	-
-                                                    <input type="number" value="50000" min="0" max="120000" />
-                                                </span>
-                                                <input value="1000" min="0" max="120000" step="500" type="range" />
-                                                <input value="50000" min="0" max="120000" step="500" type="range" />
-
                                             </div>
                                         </div>
                                         <div className="form-group">
@@ -155,12 +146,12 @@ const TourDetail: React.FC = () => {
                                     <ImgCarousel data={[1, 2, 3]} />
                                 </div>
                                 <div className="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
-                                 
+
                                     <span>Our Best hotels &amp; Rooms</span>
                                     <h2>파리,이탈리아</h2>
                                     <p className="rate mb-5">
                                         <span className="loc"><Link to="#"><i className="icon-map"></i> 291 South 21th Street, Suite 721 New York NY 10016</Link></span>
-                                        <span className="star"style={{ color: "#f85959", fontWeight: "bold",fontSize: "11px", }}>
+                                        <span className="star" style={{ color: "#f85959", fontWeight: "bold", fontSize: "11px", }}>
                                             <i className="icon-star"></i>
                                             <i className="icon-star"></i>
                                             <i className="icon-star"></i>
@@ -169,24 +160,9 @@ const TourDetail: React.FC = () => {
                                             {4} / 5 별점</span>
                                     </p>
                                     <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-                                    <div className="d-md-flex mt-5 mb-5">
-                                        <ul>
-                                            <li>The Big Oxmox advised her not to do so</li>
-                                            <li>When she reached the first hills of the Italic Mountains</li>
-                                            <li>She had a last view back on the skyline of her hometown </li>
-                                            <li>Bookmarksgrove, the headline of Alphabet </li>
-                                        </ul>
-                                        <ul className="ml-md-5">
-                                            <li>Question ran over her cheek, then she continued</li>
-                                            <li>Pityful a rethoric question ran</li>
-                                            <li>Mountains, she had a last view back on the skyline</li>
-                                            <li>Headline of Alphabet Village and the subline</li>
-                                        </ul>
-                                    </div>
-                                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                                 </div>
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                <TourSchedule />
+                                    <TourSchedule />
                                     <h4 className="mb-4">여행지 미리 둘러보기</h4>
 
                                     <div className="block-16">
@@ -253,7 +229,7 @@ const TourDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="#">상세보기</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -282,7 +258,7 @@ const TourDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="#">상세보기</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -311,7 +287,7 @@ const TourDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="#">상세보기</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -347,7 +323,7 @@ const TourDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="#">상세보기</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -376,7 +352,7 @@ const TourDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="#">상세보기</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -405,7 +381,7 @@ const TourDetail: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="#">상세보기</Link></span>
                                                     </p>
                                                 </div>
                                             </div>

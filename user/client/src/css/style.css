@@ -2095,12 +2095,12 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8; }
+  background-color: #2f89fc;
+  border-color: #2f89fc; }
   .btn-info:hover {
-    color: #fff;
-    background-color: #138496;
-    border-color: #117a8b; }
+    color: #2f89fc;
+    background-color: #fff;
+    border-color: #2f89fc; } /*btn-info,btn-info:hover 색상만 변경 2025-02-11 이승환*/
   .btn-info:focus, .btn-info.focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5); }
@@ -7304,7 +7304,9 @@ h1, h2, h3, h4, h5,
   top: 20px;
   left: 0;
   right: 0;
-  z-index: 3; }
+  /* top: 0; */
+  /* background-color: #000; */
+  z-index: 30000; }
   @media (max-width: 991.98px) {
     .ftco-navbar-light {
       background: #000000 !important;
@@ -9348,6 +9350,7 @@ textarea.form-control {
   display: none;
   position: absolute;
   padding-left: 12px;
+  /* background-color: #343a40; */
 }
 
 .nav-item:hover ul.sub-menu{
