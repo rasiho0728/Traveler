@@ -70,5 +70,12 @@ export const updateHeight = () => {
     elements.forEach((element: any) => {
         element.style.height = `${window.innerHeight}px`;
     });
+};
 
+// 요소의 높이를 화면의 크기의 반으로 갱신해주는 함수
+export const updateHalfHeight = () => {
+    const elements = document.querySelectorAll('.js-halfheight')
+    elements.forEach((element: any) => {
+        element.style.height = `${window.innerHeight/2}px`;
+    });
 };
