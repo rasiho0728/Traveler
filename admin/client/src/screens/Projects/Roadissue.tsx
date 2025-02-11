@@ -2,11 +2,14 @@ import React from 'react'
 
 const Roadissue: React.FC = () => {
   return (
-    <div className="container-xxl">
-    <h2>Train Issue Page</h2>
-    {/* 여기에는 이 페이지에서 필요한 내용 추가 */}
-</div>
-  )
+    <div style={{ width: '100%', height: '100vh',display:'block'}}>
+        <iframe
+            src="https://www.utic.go.kr/etc/telMap.do?key=phI0oAv4yuyqD0PdOZEgwjVPss12VCroZYTMFdL0o"
+            style={{ width: '100%', height: '100%'}}
+            title="TOPIS"
+        />
+    </div>
+)
 }
 
 export default Roadissue

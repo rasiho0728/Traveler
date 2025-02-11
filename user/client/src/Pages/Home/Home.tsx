@@ -638,7 +638,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            <section className="ftco-section">
+            {/* <section className="ftco-section">
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate">
@@ -753,7 +753,7 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <section className="ftco-section bg-light">
                 <div className="container">

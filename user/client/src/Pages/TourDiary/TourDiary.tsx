@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import "./TourDiary.css";
+import { useParams } from "react-router-dom";
 
 // PageCoverProps에서 children을 옵셔널로 처리
 interface PageCoverProps {
@@ -45,9 +46,13 @@ interface PageProps {
 }
 
 const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
+
+  const { id } = useParams<{ id: string }>();
+
+
   return (
     <div className="page" ref={ref}>
-      <h3>{props.user}의 기록</h3>
+      <h3 style={{marginTop: "10px"}}>{props.user} Diary</h3>
       <div className="content">{props.children}</div>
       <div className="page-number">{props.number}</div>
     </div>
@@ -141,13 +146,23 @@ const TourDiary: React.FC = () => {
                 <img
                   src={page.imageUrl}
                   alt={`Page ${page.number}`}
-                  style={{ width: "90%", height: "auto" }}
+                  style={{ width: "90%", height: "auto" ,boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",borderRadius: "5px" }}
                 />
-                <h4>{page.comment}</h4>
-                <p>{page.address}</p>
+                <p style={{marginTop: "5px"}}>{page.address}</p>
+                <h4 style={{marginTop: "15px"}}>{page.comment}</h4>
+                
               </div>
             </Page>
           ))}
+
+            {/* <Page key={pages.length} number={`${pages.length}`} user={user.name}>
+            
+              <div>
+                <input type="File" accept="image/*" style={{ width: "90%", height: "auto" ,boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",borderRadius: "5px" }}/>
+                <input type="text" typeof="p" style={{marginTop: "5px"}}></input>
+                <input type="text" typeof="h4" style={{marginTop: "15px"}}></input>                
+              </div>
+            </Page> */}
           <PageCover></PageCover>
           <LastPageCover></LastPageCover>
         </HTMLFlipBook>

@@ -68,9 +68,14 @@ import TourListDetail from "./Tour/TourListDetail";
 import TourUpload from "./Tour/TourUpload";
 import TourDiaryDetail from "./Tour/TourDiaryDetail";
 import Members_U from "./Dashboard/Members_U";
+import CoalitionList from "./Coalition/CoalitionList";
 import HotelReservationDetail from "./Tickets/HotelReservationDetail";
 import HotelReservation from "./Tickets/HotelReservation";
 import ServerManagement from "./OtherPages/ServerManagement";
+import Airline from "./Projects/Airline";
+import Transportissue from "./Projects/Transportissue";
+import Roadissue from "./Projects/Roadissue";
+import MyPay from "./Projects/MyPay";
 
 
 const MainIndex: React.FC = () => {
@@ -98,11 +103,14 @@ const MainIndex: React.FC = () => {
                     <Route path={`${process.env.REACT_APP_BASE_URL}/blacklist`} element={<AiBlackList />} /> {/*2025 02 07 장지원 배낭톡 수정중 */}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/project-dashboard`} element={<ProjectDashboard />} />
                     <Route path={`${process.env.REACT_APP_BASE_URL}/projects`} element={<Projects />} />
-                    <Route path={`${process.env.REACT_APP_BASE_URL}/Transport`} element={<Transport />} /> {/**20250205최의진 추가 */}
-                    <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist`} element={<TourList />} />
+                    <Route path={`${process.env.REACT_APP_BASE_URL}/pay`} element={<MyPay/>} />{/*250211 최의진 완료*/}
+                    <Route path={`${process.env.REACT_APP_BASE_URL}/Transportissue`} element={<Transportissue/>} />{/*250211 최의진 완료*/}
+                    <Route path={`${process.env.REACT_APP_BASE_URL}/Transportissue/Roadissue`} element={<Roadissue/>} />{/*250211 최의진 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/detail/:id`} element={<TourListDetail />} />{/*250207 민다빈 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-upload`} element={<TourUpload />} />{/*250206 민다빈 완료*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourlist/tour-update`} element={<TourUpdate />} />{/*250207 민다빈 완료*/}
+                    <Route path={`${process.env.REACT_APP_BASE_URL}/coalition`} element={<CoalitionList />} />
+                    <Route path={`${process.env.REACT_APP_BASE_URL}/coalition/:id`} element={<CoalitionList />} />
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourstaus`} element={<TourDashboard />} />{/*250207 민다빈 수정*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary`} element={<TourDiary />} />{/*250206 민다빈 수정*/}
                     <Route path={`${process.env.REACT_APP_BASE_URL}/tourdiary/detail/:id`} element={<TourDiaryDetail />} />

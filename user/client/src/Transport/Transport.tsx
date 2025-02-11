@@ -6,12 +6,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 registerLocale("ko", ko);
 
-
-
 const Transport: React.FC = () => {
-    const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
-    const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
-    const navigate = useNavigate();
     useEffect(() => {
         // 요소의 [data-scrollax] 옵션을 분석 적용
         handleScroll()
@@ -94,7 +89,6 @@ const Transport: React.FC = () => {
                                                 </div>
                                             </div>
                                             <p>서울에서 부산까지 고속버스</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i>부산광역시</span>
@@ -125,7 +119,6 @@ const Transport: React.FC = () => {
                                                 </div>
                                             </div>
                                             <p>세계 최고의 지하철 서비스</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i> 서울특별시</span>
@@ -155,8 +148,7 @@ const Transport: React.FC = () => {
                                                     </p>
                                                 </div>
                                             </div>
-                                            <p>세계에서 가장 바쁜 항로1위</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
+                                            <p>세계에서 가장 바쁜 항로 1위</p>
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i>김포 to 제주</span>
@@ -187,7 +179,6 @@ const Transport: React.FC = () => {
                                                 </div>
                                             </div>
                                             <p>최대한 빨리 이동합시다</p>
-                                            <p className="days"><span>2 days 3 nights</span></p>
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i>Fast Route</span>

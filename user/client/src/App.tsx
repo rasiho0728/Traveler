@@ -56,6 +56,7 @@ import BackpackMemo from './Pages/Community/BackpackMemo';
 import SignSelect from './Pages/Login/SignSelect';
 import Partner from './Pages/Login/Partner';
 import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
+import Bookshelf from './Pages/TourDiary/Bookshelf';
 
 
 
@@ -73,7 +74,6 @@ function App() {
                                 <Route path='/traveler/tour/rate' element={<Rate />} />
                                 <Route path='/traveler/tour/:num' element={<TourDetail />} />
                                 <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
-                                <Route path='/traveler/tour/' element={<TourRecommended />} />
                                 <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
                                 <Route path='/traveler/hotels' element={<Hotel2 />} />
                                 <Route path='/traveler/hotels/:num' element={<HotelDetail2 />} />
@@ -106,7 +106,8 @@ function App() {
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
                                 <Route path='/traveler/Transport/Airline' element={<Airline />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Transport/MapRoad' element={<MapRoad />} />{/*2025-02-10최의진 추가 */}
-                                <Route path='/traveler/tourdiary' element={<TourDiary />} />
+                                <Route path='/traveler/tourdiary/:id' element={<TourDiary />} />
+                                <Route path='/traveler/tourdiary' element={<Bookshelf />} />
                         </Routes>
                         <Footer />
                         <Chat />
