@@ -1,3 +1,12 @@
+
+@font-face {
+    font-family: 'Ownglyph UNZ';
+    src: url('/public/fonts/Ownglyph UNZ.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 /* 전체 책 스타일 */
 .book .album-web {
     width: 60%;
@@ -8,11 +17,16 @@
 
 /* 각 페이지에 그림자 추가 */
 .book .page {
+    font-family: 'Ownglyph UNZ', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #333;
     background-image: url('/public/images/Diaryinner.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
+    box-shadow: 0 1.5em 3em -1em rgb(48, 47, 47);
 }
 
 /* 커버 페이지 스타일 */
@@ -41,7 +55,8 @@
 .book .lastcover {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -54,13 +69,17 @@
     border: 2px solid #000;
 }
 
+
+
 .book .firstcover {
+    margin-left: -50px;
     background-image: url('/public/images/Diarycover.jpg');
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
 .book .lastcover {
+    margin-right: -50px;
     background-image: url('/public/images/Diarycoverback.png');
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -115,6 +134,11 @@
     max-width: 1000px;
     height: auto;
     padding: 20px;
+}
+
+.book .bookinfo .img{
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* 이미지에 그림자 추가 */
+    border-radius: 10px; /* 모서리를 둥글게 */
 }
 
 /* 버튼과 폼 스타일 */
