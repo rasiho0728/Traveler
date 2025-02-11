@@ -27,26 +27,26 @@ const Airline: React.FC = () => {
         <div>
             <style>
                 {`
-              table{
-                  width:80%;
-                  border-collapsecollapse;
-                  margin-top:20px auto;
-                  }
-              th{
-              background-color:#f2f2f2;
-              border:1px solid #ddd;
-              padding:8px;
-              text-allign:left;
-              }
-              td{
-              border:1px solid #ddd;
-              padding:8px;
-              }
-              tr:hover,td:hover{
-              background-color:orange;
-              cursor:pointer;     
-              }
-                  `
+            table{
+                width:80%;
+                border-collapsecollapse;
+                margin-top:20px auto;
+                }
+            th{
+            background-color:#f2f2f2;
+            border:1px solid #ddd;
+            padding:8px;
+            text-allign:left;
+            }
+            td{
+            border:1px solid #ddd;
+            padding:8px;
+            }
+            tr:hover,td:hover{
+            background-color:orange;
+            cursor:pointer;     
+            }
+                `
                 }      {/**cursor:pointer는 마우스 올라가면 손가락 모양으로 변함 */}
             </style>
             <button onClick={fetchData} disabled={loading}>

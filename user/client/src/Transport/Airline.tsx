@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // 2025.02011수정. 최의진,
 //"https://sky.interpark.com/schedules/domestic/CJU-GMP-20250212?adt=2&chd=0&inf=0&seat=DOMESTIC_BASE&pickAirLine=&pickMainFltNo=&pickSDate="
 
@@ -23,6 +23,9 @@ const Airline: React.FC = () => {
             setLoading(false); //로딩 또는 에러를 멈출려고 존재하는것.
         }
     };
+  useEffect(() => {
+        fetchData();
+    }, []); 
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>{/* Header */}
@@ -57,9 +60,7 @@ const Airline: React.FC = () => {
                 </table>
             </div>
             <div style={{ padding: '10px', backgroundColor: '#f2f2f2' }}>
-                <button onClick={fetchData} disabled={loading}>
-                    {loading ? '로딩중..' : '데이터가져오기'}
-                </button>
+                
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>
         </div>

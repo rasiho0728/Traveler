@@ -1,59 +1,64 @@
-import React, { useEffect, useState } from 'react'
-// 2025.0211. 19:00 수정: 최의진,
-import xml2js from 'xml2js';
+import React, { useEffect, useState } from 'react';
 
+interface Subway {
+    updnLine: string;
+    trainLineNm: string;
+    statnNm: string;
+    btrainSttus: string;
+    bstatnNm: string;
+    arvlMsg2: string;
+    arvlMsg3: string;
+    recptnDt: string;
+}
 
 const SubwayDetail: React.FC = () => {
-    const [xmlData, setXmlData] = useState<any>(null);
+    const [data, setData] = useState<Subway[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    // XML 데이터를 파싱하는 함수
-    const parseXmlData = (data: string) => {
-        xml2js.parseString(data, (error:Error | null, result : any) => {
-            if (error) {
-                setError("XML 파싱 오류");
-                return;
-            }
-            console.log(data)
-            setXmlData(result);
-        });
-    };
-
-    // XML 파일을 가져오는 useEffect
-    useEffect(() => {
+      // JSON 데이터를 가져오는 useEffect
+      useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://swopenapi.seoul.go.kr/api/subway/sample/xml/realtimeStationArrival/ALL');
-                const text = await response.text();
-                parseXmlData(text);
+                const response = await fetch('http://swopenapi.seoul.go.kr/data/1739263851025.json');
+                const result = await response.json(); // JSON 형식으로 바로 받기
+
+                // "realtimeArrivalList"에서 데이터 추출
+                setData(result?.realtimeArrivalList || []); // 데이터 구조에 맞게 파싱
             } catch (err) {
                 setError('데이터를 가져오는 데 실패했습니다.');
             }
         };
+        console.log(data)
         fetchData();
     }, []);
 
-    // XML 데이터를 테이블로 변환
+    // 테이블을 렌더링하는 함수
     const renderTable = () => {
-        if (!xmlData) return <div>데이터 로딩 중...</div>;
-
-        const rows = xmlData?.response?.body?.items[0]?.item || [];
+        if (!data.length) return <div>데이터 로딩 중...</div>;
 
         return (
-            <table>
+            <table border={1} style={{ width: '100%', marginBottom: '20px' }}>
                 <thead>
                     <tr>
-                        <th>기차 이름</th>
-                        <th>운행 정보</th>
-                        <th>지연 여부</th>
+                        <th>상행/하행</th>
+                        <th>기차 노선</th>
+                        <th>역 이름</th>
+                        <th>기차 상태</th>
+                        <th>출발 역</th>
+                        <th>도착 메시지</th>
+                        <th>도착 메시지 3</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((row: any, index: number) => (
+                    {data.map((item, index) => (
                         <tr key={index}>
-                            <td>{row.trainName[0]}</td>
-                            <td>{row.operatingInfo[0]}</td>
-                            <td>{row.delayStatus[0]}</td>
+                            <td>{item.updnLine}</td>
+                            <td>{item.trainLineNm}</td>
+                            <td>{item.statnNm}</td>
+                            <td>{item.btrainSttus}</td>
+                            <td>{item.bstatnNm}</td>
+                            <td>{item.arvlMsg2}</td>
+                            <td>{item.arvlMsg3}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -68,4 +73,4 @@ const SubwayDetail: React.FC = () => {
     );
 };
 
-export default SubwayDetail
+export default SubwayDetail;
