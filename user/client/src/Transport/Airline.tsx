@@ -1,89 +1,69 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-// 2025.02010수정. 11:00 추가: 최의진,
+// 2025.02011수정. 최의진,
 //"https://sky.interpark.com/schedules/domestic/CJU-GMP-20250212?adt=2&chd=0&inf=0&seat=DOMESTIC_BASE&pickAirLine=&pickMainFltNo=&pickSDate="
 
 const Airline: React.FC = () => {
-  const [data, setData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const fetchData = async () => {
-    setLoading(true);
-    setError(null);
-    try {  //순서2 try catch문
-        const response = await axios.get(
-            'https://api.odcloud.kr/api/15003087/v1/uddi:9bf2212e-7928-4437-bd95-ee7e714a0987?page=1&perPage=10&serviceKey=slzpzK8stOwRh%252FjDOXjABJTbNvy%252BpbR8g9wMOXZTnVmdRjeb3yCUvLxqm2mMQMgTCXuEPXnMbxFliJeSMu1a%252BA%253D%253D'
-            //순서3
-        );
-        setData(response.data.data);
-    } catch (error) {
-        setError(`데이터 가져오는중 오류 발생`);
-    } finally {
-        setLoading(false); //로딩 또는 에러를 멈출려고 존재하는것. 만약에 없으면 계속 로딩중으로 나온다.
-    }
+    const [data, setData] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
+    const fetchData = async () => {
+        setLoading(true);
+        setError(null);
+        try {  //순서2 try catch문
+            const response = await axios.get(
+                'https://api.odcloud.kr/api/15003087/v1/uddi:705bfaaa-1fee-4b3c-8e89-cbbf0fd57748?page=1&perPage=30&serviceKey=XDMNsafrFJZRccQEUvJz2OG9IvqT7nEe%2FNjC6Twlm5H%2BWSJnH69syP9Su%2BlWuAGnG1DfL9%2FjHAHo6H0YXTMQ9g%3D%3D'
+                //순서3
+            );
+            setData(response.data.data);
+        } catch (error) {
+            setError(`데이터 가져오는중 오류 발생`);
+        } finally {
+            setLoading(false); //로딩 또는 에러를 멈출려고 존재하는것.
+        }
+    };
 
-};
-  return (
-    <div>
-    <style>
-        {  `
-            table{
-                width:80%;
-                border-collapsecollapse;
-                margin-top:20px auto;
-                }
-            th{
-            background-color:#f2f2f2;
-            border:1px solid #ddd;
-            padding:8px;
-            text-allign:left;
-            }
-            td{
-            border:1px solid #ddd;
-            padding:8px;
-            }
-            tr:hover,td:hover{
-            background-color:orange;
-            cursor:pointer;     
-            }
-                `
-        }      *cursor:pointer는 마우스 올라가면 손가락 모양으로 변함
-        </style>                
-    <button onClick={fetchData} disabled={loading}>
-        {loading ? '로딩중..' : '데이터가져오기'}
-    </button>
-    {error && <p style={{ color: 'red' }}>{error}</p>}
-    <table>
-        <thead>
-            <tr className="hero-wrap js-fullheight" >
-                <th>항공사</th>
-                <th>운항편명</th>
-                <th>출발공항</th>
-                <th>도착공항</th>
-                <th>출발시간</th>
-                <th>도착시간</th>
-                <th>운항요일</th>
-                <th>국내_국제</th>
-            </tr>
-        </thead>
-        <tbody>
-            {data.map((item, index) => (
-                <tr className="hero-wrap js-fullheight"  key={index} style={{ textAlign: "center" ,backgroundColor: "black"}}>
-                    <td>{item["항공사"]}</td>
-                    <td>{item["운항편명"]}</td>
-                    <td>{item["출발공항"]}</td>
-                    <td>{item["도착공항"]}</td>
-                    <td>{item["출발시간"]}</td>
-                    <td>{item["도착시간"]}</td>
-                    <td>{item["운항요일"]}</td>
-                    <td>{item["국내_국제"]}</td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-</div>
-  )
-
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>{/* Header */}
+            <div style={{ flex: 1, overflowY: 'auto' }}>
+                <table style={{ width: '80%', margin: '20px auto', borderCollapse: 'collapse', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
+                    <thead>
+                        <tr style={{ backgroundColor: '#4CAF50', color: 'black' }}>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>항공사</th>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>운항편명</th>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>출발공항</th>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>도착공항</th>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>출발시간</th>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>도착시간</th>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>운항요일</th>
+                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>국내_국제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={index} style={{ textAlign: "center", backgroundColor: "#f9f9f9", borderBottom: '1px solid #ddd' }}>
+                                <td style={{ padding: '12px 15px' }}>{item["항공사"]}</td>
+                                <td style={{ padding: '12px 15px' }}>{item["운항편명"]}</td>
+                                <td style={{ padding: '12px 15px' }}>{item["출발공항"]}</td>
+                                <td style={{ padding: '12px 15px' }}>{item["도착공항"]}</td>
+                                <td style={{ padding: '12px 15px' }}>{item["출발시간"]}</td>
+                                <td style={{ padding: '12px 15px' }}>{item["도착시간"]}</td>
+                                <td style={{ padding: '12px 15px' }}>{item["운항요일"]}</td>
+                                <td style={{ padding: '12px 15px' }}>{item["국내_국제"]}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div style={{ padding: '10px', backgroundColor: '#f2f2f2' }}>
+                <button onClick={fetchData} disabled={loading}>
+                    {loading ? '로딩중..' : '데이터가져오기'}
+                </button>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+            </div>
+        </div>
+    );
 }
-export default Airline
+
+export default Airline;

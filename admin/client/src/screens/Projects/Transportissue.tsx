@@ -10,11 +10,13 @@ const Transportissue: React.FC = () => {
     const [isAddUserModal, setIsAddUserModal] = useState(false);
     const navigate = useNavigate()
 
-    const handleClick = () => {
+    const handleRoadClick = () => {
         navigate(`${process.env.REACT_APP_BASE_URL}/Transportissue/Roadissue`); 
 
     };
-   
+   const handleClick =() =>{
+    navigate('');
+   }
     return (
         <div className="container-xxl">
             <PageHeader headerTitle="교통 이슈 모니터링" />
@@ -48,17 +50,11 @@ const Transportissue: React.FC = () => {
                     <button 
                             type="button" 
                             className="btn btn-outline-secondary"
-                            onClick={handleClick} // 클릭 이벤트에 함수 연결
+                            onClick={handleRoadClick} // 클릭 이벤트에 함수 연결
                         >실시간 도로교통 정보
                     <i className="bi bi-train-lightrail-front-fill"></i>
                     </button>      
-                    <button 
-                            type="button" 
-                            className="btn btn-outline-secondary"
-                            onClick={handleClick} // 클릭 이벤트에 함수 연결
-                        >
-                    <i className="bi bi-train-lightrail-front-fill"></i>
-                    </button>                     
+                                     
                     </div>
         </div>
     )

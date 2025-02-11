@@ -56,10 +56,10 @@ const Home: React.FC = () => {
                             <SearchBar />
                             <p>Or browse the highlights</p>
                             <p className="browse d-md-flex">
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>식당</Link></span>
+                                {/* <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>식당</Link></span> */}
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-hotel"></i>숙소</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-meeting-point"></i>지역</Link></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span>
+                                {/* <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span> */}
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="/traveler/Weather/weather"><i className="icon-wb_sunny"></i>날씨</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center">
                                     <button
@@ -638,7 +638,7 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            <section className="ftco-section">
+            {/* <section className="ftco-section">
                 <div className="container">
                     <div className="row justify-content-start mb-5 pb-3">
                         <div className="col-md-7 heading-section ftco-animate">
@@ -753,7 +753,7 @@ const Home: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <section className="ftco-section bg-light">
                 <div className="container">
