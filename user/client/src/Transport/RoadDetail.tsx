@@ -9,13 +9,14 @@ const RoadDetail: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const apiKey = '63f51014-780e-4b0e-a8fd-e0cc3dcb9415';
 
     const fetchData = async () => {
         setLoading(true);
         setError(null);
         try {
             const response = await axios.get(
-                'https://apigw.tmoney.co.kr:5556/invoke/d648205a-e954-488d-84c9-2c35aff3dcc0/getAccessToken'
+                `https://apigw.tmoney.co.kr:5556/invoke/pub.apigateway.oauth2/getAccessToken?apiKey=${apiKey}`
             );
             setData(response.data.data);
         } catch (error) {
@@ -55,7 +56,7 @@ const RoadDetail: React.FC = () => {
             }
           `}
             </style>
-            <button onClick={fetchData}disabled={loading} style={{ zIndex: 100 }} >
+            <button onClick={fetchData} disabled={loading} style={{ zIndex: 100 }} >
                 {loading ? '로딩중..' : '데이터가져오기'}
             </button>
             <button onClick={handleFormClick} style={{ zIndex: 100 }}>
