@@ -47,7 +47,7 @@ interface PageProps {
 const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
   return (
     <div className="page" ref={ref}>
-      <h3>{props.user}의 기록</h3>
+      <h3 style={{marginTop: "10px"}}>{props.user} Diary</h3>
       <div className="content">{props.children}</div>
       <div className="page-number">{props.number}</div>
     </div>
@@ -141,10 +141,11 @@ const TourDiary: React.FC = () => {
                 <img
                   src={page.imageUrl}
                   alt={`Page ${page.number}`}
-                  style={{ width: "90%", height: "auto" }}
+                  style={{ width: "90%", height: "auto" ,boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",borderRadius: "5px" }}
                 />
-                <h4>{page.comment}</h4>
-                <p>{page.address}</p>
+                <p style={{marginTop: "5px"}}>{page.address}</p>
+                <h4 style={{marginTop: "15px"}}>{page.comment}</h4>
+                
               </div>
             </Page>
           ))}
