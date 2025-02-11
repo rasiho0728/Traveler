@@ -164,16 +164,7 @@
                     "isApp": false,
                     "children": []
                 },
-                {      
-                    "name": "Transport",
-                    "routerLink": ["Transport"],
-                    "identifier": "Transport",
-                    "iconClass": "",
-                    "breadcrumbMessage": "",
-                    "isCategory": false,
-                    "isApp": false,
-                    "children": []
-                },
+               
                 {
                     "name": "Tasks",
                     "routerLink": ["tasks"],

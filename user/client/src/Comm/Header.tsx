@@ -4,19 +4,20 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Header: React.FC = () => {
     const { pathname } = useLocation();
-    
+
     // 2025.01.24. 19:50 추가: 이학수, 현재 경로에 따라 네이게이션 버튼의 색깔이 동적이 되도록 추가
     useEffect(() => {
         const entity = document.querySelectorAll<HTMLLinkElement>('div#header nav ul li a');
         entity.forEach((e, i) => {
-            if (pathname.includes(e.getAttribute('href') as string)){
+            // console.log(e.innerHTML)
+            if ((e.getAttribute('href') as string).includes(pathname)) {
                 e.parentElement?.classList.add('active')
-                console.log(pathname)
+                // console.log(pathname)
             } else {
                 e.parentElement?.classList.remove('active')
             }
         })
-    },[pathname])
+    }, [pathname])
 
     // 스크롤에 따라 헤더 상단 고정 및 스타일 변경을 위한 함수
     const navPosition = () => {
@@ -31,7 +32,7 @@ const Header: React.FC = () => {
         }
         if (scrollPosition < 150) {
             if (naviBar.className.includes('scrolled')) {
-                naviBar.className = naviBar.className.replace(' scrolled', '').replace(' sleep','');
+                naviBar.className = naviBar.className.replace(' scrolled', '').replace(' sleep', '');
             }
         }
         if (scrollPosition > 350) {
@@ -42,7 +43,7 @@ const Header: React.FC = () => {
         if (scrollPosition < 350) {
             if (naviBar.className.includes('awake')) {
                 naviBar.className = naviBar.className.replace(' awake', '');
-                if (!naviBar.className.includes('sleep')){
+                if (!naviBar.className.includes('sleep')) {
                     naviBar.className += ' sleep';
                 }
             }
@@ -72,8 +73,6 @@ const Header: React.FC = () => {
                             <li className="nav-item"><Link to="/traveler/tour" className="nav-link">여행</Link></li>
                             <li className="nav-item"><Link to="/traveler/hotels" className="nav-link">숙박</Link></li>
                             {/* <li className="nav-item"><Link to="/traveler/blog" className="nav-link">블로그</Link></li> */}
-                            <li className="nav-item"><Link to="/traveler/contact" className="nav-link">문의하기</Link></li>
-                            <li className="nav-item"><Link to="/traveler/coalition" className="nav-link">제휴</Link></li>
                             <li className="nav-item"><Link to="/traveler/Transport" className="nav-link">대중교통</Link></li>
                             <li className="nav-item">
                                 {/* <Link to="/traveler/contact" className="nav-link">Contact</Link> */}
@@ -84,6 +83,8 @@ const Header: React.FC = () => {
                                     <li className="nav-item"><Link to="/traveler/tourdiary" className="nav-link sub-list">여행다이어리</Link></li>
                                 </ul>
                             </li>
+                            <li className="nav-item"><Link to="/traveler/coalition" className="nav-link">제휴</Link></li>
+                            <li className="nav-item"><Link to="/traveler/contact" className="nav-link">문의하기</Link></li>
                             <li className="nav-item"><Link to="/traveler/mypage" className="nav-link">마이페이지</Link></li>
                             <li className="nav-item cta"><Link to="/traveler/login" className="nav-link"><span>로그인</span></Link></li>
                         </ul>
