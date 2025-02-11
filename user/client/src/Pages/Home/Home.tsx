@@ -56,10 +56,10 @@ const Home: React.FC = () => {
                             <SearchBar />
                             <p>Or browse the highlights</p>
                             <p className="browse d-md-flex">
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>식당</Link></span>
+                                {/* <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-fork"></i>식당</Link></span> */}
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-hotel"></i>숙소</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-meeting-point"></i>지역</Link></span>
-                                <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span>
+                                {/* <span className="d-flex justify-content-md-center align-items-md-center"><Link to="#"><i className="flaticon-shopping-bag"></i>쇼핑</Link></span> */}
                                 <span className="d-flex justify-content-md-center align-items-md-center"><Link to="/traveler/Weather/weather"><i className="icon-wb_sunny"></i>날씨</Link></span>
                                 <span className="d-flex justify-content-md-center align-items-md-center">
                                     <button

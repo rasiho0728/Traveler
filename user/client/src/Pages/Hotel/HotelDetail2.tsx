@@ -288,7 +288,7 @@ const HotelDetail2: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
+                                {/* <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
                                     <h4 className="mb-5">Check Availability &amp; Booking</h4>
                                     <div className="fields">
                                         <div className="row">
@@ -364,7 +364,7 @@ const HotelDetail2: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4" style={{ position: 'relative', zIndex: 1 }}>
                                     <h4 className="mb-4">리뷰 &amp; 평점</h4>
                                     <div className="row">
