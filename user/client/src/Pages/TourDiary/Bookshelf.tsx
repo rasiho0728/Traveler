@@ -39,6 +39,7 @@ const Bookshelf: React.FC = () => {
                 src={book.cover || "/placeholder.svg"}
                 alt={book.title}
                 className="shelfImage"
+                style={{boxShadow : "5px 5px 25px rgba(0, 0, 0, 0.5)"}}
               />
               {/* 타이틀 표시 부분 */}
               {hoveredBook === book.id && (
