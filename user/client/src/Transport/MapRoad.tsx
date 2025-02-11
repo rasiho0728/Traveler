@@ -75,18 +75,11 @@ const MapRoad: React.FC = () => {
     }
   }, []);
 
-  // 현재 위치 함수 (군청 위치로 이동)
-  const moveToFixedMarker = () => {
-    if (fixedMarker && map) {
-      const fixedPosition = fixedMarker.getPosition(); // 고정된 마커의 위치 가져오기
-      map.panTo(fixedPosition); // 지도 중심을 고정된 마커 위치로 이동
-    }
-  };
 
   return (
     <div className="map-road-container">
       {/* 제목 */}
-      <h1 className="MRheading">오시는 길</h1>
+      <h1 className="MRheading">여행루트</h1>
 
       {/* 지도 영역 */}
       <div id="map" className="map-container"></div>
@@ -99,24 +92,13 @@ const MapRoad: React.FC = () => {
         >
           길찾기
         </Link>
-
-        <Link
-          className="MRbutton"
-          to="#"
-          onClick={(e) => {
-            e.preventDefault();
-            moveToFixedMarker(); // 군청 위치로 이동하는 함수 호출
-          }}
-        >
-          군청 위치로
-        </Link>
       </div>
 
       {/* 주소 및 연락처 */}
       <p className="MRinfo">
         <span>
           <img
-            src="images/transport/MapMarker.png"
+            src="images\transport\MapMarker.png"
             width="42"
             height="34"
             alt="지도 마커"
@@ -144,29 +126,6 @@ const MapRoad: React.FC = () => {
           </span>
         </div>
       </p>
-
-
-      {/* 교통편 */}
-      <div className="MRtransport-title"><b style={{ color: '#333' }}>교통편</b></div>
-      <div className="MRtransport">
-        <span className="MRtransport-item">
-          <img src="images/transport/Bus.png" width="32" height="24" alt="버스" />
-          <span>
-            <b>버스</b>
-            <br />
-            <b>140,421,441,452,470,741</b>
-          </span>
-        </span>
-
-        <span className="MRtransport-item">
-          <img src="images/transport/Train.png" width="32" height="24" alt="지하철" />
-          <span>
-            <b>지하철</b>
-            <br />
-            <b>신논현역 8번출구 300m 3분거리, 강남역 10번출구 400m 5분거리</b>
-          </span>
-        </span>
-      </div>
     </div>
   );
 };

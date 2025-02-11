@@ -74,7 +74,6 @@ function App() {
                                 <Route path='/traveler/tour/rate' element={<Rate />} />
                                 <Route path='/traveler/tour/:num' element={<TourDetail />} />
                                 <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
-                                <Route path='/traveler/tour/' element={<TourRecommended />} />
                                 <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
                                 <Route path='/traveler/hotels' element={<Hotel2 />} />
                                 <Route path='/traveler/hotels/:num' element={<HotelDetail2 />} />
