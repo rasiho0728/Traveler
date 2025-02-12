@@ -57,6 +57,7 @@
     text-align: center;
     backdrop-filter: blur(10px);
     margin-top: 100px;
+    margin-bottom: 30px;
 }
 /* ✅ 버튼 컨테이너 정렬 */
 .tour-recommended-button-container {

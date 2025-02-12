@@ -1,41 +1,39 @@
-// 2025.01.24. 09:28 생성자: 이학수, HTML템플릿을 리엑트로 조정
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 
 const Contact: React.FC = () => {
     useEffect(() => {
-        // 요소의 [data-scrollax] 옵션을 분석 적용
-        handleScroll()
-        window.addEventListener("scroll", handleScroll);
+        handleScroll();
+        window.addEventListener('scroll', handleScroll);
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
     useEffect(() => {
-        // ftco-animate 클래스를 가진 요소에 등장 효과 적용
-        appear_animate()
+        appear_animate();
     }, []);
 
     useEffect(() => {
-        // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
-        updateHeight();
-        window.addEventListener("resize", updateHeight);
+        updateHalfHeight();
+        window.addEventListener('resize', updateHalfHeight);
         return () => {
-            window.removeEventListener("resize", updateHeight);
+            window.removeEventListener('resize', updateHalfHeight);
         };
     }, []);
 
     return (
         <div>
-            <div className="hero-wrap js-fullheight" style={{ backgroundImage: "url('/images/bg_2.jpg')" }}>
+            <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/bg_2.jpg')" }}>
                 <div className="overlay"></div>
                 <div className="container">
-                    <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
-                        <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
-                            <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span>Contact</span></p>
-                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>문의 하기</h1>
+                    <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
+                        <div className="col-md-9 ftco-animate text-center" data-scrollax='{"properties": {"translateY": "70%"}}'>
+                            <p className="breadcrumbs" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>
+                                <span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span>Contact</span>
+                            </p>
+                            <h1 className="mb-3 bread" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>문의 하기</h1>
                         </div>
                     </div>
                 </div>
@@ -62,6 +60,7 @@ const Contact: React.FC = () => {
                         </div>
                     </div>
                     <div className="row block-9">
+                        {/* 문의 폼 */}
                         <div className="col-md-6 pr-md-5">
                             <form action="#">
                                 <div className="form-group">
@@ -80,16 +79,33 @@ const Contact: React.FC = () => {
                                     <input type="submit" value="메시지 보내기" className="btn btn-primary py-3 px-5" />
                                 </div>
                             </form>
-
                         </div>
 
-                        {/* 맵 넣는 자리 */}
-                        <div className="col-md-6" id="map"></div>
+                        {/* 회사 오시는 길 추가 */}
+                        <div className="col-md-6">
+                            <h3 className="h5 mb-3">회사 오시는 길</h3>
+                            <p>서울 서초구 서초대로77길 41 4층에 위치해 있습니다.</p>
+                            <p>🚇 지하철: 2호선 강남역 5번 출구 도보 10분</p>
+                            <p>🚗 주차: 건물 내 유료 주차 가능</p>
+
+                            {/* Google Maps 삽입 */}
+                            <div className="map-responsive">
+                                <iframe
+                                    title="회사 오시는 길"
+                                    width="100%"
+                                    height="300"
+                                    src="https://www.google.com/maps/embed/v1/place?q=서울+서초구+서초대로77길+41&key=api...key"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                ></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
-    )
-}
+    );
+};
 
-export default Contact
+export default Contact;

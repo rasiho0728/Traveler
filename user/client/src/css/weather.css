@@ -1,85 +1,41 @@
-.weather-wrapper {
-  font-family: Arial, sans-serif;
-  background-color: #f4f7fc;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 20px auto;
-}
-
-.weather-title {
-  text-align: center;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.weather-loading-text {
-  font-size: 1.2rem;
-  text-align: center;
-  color: #888;
-}
-
-.weather-error-text {
-  font-size: 1.2rem;
-  color: red;
-  text-align: center;
-}
-
 .weather-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-}
-
-.weather-item {
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 15px;
-  width: 100%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.weather-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-.weather-location-name {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.weather-temperature {
-  font-size: 1.5rem;
-  color: #ff5722;
-  margin-bottom: 10px;
-}
-
-.weather-date-container {
-  display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.weather-forecast-time,
-.weather-base-time {
-  font-size: 1rem;
-  color: #555;
-  padding: 8px;
+  align-items: center;
+  width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f8f8f8;
+  z-index: -1;
+}
+.weather-header {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.weather-forecast-time {
-  background-color: #e0f7fa;
-  color: #00796b;
+.weather-select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+.weather-info {
+  text-align: center;
 }
 
-.weather-base-time {
-  background-color: #fff3e0;
-  color: #f57c00;
+.weather-info h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.weather-info p {
+  font-size: 1.2em;
+  margin-bottom: 5px;
 }
