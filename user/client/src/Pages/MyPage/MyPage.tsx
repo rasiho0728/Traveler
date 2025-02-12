@@ -148,8 +148,34 @@ const MyPage: React.FC = () => {
 
                 <div className='foot'>
                     <h2>발자국</h2>
-                    <div className='table-container'>
-                        <table>
+                    <div className='box-container'>
+                        <div className='box'>
+                            <p>여행</p>
+                            <ul>
+                                <li>한적한 자연 속 힐링! 강원도 감성 캠핑 & 트레킹 2박 3일 패키지</li>
+                                <li>전통과 현대의 만남! 전주 한옥마을 & 남부시장 야시장 투어 1박 2일</li>
+                                <li>오션뷰 숙소에서 힐링! 부산 드라이브 3박 4일 패키지</li>
+                            </ul>
+                        </div>
+
+                        <div className='box'>
+                            <p>교통</p>
+                            <ul>
+                                <li>렌터카 + 유류비 포함! 자유로운 드라이브 여행 패키지</li>
+                                <li>서울 ↔ 강원도 왕복 셔틀버스 패키지!</li>
+                                <li>KTX & 렌터카 완벽 패키지! 서울에서 부산까지 편리한 여행 코스</li>
+                            </ul>
+                        </div>
+
+                        <div className='box'>
+                            <p>플레이리스트</p>
+                            <ul>
+                                <li>여행 - 볼빨간사춘기</li>
+                                <li>바람이 불었으면 좋겠어 - 박명수&거미</li>
+                                <li>떠나자 - 크라잉넛</li>
+                            </ul>
+                        </div>
+                        {/* <table>
                             <thead>
                                 <tr>
                                     <th>여행</th>
@@ -174,11 +200,14 @@ const MyPage: React.FC = () => {
                                     <td>떠나자 - 크라잉넛</td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> */}
                     </div>
                 </div>
             </div>
             
+            <div className='wordBox'>
+                <div>워드박스입니다.</div>
+            </div>
         </div>
       </div>
     </div>
