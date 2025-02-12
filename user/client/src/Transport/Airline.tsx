@@ -28,7 +28,7 @@ const Airline: React.FC = () => {
     }, []); 
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>{/* Header */}
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh',marginTop:'75px' }}>{/* Header */}
             <div style={{ flex: 1, overflowY: 'auto' }}>
                 <table style={{ width: '80%', margin: '20px auto', borderCollapse: 'collapse', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
                     <thead>
