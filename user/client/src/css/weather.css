@@ -2,40 +2,104 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 400px;
+  width: 1000px;
   margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: #f8f8f8;
-  z-index: -1;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
 }
+
 .weather-header {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  font-weight: bold;
   color: #333;
+  margin-bottom: 20px;
 }
 
 .weather-select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 1em;
-}
-.weather-info {
-  text-align: center;
+  font-size: 1.1em;
+  background-color: #fafafa;
+  transition: background-color 0.3s;
 }
 
-.weather-info h2 {
-  font-size: 1.5em;
+.weather-select:focus {
+  background-color: #e3f2fd;
+}
+
+.weather-content {
+  display: flex; /* 가로 배치 */
+  flex-direction: row; /* 가로로 배치 */
+  justify-content: space-between;
+  width: 100%; /* 전체 너비 */
+  gap: 20px; /* 카드 간 간격 */
+  margin-top: 30px;
+}
+
+.weather-info,
+.weather-forecast-info {
+  width: 48%; /* 각 카드의 너비 설정 */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.weather-info {
+  background: #f5f5f5;
+}
+
+.weather-forecast-info {
+  background: #f9f9f9;
+}
+
+.weather-info h2,
+.weather-forecast-info h3 {
+  font-size: 1.6em;
   margin-bottom: 10px;
   color: #333;
 }
 
-.weather-info p {
+.weather-info p,
+.weather-forecast-info li {
   font-size: 1.2em;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
+}
+
+.weather-forecast-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.weather-forecast-info li {
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+  transition: background-color 0.3s;
+}
+
+.weather-forecast-info li:hover {
+  background-color: #e1f5fe;
+}
+
+@media (max-width: 768px) {
+  .weather-container {
+    width: 90%;
+  }
+
+  .weather-content {
+    flex-direction: column; /* 작은 화면에서는 세로로 배치 */
+  }
+
+  .weather-info,
+  .weather-forecast-info {
+    width: 100%;
+  }
 }

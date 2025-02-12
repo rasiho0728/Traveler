@@ -23,7 +23,6 @@ import BlogDetail from './Pages/Blog/BlogDetail';
 import ScrollToTop from './Comm/ScrollToTop';
 import Contact from './Pages/Contact/Contact';
 import Hotel2 from './Pages/Hotel/Hotel2';
-import HotelDetail from './Pages/Hotel/HotelDetail';
 import Tour from './Pages/Tour/Tour';
 import Test from './Test/Test';
 import Coalition from './Pages/Coalition/Coalition';
@@ -49,7 +48,6 @@ import MyPage from './Pages/MyPage/MyPage';
 import WeatherAPI from './Pages/Weather/weather';
 import Airline from './Transport/Airline';
 import RoadForm from './Transport/RoadForm';
-import MapRoad from './Transport/MapRoad';
 import Rate from './Transport/Rate';
 import TourDiary from './Pages/TourDiary/TourDiary';
 import BackpackMemo from './Pages/Community/BackpackMemo';
@@ -57,6 +55,7 @@ import SignSelect from './Pages/Login/SignSelect';
 import Partner from './Pages/Login/Partner';
 import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 import Bookshelf from './Pages/TourDiary/Bookshelf';
+import MapRoad from './Transport/MapRoad';
 
 
 
