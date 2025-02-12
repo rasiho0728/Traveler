@@ -34,11 +34,17 @@ const Bookshelf: React.FC = () => {
             onMouseLeave={() => setHoveredBook(null)}
           >
             <Link to={`${book.id}`}>
-            <img
-              src={book.cover || "/placeholder.svg"}
-              alt={book.title}
-              className="shelfImage"
-            />
+            <div className="bookCover">
+              <img
+                src={book.cover || "/placeholder.svg"}
+                alt={book.title}
+                className="shelfImage"
+              />
+              {/* 타이틀 표시 부분 */}
+              {hoveredBook === book.id && (
+                <div className="bookTitle">{book.title}</div>
+              )}
+            </div>
             </Link>
           </div>
         ))}
@@ -48,7 +54,7 @@ const Bookshelf: React.FC = () => {
   );
 
   return (
-    <div className="bookshelf" style={{paddingTop: "100px"}}>
+    <div className="bookshelf" style={{ paddingTop: "100px" }}>
       <div className="shelfContainer">
         {renderShelf(books.slice(0, 3))}
         {renderShelf(books.slice(3, 6))}

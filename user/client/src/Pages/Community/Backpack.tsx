@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 
 const Backpack: React.FC = () => {
     useEffect(() => {
@@ -16,10 +16,10 @@ const Backpack: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        updateHeight();
-        window.addEventListener("resize", updateHeight);
+        updateHalfHeight();
+        window.addEventListener("resize", updateHalfHeight);
         return () => {
-            window.removeEventListener("resize", updateHeight);
+            window.removeEventListener("resize", updateHalfHeight);
         };
     }, []);
 
@@ -41,10 +41,10 @@ const Backpack: React.FC = () => {
 
     return (
         <div>
-            <div className="hero-wrap js-fullheight" style={{ backgroundImage: "url('/images/bg_4.jpg')" }}>
+            <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/bg_4.jpg')" }}>
                 <div className="overlay"></div>
                 <div className="container">
-                    <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                    <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax='{"properties": {"translateY": "70%"}}'>
                             <p className="breadcrumbs" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>
                                 <span className="mr-2"><Link to="/traveler/home">Home</Link></span> 

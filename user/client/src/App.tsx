@@ -106,8 +106,8 @@ function App() {
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
                                 <Route path='/traveler/Transport/Airline' element={<Airline />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Transport/MapRoad' element={<MapRoad />} />{/*2025-02-10최의진 추가 */}
-                                <Route path='/traveler/tourdiary/:id' element={<TourDiary />} />
-                                <Route path='/traveler/tourdiary' element={<Bookshelf />} />
+                                <Route path='/traveler/diary/:id' element={<TourDiary />} />
+                                <Route path='/traveler/diary' element={<Bookshelf />} />
                         </Routes>
                         <Footer />
                         <Chat />
