@@ -29,44 +29,6 @@ const Airline: React.FC = () => {
     fetchData();
   }, []);
 
-<<<<<<< HEAD
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh',marginTop:'75px' }}>{/* Header */}
-            <div style={{ flex: 1, overflowY: 'auto' }}>
-                <table style={{ width: '80%', margin: '20px auto', borderCollapse: 'collapse', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
-                    <thead>
-                        <tr style={{ backgroundColor: '#4CAF50', color: 'black' }}>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>항공사</th>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>운항편명</th>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>출발공항</th>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>도착공항</th>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>출발시간</th>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>도착시간</th>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>운항요일</th>
-                            <th style={{ padding: '12px 15px', borderBottom: '2px solid #ddd' }}>국내_국제</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data.map((item, index) => (
-                            <tr key={index} style={{ textAlign: "center", backgroundColor: "#f9f9f9", borderBottom: '1px solid #ddd' }}>
-                                <td style={{ padding: '12px 15px' }}>{item["항공사"]}</td>
-                                <td style={{ padding: '12px 15px' }}>{item["운항편명"]}</td>
-                                <td style={{ padding: '12px 15px' }}>{item["출발공항"]}</td>
-                                <td style={{ padding: '12px 15px' }}>{item["도착공항"]}</td>
-                                <td style={{ padding: '12px 15px' }}>{item["출발시간"]}</td>
-                                <td style={{ padding: '12px 15px' }}>{item["도착시간"]}</td>
-                                <td style={{ padding: '12px 15px' }}>{item["운항요일"]}</td>
-                                <td style={{ padding: '12px 15px' }}>{item["국내_국제"]}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <div style={{ padding: '10px', backgroundColor: '#f2f2f2' }}>
-                
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-            </div>
-=======
   useEffect(() => {
     updateHalfHeight();
     window.addEventListener("resize", updateHalfHeight);
@@ -116,7 +78,6 @@ const Airline: React.FC = () => {
               ))}
             </tbody>
           </table>
->>>>>>> e0d0eeda4b8c2f7f3c81a5e5952937daa67add0a
         </div>
         <div style={{ padding: '10px', backgroundColor: '#f2f2f2' }}>
 
