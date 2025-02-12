@@ -76,6 +76,6 @@ export const updateHeight = () => {
 export const updateHalfHeight = () => {
     const elements = document.querySelectorAll('.js-halfheight')
     elements.forEach((element: any) => {
-        element.style.height = `${window.innerHeight/2}px`;
+        element.style.height = `${Math.max(window.innerHeight/2, 100)}px`;
     });
 };
