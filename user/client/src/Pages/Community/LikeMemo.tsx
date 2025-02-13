@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import "prismjs/themes/prism.css";
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 
 const LikeMemo: React.FC = () => {
     useEffect(() => {
-        const handleResize = () => updateHeight();
+        const handleResize = () => updateHalfHeight();
         handleScroll();
         appear_animate();
 
@@ -49,10 +49,9 @@ const LikeMemo: React.FC = () => {
         <div className="LikeMemo">
             {/* 헤더 부분 */}
             <div 
-                className="hero-wrap js-fullheight" 
+                className="hero-wrap js-halfheight" 
                 style={{ 
                     backgroundImage: "url('/images/bg_4.jpg')",
-                    height: '100vh',
                     minHeight: '400px',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
