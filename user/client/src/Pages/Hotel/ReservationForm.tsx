@@ -172,7 +172,7 @@ const ReservationForm = () => {
                                 </select>
                             </div>
                         </div>
-                        <div className="col-md-6">
+                        {/* <div className="col-md-6">
                             <div className="form-group">
                                 <label>청소년:</label>
                                 <select name="children" className="form-control">
@@ -181,10 +181,10 @@ const ReservationForm = () => {
                                     ))}
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* 제출 버튼 */}
-                        <div className="col-md-6">
+                        <div className=" col-md-6">
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary py-3">
                                     지금 예약
