@@ -39,7 +39,6 @@ import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
 import TourRecommended from './Pages/Tour/TourRecommended';
 import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
-import RoadDetail from './Transport/RoadDetail';
 import SubwayDetail from './Transport/SubwayDetail';
 import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
@@ -56,6 +55,7 @@ import Partner from './Pages/Login/Partner';
 import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 import Bookshelf from './Pages/TourDiary/Bookshelf';
 import MapRoad from './Transport/MapRoad';
+import BusDetail from './Transport/BusDetail';
 
 
 
@@ -99,8 +99,8 @@ function App() {
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
                                 {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
-                                <Route path='/traveler/Transport/Road/Form' element={<RoadForm />} />{/*2025-02-10최의진 추가 */}
+                                <Route path='/traveler/Transport/RoadForm/Bus' element={<BusDetail/>} />{/*2025-02-06최의진 추가 */}
+                                <Route path='/traveler/Transport/RoadForm' element={<RoadForm />} />{/*2025-02-10최의진 추가 */}
                                 <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
                                 <Route path='/traveler/Transport/Airline' element={<Airline />} />{/*2025-02-06최의진 추가 */}
