@@ -169,6 +169,147 @@ const Tour: React.FC = () => {
                                                 <span className="ml-auto"><Link to="/traveler/tour/1">상세보기</Link></span>
                                             </p>
                                         </div>
+                                        
+                                    </div>
+                                </div>
+                                <div className="col-md-4 ftco-animate">
+                                    <div className="destination">
+                                        <Link to="/traveler/tour/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
+                                            <div className="icon d-flex justify-content-center align-items-center">
+                                                <span className="icon-search2"></span>
+                                            </div>
+                                        </Link>
+                                        <div className="text p-3">
+                                            <div className="d-flex">
+                                                <div className="one">
+                                                    <h3><Link to="/traveler/tour/1">파리, 이탈리아</Link></h3>
+                                                    <p className="rate">
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star-o"></i>
+                                                        <span style={{ color: "#f85959", fontWeight: "bold", fontSize: "11px", }}>{4} / 5 별점</span>
+                                                        {/* <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}><Link to = "#">리뷰 {32} 개</Link></span> */}
+                                                        <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold" }}>리뷰 {32} 개</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p>낭만과 예술이 살아 숨 쉬는 파리, 감성과 역사로 가득한 이탈리아로 떠나보세요!</p>
+                                            <p className="days"><span>2 박 3 일</span></p>
+
+                                            <hr />
+                                            <p className="bottom-area d-flex">
+                                                <span><i className="icon-map-o"></i> 샌 프란시스코, CA</span>
+                                                <span className="ml-auto"><Link to="/traveler/tour/1">상세보기</Link></span>
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div className="col-md-4 ftco-animate">
+                                    <div className="destination">
+                                        <Link to="/traveler/tour/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
+                                            <div className="icon d-flex justify-content-center align-items-center">
+                                                <span className="icon-search2"></span>
+                                            </div>
+                                        </Link>
+                                        <div className="text p-3">
+                                            <div className="d-flex">
+                                                <div className="one">
+                                                    <h3><Link to="/traveler/tour/1">파리, 이탈리아</Link></h3>
+                                                    <p className="rate">
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star-o"></i>
+                                                        <span style={{ color: "#f85959", fontWeight: "bold", fontSize: "11px", }}>{4} / 5 별점</span>
+                                                        {/* <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}><Link to = "#">리뷰 {32} 개</Link></span> */}
+                                                        <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold" }}>리뷰 {32} 개</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p>낭만과 예술이 살아 숨 쉬는 파리, 감성과 역사로 가득한 이탈리아로 떠나보세요!</p>
+                                            <p className="days"><span>2 박 3 일</span></p>
+
+                                            <hr />
+                                            <p className="bottom-area d-flex">
+                                                <span><i className="icon-map-o"></i> 샌 프란시스코, CA</span>
+                                                <span className="ml-auto"><Link to="/traveler/tour/1">상세보기</Link></span>
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div className="col-md-4 ftco-animate">
+                                    <div className="destination">
+                                        <Link to="/traveler/tour/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
+                                            <div className="icon d-flex justify-content-center align-items-center">
+                                                <span className="icon-search2"></span>
+                                            </div>
+                                        </Link>
+                                        <div className="text p-3">
+                                            <div className="d-flex">
+                                                <div className="one">
+                                                    <h3><Link to="/traveler/tour/1">파리, 이탈리아</Link></h3>
+                                                    <p className="rate">
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star-o"></i>
+                                                        <span style={{ color: "#f85959", fontWeight: "bold", fontSize: "11px", }}>{4} / 5 별점</span>
+                                                        {/* <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}><Link to = "#">리뷰 {32} 개</Link></span> */}
+                                                        <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold" }}>리뷰 {32} 개</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p>낭만과 예술이 살아 숨 쉬는 파리, 감성과 역사로 가득한 이탈리아로 떠나보세요!</p>
+                                            <p className="days"><span>2 박 3 일</span></p>
+
+                                            <hr />
+                                            <p className="bottom-area d-flex">
+                                                <span><i className="icon-map-o"></i> 샌 프란시스코, CA</span>
+                                                <span className="ml-auto"><Link to="/traveler/tour/1">상세보기</Link></span>
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div className="col-md-4 ftco-animate">
+                                    <div className="destination">
+                                        <Link to="/traveler/tour/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/destination-1.jpg)" }}>
+                                            <div className="icon d-flex justify-content-center align-items-center">
+                                                <span className="icon-search2"></span>
+                                            </div>
+                                        </Link>
+                                        <div className="text p-3">
+                                            <div className="d-flex">
+                                                <div className="one">
+                                                    <h3><Link to="/traveler/tour/1">파리, 이탈리아</Link></h3>
+                                                    <p className="rate">
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star"></i>
+                                                        <i className="icon-star-o"></i>
+                                                        <span style={{ color: "#f85959", fontWeight: "bold", fontSize: "11px", }}>{4} / 5 별점</span>
+                                                        {/* <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold"}}><Link to = "#">리뷰 {32} 개</Link></span> */}
+                                                        <span style={{ color: "#2f89fc", fontSize: "13px", marginLeft: "0px", fontWeight: "bold" }}>리뷰 {32} 개</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <p>낭만과 예술이 살아 숨 쉬는 파리, 감성과 역사로 가득한 이탈리아로 떠나보세요!</p>
+                                            <p className="days"><span>2 박 3 일</span></p>
+
+                                            <hr />
+                                            <p className="bottom-area d-flex">
+                                                <span><i className="icon-map-o"></i> 샌 프란시스코, CA</span>
+                                                <span className="ml-auto"><Link to="/traveler/tour/1">상세보기</Link></span>
+                                            </p>
+                                        </div>
+                                        
                                     </div>
                                 </div>
 

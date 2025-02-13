@@ -27,7 +27,7 @@ const TourRecommended: React.FC = () => {
         { name: "문화 | 역사", image: "/images/culture.jpg" },
         { name: "테마파크", image: "/images/themepark.jpg" },
         { name: "카페", image: "/images/cafe.jpg" },
-        { name: "전통시장", image: "/images/market.jpg" },
+        { name: "맛집", image: "/images/market.jpg" },
         { name: "축제", image: "/images/festival.jpg" },
     ];
 
