@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Chart from "react-apexcharts"
+import { ApexOptions } from "apexcharts";
 import '../../css/mypage.css';
 
 const MyPage: React.FC = () => {
@@ -23,6 +25,31 @@ const MyPage: React.FC = () => {
     const handleCancelClick = () => {
         setIsEditing(false);
     };
+
+  // ✅ ApexOptions 타입을 명시적으로 적용
+  const chartOptions: ApexOptions = {
+    chart: {
+      type: "bar",
+      toolbar: { show: false },
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true, // 가로형 바 차트 설정
+        barHeight: "50%",
+      },
+    },
+    xaxis: {
+      categories: ["조회수", "하트", "댓글 수"],
+    },
+    colors: ["#4A90E2"], // 바 색상 설정
+  };
+
+  const series = [
+    {
+      name: "값",
+      data: [22, 15, 8], // 더미 데이터 값
+    },
+  ];
 
   return (
     <div className='MyPage'>
@@ -115,6 +142,13 @@ const MyPage: React.FC = () => {
                     </div>
                 </div>
             </div>
+            <div className='myChart'>
+                <h2>일간 차트 데이터</h2>
+                <div className='chart-container w-full h-64'>
+                    {/* ✅ Chart 컴포넌트에서 올바른 타입 사용 */}
+                    <Chart options={chartOptions} series={series} type="bar" height={200} />
+                </div>
+            </div>
         </div>
 
         <div className='log'>
@@ -139,9 +173,9 @@ const MyPage: React.FC = () => {
                             <a href='/traveler/community'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
                         </div>
                         <ol>
-                            <li>여행 고수들이 추천하는 히든 플레이스 TOP 10</li>
-                            <li>봄맞이 여행! 제주부터 경주까지 꼭 가봐야 할 여행지 5곳</li>
-                            <li>먹방 투어로 떠나는 전주와 부산: 한 입 베어물면 떠오르는 한국의 맛</li>
+                            <li><a href="#">여행 고수들이 추천하는 히든 플레이스 TOP 10</a></li>
+                            <li><a href="#">봄맞이 여행! 제주부터 경주까지 꼭 가봐야 할 여행지 5곳</a></li>
+                            <li><a href="#">먹방 투어로 떠나는 전주와 부산: 한 입 베어물면 떠오르는 한국의 맛</a></li>
                         </ol>
                     </div>
                 </div>
@@ -152,61 +186,57 @@ const MyPage: React.FC = () => {
                         <div className='box'>
                             <p>여행</p>
                             <ul>
-                                <li>한적한 자연 속 힐링! 강원도 감성 캠핑 & 트레킹 2박 3일 패키지</li>
-                                <li>전통과 현대의 만남! 전주 한옥마을 & 남부시장 야시장 투어 1박 2일</li>
-                                <li>오션뷰 숙소에서 힐링! 부산 드라이브 3박 4일 패키지</li>
+                                <li><a href="#">한적한 자연 속 힐링! 강원도 감성 캠핑 & 트레킹 2박 3일 패키지</a></li>
+                                <li><a href="#">전통과 현대의 만남! 전주 한옥마을 & 남부시장 야시장 투어 1박 2일</a></li>
+                                <li><a href="#">오션뷰 숙소에서 힐링! 부산 드라이브 3박 4일 패키지</a></li>
                             </ul>
                         </div>
 
                         <div className='box'>
                             <p>교통</p>
                             <ul>
-                                <li>렌터카 + 유류비 포함! 자유로운 드라이브 여행 패키지</li>
-                                <li>서울 ↔ 강원도 왕복 셔틀버스 패키지!</li>
-                                <li>KTX & 렌터카 완벽 패키지! 서울에서 부산까지 편리한 여행 코스</li>
+                                <li><a href="#">렌터카 + 유류비 포함! 자유로운 드라이브 여행 패키지</a></li>
+                                <li><a href="#">서울 ↔ 강원도 왕복 셔틀버스 패키지!</a></li>
+                                <li><a href="#">KTX & 렌터카 완벽 패키지! 서울에서 부산까지 편리한 여행 코스</a></li>
                             </ul>
                         </div>
 
                         <div className='box'>
                             <p>플레이리스트</p>
                             <ul>
-                                <li>여행 - 볼빨간사춘기</li>
-                                <li>바람이 불었으면 좋겠어 - 박명수&거미</li>
-                                <li>떠나자 - 크라잉넛</li>
+                                <li><a href="#">여행 - 볼빨간사춘기</a></li>
+                                <li><a href="#">바람이 불었으면 좋겠어 - 박명수&거미</a></li>
+                                <li><a href="#">떠나자 - 크라잉넛</a></li>
                             </ul>
                         </div>
-                        {/* <table>
-                            <thead>
-                                <tr>
-                                    <th>여행</th>
-                                    <th>교통</th>
-                                    <th>플레이리스트</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>한적한 자연 속 힐링! 강원도 감성 캠핑 & 트레킹 2박 3일 패키지</td>
-                                    <td>렌터카 + 유류비 포함! 자유로운 드라이브 여행 패키지</td>
-                                    <td>여행 - 볼빨간사춘기기</td>
-                                </tr>
-                                <tr>
-                                    <td>전통과 현대의 만남! 전주 한옥마을 & 남부시장 야시장 투어 1박 2일</td>
-                                    <td>서울 ↔ 강원도 왕복 셔틀버스 패키지!</td>
-                                    <td>바람이 불었으면 좋겠어 - 박명수&거미미</td>
-                                </tr>
-                                <tr>
-                                    <td>오션뷰 숙소에서 힐링! 부산 드라이브 3박 4일 패키지</td>
-                                    <td>KTX & 렌터카 완벽 패키지! 서울에서 부산까지 편리한 여행 코스</td>
-                                    <td>떠나자 - 크라잉넛</td>
-                                </tr>
-                            </tbody>
-                        </table> */}
                     </div>
                 </div>
             </div>
             
-            <div className='wordBox'>
-                <div>워드박스입니다.</div>
+            <div className='diary-box'>
+                <div className='my-blog-text'>
+                    <h2>다이어리 목록</h2>
+                    <a href='/traveler/community'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
+                </div>
+                <div className='big-box'>
+                    <div className='diary'>
+                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                        <button className="learn-more">다이어리 보기</button>
+                    </div>
+                    <div className='diary'>
+                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                        <button className="learn-more">다이어리 보기</button>
+                    </div>
+                    <div className='diary'>
+                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                        <button className="learn-more">다이어리 보기</button>
+                    </div>
+                    <div className='diary'>
+                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                        <button className="learn-more">다이어리 보기</button>
+                    </div>
+                </div>
+                
             </div>
         </div>
       </div>
