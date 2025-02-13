@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/backpackDetail.css';
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 
 const BackpackDetail: React.FC = () => {
     useEffect(() => {
@@ -17,10 +17,10 @@ const BackpackDetail: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        updateHeight();
-        window.addEventListener("resize", updateHeight);
+        updateHalfHeight();
+        window.addEventListener("resize", updateHalfHeight);
         return () => {
-            window.removeEventListener("resize", updateHeight);
+            window.removeEventListener("resize", updateHalfHeight);
         };
     }, []);
 
@@ -106,12 +106,12 @@ const BackpackDetail: React.FC = () => {
         <div className='backpackDetail'>
 
             <div 
-                className="hero-wrap js-fullheight" 
+                className="hero-wrap js-halfheight" 
                 style={{ backgroundImage: "url('/images/bg_4.jpg')" }}
             >
                 <div className="overlay" style={{ pointerEvents: 'none' }}></div>
                 <div className="container">
-                    <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                    <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center">
                             <h1 className="mb-3 bread">여러분의 답변을 기다립니다 :D</h1>
                         </div>

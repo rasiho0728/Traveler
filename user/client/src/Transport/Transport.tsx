@@ -1,7 +1,7 @@
 // 2025.02.05. 19:00 생성자:최의진, HTML템플릿을 리엑트로 조정
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { appear_animate, handleScroll, updateHeight } from '../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHalfHeight } from '../Comm/CommomFunc';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 registerLocale("ko", ko);
@@ -17,11 +17,11 @@ const Transport: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
-        updateHeight();
-        window.addEventListener("resize", updateHeight);
+        // js-halfheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
+        updateHalfHeight();
+        window.addEventListener("resize", updateHalfHeight);
         return () => {
-            window.removeEventListener("resize", updateHeight);
+            window.removeEventListener("resize", updateHalfHeight);
         };
     }, []);
 
@@ -41,9 +41,9 @@ const Transport: React.FC = () => {
     }, [])
     return (
         <div>
-            <div className="hero-wrap js-fullheight" 
-            style={{ backgroundImage: "url('/images/map.jpg')",
-            backgroundSize: 'contain',
+            <div className="hero-wrap js-halfheight" 
+            style={{ backgroundImage: "url('/images/transport/palace.jpg')",
+            backgroundSize: 'cover',
             backgroundPosition: 'center', // 이미지 위치를 중앙에 맞추기
             backgroundRepeat: 'no-repeat',
             position: 'relative', // 요소의 위치를 상대적으로 설정
@@ -54,7 +54,7 @@ const Transport: React.FC = () => {
             <div className="overlay" style={{ pointerEvents: 'none' }}></div>
                 <div className="overlay"></div>
                 <div className="container">
-                    <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                    <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             {/* <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span>Tour</span></p> */}
                             <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>실시간 교통</h1>
