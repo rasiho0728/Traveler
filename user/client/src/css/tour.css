@@ -49,11 +49,11 @@
 }
 
 /* ✅ 차트 제목 스타일 */
-.tour-chart h3 {
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    margin-bottom: 10px !important;
-}
+/* .tour-chart-wrapper h2 {
+    font-size: 16px;
+    font-weight: 700 ;
+    margin-bottom: 10px;
+} */
 
 /* ✅ 랜덤 추천 여행지 스타일 */
 .tour-recommendation {
@@ -111,6 +111,6 @@
 .tour-recommendation .tour-place {
     font-size: 16px !important;
     font-weight: bold !important;
-    color: #962945 !important;
+    color: #ff0040 !important;
     margin-top: 5px !important;
 }
