@@ -1,8 +1,10 @@
-// 2025.02.02. 21:00 생성자: 이학수, 제휴페이지 메인 
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import Pagenation from '../../Comm/Pagenation';
+import DonutChartComponent from './DonutChartComponent';
+import BarChartComponent from './BarChartComponent';
+import '../../css/coalition.css';
 
 interface CoalitionHotel {
   name: string;
@@ -88,8 +90,8 @@ const Coalition: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/coalition.jpg')",}}>
+    <div className='Coalition'>
+      <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/coalition.jpg')"}}>
         <div className="overlay"></div>
         <div className="container">
           <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -100,7 +102,17 @@ const Coalition: React.FC = () => {
           </div>
         </div>
       </div>
-      <section className="ftco-section ftco-degree-bg">
+      <section className='chart-container'>
+        <div className='chart-box'>
+          <div className="col-md-5">
+            <BarChartComponent />  {/* 지역별 호텔 개수 차트 */}
+          </div>
+          <div className="col-md-5">
+            <DonutChartComponent />  {/* 호텔 인기 이유 차트 */}
+          </div>
+        </div>
+      </section>
+      <section className="ftco-section ftco-degree-bg coalition-sec">
         <div className="container">
           <div className="row">
             <div className="col-lg-3 sidebar">
