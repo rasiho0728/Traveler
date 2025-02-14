@@ -79,8 +79,8 @@ const SubwayDetail: React.FC = () => {
     <div>
     <div className="hero-wrap js-halfheight transport" 
     style={{ backgroundImage: "url('/images/transport/palace.jpg')",}}/>
-    <div className="statustrain">
-      <h1>🚇 실시간 지하철 현황</h1>
+    <div className="p-6 max-w-3xl mx-auto bg-white shadow-md rounded-xl">
+      <h1 className="text-2xl font-bold mb-4 text-center">🚇 실시간 지하철 현황</h1>
       <Select
         className="lineselect"
         value={selectedLine}
@@ -108,8 +108,9 @@ const SubwayDetail: React.FC = () => {
             trainData.map((train: any) => (
               <Col span={8} key={train.trainNo}>
                 <Card
-                className='traininformation'
                   // title={`열차 ${train.trainNo}`}
+                  style={{ marginBottom: 16,padding: '16px'  }}
+                  // bodyStyle={{ padding: '16px' }}
                 >
                   <p><strong>현재역:</strong> {train.statnNm}</p>
                   <p><strong>목적지:</strong> {train.statnTnm}</p>
@@ -119,7 +120,9 @@ const SubwayDetail: React.FC = () => {
               </Col>
             ))
           ) : (
-            <Col span={24}/>
+            <Col span={24}>
+              
+            </Col>
           )}
         </Row>
       )}
