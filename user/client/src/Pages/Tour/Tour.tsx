@@ -48,10 +48,10 @@ const Tour: React.FC = () => {
             }
         }, 1);
     }, [])
-    const satisfactionData = { categories: ["서울", "제주", "부산"], data: [95, 90, 88] };
+    const satisfactionData = { categories: ["서울", "제주도", "부산"], data: [95, 90, 88] };
     const visitData = { categories: ["서울", "부산", "강원도"], data: [5000, 4800, 4500] };
   
-    const allDestinations = ["서울", "제주", "부산", "강원도"];
+    const allDestinations = ["서울", "제주도", "부산", "강원도"];
     const recommendedPlace = allDestinations[Math.floor(Math.random() * allDestinations.length)]; // ✅ 랜덤 선택
     return (
         <div>
