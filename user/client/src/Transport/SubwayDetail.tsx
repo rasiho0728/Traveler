@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Select, Tag, Card, Row, Col } from "antd";
 import "antd/dist/reset.css";
 import { LoadingOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
-
+//2025-02-14수정 09:30수정
 const SubwayDetail: React.FC = () => {
   const [selectedLine, setSelectedLine] = useState<string | undefined>(undefined);
   const [trainData, setTrainData] = useState<any[]>([]);
@@ -12,6 +12,7 @@ const SubwayDetail: React.FC = () => {
   // 실시간 데이터 갱신 주기 (예: 30초마다 갱신)
   const pollingInterval = 30000; // 30초
 
+    //실시간 지하철 api 가져오기
   useEffect(() => {
     const fetchTrainData = () => {
       if (!selectedLine) return;
@@ -52,6 +53,7 @@ const SubwayDetail: React.FC = () => {
     return () => clearInterval(intervalId);
   }, [selectedLine]);  // selectedLine 변경 시마다 데이터 갱신
 
+  //열차 진입 상태 개시하기 
   const getTrainStatusTag = (status: any) => {
     switch (status) {
       case "0": return <Tag color="blue"><CheckCircleOutlined /> 운행 중</Tag>;
@@ -71,6 +73,7 @@ const SubwayDetail: React.FC = () => {
         onChange={setSelectedLine}
         placeholder="노선 선택"
       >
+        {/**노선 선택후 노선에 맞는 데이터 반복 */}
         {["1호선", "2호선", "3호선", "4호선", "5호선", "6호선", "7호선", "8호선", "9호선"].map((line) => (
           <Select.Option key={line} value={line}>
             {line}
