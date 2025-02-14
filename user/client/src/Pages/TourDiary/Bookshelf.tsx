@@ -61,6 +61,8 @@ const Bookshelf: React.FC = () => {
         {renderShelf(books.slice(3, 6))}
         {renderShelf(books.slice(6, 9))}
       </div>
+      
+       
     </div>
   );
 };
