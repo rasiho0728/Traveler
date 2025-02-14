@@ -56,18 +56,18 @@ const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
   );
 });
 
-const TourDiaryUpload: React.FC = () => {
+const MyDiary: React.FC = () => {
   const [inputText, setInputElement] = useState("");
   const [text, setText] = useState("내용 입력");
 
   // 각 페이지별 더미데이터
   const pages = [
     {
-      number: "1",
-      imageUrl: "/images/dog1.jpg",
-      comment: "강아지가 귀엽다.",
-      address: "서울, 대한민국",
-    },
+        number: "1",
+        imageUrl: "/images/dog1.jpg",
+        comment: "강아지가 귀엽다.",
+        address: "서울, 대한민국",
+      },
     {
       number: "2",
       imageUrl: "/images/restaurant-1.jpg",
@@ -152,7 +152,6 @@ const TourDiaryUpload: React.FC = () => {
 
   return (
     <div className={`book ${isEditing ? "editing" : ""}`}>
-
       {/* 'box' div로 감싸기 */}
       <div className="box">
         <div className="bookinfo">
@@ -199,7 +198,6 @@ const TourDiaryUpload: React.FC = () => {
                     />
                   ) : (
                     <div style={{ textAlign: "center", padding: "50px" }}>
-                      <h4>빈 페이지</h4>
                     </div>
                   )}
                   <p style={{ marginTop: "5px" }}>{page.address}</p>
@@ -213,46 +211,9 @@ const TourDiaryUpload: React.FC = () => {
         </div>
       </div>
 
-      {/* 수정 버튼은 페이지 하단에 고정 */}
-      <button onClick={handleEditButtonClick} className="edit-button">
-        새페이지추가
-      </button>
 
-      {/* 수정 모드 활성화 시 나타날 입력 폼 */}
-      {isEditing && (
-        <div className="edit-form">
-          <form onSubmit={handleFormSubmit}>
-            <input
-              type="file"
-              placeholder="이미지 업로드"
-              value={newPage.imageUrl}
-              onChange={(e) =>
-                setNewPage({ ...newPage, imageUrl: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="장소"
-              value={newPage.address}
-              onChange={(e) =>
-                setNewPage({ ...newPage, address: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="코멘트"
-              value={newPage.comment}
-              onChange={(e) =>
-                setNewPage({ ...newPage, comment: e.target.value })
-              }
-            />
-            <button type="submit" >저장</button>
-            <button type="submit" onClick={handleCancelButtonClick}>취소</button>
-          </form>
-        </div>
-      )}
-    </div>
+  </div>
   );
 };
 
-export default TourDiaryUpload;
+export default MyDiary;

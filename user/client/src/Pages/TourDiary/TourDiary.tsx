@@ -64,8 +64,8 @@ const TourDiaryUpload: React.FC = () => {
   const pages = [
     {
       number: "1",
-      imageUrl: "/images/mountain.jpg",
-      comment: "이곳은 첫 번째 여행지입니다.",
+      imageUrl: "/images/dog1.jpg",
+      comment: "강아지가 귀엽다.",
       address: "서울, 대한민국",
     },
     {
