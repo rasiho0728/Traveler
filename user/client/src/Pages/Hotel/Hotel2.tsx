@@ -377,7 +377,7 @@ const Hotel: React.FC = () => {
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                <span className="ml-auto"><Link to="#">예약</Link></span>
                                             </p>
                                         </div>
                                     </div>

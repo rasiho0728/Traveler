@@ -24,6 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.3.1",
+    "http-proxy-middleware": "^3.0.3",
     "highcharts": "^12.1.2",
     "highcharts-react-official": "^3.2.1",
     "lucide-react": "^0.475.0",
