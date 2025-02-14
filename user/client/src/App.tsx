@@ -45,8 +45,7 @@ import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
 import WeatherAPI from './Pages/Weather/weather';
-import Airline from './Transport/Airline';
-import RoadForm from './Transport/RoadForm';
+// import Airline from './Transport/Airline';
 import Rate from './Transport/Rate';
 import TourDiary from './Pages/TourDiary/TourDiary';
 import BackpackMemo from './Pages/Community/BackpackMemo';
@@ -56,9 +55,8 @@ import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 import Bookshelf from './Pages/TourDiary/Bookshelf';
 import MapRoad from './Transport/MapRoad';
 import BusDetail from './Transport/BusDetail';
+import RoadForm from './Transport/RoadForm';
 import ContactToChat from './Pages/Contact/ContactToChat';
-
-
 
 function App() {
         return (
@@ -97,13 +95,11 @@ function App() {
                                 <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
                                 <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
-                                <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                <Route path='/traveler/Transport/RoadForm/Bus' element={<BusDetail/>} />{/*2025-02-06최의진 추가 */}
+                                <Route path='/traveler/Transport/RoadForm/Bus' element={<BusDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Transport/RoadForm' element={<RoadForm />} />{/*2025-02-10최의진 추가 */}
                                 <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
-                                <Route path='/traveler/Transport/Airline' element={<Airline />} />{/*2025-02-06최의진 추가 */}
+                                {/* <Route path='/traveler/Transport/Airline' element={<Airline />} />2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Transport/MapRoad' element={<MapRoad />} />{/*2025-02-10최의진 추가 */}
                                 <Route path='/traveler/diary/:id' element={<TourDiary />} />
                                 <Route path='/traveler/diary' element={<Bookshelf />} />

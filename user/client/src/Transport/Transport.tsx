@@ -127,7 +127,7 @@ const Transport: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-4 ftco-animate">
+                                {/* <div className="col-md-4 ftco-animate">
                                     <div className="destination">                                                                                                                               
                                         <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/airline.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
@@ -156,7 +156,7 @@ const Transport: React.FC = () => {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-md-4 ftco-animate">
                                     <div className="destination">                                                                                                                               
                                         <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/FastMap.jpg)" }}>
@@ -187,6 +187,7 @@ const Transport: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
+                               
                             </div> 
                         </div>
                     </div>
