@@ -21,7 +21,7 @@ import About from './Pages/About/About';
 import Blog from './Pages/Blog/Blog';
 import BlogDetail from './Pages/Blog/BlogDetail';
 import ScrollToTop from './Comm/ScrollToTop';
-import Contact from './Pages/Contact/Contact';
+// import Contact from './Pages/Contact/Contact';
 import Hotel2 from './Pages/Hotel/Hotel2';
 import Tour from './Pages/Tour/Tour';
 import Test from './Test/Test';
@@ -56,6 +56,7 @@ import Bookshelf from './Pages/TourDiary/Bookshelf';
 import MapRoad from './Transport/MapRoad';
 import BusDetail from './Transport/BusDetail';
 import RoadForm from './Transport/RoadForm';
+import ContactToChat from './Pages/Contact/ContactToChat';
 
 
 
@@ -79,7 +80,7 @@ function App() {
                                 <Route path='/traveler/hotels/ReservationForm' element={<ReservationForm />} />
                                 <Route path='/traveler/blog' element={<Blog />} />
                                 <Route path='/traveler/blog/:num' element={<BlogDetail />} />
-                                <Route path='/traveler/contact' element={<Contact />} />
+                                <Route path='/traveler/contact' element={<ContactToChat />} />
                                 <Route path='/traveler/coalition' element={<Coalition />} />
                                 <Route path='/traveler/coalition/:num' element={<CoalitionDetail />} />
                                 <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
@@ -90,7 +91,6 @@ function App() {
                                 <Route path='/traveler/backpack' element={<Backpack />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> {/*2025-02-07 조유경 추가 */}
-                                <Route path='/traveler/contact' element={<Contact />} />
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
                                 <Route path='/traveler/login' element={<Login />} />
                                 <Route path='/traveler/signup' element={<SignUp />} />
