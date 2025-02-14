@@ -10,23 +10,63 @@ interface ChartProps {
 }
 
 const ChartComponent: React.FC<ChartProps> = ({ title, categories, data, label }) => {
-    const options: ApexOptions = {  // ✅ 타입을 ApexOptions으로 지정
+    const options: ApexOptions = {
         chart: {
-            type: "bar", // ✅ 문자열 그대로 사용 가능
+            type: "bar",
+            fontFamily: "Poppins, sans-serif", // ✅ 차트 폰트 스타일 적용
+            foreColor: "#444", // ✅ 기본 글자색
         },
-        xaxis: { categories },  // ✅ categories는 string[]이므로 문제 없음
         plotOptions: { 
-            bar: { horizontal: false }  // ✅ boolean 값 문제 없음
+            bar: { 
+                horizontal: false,
+                borderRadius: 8, // ✅ 막대 둥글게 적용
+                colors: {
+                    ranges: [{ from: 0, to: 100, color: "#2f89fc" }], // ✅ 특정 값 범위 색상 지정
+                },
+            }  
         },
-        dataLabels: { enabled: true }  // ✅ boolean 값 문제 없음
+        xaxis: { 
+            categories,
+            labels: { 
+                style: { fontSize: "14px", fontWeight: 600, colors: "#444" } 
+            },
+        },
+        yaxis: {
+            labels: { 
+                style: { fontSize: "14px", fontWeight: 600, colors: "#666" } 
+            },
+        },
+        tooltip: {
+            theme: "dark", // ✅ 툴팁 다크 테마 적용
+            style: { fontSize: "14px", fontFamily: "Poppins, sans-serif" },
+        },
+        dataLabels: { 
+            style: { fontSize: "16px", fontWeight: "bold", colors: ["#fff"] } 
+        },
+        colors:["#F85959"],
     };
 
-    const series = [{ name: label, data }];  // ✅ 데이터 타입 올바름
+    const series = [{ name: label, data }];
 
     return (
-        <div className="tour-chart-wrapper">
-            <h2>{title}</h2>
-            <Chart options={options} series={series} type="bar" height={300} />
+        <div style={{
+            height: "270px",
+            background: "#fff",
+            padding: "20px",
+            borderRadius: "12px",
+            textAlign: "center",
+            transition: "all 0.3s ease-in-out",
+        }}>
+            <h2 style={{
+                fontSize: "20px",
+                fontWeight: "bold",
+                color: "black",
+                marginBottom: "10px",
+                fontFamily: "Poppins, sans-serif"
+            }}>
+                {title}
+            </h2>
+            <Chart options={options} series={series} type="bar" height={300} width="340px"/>
         </div>
     );
 };
