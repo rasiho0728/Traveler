@@ -287,83 +287,6 @@ const HotelDetail2: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                    <h4 className="mb-5">Check Availability &amp; Booking</h4>
-                                    <div className="fields">
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <input type="text" className="form-control" placeholder="Name" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <input type="text" className="form-control" placeholder="Email" />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <DatePicker
-                                                        selected={selectedFDate}
-                                                        onChange={(date: Date | null) => setSelectedFDate(date)}
-                                                        dateFormat="yyyy년 MM월 dd일" // 날짜 형식
-                                                        className="form-control" // Bootstrap 스타일
-                                                        locale="ko" // 로케일 설정
-                                                        id="checkin_date"
-                                                        placeholderText="Date from" // 플레이스홀더
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-
-                                                    <DatePicker
-                                                        selected={selectedTDate}
-                                                        onChange={(date: Date | null) => setSelectedTDate(date)}
-                                                        dateFormat="yyyy년 MM월 dd일" // 날짜 형식
-                                                        className="form-control" // Bootstrap 스타일
-                                                        locale="ko" // 로케일 설정
-                                                        id="checkin_date"
-                                                        placeholderText="Date to" // 플레이스홀더
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <div className="select-wrap one-third">
-                                                        <div className="icon"><span className="ion-ios-arrow-down"></span></div>
-                                                        <select name="" id="" className="form-control">
-                                                            <option value="0">인원</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-group">
-                                                    <div className="select-wrap one-third">
-                                                        <div className="icon"><span className="ion-ios-arrow-down"></span></div>
-                                                        <select name="" id="" className="form-control">
-                                                            <option value="0">청소년</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-12">
-                                                <div className="form-group">
-                                                    <input type="submit" value="Check Availability" className="btn btn-primary py-3" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4" style={{ position: 'relative', zIndex: 1 }}>
                                     <h4 className="mb-4">리뷰 &amp; 평점</h4>
                                     <div className="row">
@@ -488,7 +411,7 @@ const HotelDetail2: React.FC = () => {
                                                     <hr />
                                                     <p className="bottom-area d-flex">
                                                         <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                        <span className="ml-auto"><Link to="#">Book Now</Link></span>
+                                                        <span className="ml-auto"><Link to="#">예약</Link></span>
                                                     </p>
                                                 </div>
                                             </div>
