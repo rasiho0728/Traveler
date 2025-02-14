@@ -1,3 +1,4 @@
+// 2025.02.14. 19:05 생성자: 이학수
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
