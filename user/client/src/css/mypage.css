@@ -512,9 +512,9 @@
       display: flex;
       /* grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1f); */
-      gap: 35px;
+      gap: 30px;
       flex-wrap:wrap;
-      margin-top: 30px;
+      margin: 20px 0;
       justify-content: space-around;
     }
 
@@ -524,25 +524,63 @@
       flex-wrap: wrap;
       justify-content: center;
       margin-bottom: 5px;
+      position: relative;
+    }
+    .diary:hover img{
+      opacity: 0.7;
+      cursor: pointer;
+    }
+    .diary:hover button.diary-btn{
+      opacity: 1;
     }
 
-    .diary > button.learn-more{
-      /* width: 150px; */
-      padding: 20px 15px;
-      line-height: 0;
-      background:#d7eedb;
-      border: 2px solid #5f8866;
-      margin-top: 30px;
-    }
-
-    .diary > button.learn-more::before{
-      width: 100%;
-      background:#8dc496;
-      box-shadow: 0 0 0 2px #5f8866, 0 0.625em 0 0 #cce4d0;
+    .diary > button.diary-btn{
+      /* padding: 10px; */
+      width: 90px;
+      height: 90px;
+      background:rgba(0, 0, 0, 0.4);
+      border: 2px solid #222;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform:translate(-50%, -50%);
+      border-radius:50%;
+      transition: 0.3s;
+      color: #fff;
+      opacity: 0;
     }
 
     .diary > img{
       width: 100%;
+      transition: 0.3s;
+    }
+
+    /* *************************다이어리 차트*********************** */
+    .diary-chart{
+      width: 100%;
+    }
+    .diary-chart > h2{
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .diary-chart-container{
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f3f3f3;
+      border-radius: 7px;
+      padding: 10px 0;
+      overflow: hidden;
+      position: relative;
+      box-sizing: border-box;
+    }
+    .diary-chart-container svg {
+      width: 100%;
+      height: 100%;
     }
 
       /* **********************************태블릿 미디어쿼리********************************* */
@@ -601,6 +639,10 @@
           width: 25.33333%;
           bottom: -45px;
           right: 5px;
+        }
+        .diary-chart-container {
+          max-width: 100%;
+          height: 250px; /* ✅ 차트 높이 줄이기 */
         }
       }
 
@@ -662,6 +704,9 @@
           width: 33.33333%;
           bottom: -30px;
           right: -3px;
+        }
+        .diary-chart-container {
+          height: 200px; /* ✅ 더 작은 화면에서는 차트 높이 더 줄이기 */
         }
     }
   }
