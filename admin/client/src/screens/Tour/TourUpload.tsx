@@ -11,6 +11,7 @@ interface Tour {
   description: string;
   tourPlace: string;
   category: string;
+  mbtiCategory: string;
   price: number;
   link: string;
   isBookable: boolean;
@@ -25,6 +26,7 @@ const TourUpload: React.FC = () => {
     tourPlace: "서울",
     description: "",
     category: "beach",
+    mbtiCategory: "EP",
     price: 0,
     link: "",
     isBookable: false,
@@ -37,7 +39,7 @@ const TourUpload: React.FC = () => {
     const { name, value } = e.target;
     setNewTour((prev) => ({ ...prev, [name]: value }));
   };
-
+  const MBTI_CATEGORIES = ["EP (즉흥적, 자유로운 탐험)", "EJ (계획적, 철저한 일정)", "IP (느긋한 여행, 유연한 일정)", "IJ (안정적, 차분한 계획)"];
   // ✅ 대표 이미지 업로드
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -163,8 +165,8 @@ const TourUpload: React.FC = () => {
           <label htmlFor="name" className="form-label">투어 이름</label>
           <input type="text" className="form-control" id="name" name="name" value={newTour.name} onChange={handleInputChange} required />
         </div>
-         {/* ✅ 투어 장소 선택 추가 */}
-         <div className="mb-3">
+        {/* ✅ 투어 장소 선택 추가 */}
+        <div className="mb-3">
           <label className="form-label">투어 장소</label>
           <select className="form-select" name="tourPlace" value={newTour.tourPlace} onChange={handleInputChange} required>
             <option value="서울">서울</option>
@@ -192,7 +194,15 @@ const TourUpload: React.FC = () => {
             <option value="food">맛집</option>
           </select>
         </div>
-
+        {/* ✅ MBTI 추천 카테고리 선택 (EP, EJ, IP, IJ) */}
+        <div className="mb-3">
+          <label className="form-label">추천 카테고리 (MBTI 기반)</label>
+          <select className="form-select" name="mbtiCategory" value={newTour.mbtiCategory} onChange={handleInputChange} required>
+            {MBTI_CATEGORIES.map((category) => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
         {/* ✅ 대표 이미지 업로드 */}
         <div className="mb-3">
           <label className="form-label">대표 이미지</label>
