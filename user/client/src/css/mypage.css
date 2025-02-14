@@ -33,9 +33,14 @@
       height: 423px;
       border-radius: 7px;
       background: #fff5eb;
-      padding:0 15px;
+      padding:0 15px 0 15px;
       position: relative;
       overflow: hidden;
+    }
+
+    .myChart .chart-container svg {
+      width: 100%;
+      height: 100%;
     }
 
     .myChart .chart-container > img{
@@ -397,7 +402,7 @@
 
       .talk{
         margin-bottom: 15px;
-        max-width: 580px;
+        max-width: 660px;
         border-radius: 5px;
         border: 1px solid #ccc;
         box-sizing: border-box;
@@ -509,13 +514,16 @@
       grid-template-rows: repeat(2, 1f); */
       gap: 35px;
       flex-wrap:wrap;
+      margin-top: 30px;
+      justify-content: space-around;
     }
 
     .diary{
-      width: 230px;
+      width: 200px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      margin-bottom: 5px;
     }
 
     .diary > button.learn-more{
@@ -587,7 +595,7 @@
           width: none;
         }
         .myChart .chart-container {
-          height: 230px;
+          /* height: 230px; */
         }
         .myChart .chart-container > img{
           width: 25.33333%;

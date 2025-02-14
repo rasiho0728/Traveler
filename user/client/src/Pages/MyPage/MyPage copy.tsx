@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-import "../../css/mypage.css";
-
+import React, { useState } from 'react'
+import Chart from "react-apexcharts"
+import { ApexOptions } from "apexcharts";
+import '../../css/mypage.css';
 
 const MyPage: React.FC = () => {
     const [isEditing, setIsEditing] = useState(false);
@@ -27,57 +26,43 @@ const MyPage: React.FC = () => {
         setIsEditing(false);
     };
 
-        // ✅ Donut Chart Race 설정
-    const [chartOptions, setChartOptions] = useState({
-        chart: {
-            type: "pie",
-            animation: true,
-            backgroundColor: "transparent",
+  // ✅ ApexOptions 타입을 명시적으로 적용
+  const chartOptions: ApexOptions = {
+    chart: {
+      type: "bar",
+      toolbar: { show: false },
+      height:"100%",
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false, // 가로형 바 차트 설정
+        barHeight: "50%",
+        distributed: true,
+        borderRadius: 0,
+      },
+    },
+    xaxis: {
+      categories: ["조회수", "하트", "댓글 수"],
+      labels: { show: false },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
+    },
+    yaxis: {
+        labels: {
+          formatter: (val) => `${val}`,
         },
-        title: {
-            text: "",
-            align: "left",
-        },
-        plotOptions: {
-            pie: {
-                innerSize: "50%", // ✅ 도넛 차트 설정
-                depth: 45,
-                dataLabels: {
-                    enabled: true,
-                    format: "{point.name}: {point.y}",
-                },
-            },
-        },
-        series: [
-            {
-                name: "값",
-                data: [
-                    { name: "조회수", y: 22, color: "#FBB36B" },
-                    { name: "하트", y: 15, color: "#F27F62" },
-                    { name: "댓글 수", y: 8, color: "#ABBC85" },
-                ],
-            },
-        ],
-    });
+    },
+    grid: { show: false },
+    colors: ["#FBB36B", "#F27F62", "#ABBC85"], // 바 색상 설정
+  };
 
-    // ✅ Donut Race Animation (값 변경)
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setChartOptions((prevOptions) => {
-                let newData = prevOptions.series[0].data.map((item) => ({
-                    ...item,
-                    y: Math.floor(Math.random() * 30), // ✅ 0~30 사이의 랜덤값 변경
-                }));
+  const series = [
+    {
+      name: "값",
+      data: [22, 15, 8], // 더미 데이터 값
+    },
+  ];
 
-                return {
-                    ...prevOptions,
-                    series: [{ ...prevOptions.series[0], data: newData }],
-                };
-            });
-        }, 2000); // ✅ 2초마다 값 변경 (레이스 애니메이션 효과)
-
-        return () => clearInterval(interval);
-    }, []);
   return (
     <div className='MyPage'>
       <div className='inner'>
@@ -175,7 +160,7 @@ const MyPage: React.FC = () => {
                     <h2>일간 차트 데이터</h2>
                     <div className='chart-container w-full'>
                         {/* ✅ Chart 컴포넌트에서 올바른 타입 사용 */}
-                        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+                        <Chart options={chartOptions} series={series} type="bar"/>
                         {/* <img src="/images/myBlog.png" alt="차트일러" /> */}
                     </div>
                 </div>
@@ -253,19 +238,19 @@ const MyPage: React.FC = () => {
                 <div className='big-box'>
                     <div className='diary'>
                         <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
+                        <button className="learn-more">다이어리 보기</button>
                     </div>
                     <div className='diary'>
                         <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
+                        <button className="learn-more">다이어리 보기</button>
                     </div>
                     <div className='diary'>
                         <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
+                        <button className="learn-more">다이어리 보기</button>
                     </div>
                     <div className='diary'>
                         <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
+                        <button className="learn-more">다이어리 보기</button>
                     </div>
                 </div>
                 
