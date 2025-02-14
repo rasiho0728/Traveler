@@ -31,17 +31,35 @@ const MyPage: React.FC = () => {
     chart: {
       type: "bar",
       toolbar: { show: false },
+      height:180,
     },
     plotOptions: {
       bar: {
         horizontal: true, // 가로형 바 차트 설정
-        barHeight: "50%",
+        barHeight: "70%",
+        distributed: true,
+        borderRadius: 15,
+        
       },
     },
     xaxis: {
       categories: ["조회수", "하트", "댓글 수"],
+      labels: { show: false },
+      axisBorder: {
+        show: false, // ✅ X축 라인 보이기
+      },
+      axisTicks: {
+        show: false, // ✅ X축 작은 눈금 제거
+      },
     },
-    colors: ["#4A90E2"], // 바 색상 설정
+    grid: {
+        show: false,
+        // padding: {
+        //   top:2,
+        //   bottom:2,
+        // },
+    },
+    colors: ["#FF0000", "#FFD700", "#008000"], // 바 색상 설정
   };
 
   const series = [
@@ -107,48 +125,53 @@ const MyPage: React.FC = () => {
         </div>
         
         <div className='my-history'>
-            <div className='chatting'>
-                <h2>문의내역</h2>
-                <div className='talkBox'>
-                    <div className='talk'>
-                        <div className='tt'>
-                            <p>챗봇 기록</p>
-                            <i className="fa fa-commenting" aria-hidden="true"></i>
+            <div className='history-container'>
+                <div className='chatting'>
+                    <h2>문의내역</h2>
+                    <div className='talkBox'>
+                        <div className='talk'>
+                            <div className='tt'>
+                                <p>챗봇 기록</p>
+                                <i className="fa fa-commenting" aria-hidden="true"></i>
+                            </div>
+                            <div className='tt-list'>
+                                <ul>
+                                    <li><a href="#">이번 주말에 2박 3일로 가족 여행을 가려고 하는데, 서울에서 너무 멀지 않으면서도 자연을 즐길 수 있는 조용한 여행지를 추천해 줄 수 있을까? 부모님이랑 함께 가는 여행이라 너무 활동적인 곳보다는 힐링할 수 있는 곳이면 좋겠어</a></li>
+                                    <li><a href="#">다음 달 초에 친구들이랑 강원도로 여행을 가려고 하는데, 오션뷰가 보이는 숙소를 찾고 있어.</a></li>
+                                    <li><a href="#">경주에 도착한 후에는 대중교통을 이용하는 게 좋을까, 아니면 렌터카를 빌리는 게 좋을까?</a></li>
+                                    <li><a href="#">회나 해산물 요리를 좋아하는데, 관광객이 많이 가는 곳 말고, 부산쪽을 추천해줘</a></li>
+                                    <li><a href="#">이번 겨울에 속초로 여행을 가려고 하는데, 12월 초에는 기온이 어느 정도일까?</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div className='tt-list'>
-                            <ul>
-                                <li><a href="#">이번 주말에 2박 3일로 가족 여행을 가려고 하는데, 서울에서 너무 멀지 않으면서도 자연을 즐길 수 있는 조용한 여행지를 추천해 줄 수 있을까? 부모님이랑 함께 가는 여행이라 너무 활동적인 곳보다는 힐링할 수 있는 곳이면 좋겠어</a></li>
-                                <li><a href="#">다음 달 초에 친구들이랑 강원도로 여행을 가려고 하는데, 오션뷰가 보이는 숙소를 찾고 있어.</a></li>
-                                <li><a href="#">경주에 도착한 후에는 대중교통을 이용하는 게 좋을까, 아니면 렌터카를 빌리는 게 좋을까?</a></li>
-                                <li><a href="#">회나 해산물 요리를 좋아하는데, 관광객이 많이 가는 곳 말고, 부산쪽을 추천해줘</a></li>
-                                <li><a href="#">이번 겨울에 속초로 여행을 가려고 하는데, 12월 초에는 기온이 어느 정도일까?</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className='talk'>
-                        <div className='tt'>
-                            <p>배낭톡 기록</p>
-                            <i className="fa fa-suitcase" aria-hidden="true"></i>
-                        </div>
-                        <div className='tt-list'>
-                            <ul>
-                                <li><a href="#">사정이 생겨서 당일날 숙소 예약을 취소하려는데 전액 환불이 가능한가요?</a></li>
-                                <li><a href="#">세인트존스 패키지 여행에서 기본으로 제공하는 서비스가 있나요? 웰컴 드링크나 조식쿠폰 제공이 있는걸로 가려는데 패키지쪽에는 없더라구요...</a></li>
-                                <li><a href="#">늦게 도착할거같은데 야간 체크인도 가능한가요? 혹시 야간체크할때는 개인비용부담이 드나요? 아니면 예약 서비스에서 제공해주나요?</a></li>
-                                <li><a href="#">서울 당일치기로 전주여행가는게 있던데 여기 패키지가 너무 활동적이거나 이동 동선이 복잡한가요? 또 전주여행에 한옥마을 탐방같은 코스도 있을까요?</a></li>
-                                <li><a href="#">아는 해외친구가 이번에 한국에 온다길래 여길 추천하려고 하거든요. 부산까지 가는 전철중에 KTX나 ITX중에 어느것이 더 싼가요?</a></li>
-                            </ul>
+                        <div className='talk'>
+                            <div className='tt'>
+                                <p>배낭톡 기록</p>
+                                <i className="fa fa-suitcase" aria-hidden="true"></i>
+                            </div>
+                            <div className='tt-list'>
+                                <ul>
+                                    <li><a href="#">사정이 생겨서 당일날 숙소 예약을 취소하려는데 전액 환불이 가능한가요?</a></li>
+                                    <li><a href="#">세인트존스 패키지 여행에서 기본으로 제공하는 서비스가 있나요? 웰컴 드링크나 조식쿠폰 제공이 있는걸로 가려는데 패키지쪽에는 없더라구요...</a></li>
+                                    <li><a href="#">늦게 도착할거같은데 야간 체크인도 가능한가요? 혹시 야간체크할때는 개인비용부담이 드나요? 아니면 예약 서비스에서 제공해주나요?</a></li>
+                                    <li><a href="#">서울 당일치기로 전주여행가는게 있던데 여기 패키지가 너무 활동적이거나 이동 동선이 복잡한가요? 또 전주여행에 한옥마을 탐방같은 코스도 있을까요?</a></li>
+                                    <li><a href="#">아는 해외친구가 이번에 한국에 온다길래 여길 추천하려고 하거든요. 부산까지 가는 전철중에 KTX나 ITX중에 어느것이 더 싼가요?</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className='myChart'>
-                <h2>일간 차트 데이터</h2>
-                <div className='chart-container w-full h-64'>
-                    {/* ✅ Chart 컴포넌트에서 올바른 타입 사용 */}
-                    <Chart options={chartOptions} series={series} type="bar" height={200} />
+                
+                <div className='myChart'>
+                    <h2>일간 차트 데이터</h2>
+                    <div className='chart-container w-full h-64'>
+                        {/* ✅ Chart 컴포넌트에서 올바른 타입 사용 */}
+                        <Chart options={chartOptions} series={series} type="bar" height={200} />
+                        <img src="/images/myBlog.png" alt="차트일러" />
+                    </div>
                 </div>
             </div>
+            
         </div>
 
         <div className='log'>
