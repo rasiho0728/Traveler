@@ -47,7 +47,7 @@ const ContactToChat: React.FC = () => {
                     <div className="row mb-5">
                         <div className='col-md-3 border p-0' style={{height:'500px'}}>
                             <div style={{height:'50px'}}>
-
+                                
                             </div>
                         </div>
                         <div className='col-md-9 border' style={{height:'500px'}}>
