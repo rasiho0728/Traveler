@@ -1,131 +1,115 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "./css/MapRoad.css";
-declare global {
-  interface Window {
-    kakao: any;
-  }
-}
+import '../css/maproad.css';
+import axios from "axios";
 
-const MapRoad: React.FC = () => {
-  const [map, setMap] = useState<any>(); // 지도 상태
-  const [fixedMarker, setFixedMarker] = useState<any>(); // 고정된 마커 상태
-  const [infoWindow, setInfoWindow] = useState<any>(); // 인포윈도우 상태
-  const [isOpen, setIsOpen] = useState(false); // 인포윈도우 열림/닫힘 상태 추적
+const MapRoad = () => {
+  const [startPoint, setStartPoint] = useState("");
+  const [endPoint, setEndPoint] = useState("");
+  const [distance, setDistance] = useState<number | null>(null);
+
+  // 주소를 위도, 경도로 변환하는 함수
+  const getCoordinates = async (address: string) => {
+    console.log(process.env.REACT_APP_NAVER_CLIENT_ID);
+    console.log(process.env.REACT_APP_NAVER_CLIENT_SECRET);
+
+    try {
+      //https://naveropenapi.apis.naver.com/map/geocode/v2/geocode?query=%EC%84%9C%EC%9A%B8%EC%97%AD
+
+      const response = await axios.get(
+        `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${address}`,
+        {
+          headers: {
+            "x-ncp-apigw-api-key-id": `${process.env.REACT_APP_NAVER_CLIENT_ID}`,
+            "x-ncp-apigw-api-key": `${process.env.REACT_APP_NAVER_CLIENT_SECRET}`
+          },
+        }
+      );
+      const data = await response.data;
+
+      if (data && data.addresses && data.addresses.length > 0) {
+        const { y: lat, x: lng } = data.addresses[0]; // 좌표 추출
+        return { lat, lng }; // 좌표 반환
+      } else {
+        throw new Error("주소를 찾을 수 없습니다.");
+      }
+    } catch (error: any) {
+      throw new Error(`Geocoding API 호출 실패: ${error.message}`);
+    }
+  };
+
+  const findRoute = async () => {
+    if (!startPoint || !endPoint) {
+      alert("출발지와 도착지를 입력해주세요.");
+      return;
+    }
+
+    try {
+      // 출발지와 도착지 주소를 좌표로 변환
+      const startCoords = await getCoordinates(startPoint);
+      const endCoords = await getCoordinates(endPoint);
+
+      // 경로 요청 URL을 좌표로 수정하여 경로 요청
+      const response = await fetch(
+        `https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving?start=${startCoords.lat},${startCoords.lng}&goal=${endCoords.lat},${endCoords.lng}`,
+        {
+          headers: {
+            "x-ncp-apigw-api-key-id": process.env.REACT_APP_NAVER_CLIENT_ID!,
+            "x-ncp-apigw-api-key": process.env.REACT_APP_NAVER_CLIENT_SECRET!,
+          },
+        }
+      );
+
+      if (!response.ok) throw new Error("API 요청 실패");
+
+      const data = await response.json();
+      console.log(data);  // 응답 데이터 확인
+
+      if (data?.route?.traoptimal) {
+        const route = data.route.traoptimal[0];
+        setDistance(route.summary.distance);
+        alert(`총 거리: ${route.summary.distance}m`);
+      } else {
+        alert("길찾기 실패: 응답에 경로 정보 없음");
+      }
+    } catch (error: any) {
+      alert(`에러 발생: ${error.message}`);
+    }
+  };
 
   useEffect(() => {
-    // 카카오 지도 API가 로드되었는지 확인
-    if (window.kakao && window.kakao.maps) {
-      const container = document.getElementById("map"); // 지도를 표시할 DOM
-      const centerPosition = new window.kakao.maps.LatLng(37.501283, 127.025139); // 서울시 서초구
+    const script = document.createElement("script");
+    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.REACT_APP_NAVER_CLIENT_ID}`;
+    script.async = true;
+    document.head.appendChild(script);
 
-      const options = {
-        center: centerPosition, // 지도 중심 좌표
-        level: 2, // 확대
-      };
-
-      const mapInstance = new window.kakao.maps.Map(container, options); // 맵 인스턴스 생성
-      setMap(mapInstance); // 상태에 map 설정
-      // mapInstance.setDraggable(false);
-      mapInstance.setZoomable(false);
-      // 고정된 위치에 마커 추가
-      const marker = new window.kakao.maps.Marker({
-        position: centerPosition, // 마커 위치
-        map: mapInstance, // 지도 객체
+    script.onload = () => {
+      new window.naver.maps.Map("map", {
+        center: new window.naver.maps.LatLng(37.5665, 126.9780),
+        zoom: 10,
       });
-      setFixedMarker(marker);
-
-      // 인포윈도우 생성 (중앙 정렬과 스타일링 수정)
-      const content = `
-        <div class="MRcustom-info-window" style="text-align: center;">
-          <a href="https://map.kakao.com/?from=roughmap&eName=%EC%84%9C%EC%9A%B8%20%EC%84%9C%EC%B4%88%EA%B5%AC%20%EC%84%9C%EC%B4%88%EB%8C%80%EB%A1%9C77%EA%B8%B8%2041" target="_blank">
-            <span class="MRtitle">누리군청</span>
-          </a>
-        </div>`;
-      const infowindow = new window.kakao.maps.InfoWindow({
-        content: content, // 인포윈도우 내용
-        position: centerPosition, // 위치
-      });
-      setInfoWindow(infowindow);
-
-      // 마커 클릭 시 인포윈도우 열기
-      window.kakao.maps.event.addListener(marker, "click", function () {
-        if (!isOpen) {
-          infowindow.open(mapInstance, marker); // 인포윈도우 열기
-          setIsOpen(true);
-        }
-      });
-    } else {
-      // 카카오 지도 API 동적으로 로드
-      const script = document.createElement("script");
-      script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_API_KEY&libraries=services,clusterer&autoload=true`;
-      document.head.appendChild(script);
-
-      script.onload = () => {
-        if (window.kakao && window.kakao.maps) {
-          const container = document.getElementById("map");
-          const options = {
-            center: new window.kakao.maps.LatLng(37.501283, 127.025139),
-            level: 10,
-          };
-          const mapInstance = new window.kakao.maps.Map(container, options);
-          setMap(mapInstance); // 지도 객체
-        }
-      };
-    }
+    };
   }, []);
 
-
   return (
-    <div className="map-road-container">
-      {/* 제목 */}
-      <h1 className="MRheading">여행루트</h1>
-
-      {/* 지도 영역 */}
-      <div id="map" className="map-container"></div>
-
-      <div className="MRbuttons">
-        <Link
-          className="MRbutton"
-          target="_blank"
-          to="https://map.kakao.com/?from=roughmap&eName=%EC%84%9C%EC%9A%B8%20%EC%84%9C%EC%B4%88%EA%B5%AC%20%EC%84%9C%EC%B4%88%EB%8C%80%EB%A1%9C77%EA%B8%B8%2041"
-        >
-          길찾기
-        </Link>
+    <div className="MR-container">
+      <h1 className="MR-heading">최단 경로 찾기</h1>
+      <div className="MR-input-area">
+        <input
+          type="text"
+          placeholder="출발지"
+          value={startPoint}
+          onChange={(e) => setStartPoint(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="도착지"
+          value={endPoint}
+          onChange={(e) => setEndPoint(e.target.value)}
+        />
+        <button onClick={findRoute}>길찾기</button>
       </div>
-
-      {/* 주소 및 연락처 */}
-      <p className="MRinfo">
-        <span>
-          <img
-            src="images\transport\MapMarker.png"
-            width="42"
-            height="34"
-            alt="지도 마커"
-          />
-          <h3>서울시 서초구 서초대로 77길 4층 (누리군청)</h3>
-        </span>
-
-        <div className="MRinfo-contact">
-          <span className="MRinfo-contact-item">
-            <img src="images/transport/Tel.png" width="32" height="24" alt="전화" />
-            <span>
-              <b>TEL</b>
-              <br />
-              <b>02-1234-1234</b>
-            </span>
-          </span>
-          <br/>
-          <span className="MRinfo-contact-item">
-            <img src="images/transport/Fax.png" width="32" height="24" alt="팩스" />
-            <span>
-              <b>FAX</b>
-              <br />
-              <b>02-1234-1234</b>
-            </span>
-          </span>
-        </div>
-      </p>
+      <div id="map" className="MR-map"></div>
+      {distance && <p>총 거리: {distance}m</p>}
     </div>
   );
 };

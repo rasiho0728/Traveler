@@ -10,8 +10,39 @@
     align-items: center;
     min-height: auto; /* 최소 높이 자동 조절 */
     padding: 1rem; /* 여백 조절 */
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
 
+/* 제목 박스 스타일 */
+.titlebox {
+    position: absolute;
+    top: 0; /* 화면 상단에 고정 */
+    left: 50%;
+    transform: translateX(-50%); /* 가로 중앙 정렬 */
+    width: 100%;
+    padding: 20px 0; /* 위아래 여백 */
+    z-index: 10; /* 책장 위로 표시되도록 설정 */
+  }
+  
+  /* 제목 스타일 */
+  .bookshelf h2 {
+    font-size: 2rem; /* 제목 크기 조정 */
+    color: #c16b2e; /* 흰색 텍스트 */
+    margin: 0; /* 기본 마진 제거 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    font-weight: bold;
+  }
+
+  .titlebox {
+    position: absolute;
+    top: 0; /* 화면 상단에 고정 */
+    left: 50%;
+    transform: translateX(-50%); /* 가로 중앙 정렬 */
+    width: 100%;
+    padding: 20px 0; /* 위아래 여백 */
+    z-index: 10;
+  }
+  
 /* 선반 컨테이너 */
 .shelfContainer {
     width: 100%;

@@ -1,71 +1,120 @@
-import React, { useEffect, useState } from 'react'
-// 2025.0211. 19:00 수정: 최의진,
-import xml2js from 'xml2js';
-
-
+import React, { useEffect, useState } from 'react';
+import { Select, Tag, Card, Row, Col } from "antd";
+import "antd/dist/reset.css";
+import { LoadingOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
+//2025-02-14수정 09:30수정
 const SubwayDetail: React.FC = () => {
-    const [xmlData, setXmlData] = useState<any>(null);
-    const [error, setError] = useState<string | null>(null);
+  const [selectedLine, setSelectedLine] = useState<string | undefined>(undefined);
+  const [trainData, setTrainData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const API_URL = "http://swopenapi.seoul.go.kr/api/subway/47514f676863686c3732766d464674/json/realtimePosition/0/100/";
 
-    // XML 데이터를 파싱하는 함수
-    const parseXmlData = (data: string) => {
-        xml2js.parseString(data, (error:Error | null, result : any) => {
-            if (error) {
-                setError("XML 파싱 오류");
-                return;
-            }
-            console.log(data)
-            setXmlData(result);
+  // 실시간 데이터 갱신 주기 (예: 30초마다 갱신)
+  const pollingInterval = 30000; // 30초
+
+    //실시간 지하철 api 가져오기
+  useEffect(() => {
+    const fetchTrainData = () => {
+      if (!selectedLine) return;
+
+      setLoading(true);  // 로딩 시작
+      fetch(`${API_URL}${encodeURIComponent(selectedLine)}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.realtimePositionList) {
+            const filteredData = data.realtimePositionList.map((train: any) => ({
+              subwayNm: train.subwayNm || "정보 없음",
+              statnNm: train.statnNm || "정보 없음",
+              trainNo: train.trainNo || "정보 없음",
+              statnTnm: train.statnTnm || "정보 없음",
+              trainSttus: train.trainSttus || "정보 없음",
+              directAt: train.directAt || "정보 없음",
+            }));
+            setTrainData(filteredData);
+          }
+          setLoading(false); // 로딩 종료
+        })
+        .catch((error) => {
+          console.error("Error fetching train data:", error);
+          setLoading(false); // 로딩 종료
         });
     };
 
-    // XML 파일을 가져오는 useEffect
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('http://swopenapi.seoul.go.kr/api/subway/sample/xml/realtimeStationArrival/ALL');
-                const text = await response.text();
-                parseXmlData(text);
-            } catch (err) {
-                setError('데이터를 가져오는 데 실패했습니다.');
-            }
-        };
-        fetchData();
-    }, []);
+    // 데이터 갱신
+    fetchTrainData();
+    const intervalId = setInterval(fetchTrainData, pollingInterval);
 
-    // XML 데이터를 테이블로 변환
-    const renderTable = () => {
-        if (!xmlData) return <div>데이터 로딩 중...</div>;
+    // 컴포넌트 언마운트 시 interval 해제
+    return () => clearInterval(intervalId);
+  }, [selectedLine]);  // selectedLine 변경 시마다 데이터 갱신
 
-        const rows = xmlData?.response?.body?.items[0]?.item || [];
+  //열차 진입 상태 개시하기 
+  const getTrainStatusTag = (status: any) => {
+    switch (status) {
+      case "0": return <Tag color="blue"><CheckCircleOutlined /> 운행 중</Tag>;
+      case "1": return <Tag color="blue"><LoadingOutlined /> 진입</Tag>;
+      case "2": return <Tag color="green"><CheckCircleOutlined /> 도착</Tag>;
+      case "3": return <Tag color="red"><CloseCircleOutlined /> 출발</Tag>;
+      default: return <Tag color="gray">정보 없음</Tag>;
+    }
+  };
 
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>기차 이름</th>
-                        <th>운행 정보</th>
-                        <th>지연 여부</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows.map((row: any, index: number) => (
-                        <tr key={index}>
-                            <td>{row.trainName[0]}</td>
-                            <td>{row.operatingInfo[0]}</td>
-                            <td>{row.delayStatus[0]}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        );
-    };
+  return (
+    <div className="p-6 max-w-3xl mx-auto bg-white shadow-md rounded-xl">
+      <h1 className="text-2xl font-bold mb-4 text-center">🚇 실시간 지하철 현황</h1>
+      <Select
+        className="w-full mb-4"
+        value={selectedLine}
+        onChange={setSelectedLine}
+        placeholder="노선 선택"
+      >
+        {/**노선 선택후 노선에 맞는 데이터 반복 */}
+        {["1호선", "2호선", "3호선", "4호선", "5호선", "6호선", "7호선", "8호선", "9호선"].map((line) => (
+          <Select.Option key={line} value={line}>
+            {line}
+          </Select.Option>
+        ))}
+      </Select>
 
-    return (
-        <div style={{ width: '100%', height: '100vh', display: 'block' }}>
-            {error ? <div>{error}</div> : renderTable()}
+      {/* 로딩 중일 때 */}
+      {loading ? (
+        <div className="text-center">
+          <LoadingOutlined spin style={{ fontSize: 24 }} />
+          <p>데이터를 불러오는 중...</p>
         </div>
-    );
+      ) : (
+        <Row gutter={16}>
+          {trainData.length > 0 ? (
+            trainData.map((train: any) => (
+              <Col span={8} key={train.trainNo}>
+                <Card
+                  // title={`열차 ${train.trainNo}`}
+                  style={{ marginBottom: 16,padding: '16px'  }}
+                  // bodyStyle={{ padding: '16px' }}
+                >
+                  <p><strong>현재역:</strong> {train.statnNm}</p>
+                  <p><strong>목적지:</strong> {train.statnTnm}</p>
+                  <p><strong>열차 상태:</strong> {getTrainStatusTag(train.trainSttus)}</p>
+                  <p><strong>급행 여부:</strong> {train.directAt === "1" ? "급행" : "일반"}</p>
+                </Card>
+              </Col>
+            ))
+          ) : (
+            <Col span={24}>
+              <Card style={{ marginBottom: 16, textAlign: 'center' }}>
+                <p>현재 선택한 노선의 데이터가 없습니다.</p>
+              </Card>
+            </Col>
+          )}
+        </Row>
+      )}
+    </div>
+  );
 };
 
-export default SubwayDetail
+export default SubwayDetail;

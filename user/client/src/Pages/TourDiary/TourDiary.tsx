@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
-import "./TourDiary.css";
+import "./TourDiaryUp.css";
 import { useParams } from "react-router-dom";
 
 // PageCoverProps에서 children을 옵셔널로 처리
@@ -18,7 +18,7 @@ const PageCover = React.forwardRef<HTMLDivElement, PageCoverProps>((props, ref) 
   );
 });
 
-const FirstPageCover =  React.forwardRef<HTMLDivElement, PageCoverProps>((props, ref) => {
+const FirstPageCover = React.forwardRef<HTMLDivElement, PageCoverProps>((props, ref) => {
   return (
     <div className="firstcover" ref={ref} data-density="hard">
       <div>
@@ -28,8 +28,7 @@ const FirstPageCover =  React.forwardRef<HTMLDivElement, PageCoverProps>((props,
   );
 });
 
-
-const LastPageCover =  React.forwardRef<HTMLDivElement, PageCoverProps>((props, ref) => {
+const LastPageCover = React.forwardRef<HTMLDivElement, PageCoverProps>((props, ref) => {
   return (
     <div className="lastcover" ref={ref} data-density="hard">
       <div>
@@ -46,20 +45,18 @@ interface PageProps {
 }
 
 const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
-
   const { id } = useParams<{ id: string }>();
-
 
   return (
     <div className="page" ref={ref}>
-      <h3 style={{marginTop: "10px"}}>{props.user} Diary</h3>
+      <h3 style={{ marginTop: "10px" }}>{props.user} Diary</h3>
       <div className="content">{props.children}</div>
       <div className="page-number">{props.number}</div>
     </div>
   );
 });
 
-const TourDiary: React.FC = () => {
+const TourDiaryUpload: React.FC = () => {
   const [inputText, setInputElement] = useState("");
   const [text, setText] = useState("내용 입력");
 
@@ -101,7 +98,44 @@ const TourDiary: React.FC = () => {
       comment: "마지막 여행지는 여기였어요.",
       address: "강원도, 대한민국",
     },
+    {
+      number: "7",
+      imageUrl: "/images/room-2.jpg",
+      comment: "마지막 여행지는 여기였어요.",
+      address: "강원도, 대한민국",
+    },
   ];
+
+  // 페이지 수가 홀수일 경우 마지막에 빈 페이지 추가
+  const adjustedPages = pages.length % 2 !== 0 ? [...pages, { number: (pages.length + 1).toString(), imageUrl: "", comment: "", address: "" }] : pages;
+
+  const [isEditing, setIsEditing] = useState(false);  // 수정 상태 관리
+  const [newPage, setNewPage] = useState({
+    imageUrl: "",
+    comment: "",
+    address: "",
+  }); // 새 페이지에 대한 상태 관리
+
+  const handleEditButtonClick = () => {
+    setIsEditing(true);  // 수정 모드로 전환
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const updatedPages = [
+      ...adjustedPages,
+      {
+        number: (adjustedPages.length + 1).toString(),
+        imageUrl: newPage.imageUrl,
+        comment: newPage.comment,
+        address: newPage.address,
+      },
+    ];
+    setNewPage({ imageUrl: "", comment: "", address: "" });  // 입력 필드 초기화
+    setIsEditing(false);  // 수정 모드 종료
+    // 새로운 페이지가 추가된 배열을 설정
+    // setPages(updatedPages);
+  };
 
   const user = {
     name: "홍길동",
@@ -110,65 +144,76 @@ const TourDiary: React.FC = () => {
     bio: "여행과 음식 사랑하는 사람입니다.",
   };
 
-  return (
-    <div className="book">
-      <div className="bookinfo">
-        <HTMLFlipBook
-          width={450}
-          height={550}
-          minWidth={300}
-          maxWidth={1200}
-          minHeight={400}
-          maxHeight={1200}
-          showCover={true}  // 커버 페이지 사용
-          flippingTime={1000}
-          style={{ margin: "0 auto" }}
-          maxShadowOpacity={0.5}
-          className="album-web"
-          startPage={0} // 초기 페이지 설정
-          size="stretch" // 페이지 크기 설정
-          drawShadow={true} // 그림자 그리기 설정
-          usePortrait={false} // 세로 모드 사용 여부
-          startZIndex={0} // 필수 속성 추가
-          autoSize={true} // 필수 속성 추가
-          mobileScrollSupport={false} // 필수 속성 추가
-          clickEventForward={false} // 필수 속성 추가
-          useMouseEvents={true} // 필수 속성 추가
-          swipeDistance={50} // 필수 속성 추가
-          showPageCorners={true} // 필수 속성 추가
-          disableFlipByClick={false} // 필수 속성 추가
-        >
-          <FirstPageCover></FirstPageCover>
-          <PageCover></PageCover>
-          {pages.map((page) => (
-            <Page key={page.number} number={page.number} user={user.name}>
-              <div>
-                <img
-                  src={page.imageUrl}
-                  alt={`Page ${page.number}`}
-                  style={{ width: "90%", height: "auto" ,boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",borderRadius: "5px" }}
-                />
-                <p style={{marginTop: "5px"}}>{page.address}</p>
-                <h4 style={{marginTop: "15px"}}>{page.comment}</h4>
-                
-              </div>
-            </Page>
-          ))}
+  const handleCancelButtonClick = () => {
+    // 취소 시 입력 필드 초기화하고 수정 모드 종료
+    setNewPage({ imageUrl: "", comment: "", address: "" });
+    setIsEditing(false); // 수정 모드 종료
+  };
 
-            {/* <Page key={pages.length} number={`${pages.length}`} user={user.name}>
-            
-              <div>
-                <input type="File" accept="image/*" style={{ width: "90%", height: "auto" ,boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",borderRadius: "5px" }}/>
-                <input type="text" typeof="p" style={{marginTop: "5px"}}></input>
-                <input type="text" typeof="h4" style={{marginTop: "15px"}}></input>                
-              </div>
-            </Page> */}
-          <PageCover></PageCover>
-          <LastPageCover></LastPageCover>
-        </HTMLFlipBook>
+  return (
+    <div className={`book ${isEditing ? "editing" : ""}`}>
+      {/* 'box' div로 감싸기 */}
+      <div className="box">
+        <div className="bookinfo">
+          <HTMLFlipBook
+            width={450}
+            height={550}
+            minWidth={300}
+            maxWidth={1200}
+            minHeight={400}
+            maxHeight={1200}
+            showCover={true}
+            flippingTime={1000}
+            style={{ margin: "0 auto" }}
+            maxShadowOpacity={0.5}
+            className="album-web"
+            startPage={0}
+            size="stretch"
+            drawShadow={true}
+            usePortrait={false}
+            startZIndex={0}
+            autoSize={true}
+            mobileScrollSupport={false}
+            clickEventForward={false}
+            useMouseEvents={true}
+            swipeDistance={50}
+            showPageCorners={true}
+            disableFlipByClick={false}
+          >
+            <FirstPageCover></FirstPageCover>
+            <PageCover></PageCover>
+            {adjustedPages.map((page) => (
+              <Page key={page.number} number={page.number} user={user.name}>
+                <div>
+                  {page.imageUrl ? (
+                    <img
+                      src={page.imageUrl}
+                      alt={`Page ${page.number}`}
+                      style={{
+                        width: "90%",
+                        height: "auto",
+                        boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",
+                        borderRadius: "5px",
+                      }}
+                    />
+                  ) : (
+                    <div style={{ textAlign: "center", padding: "50px" }}>
+                    </div>
+                  )}
+                  <p style={{ marginTop: "5px" }}>{page.address}</p>
+                  <h4 style={{ marginTop: "15px" }}>{page.comment}</h4>
+                </div>
+              </Page>
+            ))}
+            <PageCover></PageCover>
+            <LastPageCover></LastPageCover>
+          </HTMLFlipBook>
+        </div>
       </div>
-    </div>
+
+
+  </div>
   );
 };
 
-export default TourDiary;
+export default TourDiaryUpload;

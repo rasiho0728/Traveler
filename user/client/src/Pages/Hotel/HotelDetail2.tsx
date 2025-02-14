@@ -1,6 +1,6 @@
 // 2025.01.24. 15:15 생성자: 황보도연, UI 변경
 import React, { useEffect, useState } from 'react'
-import { appear_animate, handleScroll, updateHeight } from '../../Comm/CommomFunc';
+import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 import { Link } from 'react-router-dom';
@@ -45,19 +45,18 @@ const HotelDetail2: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        // js-fullheight 클래스를 가진 요소의 높이를 화면의 크기로 갱신
-        updateHeight();
-        window.addEventListener("resize", updateHeight);
+        updateHalfHeight();
+        window.addEventListener("resize", updateHalfHeight);
         return () => {
-            window.removeEventListener("resize", updateHeight);
+            window.removeEventListener("resize", updateHalfHeight);
         };
     }, []);
     return (
         <div>
-            <div className="hero-wrap js-fullheight" style={{ backgroundImage: "url('/images/bg_5.jpg')" }}>
+            <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/bg_5.jpg')" }}>
                 <div className="overlay"></div>
                 <div className="container">
-                    <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+                    <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span className="mr-2"><Link to="/traveler/hotels">Hotel</Link></span> <span>Hotel Single</span></p>
                             <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>호텔 소개</h1>

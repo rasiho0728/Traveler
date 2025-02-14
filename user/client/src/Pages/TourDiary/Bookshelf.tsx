@@ -55,7 +55,10 @@ const Bookshelf: React.FC = () => {
   );
 
   return (
-    <div className="bookshelf" style={{ paddingTop: "100px" }}>
+    <div className="bookshelf" style={{ paddingTop: "170px" }}>
+      <div className="titlebox"  style={{ paddingTop: "90px" }}>
+        <h2 >공유 다이어리</h2>
+      </div>
       <div className="shelfContainer">
         {renderShelf(books.slice(0, 3))}
         {renderShelf(books.slice(3, 6))}
