@@ -8,7 +8,7 @@ interface RecommendationProps {
 const placeNameMap: { [key: string]: string } = {
     "서울": "seoul",
     "부산": "busan",
-    "제주": "jeju",
+    "제주도": "jeju",
     "강원도": "kangwon",
 };
 
