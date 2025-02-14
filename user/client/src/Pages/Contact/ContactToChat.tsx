@@ -2,15 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
+import axios from 'axios';
 
 interface ChatLogs {
   logfile: string;
   cdate: string;
 }
 
-interface Chating{
+interface Chating {
   date: string;
-  chats: Array<{isUser:boolean; name: string; content: string;}>;
+  chats: Array<{ isUser: boolean; name: string; content: string; }>;
 }
 
 const ContactToChat: React.FC = () => {
@@ -51,14 +52,31 @@ const ContactToChat: React.FC = () => {
           isUser: true,
           name: 'user1',
           content: '안녕?',
-        },{
+        }, {
           isUser: false,
           name: '관리자',
           content: '안녕하세요.',
         }
       ]
     })
-  }, [])
+  }, []);
+
+
+  const fetchLogContent = async (chatData: ChatLogs) => {
+    try {
+      const response = await axios(`/LOGS/${chatData.logfile}`);  // public 폴더 기준 경로
+      const text = await response.data;
+      const chats: any[] = [];
+      text.split('\n').map((line: string) => {
+        const [name, type, content] = line.split('||');
+        const isUser = type === 'user' ? true : false;
+        chats.push({ isUser: isUser, name: name, content: content })
+      });
+      setChating({ date: chatData.cdate, chats: chats });
+    } catch (error) {
+      console.error('Failed to fetch log file:', error);
+    }
+  };
 
   useEffect(() => {
     handleScroll();
@@ -84,7 +102,8 @@ const ContactToChat: React.FC = () => {
     return (<div className="row mb-5">
       <div className='col-md-3 border p-0' style={{ height: '500px', overflowY: 'auto', display: isListVisiable ? 'block' : 'none' }}>
         <button className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
-          style={{ height: '80px', color: '#bbb' }}>
+          style={{ height: '80px', color: '#bbb' }}
+          onClick={_ => fetchLogContent(chatList[0])}>
           <span className='h6 m-0 text-dark'>{new Date().toLocaleDateString()} 문의</span>
         </button>
         {
@@ -93,7 +112,8 @@ const ContactToChat: React.FC = () => {
             return (
               <button key={idx}
                 className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
-                style={{ height: '80px', color: '#bbb' }}>
+                style={{ height: '80px', color: '#bbb' }}
+                onClick={_ => fetchLogContent(chat)}>
                 <span className='h6 m-0 text-dark'>문의 내역: {new Date(chat.cdate).toLocaleDateString()}</span>
               </button>)
           })
@@ -114,23 +134,30 @@ const ContactToChat: React.FC = () => {
         <div className='text-center mb-3'>
           <span className='bg-light p-2 rounded-top rounded-bottom'>{chating?.date}</span>
         </div>
-        <div style={{height: '350px', overflowY: 'auto'}}>
+        <div className='mb-3'
+          style={{
+            height: (new Date(chating?.date as string).toLocaleDateString() === new Date().toLocaleDateString()) ? '330px' : '400px',
+            overflowY: 'auto'
+          }}>
           {
             chating?.chats.map((chat, idx) => (
-              <div key={idx} className={`${chat.isUser? 'text-start' : 'text-end'} mx-4`}>
+              <div key={idx} className={`${chat.isUser ? 'text-start' : 'text-end'} mx-4`}>
                 <p className='mb-1'>{chat.name}</p>
                 <span className='bg-light p-2 rounded-top rounded-bottom'
-                style={{
-                  boxShadow: '3px 3px 3px 1px rgba(0, 0, 0, 0.5)'
-                }}>
+                  style={{
+                    boxShadow: '3px 3px 3px 1px rgba(0, 0, 0, 0.5)'
+                  }}>
                   {chat.content}
                 </span>
               </div>
             ))
           }
         </div>
-        <div className='d-flex' style={{height: '50px'}}>
-          <input type="text" className='bg-light rounded-top rounded-bottom form-control me-3' placeholder='문의 내역을 입력해주세요'/> 
+        <div style={{
+          height: '50px',
+          display: (new Date(chating?.date as string).toLocaleDateString() === new Date().toLocaleDateString()) ? 'flex' : 'none'
+        }}>
+          <input type="text" className='bg-light rounded-top rounded-bottom form-control me-3' placeholder='문의 내역을 입력해주세요' />
           <button className='btn btn-success rounded-top rounded-bottom'>전송</button>
         </div>
       </div>
@@ -211,6 +238,31 @@ const ContactToChat: React.FC = () => {
                   <p><span>Website</span> <Link to="#">yoursite.com</Link></p>
                 </div>
               </div>
+
+              {/* 회사 오시는 길 추가 */}
+              <div className='row'>
+                <div className='col-md-6'>
+                  {/* Google Maps 삽입 */}
+                  <div className="map-responsive">
+                    <iframe
+                      title="회사 오시는 길"
+                      width="100%"
+                      height="300"
+                      src="https://www.google.com/maps/embed/v1/place?q=서울+서초구+서초대로77길+41&key=api...key"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <h3 className="h5 mb-3">회사 오시는 길</h3>
+                  <p>서울 서초구 서초대로77길 41 4층에 위치해 있습니다.</p>
+                  <p>🚇 지하철: 2호선 강남역 5번 출구 도보 10분</p>
+                  <p>🚗 주차: 건물 내 유료 주차 가능</p>
+                </div>
+              </div>
+
             </div>
           </div>
 
