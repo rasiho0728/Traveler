@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import DatePicker from 'react-datepicker';
 import { appear_animate, handleScroll, updateHalfHeight } from '../Comm/CommomFunc';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RoadForm: React.FC = () => {
   const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
   const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
-
+  const navigate = useNavigate()
   useEffect(() => {
     // 요소의 [data-scrollax] 옵션을 분석 적용
     handleScroll()
@@ -28,6 +29,9 @@ const RoadForm: React.FC = () => {
     };
   }, []);
 
+  const handleReservationClick = () => {
+    navigate('/traveler/Transport/RoadForm/Bus')
+  }
   return (
     <div>
       <div className='js-halfheight mb-4'
@@ -44,18 +48,22 @@ const RoadForm: React.FC = () => {
           <h3 className="heading mb-4">가는 편 승차원 정보</h3>
           <form action="#">
             <div className="fields">
-              <div className="form-group">
-                <input type="text" className="form-control" placeholder="출발지" />
+            <div className="form-group">
+                <div className="select-wrap one-third">
+                  <div className="icon"><span className="ion-ios-arrow-down"></span></div>
+                  <select name="" id="" className="form-control">
+                    <option value="">출발지</option>
+                    <option value="">서울경부</option>
+                  </select>
+                </div>
               </div>
               <div className="form-group">
                 <div className="select-wrap one-third">
                   <div className="icon"><span className="ion-ios-arrow-down"></span></div>
                   <select name="" id="" className="form-control">
-                    <option value="">Select Location</option>
-                    <option value="">강릉</option>
-                    <option value="">대구</option>
+                    <option value="">도착지</option>
                     <option value="">부산</option>
-                    <option value="">포항</option>
+                 
                   </select>
                 </div>
               </div>
@@ -70,7 +78,7 @@ const RoadForm: React.FC = () => {
                   placeholderText="Date from" // 플레이스홀더
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <DatePicker
                   selected={selectedTDate}
                   onChange={(date: Date | null) => setSelectedTDate(date)}
@@ -80,11 +88,12 @@ const RoadForm: React.FC = () => {
                   id="checkin_date"
                   placeholderText="Date to" // 플레이스홀더
                 />
-              </div>
+              </div> */}
               <div className="form-group">
               </div>
               <div className="form-group">
-                <input type="submit" value="예약하기" className="btn btn-primary py-3 px-5" />
+                <input type="submit" value="예약하기" className="btn btn-primary py-3 px-5" 
+                onClick={handleReservationClick}/>
               </div>
             </div>
           </form>

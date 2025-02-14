@@ -20,10 +20,8 @@ const ImgCarousel: React.FC<ImgCarouselProps> = ({
                 setCarouselItemWidth(825)
             } else if (windowWidth >= 768) {
                 setCarouselItemWidth(690)
-            } else if (windowWidth >= 395) {
-                setCarouselItemWidth(395)
             } else {
-                setCarouselItemWidth(345)
+                setCarouselItemWidth(windowWidth)
             }
         }
         updatecarouselItemWidth();
