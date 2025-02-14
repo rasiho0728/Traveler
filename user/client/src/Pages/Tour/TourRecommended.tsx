@@ -13,7 +13,7 @@ const TourRecommended: React.FC = () => {
         { name: "서울", image: "/images/seoul.jpg" },
         { name: "부산", image: "/images/busan.jpg" },
         { name: "강원도", image: "/images/kangwon.jpg" },
-        { name: "제주", image: "/images/jeju.jpg" },
+        { name: "제주도", image: "/images/jeju.jpg" },
     ];
 
     const themes = [
