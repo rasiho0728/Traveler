@@ -21,7 +21,7 @@ import About from './Pages/About/About';
 import Blog from './Pages/Blog/Blog';
 import BlogDetail from './Pages/Blog/BlogDetail';
 import ScrollToTop from './Comm/ScrollToTop';
-import Contact from './Pages/Contact/Contact';
+// import Contact from './Pages/Contact/Contact';
 import Hotel2 from './Pages/Hotel/Hotel2';
 import Tour from './Pages/Tour/Tour';
 import Test from './Test/Test';
@@ -39,15 +39,13 @@ import Transport from './Transport/Transport';
 import CoalitionForm from './Pages/Coalition/CoalitionForm';
 import TourRecommended from './Pages/Tour/TourRecommended';
 import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
-import RoadDetail from './Transport/RoadDetail';
 import SubwayDetail from './Transport/SubwayDetail';
 import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
 import LikeMemo from './Pages/Community/LikeMemo';
 import MyPage from './Pages/MyPage/MyPage';
 import WeatherAPI from './Pages/Weather/weather';
-import Airline from './Transport/Airline';
-import RoadForm from './Transport/RoadForm';
+// import Airline from './Transport/Airline';
 import Rate from './Transport/Rate';
 import TourDiary from './Pages/TourDiary/TourDiary';
 import BackpackMemo from './Pages/Community/BackpackMemo';
@@ -59,6 +57,9 @@ import MapRoad from './Transport/MapRoad';
 import { geocoding } from './navermaps';
 
 
+import BusDetail from './Transport/BusDetail';
+import RoadForm from './Transport/RoadForm';
+import ContactToChat from './Pages/Contact/ContactToChat';
 
 function App() {
         return (
@@ -80,7 +81,7 @@ function App() {
                                 <Route path='/traveler/hotels/ReservationForm' element={<ReservationForm />} />
                                 <Route path='/traveler/blog' element={<Blog />} />
                                 <Route path='/traveler/blog/:num' element={<BlogDetail />} />
-                                <Route path='/traveler/contact' element={<Contact />} />
+                                <Route path='/traveler/contact' element={<ContactToChat />} />
                                 <Route path='/traveler/coalition' element={<Coalition />} />
                                 <Route path='/traveler/coalition/:num' element={<CoalitionDetail />} />
                                 <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
@@ -91,20 +92,17 @@ function App() {
                                 <Route path='/traveler/backpack' element={<Backpack />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> {/*2025-02-07 조유경 추가 */}
-                                <Route path='/traveler/contact' element={<Contact />} />
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
                                 <Route path='/traveler/login' element={<Login />} />
                                 <Route path='/traveler/signup' element={<SignUp />} />
                                 <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
                                 <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                {/* <Route path='/traveler/Transport/:num' element={<TransportDetail/>} /> */}
-                                <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                <Route path='/traveler/Transport/Road' element={<RoadDetail />} />{/*2025-02-06최의진 추가 */}
-                                <Route path='/traveler/Transport/Road/Form' element={<RoadForm />} />{/*2025-02-10최의진 추가 */}
+                                <Route path='/traveler/Transport/RoadForm/Bus' element={<BusDetail />} />{/*2025-02-06최의진 추가 */}
+                                <Route path='/traveler/Transport/RoadForm' element={<RoadForm />} />{/*2025-02-10최의진 추가 */}
                                 <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
-                                <Route path='/traveler/Transport/Airline' element={<Airline />} />{/*2025-02-06최의진 추가 */}
+                                {/* <Route path='/traveler/Transport/Airline' element={<Airline />} />2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Transport/MapRoad' element={<MapRoad />} />{/*2025-02-10최의진 추가 */}
                                 <Route path='/traveler/diary/:id' element={<TourDiary />} />
                                 <Route path='/traveler/diary' element={<Bookshelf />} />
