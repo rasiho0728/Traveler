@@ -33,6 +33,8 @@ const MyPage: React.FC = () => {
             type: "pie",
             animation: true,
             backgroundColor: "transparent",
+            height: "auto",
+            spacingBottom: 10, // ✅ 차트 아래쪽 여백 최소화
         },
         title: {
             text: "",
@@ -58,6 +60,33 @@ const MyPage: React.FC = () => {
                 ],
             },
         ],
+        responsive: [
+            {
+                // ✅ 화면이 작아지면 자동으로 차트 크기 줄이기
+                rules: [
+                    {
+                        condition: {
+                            maxWidth: 600, // 600px 이하일 때
+                        },
+                        chartOptions: {
+                            chart: {
+                                height: 250, // ✅ 차트 높이를 줄여서 반응형 적용
+                            },
+                        },
+                    },
+                    {
+                        condition: {
+                            maxWidth: 400, // 400px 이하일 때
+                        },
+                        chartOptions: {
+                            chart: {
+                                height: 200, // ✅ 더 작은 화면에서는 차트 높이를 더 줄이기
+                            },
+                        },
+                    },
+                ],
+            },
+        ],
     });
 
     // ✅ Donut Race Animation (값 변경)
@@ -78,6 +107,35 @@ const MyPage: React.FC = () => {
 
         return () => clearInterval(interval);
     }, []);
+
+    const [logChartOptions, setLogChartOptions] = useState({
+        chart: {
+            type: "line",
+            backgroundColor: "transparent",
+        },
+        title: {
+            text: "",
+            align: "left",
+        },
+        xaxis: {
+            categories: ["일", "월", "화", "수", "목", "금", "토"], // ✅ X축 (주 단위)
+        },
+        yAxis: {
+            type: "logarithmic", // ✅ 로그 축 적용
+            title: {
+                text: "다이어리 수",
+            },
+            minorTickInterval: 0.1,
+            min: 1, // ✅ 최소값 설정하여 너무 아래로 내려가는 것 방지
+        },
+        series: [
+            {
+                name: "다이어리 개수",
+                data: [1, 3, 9, 27, 10, 2, 5, 0], // ✅ 로그 축에서 잘 보이는 데이터 예제
+                color: "#F27F62",
+            },
+        ],
+    });
   return (
     <div className='MyPage'>
       <div className='inner'>
@@ -245,30 +303,38 @@ const MyPage: React.FC = () => {
                 </div>
             </div>
             
-            <div className='diary-box'>
-                <div className='my-blog-text'>
-                    <h2>다이어리 목록</h2>
-                    <a href='/traveler/community'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
+            <div className="diary-container">
+                <div className='diary-box'>
+                    <div className='my-blog-text'>
+                        <h2>다이어리 목록</h2>
+                        <a href='/traveler/diary'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
+                    </div>
+                    <div className='big-box'>
+                        <div className='diary'>
+                            <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                            <button className='diary-btn' onClick={handleEditClick}>보러가기</button>
+                        </div>
+                        <div className='diary'>
+                            <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                            <button className='diary-btn' onClick={handleEditClick}>보러가기</button>
+                        </div>
+                        <div className='diary'>
+                            <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                            <button className='diary-btn' onClick={handleEditClick}>보러가기</button>
+                        </div>
+                        <div className='diary'>
+                            <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
+                            <button className='diary-btn' onClick={handleEditClick}>보러가기</button>
+                        </div>
+                    </div>
                 </div>
-                <div className='big-box'>
-                    <div className='diary'>
-                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
-                    </div>
-                    <div className='diary'>
-                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
-                    </div>
-                    <div className='diary'>
-                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
-                    </div>
-                    <div className='diary'>
-                        <img src="/images/diary01.png" alt="다이어리 이미지 예시" />
-                        {/* <button className="learn-more">다이어리 보기</button> */}
+                <div className="diary-chart">
+                    <h2>요일당 내가 쓴 다이어리 수</h2>
+                    <div className="diary-chart-container">
+                        {/* ✅ Logarithmic Line Chart 추가 */}
+                        <HighchartsReact highcharts={Highcharts} options={logChartOptions} />
                     </div>
                 </div>
-                
             </div>
         </div>
       </div>
