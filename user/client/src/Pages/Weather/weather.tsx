@@ -83,7 +83,8 @@ const Weather: React.FC = () => {
         {/* 현재 날씨 */}
         {weatherData && !loading && (
           <div className="weather-info">
-            <h2>{weatherData.name}의 날씨</h2>
+            <h2>{weatherData.name} 날씨</h2>
+            <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt={weatherData.weather[0].description} /> {/* 날씨 아이콘 추가 */}
             <p>온도: {weatherData.main.temp}°C</p>
             <p>상태: {weatherData.weather[0].description}</p>
             <p>습도: {weatherData.main.humidity}%</p>
@@ -93,21 +94,26 @@ const Weather: React.FC = () => {
         {/* 5일간 일기예보 */}
         {forecastData.length > 0 && (
           <div className="weather-forecast-info">
-            <h2>5일간 예보</h2>
+            <h2 className='weekly-forecast-title'>주간 예보</h2>
             <ul>
-              {forecastData.map((forecast, index) => (
-                <li key={index}>
-                  <p>{forecast.dt_txt.split(" ")[0]}</p>
-                  <p>온도: {forecast.main.temp}°C</p>
-                  <p>상태: {forecast.weather[0].description}</p>
-                </li>
-              ))}
+              {forecastData.map((forecast, index) => {
+                const date = new Date(forecast.dt_txt.split(" ")[0]); // 날짜 객체 생성
+                const dayOfWeek = date.toLocaleDateString("ko-KR", { weekday: "long" }); // 요일 계산
+                return (
+                  <li key={index}>
+                    <p>{forecast.dt_txt.split(" ")[0]} ({dayOfWeek})</p> {/* 날짜와 요일 표시 */}
+                    <img src={`http://openweathermap.org/img/w/${forecast.weather[0].icon}.png`} alt={forecast.weather[0].description} />
+                    <p>온도: {forecast.main.temp}°C</p>
+                    <p>상태: {forecast.weather[0].description}</p>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}
       </div>
 
-      <button className="back-button" onClick={() => navigate(-1)}>이전 페이지로</button>
+      <button className="btn btn-primary" onClick={() => navigate(-1)}>이전 페이지로</button>
     </div>
   );
 };

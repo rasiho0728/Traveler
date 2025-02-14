@@ -54,6 +54,9 @@ import Partner from './Pages/Login/Partner';
 import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 import Bookshelf from './Pages/TourDiary/Bookshelf';
 import MapRoad from './Transport/MapRoad';
+import { geocoding } from './navermaps';
+
+
 import BusDetail from './Transport/BusDetail';
 import RoadForm from './Transport/RoadForm';
 import ContactToChat from './Pages/Contact/ContactToChat';

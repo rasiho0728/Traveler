@@ -1,11 +1,25 @@
 import { useEffect, useState } from "react";
 import '../css/maproad.css';
 import axios from "axios";
+// import { geocoding } from "../navermaps";
+import { useNavigate } from "react-router-dom";
 
 const MapRoad = () => {
   const [startPoint, setStartPoint] = useState("");
   const [endPoint, setEndPoint] = useState("");
   const [distance, setDistance] = useState<number | null>(null);
+  const [routeDetails, setRouteDetails] = useState<any[]>([]); // 경로 단계 정보를 담을 상태 추가
+  const navigate = useNavigate();
+
+  // 이전 검색 기록 로드
+  useEffect(() => {
+    const lastSearch = JSON.parse(localStorage.getItem("lastSearch") || "{}");
+    if (lastSearch.start && lastSearch.end) {
+      setStartPoint(lastSearch.start);
+      setEndPoint(lastSearch.end);
+    }
+  }, []);
+
 
   // 주소를 위도, 경도로 변환하는 함수
   const getCoordinates = async (address: string) => {
@@ -15,15 +29,16 @@ const MapRoad = () => {
     try {
       //https://naveropenapi.apis.naver.com/map/geocode/v2/geocode?query=%EC%84%9C%EC%9A%B8%EC%97%AD
 
-      const response = await axios.get(
-        `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${address}`,
-        {
-          headers: {
-            "x-ncp-apigw-api-key-id": `${process.env.REACT_APP_NAVER_CLIENT_ID}`,
-            "x-ncp-apigw-api-key": `${process.env.REACT_APP_NAVER_CLIENT_SECRET}`
-          },
-        }
-      );
+
+      const response = await axios.get("/naver-api/map-geocode/v2/geocode", {
+        params: { query: address },
+        headers: {
+          'x-ncp-apigw-api-key-id': process.env.REACT_APP_NAVER_CLIENT_ID,
+          'x-ncp-apigw-api-key': process.env.REACT_APP_NAVER_CLIENT_SECRET,
+          'Accept': 'application/json',
+        },
+      });
+      console.log(response.data)
       const data = await response.data;
 
       if (data && data.addresses && data.addresses.length > 0) {
@@ -68,6 +83,14 @@ const MapRoad = () => {
         const route = data.route.traoptimal[0];
         setDistance(route.summary.distance);
         alert(`총 거리: ${route.summary.distance}m`);
+        // 경로 단계별로 정보 표시
+        const steps = route.traoptimal[0].steps; // 단계별 정보
+        steps.forEach((step: any) => {
+          console.log(`단계: ${step.instruction}, 거리: ${step.distance}m`);
+        });
+
+        // 경로 단계들을 UI에 표시할 수 있도록 상태 업데이트
+        setRouteDetails(steps);
       } else {
         alert("길찾기 실패: 응답에 경로 정보 없음");
       }
@@ -108,8 +131,28 @@ const MapRoad = () => {
         />
         <button onClick={findRoute}>길찾기</button>
       </div>
-      <div id="map" className="MR-map"></div>
-      {distance && <p>총 거리: {distance}m</p>}
+      <div id="map" className="MR-result-map">
+        {distance && <p>총 거리: {distance}m</p>}
+        {routeDetails && routeDetails.length > 0 && (
+          <div>
+            <h3>경로 단계:</h3>
+            <ul>
+              {routeDetails.map((step: any, index: number) => (
+                <li key={index}>
+                  <p>{step.instruction}</p>
+                  <p>거리: {step.distance}m</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <button className="MR-back-button" onClick={() => navigate(-1)}>이전 페이지로</button>
+      <div className="MR-search-area">
+        <h3>이전 검색 결과</h3>
+        <p>출발지: {startPoint || "없음"}</p>
+        <p>목적지: {endPoint || "없음"}</p>
+      </div>
     </div>
   );
 };
