@@ -58,8 +58,6 @@ import BusDetail from './Transport/BusDetail';
 import RoadForm from './Transport/RoadForm';
 import ContactToChat from './Pages/Contact/ContactToChat';
 
-
-
 function App() {
         return (
                 <BrowserRouter>
