@@ -1,5 +1,7 @@
 package kr.co.user.bus;
 
-public class BusRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BusRepository extends JpaRepository<Bus, Long>{
     
 }
