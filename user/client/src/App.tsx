@@ -57,9 +57,10 @@ import MapRoad from './Transport/MapRoad';
 import { geocoding } from './navermaps';
 
 
-import BusDetail from './Transport/BusDetail';
-import RoadForm from './Transport/RoadForm';
 import ContactToChat from './Pages/Contact/ContactToChat';
+import Bus from './Transport/Bus';
+import BusDetail from './Transport/BusDetail';
+import BusForm from './Transport/BusForm';
 
 function App() {
         return (
@@ -98,8 +99,9 @@ function App() {
                                 <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
                                 <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                <Route path='/traveler/Transport/RoadForm/Bus' element={<BusDetail />} />{/*2025-02-06최의진 추가 */}
-                                <Route path='/traveler/Transport/RoadForm' element={<RoadForm />} />{/*2025-02-10최의진 추가 */}
+                                <Route path='/traveler/Transport/BusForm' element={<BusForm/>} />{/*2025-02-10최의진 추가 */}
+                                <Route path='/traveler/Transport/BusForm/Bus' element={<Bus/>} />{/*2025-02-15최의진 수정 */}
+                                <Route path='/traveler/Transport/BusForm/Bus/:id' element={<BusDetail/>} />{/*2025-02-15최의진 추가 */}
                                 <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
                                 {/* <Route path='/traveler/Transport/Airline' element={<Airline />} />2025-02-06최의진 추가 */}
