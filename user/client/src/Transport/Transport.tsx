@@ -92,7 +92,7 @@ const Transport: React.FC = () => {
                                             <hr />
                                             <p className="bottom-area d-flex">
                                                 <span><i className="icon-map-o"></i>부산광역시</span>
-                                                <span className="ml-auto"><Link to="/traveler/Transport/RoadForm">Discover</Link></span>
+                                                <span className="ml-auto"><Link to="/traveler/Transport/BusForm">Discover</Link></span>
                                             </p>
                                         </div>
                                     </div>
