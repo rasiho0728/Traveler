@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Bookshelf.css"; // CSS import
+import "./css/MyBookshelf.css";
 import { Link } from "react-router-dom";
 
 interface Book {
@@ -23,9 +23,17 @@ const books: Book[] = [
 const MyBookshelf: React.FC = () => {
   const [hoveredBook, setHoveredBook] = useState<number | null>(null);
 
-  const renderShelf = (shelfBooks: Book[]) => (
+  const renderShelf = (shelfBooks: Book[], isFirstShelf = false) => (
     <div className="shelf">
       <div className="shelfGrid">
+        {isFirstShelf && (
+          <Link to="/traveler/mydiary/diaryupload" className="addDiaryLink">
+            <div className="shelfItem addDiary">
+              +
+            </div>
+          </Link>
+        )}
+
         {shelfBooks.map((book) => (
           <div
             key={book.id}
@@ -34,18 +42,15 @@ const MyBookshelf: React.FC = () => {
             onMouseLeave={() => setHoveredBook(null)}
           >
             <Link to={`${book.id}`}>
-            <div className="bookCover">
-              <img
-                src={book.cover}
-                alt={book.title}
-                className="shelfImage"
-                style={{boxShadow : "5px 5px 25px rgba(0, 0, 0, 0.5)"}}
-              />
-              {/* 타이틀 표시 부분 */}
-              {hoveredBook === book.id && (
-                <div className="bookTitle">{book.title}</div>
-              )}
-            </div>
+              <div className="bookCover">
+                <img
+                  src={book.cover}
+                  alt={book.title}
+                  className="shelfImage"
+                  style={{ boxShadow: "5px 5px 25px rgba(0, 0, 0, 0.5)" }}
+                />
+                {hoveredBook === book.id && <div className="bookTitle">{book.title}</div>}
+              </div>
             </Link>
           </div>
         ))}
@@ -56,21 +61,14 @@ const MyBookshelf: React.FC = () => {
 
   return (
     <div className="bookshelf" style={{ paddingTop: "170px" }}>
-      <div className="titlebox"  style={{ paddingTop: "90px" }}>
-        <h2 >나의 다이어리</h2>
+      <div className="titlebox" style={{ paddingTop: "90px" }}>
+        <h2>나의 다이어리</h2>
       </div>
       <div className="shelfContainer">
-        {renderShelf(books.slice(0, 3))}
-        {renderShelf(books.slice(3, 6))}
-        {renderShelf(books.slice(6, 9))}
+        {renderShelf(books.slice(0, 2), true)} {/* 1층: 다이어리 추가 버튼 + 책 2개 */}
+        {renderShelf(books.slice(2, 5))}       {/* 2층: 책 3개 */}
+        {renderShelf(books.slice(5, 8))}       {/* 3층: 책 3개 */}
       </div>
-      
-      <div className="uploadDiray">
-        <Link to={'/traveler/mydiary/diaryupload'}>
-          새 다이어리 업로드
-        </Link>
-      </div>
-       
     </div>
   );
 };

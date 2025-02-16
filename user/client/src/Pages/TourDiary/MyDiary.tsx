@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
-import "./TourDiaryUp.css";
+import "./css/TourDiaryUp.css";
 import { useParams } from "react-router-dom";
 
 // PageCoverProps에서 children을 옵셔널로 처리

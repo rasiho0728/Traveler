@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Bookshelf.css"; // CSS import
+import "./css/Bookshelf.css"; // CSS import
 import { Link } from "react-router-dom";
 
 interface Book {

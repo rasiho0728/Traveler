@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
-import "./TourDiaryUp.css";
+import "./css/TourDiaryUp.css";
 import { useParams } from "react-router-dom";
 
-// PageCoverProps에서 children을 옵셔널로 처리
 interface PageCoverProps {
-  children?: React.ReactNode;  // children을 옵셔널로 설정
+  children?: React.ReactNode;
 }
 
 const PageCover = React.forwardRef<HTMLDivElement, PageCoverProps>((props, ref) => {
@@ -45,8 +44,6 @@ interface PageProps {
 }
 
 const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
-  const { id } = useParams<{ id: string }>();
-
   return (
     <div className="page" ref={ref}>
       <h3 style={{ marginTop: "10px" }}>{props.user} Diary</h3>
@@ -57,106 +54,86 @@ const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
 });
 
 const TourDiaryUpload: React.FC = () => {
-  const [inputText, setInputElement] = useState("");
-  const [text, setText] = useState("내용 입력");
+  const [title, setTitle] = useState("");
+  const [isBookCreated, setIsBookCreated] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [newPage, setNewPage] = useState({ imageUrl: "", comment: "", address: "" });
 
-  // 각 페이지별 더미데이터
-  const pages = [
-    {
-      number: "1",
-      imageUrl: "/images/dog1.jpg",
-      comment: "강아지가 귀엽다.",
-      address: "서울, 대한민국",
-    },
-    {
-      number: "2",
-      imageUrl: "/images/restaurant-1.jpg",
-      comment: "여기에서 멋진 경치를 봤습니다.",
-      address: "부산, 대한민국",
-    },
-    {
-      number: "3",
-      imageUrl: "/images/seoul.jpg",
-      comment: "세 번째 여행지는 이곳이었습니다.",
-      address: "제주도, 대한민국",
-    },
-    {
-      number: "4",
-      imageUrl: "/images/market.jpg",
-      comment: "네번째 여행지는 이곳이었습니다.",
-      address: "제주도, 대한민국",
-    },
-    {
-      number: "5",
-      imageUrl: "/images/image_2.jpg",
-      comment: "다섯번째 여행지는 이곳이었습니다.",
-      address: "제주도, 대한민국",
-    },
-    {
-      number: "6",
-      imageUrl: "/images/room-2.jpg",
-      comment: "마지막 여행지는 여기였어요.",
-      address: "강원도, 대한민국",
-    },
-    {
-      number: "7",
-      imageUrl: "/images/room-2.jpg",
-      comment: "마지막 여행지는 여기였어요.",
-      address: "강원도, 대한민국",
-    },
+  const coverOptions = [
+    "/images/Diarycover.jpg",
+    "/images/Diarycover2.jpg",
+    "/images/Diarycover3.jpg",
+    "/images/Diarycover4.jpg",
+    "/images/Diarycover5.jpg",
+    "/images/Diarycover6.jpg",
   ];
+  const [selectedCover, setSelectedCover] = useState(coverOptions[0]);
 
-  // 페이지 수가 홀수일 경우 마지막에 빈 페이지 추가
+  const [pages, setPages] = useState<{ number: string; imageUrl: string; comment: string; address: string }[]>([]);
+
+  const user = { name: "홍길동" };
+
+  // 페이지가 홀수 개면 마지막에 빈 페이지 추가
   const adjustedPages = pages.length % 2 !== 0 ? [...pages, { number: (pages.length + 1).toString(), imageUrl: "", comment: "", address: "" }] : pages;
 
-  const [isEditing, setIsEditing] = useState(false);  // 수정 상태 관리
-  const [newPage, setNewPage] = useState({
-    imageUrl: "",
-    comment: "",
-    address: "",
-  }); // 새 페이지에 대한 상태 관리
+  // 📌 pages가 비어 있으면 기본 페이지 제공
+  const finalPages = adjustedPages.length === 0
+    ? [{ number: "1", imageUrl: "", comment: "아직 페이지가 없습니다.", address: "" },
+      { number: "2", imageUrl: "", comment: "아직 페이지가 없습니다.", address: "" }
+    ]
+    : adjustedPages;
 
-  const handleEditButtonClick = () => {
-    setIsEditing(true);  // 수정 모드로 전환
+  const handleCreateBook = () => setIsBookCreated(true);
+
+  const handleEditButtonClick = () => setIsEditing(true);
+  const handleCancelButtonClick = () => {
+    setNewPage({ imageUrl: "", comment: "", address: "" });
+    setIsEditing(false);
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const updatedPages = [
-      ...adjustedPages,
-      {
-        number: (adjustedPages.length + 1).toString(),
-        imageUrl: newPage.imageUrl,
-        comment: newPage.comment,
-        address: newPage.address,
-      },
-    ];
-    setNewPage({ imageUrl: "", comment: "", address: "" });  // 입력 필드 초기화
-    setIsEditing(false);  // 수정 모드 종료
-    // 새로운 페이지가 추가된 배열을 설정
-    // setPages(updatedPages);
-  };
-
-  const user = {
-    name: "홍길동",
-    email: "hong@example.com",
-    userId: "hong123",
-    bio: "여행과 음식 사랑하는 사람입니다.",
-  };
-
-  const handleCancelButtonClick = () => {
-    // 취소 시 입력 필드 초기화하고 수정 모드 종료
+    setPages([...pages, {
+      number: (pages.length + 1).toString(),
+      imageUrl: newPage.imageUrl,
+      comment: newPage.comment,
+      address: newPage.address,
+    }]);
     setNewPage({ imageUrl: "", comment: "", address: "" });
-    setIsEditing(false); // 수정 모드 종료
+    setIsEditing(false);
   };
 
   return (
-    <div className={`book ${isEditing ? "editing" : ""}`}>
-
-      {/* 'box' div로 감싸기 */}
-      <div className="box">
-        <div className="bookinfo">
-          <HTMLFlipBook
+    <div className="book-container">
+      {!isBookCreated ? (
+        <div className="cover-container">
+          <div className="title-container">
+          <input
+            type="text"
+            placeholder="다이어리 제목을 입력하세요"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="title-input"
+          />
+          </div>
+          <div className="cover-options">
+            {coverOptions.map((cover, index) => (
+              <div
+                key={index}
+                className={`cover-item ${selectedCover === cover ? "selected" : ""}`}
+                onClick={() => setSelectedCover(cover)}
+              >
+                <img src={cover} alt={`Cover ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+          <button className="create-book-button" onClick={handleCreateBook}>생성</button>
+        </div>
+      ) : (
+        <div className={`book ${isEditing ? "editing" : ""}`}>
+          <div className="box">
+            <div className="bookinfo">
+            <HTMLFlipBook
             width={450}
             height={550}
             minWidth={300}
@@ -181,74 +158,32 @@ const TourDiaryUpload: React.FC = () => {
             showPageCorners={true}
             disableFlipByClick={false}
           >
-            <FirstPageCover></FirstPageCover>
-            <PageCover></PageCover>
-            {adjustedPages.map((page) => (
-              <Page key={page.number} number={page.number} user={user.name}>
-                <div>
-                  {page.imageUrl ? (
-                    <img
-                      src={page.imageUrl}
-                      alt={`Page ${page.number}`}
-                      style={{
-                        width: "90%",
-                        height: "auto",
-                        boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.5)",
-                        borderRadius: "5px",
-                      }}
-                    />
-                  ) : (
-                    <div style={{ textAlign: "center", padding: "50px" }}>
-                      <h4>빈 페이지</h4>
-                    </div>
-                  )}
-                  <p style={{ marginTop: "5px" }}>{page.address}</p>
-                  <h4 style={{ marginTop: "15px" }}>{page.comment}</h4>
-                </div>
-              </Page>
-            ))}
-            <PageCover></PageCover>
-            <LastPageCover></LastPageCover>
-          </HTMLFlipBook>
-        </div>
-      </div>
-
-      {/* 수정 버튼은 페이지 하단에 고정 */}
-      <button onClick={handleEditButtonClick} className="edit-button">
-        새페이지추가
-      </button>
-
-      {/* 수정 모드 활성화 시 나타날 입력 폼 */}
-      {isEditing && (
-        <div className="edit-form">
-          <form onSubmit={handleFormSubmit}>
-            <input
-              type="file"
-              placeholder="이미지 업로드"
-              value={newPage.imageUrl}
-              onChange={(e) =>
-                setNewPage({ ...newPage, imageUrl: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="장소"
-              value={newPage.address}
-              onChange={(e) =>
-                setNewPage({ ...newPage, address: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              placeholder="코멘트"
-              value={newPage.comment}
-              onChange={(e) =>
-                setNewPage({ ...newPage, comment: e.target.value })
-              }
-            />
-            <button type="submit" >저장</button>
-            <button type="submit" onClick={handleCancelButtonClick}>취소</button>
-          </form>
+                <FirstPageCover />
+                <PageCover />
+                {finalPages.map((page) => (
+                  <Page key={page.number} number={page.number} user={user.name}>
+                    {page.imageUrl && <img src={page.imageUrl} alt={`Page ${page.number}`} className="page-image" />}
+                    <p>{page.address}</p>
+                    <h4>{page.comment}</h4>
+                  </Page>
+                ))}
+                <PageCover />
+                <LastPageCover />
+              </HTMLFlipBook>
+            </div>
+          </div>
+          <button onClick={handleEditButtonClick} className="edit-button">새 페이지 추가</button>
+          {isEditing && (
+            <div className="edit-form">
+              <form onSubmit={handleFormSubmit}>
+                <input type="text" placeholder="이미지 URL" value={newPage.imageUrl} onChange={(e) => setNewPage({ ...newPage, imageUrl: e.target.value })} />
+                <input type="text" placeholder="장소" value={newPage.address} onChange={(e) => setNewPage({ ...newPage, address: e.target.value })} />
+                <input type="text" placeholder="코멘트" value={newPage.comment} onChange={(e) => setNewPage({ ...newPage, comment: e.target.value })} />
+                <button type="submit">저장</button>
+                <button type="button" onClick={handleCancelButtonClick}>취소</button>
+              </form>
+            </div>
+          )}
         </div>
       )}
     </div>
