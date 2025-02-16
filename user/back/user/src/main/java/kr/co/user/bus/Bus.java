@@ -11,7 +11,7 @@ import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
+//2025-02-15추가 최의진
 @Data
 @Setter
 @Getter
@@ -24,7 +24,7 @@ public class Bus {
     private Long num;
 
     private String buscode;
-    private Date bdate;
+    private Date schedule;
     private String departure;
     private String destination;
 
