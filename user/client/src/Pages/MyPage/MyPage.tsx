@@ -327,7 +327,7 @@ const MyPage: React.FC = () => {
                 <div className='diary-box'>
                     <div className='my-blog-text'>
                         <h2>다이어리 목록</h2>
-                        <a href='/traveler/diary'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
+                        <a href='/traveler/mydiary'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
                     </div>
                     <div className='big-box'>
                         <div className='diary'>

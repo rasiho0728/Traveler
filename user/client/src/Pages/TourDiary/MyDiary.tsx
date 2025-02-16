@@ -56,18 +56,18 @@ const Page = React.forwardRef<HTMLDivElement, PageProps>((props, ref) => {
   );
 });
 
-const TourDiaryUpload: React.FC = () => {
+const MyDiary: React.FC = () => {
   const [inputText, setInputElement] = useState("");
   const [text, setText] = useState("내용 입력");
 
   // 각 페이지별 더미데이터
   const pages = [
     {
-      number: "1",
-      imageUrl: "/images/dog1.jpg",
-      comment: "강아지가 귀엽다.",
-      address: "서울, 대한민국",
-    },
+        number: "1",
+        imageUrl: "/images/dog1.jpg",
+        comment: "강아지가 귀엽다.",
+        address: "서울, 대한민국",
+      },
     {
       number: "2",
       imageUrl: "/images/restaurant-1.jpg",
@@ -216,4 +216,4 @@ const TourDiaryUpload: React.FC = () => {
   );
 };
 
-export default TourDiaryUpload;
+export default MyDiary;

@@ -58,6 +58,9 @@ import { geocoding } from './navermaps';
 
 
 import ContactToChat from './Pages/Contact/ContactToChat';
+import MyBookshelf from './Pages/TourDiary/MyBookshelf';
+import MyDiary from './Pages/TourDiary/MyDiary';
+import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
 import Bus from './Transport/Bus';
 import BusDetail from './Transport/BusDetail';
 import BusForm from './Transport/BusForm';
@@ -108,6 +111,9 @@ function App() {
                                 <Route path='/traveler/Transport/MapRoad' element={<MapRoad />} />{/*2025-02-10최의진 추가 */}
                                 <Route path='/traveler/diary/:id' element={<TourDiary />} />
                                 <Route path='/traveler/diary' element={<Bookshelf />} />
+                                <Route path='/traveler/mydiary' element={<MyBookshelf/>}/>
+                                <Route path='/traveler/mydiary/:id' element={<MyDiary/>}/>
+                                <Route path='/traveler/mydiary/diaryupload' element={<TourDiaryUpload/>}/>                                
                         </Routes>
                         <Footer />
                         <Chat />
