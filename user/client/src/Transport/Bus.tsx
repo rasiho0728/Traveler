@@ -22,11 +22,14 @@ const Bus: React.FC = () => {
       const response = await axios.get(
         'https://apis.data.go.kr/1613000/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey=XDMNsafrFJZRccQEUvJz2OG9IvqT7nEe%2FNjC6Twlm5H%2BWSJnH69syP9Su%2BlWuAGnG1DfL9%2FjHAHo6H0YXTMQ9g%3D%3D&pageNo=1&numOfRows=10&_type=json&depTerminalId=NAEK010&arrTerminalId=NAEK300&depPlandTime=20250214&busGradeId=1'
       );
+
+      console.log('응답 데이터:', response);  // 응답 확인
       const fetchedData = response.data?.data || []; // 데이터가 없으면 빈 배열로 설정
-      console.log(data)
+      console.log('받은 데이터:', fetchedData);  // 받은 데이터 확인
       setData(fetchedData);
     } catch (error) {
       setError('데이터 가져오는중 오류 발생');
+      console.error('데이터 가져오기 오류:', error);
     } finally {
       setLoading(false);
     }
@@ -36,6 +39,13 @@ const Bus: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    updateHalfHeight();
+    window.addEventListener('resize', updateHalfHeight);
+    return () => {
+      window.removeEventListener('resize', updateHalfHeight);
+    };
+  }, []);
   useEffect(() => {
     updateHalfHeight();
     window.addEventListener('resize', updateHalfHeight);
