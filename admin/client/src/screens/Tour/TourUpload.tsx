@@ -10,7 +10,6 @@ interface Tour {
   name: string;
   description: string;
   tourPlace: string;
-  category: string;
   mbtiCategory: string;
   price: number;
   link: string;
@@ -25,7 +24,6 @@ const TourUpload: React.FC = () => {
     name: "",
     tourPlace: "서울",
     description: "",
-    category: "beach",
     mbtiCategory: "EP",
     price: 0,
     link: "",
@@ -182,18 +180,6 @@ const TourUpload: React.FC = () => {
           <textarea className="form-control" id="description" name="description" value={newTour.description} onChange={handleInputChange} style={styles.textarea} required />
         </div>
 
-        {/* ✅ 테마 선택 */}
-        <div className="mb-3">
-          <label htmlFor="category" className="form-label">카테고리</label>
-          <select className="form-select" id="category" name="category" value={newTour.category} onChange={handleInputChange} required>
-            <option value="beach">바다</option>
-            <option value="indoor">실내 여행지</option>
-            <option value="activity">액티비티</option>
-            <option value="culture-history">문화/역사</option>
-            <option value="theme-park">테마파크</option>
-            <option value="food">맛집</option>
-          </select>
-        </div>
         {/* ✅ MBTI 추천 카테고리 선택 (EP, EJ, IP, IJ) */}
         <div className="mb-3">
           <label className="form-label">추천 카테고리 (MBTI 기반)</label>
