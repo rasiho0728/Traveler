@@ -46,10 +46,6 @@ public class Diary {
     @Column(name = "DDATE", columnDefinition = "date default sysdate", nullable = false)
     private Date ddate;
 
-    // @ElementCollection
-    // @CollectionTable(name = "diarypage", joinColumns = @JoinColumn(name="diarynum"))
-    // private 
-
     @OneToMany(orphanRemoval = true) // Diary 삭제시 연관된 댓글도 함께 삭제
     @JoinColumn(name = "diarynum")
     private List<DiaryPage> diaryPage;
