@@ -182,7 +182,9 @@ const ContactToChat: React.FC = () => {
         </div>
         <div className={`${isListVisiable ? 'col-md-9' : 'col-md-12'} border pt-3 bg-opacity-10`}
           style={{
-            background: 'linear-gradient(160deg,rgba(0, 165, 0, 0.45) 50%, rgba(251, 255, 0, 0.45)) ',
+            background: `${isBot ? 
+                'linear-gradient(160deg,rgba(0, 201, 252, 0.69) 50%, rgba(0, 238, 255, 0.54)) ' : 
+                'linear-gradient(160deg,rgba(0, 165, 0, 0.45) 50%, rgba(251, 255, 0, 0.45))'}`,
             height: '500px'
           }}>
           {
