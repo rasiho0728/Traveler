@@ -3,8 +3,10 @@ package kr.co.user.chat;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -45,22 +47,25 @@ public class ChatController {
     public String addChating(@PathVariable("username") String username, @RequestParam("chat") String chat) {
         String logFile = "Log_" + username + "_" + String.valueOf(LocalDate.now()).replaceAll("-", "") + ".log";
         String saveMsg = username + "||user||" + chat;
-        
+
         try {
             // 파일 객체 생성
             File file = new File(uploadPath + "/" + logFile);
-
+            FileOutputStream fos;
             // 파일이 존재하지 않으면 새로 생성
             if (!file.exists()) {
                 file.createNewFile();
+                fos = new FileOutputStream(file);
+            } else {
+                fos = new FileOutputStream(file, true);
+                saveMsg = "\n" + saveMsg;
             }
-
-            // FileWriter와 BufferedWriter로 파일에 내용 작성
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");  // UTF-8 인코딩 사용
+            BufferedWriter bw = new BufferedWriter(osw);
             bw.write(saveMsg); // 내용 쓰기
             bw.close(); // BufferedWriter 닫기
             System.out.println("파일이 성공적으로 생성되었습니다.");
+            chatService.addLogToUserName(username, logFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -26,24 +26,28 @@ const ContactToChat: React.FC = () => {
     const [chat, setChat] = useState('');
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const chatBotContainerRef = useRef<HTMLDivElement>(null);
-    const dateObj = (dateString:string = '') => {
-        if(dateString === '') return new Date()
-        return new Date(dateString)}
+    const dateObj = (dateString: string = '') => {
+        if (dateString === '') return new Date()
+        return new Date(dateString)
+    }
+
+    const getFileList = async () => {
+        const result = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/chat/test`);
+        const chats = await result.data.filter((item: ChatLogs) => item.type === 0);
+        const chatBots = await result.data.filter((item: ChatLogs) => item.type === 1);
+        const sortedChats = chats.sort((a: ChatLogs, b: ChatLogs) => a.cdate.localeCompare(b.cdate))
+        setChats(sortedChats);
+        const sortedChatBots = chatBots.sort((a: ChatLogs, b: ChatLogs) => a.cdate.localeCompare(b.cdate))
+        setChatBots(sortedChatBots);
+    }
 
     useEffect(() => {
-        const getFileList = async () => {
-            const result = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/chat/test`);
-            const chats = await result.data.filter((item: ChatLogs) => item.type === 0)
-            const chatBots = await result.data.filter((item: ChatLogs) => item.type === 1)
-            setChats(chats.sort((a:ChatLogs, b:ChatLogs) => b.cdate.localeCompare(a.cdate)));
-            setChatBots(chatBots.sort((a:ChatLogs, b:ChatLogs) => b.cdate.localeCompare(a.cdate)));
-            setChatings([{
-                isBot: false,
-                date: dateObj().toLocaleDateString(),
-                chats: []
-            }])
-        }
         getFileList();
+        setChatings([{
+            isBot: false,
+            date: dateObj().toLocaleDateString(),
+            chats: []
+        }])
     }, []);
 
     useEffect(() => {
@@ -67,7 +71,13 @@ const ContactToChat: React.FC = () => {
     }, []);
 
     const handleSubmit = () => {
-        console.log(chat);
+        const addChat = async (chat: string) => {
+            const data = new FormData();
+            data.append('chat', chat);
+            await axios.post(`${process.env.REACT_APP_BACK_END_URL}/chat/test`, data);
+            getFileList();
+        }
+        addChat(chat)
         setChat('');
     }
 
@@ -153,7 +163,7 @@ const ContactToChat: React.FC = () => {
                         <span className='h6 m-0 text-dark'>{dateObj().toLocaleDateString()} 문의</span>
                     </button>
                     {
-                        chatList.map((chat, idx) => {
+                        [...chatList].reverse().map((chat, idx) => {
                             if (!isNotToday(chat.cdate)) return <></>
                             return (
                                 <button key={idx}
@@ -190,7 +200,7 @@ const ContactToChat: React.FC = () => {
                         {
                             !isLoading ? <>
                                 {
-                                    chatings.length > 0 && [...chatings].reverse().map((chating, idx) => (
+                                    chatings.length > 0 && chatings.map((chating, idx) => (
                                         <div key={'chat' + idx} className='mb-3' id={`chat${isBot ? 'Bot' : ''}${idx}`}>
                                             <div className='text-center mb-3'>
                                                 <span className='bg-light p-2 rounded'>{dateObj(chating.date).toLocaleDateString()}</span>
