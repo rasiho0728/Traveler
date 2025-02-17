@@ -1,15 +1,24 @@
 package kr.co.user.member;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.SequenceGenerator;
+import kr.co.user.chat.Chat;
 import kr.co.user.security.Role;
 import lombok.Data;
 import lombok.Getter;
@@ -55,4 +64,24 @@ public class Member {
 
     @Column(name = "MDATE", columnDefinition = "date default sysdate", nullable = false)
     private Date mdate; 
+
+    @ElementCollection
+    @CollectionTable(
+        name = "CHATLOG",
+        joinColumns = @JoinColumn(name="MEMBERNUM")
+    )
+    private List<Chat> chatlog;
+
+    public Member(){
+        this.name = "테스형";
+        this.userName = "test";
+        this.pwd = "test1";
+        this.code = "000728-3";
+        this.phone = "010-1234-5678";
+        this.email = "fghj0728@naver.com";
+        this.mdate = new Date();
+        this.role = Role.USER;
+        this.socialuser = 0L;
+        this.company = 0L;
+    }
 }
