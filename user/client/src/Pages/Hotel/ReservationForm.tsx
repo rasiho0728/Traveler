@@ -79,7 +79,7 @@ const ReservationForm = () => {
                 </div>
             </div>
             <div className="hotel-reservForm">
-                <h4 className="hotel-reservForm__title">예약 확인 및 예약하기</h4>
+                <h4 className="hotel-reservForm__title">예약</h4>
                 <div className="hotel-reservForm__fields">
                     <div className="row">
                         {/* 객실 선택 */}
@@ -119,7 +119,7 @@ const ReservationForm = () => {
                             </div>
                         )}
 
-                        {/* Name 필드 */}
+                        {/* Name */}
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Name:</label>
@@ -127,7 +127,7 @@ const ReservationForm = () => {
                             </div>
                         </div>
 
-                        {/* Email 필드 */}
+                        {/* Email */}
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Email:</label>
@@ -161,10 +161,10 @@ const ReservationForm = () => {
                             </div>
                         </div>
 
-                        {/* 성인 및 청소년 선택 */}
+                        {/* 인원원 */}
                         <div className="col-md-6">
                             <div className="form-group">
-                                <label>성인:</label>
+                                <label>인원:</label>
                                 <select name="adults" className="form-control">
                                     {[0, 1, 2, 3, 4].map((num) => (
                                         <option value={num} key={num}>{num}</option>
@@ -172,16 +172,6 @@ const ReservationForm = () => {
                                 </select>
                             </div>
                         </div>
-                        {/* <div className="col-md-6">
-                            <div className="form-group">
-                                <label>청소년:</label>
-                                <select name="children" className="form-control">
-                                    {[0, 1, 2, 3, 4].map((num) => (
-                                        <option value={num} key={num}>{num}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div> */}
 
                         {/* 제출 버튼 */}
                         <div className=" col-md-6">
