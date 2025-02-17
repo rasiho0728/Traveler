@@ -31,7 +31,7 @@ public class RoomImage {
     private String imgName;
 
     @ManyToOne 
-    @JoinColumn(name = "ROOMNUM") 
+    @JoinColumn(name = "num") 
     private Room room;
 
 }

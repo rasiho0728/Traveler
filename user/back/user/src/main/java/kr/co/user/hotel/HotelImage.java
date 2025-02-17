@@ -22,7 +22,7 @@ public class HotelImage {
     private String imgName;
 
     @ManyToOne 
-    @JoinColumn(name = "HOTELNUM") 
+    @JoinColumn(name = "num") 
     private Hotel hotel;
 
     public void setHotel(Hotel hotel) {

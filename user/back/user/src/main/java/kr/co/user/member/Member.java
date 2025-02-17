@@ -65,7 +65,7 @@ public class Member {
     @Column(name = "MDATE", columnDefinition = "date default sysdate", nullable = false)
     private Date mdate; 
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "CHATLOG",
         joinColumns = @JoinColumn(name="MEMBERNUM")
