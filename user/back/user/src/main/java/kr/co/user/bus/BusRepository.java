@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 //2025-02-16수정 최의진
+import org.springframework.data.jpa.repository.Query;
 public interface BusRepository extends JpaRepository<Bus, Long>{
     
     //이름(함수명)으로 규칙 지정
     List<Bus> findAllByOrderByNumDesc();
 
-   
+    @Query(value = "SELECT * FROM bus ORDER BY NUM DESC",nativeQuery = true)
+    List<Bus> getBusList();
+
 }
