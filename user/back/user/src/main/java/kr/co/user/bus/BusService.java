@@ -22,8 +22,8 @@ public class BusService {
         businformation.setSchedule(new Date());
         businformation.setDeparture(vo.getDeparture());
         businformation.setDestination(vo.getDestination());
-        businformation.setDeparture_of_time(vo.getDeparture_of_time());
-        businformation.setDestination_of_time(vo.getDestination_of_time());
+        businformation.setDepartureoftime(vo.getDepartureoftime());
+        businformation.setDestinationoftime(vo.getDestinationoftime());
         businformation.setSitnum(vo.getSitnum());
         return busRepository.save(businformation);
     }
