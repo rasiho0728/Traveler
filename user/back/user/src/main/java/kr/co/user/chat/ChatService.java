@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.user.member.Member;
+import kr.co.user.member.MemberVO;
 
 @Service
 public class ChatService {
@@ -21,7 +22,7 @@ public class ChatService {
     @Transactional
     public void addLogToUserName(String userName, String fileName, boolean isBot) {
         // 기존 Member를 조회
-        Member member = chatRepository.findByUserName(userName)
+        MemberVO member = chatRepository.findByUsername(userName)
             .orElseThrow(() -> new RuntimeException("Member not found"));
 
         Chat chat = new Chat();

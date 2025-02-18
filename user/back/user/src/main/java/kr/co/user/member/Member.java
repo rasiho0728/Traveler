@@ -24,8 +24,8 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-@Entity
-@SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
+// @Entity
+// @SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
 public class Member {
     @Id
     @GeneratedValue(generator = "member_seq_gen", strategy = GenerationType.SEQUENCE)
