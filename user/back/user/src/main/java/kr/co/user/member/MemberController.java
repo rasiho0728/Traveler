@@ -1,22 +1,45 @@
 package kr.co.user.member;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/api/member")
 public class MemberController {
-    @Autowired
-    private MemberService memberService;
 
-    @GetMapping
-    public List<Member> getMembers() {
-        return memberService.getMembers();
+    private final MemberService memberService;
+
+    @Autowired
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
-    
+
+    // 회원 가입
+    @PostMapping("/register")
+    public ResponseEntity<MemberVO> registerMember(@RequestBody MemberVO memberVO) {
+        MemberVO savedMember = memberService.registerMember(memberVO);
+        return ResponseEntity.ok(savedMember);
+    }
+
+    // 이메일 인증 코드 발송
+    @PostMapping("/sendcode")
+    public ResponseEntity<Void> sendVerificationCode(@RequestParam String email) {
+        memberService.sendVerificationCode(email);
+        return ResponseEntity.ok().build();
+    }
+
+    // 이메일 인증 처리
+    @PostMapping("/verifyemail")
+    public ResponseEntity<Void> verifyEmail(@RequestParam String email, @RequestParam String code) {
+        memberService.verifyEmail(email, code);
+        return ResponseEntity.ok().build();
+    }
+
+    // 제휴회사 조회
+    @GetMapping("/partner/{businessNumber}")
+    public ResponseEntity<MemberVO> getPartnerByBusinessNumber(@PathVariable String businessNumber) {
+        MemberVO partner = memberService.getPartnerByBusinessNumber(businessNumber);
+        return ResponseEntity.ok(partner);
+    }
 }
