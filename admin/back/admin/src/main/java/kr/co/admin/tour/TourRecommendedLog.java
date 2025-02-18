@@ -2,6 +2,7 @@ package kr.co.admin.tour;
 
 import jakarta.persistence.*;
 import kr.co.admin.member.Member;
+import kr.co.admin.member.MemberVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class TourRecommendedLog {
 
     @ManyToOne
     @JoinColumn(name = "MEMBERNUM", nullable = false)
-    private Member member;
+    private MemberVO member;
 
     @Column(name = "THEME", length = 100)
     private String theme;
