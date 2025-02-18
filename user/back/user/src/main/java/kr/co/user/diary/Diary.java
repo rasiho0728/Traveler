@@ -37,7 +37,7 @@ public class Diary {
     private String thumbnail;
 
     @Column(name = "ISSHARE", columnDefinition = "number(1)")
-    private Integer share;
+    private Integer isshare;
 
     @Column(name = "HIT", columnDefinition = "number(7)")
     private Integer hit;
@@ -53,5 +53,5 @@ public class Diary {
 
     @ManyToOne
     @JoinColumn(name = "mambernum", referencedColumnName = "num")
-    private Member member;
+    private Member membernum;
 }
