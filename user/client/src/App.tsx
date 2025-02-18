@@ -60,6 +60,7 @@ import { geocoding } from './navermaps';
 import BusDetail from './Transport/BusDetail';
 import RoadForm from './Transport/RoadForm';
 import ContactToChat from './Pages/Contact/ContactToChat';
+import Passwordless from './Pages/Login/Passwordless';
 
 function App() {
         return (
@@ -93,8 +94,9 @@ function App() {
                                 <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
-                                <Route path='/traveler/login' element={<Login />} />
-                                <Route path='/traveler/signup' element={<SignUp />} />
+                                <Route path='/traveler/login' element={<Login />} />{/*2025-02-08 전준영 로그인 추가*/}
+                                <Route path='/traveler/passwordless' element={<Passwordless />} />{/*2025-02-08 전준영 패스워드리스로그인 추가*/}
+                                <Route path='/traveler/signup' element={<SignUp />} />{/*2025-02-08 전준영 회원가입 추가*/}
                                 <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
                                 <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
