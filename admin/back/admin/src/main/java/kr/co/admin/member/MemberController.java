@@ -1,0 +1,36 @@
+package kr.co.admin.member;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/member")
+public class MemberController {
+    @Autowired
+    private MemberService memberService;
+
+    // @GetMapping //회원목록 불러오기
+    // public List<Member> listMember() {
+    //     return memberService.list();
+    // }
+    @GetMapping // 회원목록 전체데이터 + 페이징처리
+    public ResponseEntity<?> listMember(
+        @RequestParam(defaultValue = "1") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
+        return ResponseEntity.ok().body(memberService.getMemberListWithPagination(page, size));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteMember(@RequestParam Long num) {
+        memberService.delete(num);
+        return ResponseEntity.ok().body("회원삭제 완료");
+    }
+}
