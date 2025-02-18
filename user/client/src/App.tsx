@@ -31,8 +31,6 @@ import CoalitionAccount from './Pages/Coalition/CoalitionAccount';
 import Chat from './Pages/Chat/Chat';
 import Like from './Pages/Community/Like';
 import LikeDetail from './Pages/Community/LikeDetail';
-import Backpack from './Pages/Community/Backpack';
-import BackpackDetail from './Pages/Community/BackpackDetail';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Login/SignUp';
 import Transport from './Transport/Transport';
@@ -48,7 +46,6 @@ import WeatherAPI from './Pages/Weather/weather';
 // import Airline from './Transport/Airline';
 import Rate from './Transport/Rate';
 import TourDiary from './Pages/TourDiary/TourDiary';
-import BackpackMemo from './Pages/Community/BackpackMemo';
 import SignSelect from './Pages/Login/SignSelect';
 import Partner from './Pages/Login/Partner';
 import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
@@ -95,9 +92,9 @@ function App() {
                                 <Route path='/traveler/community' element={<Like />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/community/:num' element={<LikeDetail />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/LikeMemo' element={<LikeMemo />} /> {/*2025-02-07 조유경 추가 */}
-                                <Route path='/traveler/backpack' element={<Backpack />} /> {/*2025-02-07 조유경 추가 */}
-                                <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
-                                <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> {/*2025-02-07 조유경 추가 */}
+                                {/* <Route path='/traveler/backpack' element={<Backpack />} /> 2025-02-07 조유경 추가
+                                <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> 2025-02-07 조유경 추가
+                                <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> 2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
                                 <Route path='/traveler/login' element={<Login />} />{/*2025-02-08 전준영 로그인 추가*/}
                                 <Route path='/traveler/passwordless' element={<Passwordless />} />{/*2025-02-08 전준영 패스워드리스로그인 추가*/}
