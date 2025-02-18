@@ -1,5 +1,6 @@
 package kr.co.user.hotel;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +25,4 @@ public class HotelService {
         return hotelRepository.findById(id).orElse(null);
     }
 
-    // 호텔 등록
-    public Hotel registerHotel(Hotel hotel) {
-        return hotelRepository.save(hotel);
-    }
-
-    // 호텔 수정
-    public Hotel updateHotel(Hotel hotel) {
-        return hotelRepository.save(hotel);
-    }
-
-    // 호텔 삭제
-    public void deleteHotel(Long id) {
-        hotelRepository.deleteById(id);
-    }
 }
