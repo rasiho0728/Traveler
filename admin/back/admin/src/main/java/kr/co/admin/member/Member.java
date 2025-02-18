@@ -1,4 +1,4 @@
-package kr.co.user.member;
+package kr.co.admin.member;
 
 import java.util.Date;
 import java.util.List;
@@ -17,10 +17,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
-import kr.co.user.chat.Chat;
-import kr.co.user.security.Role;
+import kr.co.admin.chat.Chat;
+import kr.co.admin.security.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,8 +31,6 @@ import lombok.Setter;
 @SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
 public class Member {
     @Id
-    @OneToMany
-    @JoinColumn(name = "mambernum")
     @GeneratedValue(generator = "member_seq_gen", strategy = GenerationType.SEQUENCE)
     private Long num;
 
@@ -68,7 +65,7 @@ public class Member {
     @Column(name = "MDATE", columnDefinition = "date default sysdate", nullable = false)
     private Date mdate; 
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection
     @CollectionTable(
         name = "CHATLOG",
         joinColumns = @JoinColumn(name="MEMBERNUM")
