@@ -2,9 +2,7 @@ package kr.co.user.chat;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.file.Files;
@@ -44,8 +42,8 @@ public class ChatController {
     }
 
     @PostMapping("/{username}")
-    public String addChating(@PathVariable("username") String username, @RequestParam("chat") String chat) {
-        String logFile = "Log_" + username + "_" + String.valueOf(LocalDate.now()).replaceAll("-", "") + ".log";
+    public String addChating(@PathVariable("username") String username, @RequestParam("chat") String chat, @RequestParam("isBot") boolean isBot) {
+        String logFile = "Log_" + (isBot ? "Bot_" : "") +String.valueOf(LocalDate.now()).replaceAll("-", "")  + "_" + username + ".log";
         String saveMsg = username + "||user||" + chat;
 
         try {
@@ -65,7 +63,7 @@ public class ChatController {
             bw.write(saveMsg); // 내용 쓰기
             bw.close(); // BufferedWriter 닫기
             System.out.println("파일이 성공적으로 생성되었습니다.");
-            chatService.addLogToUserName(username, logFile);
+            chatService.addLogToUserName(username, logFile, isBot);
         } catch (IOException e) {
             e.printStackTrace();
         }

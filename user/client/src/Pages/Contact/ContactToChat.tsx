@@ -11,21 +11,23 @@ interface ChatLogs {
 }
 
 interface Chating {
-    isBot: boolean;
     date: string;
     chats: Array<{ isUser: boolean; name: string; content: string; }>;
 }
 
 const ContactToChat: React.FC = () => {
-    const [userName, setUserName] = useState('UserName');
+    const [userName, setUserName] = useState('test');
     const [chats, setChats] = useState<ChatLogs[]>([]);
     const [chatBots, setChatBots] = useState<ChatLogs[]>([]);
     const [chatings, setChatings] = useState<Chating[]>([]);
     const [isLoading, setIsLoading] = useState(0);
     const [isListVisiable, setIsListVisiable] = useState(true);
+    const [isBot, setIsBot] = useState(false)
     const [chat, setChat] = useState('');
+    const [isConnect, setIsConnect] = useState(true);
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const chatBotContainerRef = useRef<HTMLDivElement>(null);
+
     const dateObj = (dateString: string = '') => {
         if (dateString === '') return new Date()
         return new Date(dateString)
@@ -35,23 +37,42 @@ const ContactToChat: React.FC = () => {
         const result = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/chat/test`);
         const chats = await result.data.filter((item: ChatLogs) => item.type === 0);
         const chatBots = await result.data.filter((item: ChatLogs) => item.type === 1);
-        const sortedChats = chats.sort((a: ChatLogs, b: ChatLogs) => a.cdate.localeCompare(b.cdate))
+        const sortedChats = await chats.sort((a: ChatLogs, b: ChatLogs) => a.cdate.localeCompare(b.cdate))
         setChats(sortedChats);
-        const sortedChatBots = chatBots.sort((a: ChatLogs, b: ChatLogs) => a.cdate.localeCompare(b.cdate))
+        const sortedChatBots = await chatBots.sort((a: ChatLogs, b: ChatLogs) => a.cdate.localeCompare(b.cdate))
         setChatBots(sortedChatBots);
+        if (isBot) {
+            fetchLogContent(sortedChatBots);
+        } else {
+            fetchLogContent(sortedChats);
+        }
     }
 
     useEffect(() => {
         getFileList();
-        setChatings([{
-            isBot: false,
-            date: dateObj().toLocaleDateString(),
-            chats: []
-        }])
     }, []);
 
     useEffect(() => {
-        handleScroll();
+        const ws = new WebSocket(`${process.env.REACT_APP_BACK_END_URL}/ws/folder-watch`);
+
+        ws.onmessage = (event) => {
+            getFileList();
+        };
+
+        ws.onopen = () => {
+            setIsConnect(true);
+            console.log("WebSocket 연결됨");
+        };
+
+        ws.onclose = () => {
+            setIsConnect(false);
+            console.log("WebSocket 연결 종료됨");
+        };
+
+        return () => ws.close();
+    }, [isBot]);
+
+    useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -59,10 +80,11 @@ const ContactToChat: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        appear_animate();
-    }, []);
 
-    useEffect(() => {
+        appear_animate();
+
+        handleScroll();
+
         updateHalfHeight();
         window.addEventListener('resize', updateHalfHeight);
         return () => {
@@ -74,8 +96,8 @@ const ContactToChat: React.FC = () => {
         const addChat = async (chat: string) => {
             const data = new FormData();
             data.append('chat', chat);
+            data.append('isBot', `${isBot}`)
             await axios.post(`${process.env.REACT_APP_BACK_END_URL}/chat/test`, data);
-            getFileList();
         }
         addChat(chat)
         setChat('');
@@ -88,21 +110,17 @@ const ContactToChat: React.FC = () => {
     }
 
     useEffect(() => {
-        fetchLogContent(chats)
-    }, [chats])
-
-    useEffect(() => {
         setIsLoading(0);
-        if (chatings.length > 0) chatScrollToBottom(chatings[0].isBot);
+        if (chatings.length > 0) chatScrollToBottom();
     }, [chatings])
 
     useEffect(() => {
         if (isLoading === 0) {
-            if (chatings.length > 0) chatScrollToBottom(chatings[0].isBot);
+            if (chatings.length > 0) chatScrollToBottom();
         }
     }, [isLoading])
 
-    const fetchLogContent = async (chatList: ChatLogs[], isBot: boolean = false) => {
+    const fetchLogContent = async (chatList: ChatLogs[]) => {
         const data: Chating[] = [];
         setIsLoading(1);
         await Promise.all(
@@ -117,9 +135,9 @@ const ContactToChat: React.FC = () => {
                         const isUser = type === 'user' ? true : false;
                         chats.push({ isUser: isUser, name: name, content: content })
                     });
-                    data.push({ isBot, date: chatData.cdate, chats: chats })
+                    data.push({ date: chatData.cdate, chats: chats })
                 } catch (error) {
-                    data.push({ isBot, date: chatData.cdate, chats: [] })
+                    data.push({ date: chatData.cdate, chats: [] })
                     // console.error('Failed to fetch log file:', error);
                 }
             })
@@ -127,7 +145,7 @@ const ContactToChat: React.FC = () => {
         setChatings(data);
     }
 
-    const chatScrollToBottom = (isBot: boolean = false) => {
+    const chatScrollToBottom = () => {
         const isNotInToday = dateObj(chatings[chatings.length - 1]?.date).toLocaleDateString() !== dateObj().toLocaleDateString()
         const id = `chat${isBot ? 'Bot' : ''}${chatings.length - (isNotInToday ? 0 : 1)}`;
         if (isBot) {
@@ -150,7 +168,7 @@ const ContactToChat: React.FC = () => {
         }
     }
 
-    const drawChatUI = (chatList: ChatLogs[], isBot: boolean = false) => {
+    const drawChatUI = (chatList: ChatLogs[]) => {
         const isNotToday = (date: string) => { return dateObj(date).toLocaleDateString() !== dateObj().toLocaleDateString() };
         const isNotInToday = dateObj(chatList[chatList.length - 1]?.cdate).toLocaleDateString() !== dateObj().toLocaleDateString()
 
@@ -179,7 +197,7 @@ const ContactToChat: React.FC = () => {
                 <div className={`${isListVisiable ? 'col-md-9' : 'col-md-12'} border pt-3 bg-opacity-10`}
                     style={{
                         background: `${isBot ?
-                            'linear-gradient(160deg,rgba(0, 201, 252, 0.69) 50%, rgba(0, 238, 255, 0.54)) ' :
+                            'linear-gradient(160deg,rgba(0, 201, 252, 0.69) 20%, rgb(255, 255, 255)) ' :
                             'linear-gradient(160deg,rgba(0, 165, 0, 0.45) 50%, rgba(251, 255, 0, 0.45))'}`,
                         height: '500px'
                     }}>
@@ -198,7 +216,7 @@ const ContactToChat: React.FC = () => {
                             padding: '10px',
                         }}>
                         {
-                            !isLoading ? <>
+                            !isLoading && isConnect ? <>
                                 {
                                     chatings.length > 0 && chatings.map((chating, idx) => (
                                         <div key={'chat' + idx} className='mb-3' id={`chat${isBot ? 'Bot' : ''}${idx}`}>
@@ -224,7 +242,7 @@ const ContactToChat: React.FC = () => {
                                         </div>))
                                 }
                                 {
-                                    isNotInToday && <>
+                                    (isNotInToday || chatList.length === 0) && <>
                                         <div className='text-center mb-3' id={`chat${isBot ? 'Bot' : ''}${chatings.length}`}>
                                             <span className='bg-light p-2 rounded'>{dateObj().toLocaleDateString()}</span>
                                         </div>
@@ -262,7 +280,7 @@ const ContactToChat: React.FC = () => {
                             placeholder='문의 내역을 입력해주세요'
                             value={chat}
                             onChange={e => setChat(e.target.value)}
-                            onKeyDown={handleKeyEnter} />
+                            onKeyDown={e => handleKeyEnter(e)} />
                         <button type='button'
                             className='btn btn-success rounded-top rounded-bottom'
                             onClick={handleSubmit}>
@@ -299,7 +317,7 @@ const ContactToChat: React.FC = () => {
                             <button className="nav-link active" id="v-pills-whatwedo-tab"
                                 data-bs-toggle="pill" data-bs-target="#v-pills-whatwedo" role="tab"
                                 aria-controls="v-pills-whatwedo" aria-selected="true"
-                                onClick={_ => { fetchLogContent(chats); chatScrollToBottom(); }}
+                                onClick={_ => { fetchLogContent(chats); chatScrollToBottom(); setIsBot(false); }}
                             >
                                 문의 내역
                             </button>
@@ -307,7 +325,7 @@ const ContactToChat: React.FC = () => {
                             <button className="nav-link" id="v-pills-mission-tab"
                                 data-bs-toggle="pill" data-bs-target="#v-pills-mission" role="tab"
                                 aria-controls="v-pills-mission" aria-selected="false"
-                                onClick={_ => { fetchLogContent(chatBots, true); chatScrollToBottom(true) }}
+                                onClick={_ => { fetchLogContent(chatBots); chatScrollToBottom(); setIsBot(true); }}
                             >
                                 챗봇 내역
                             </button>
@@ -328,7 +346,7 @@ const ContactToChat: React.FC = () => {
 
                         <div className="tab-pane" id="v-pills-mission" role="tabpanel" aria-labelledby="v-pills-mission-tab">
                             {
-                                drawChatUI(chatBots, true)
+                                drawChatUI(chatBots)
                             }
                         </div>
 

@@ -3,9 +3,6 @@ package kr.co.admin.member;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -65,7 +62,7 @@ public class Member {
     @Column(name = "MDATE", columnDefinition = "date default sysdate", nullable = false)
     private Date mdate; 
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "CHATLOG",
         joinColumns = @JoinColumn(name="MEMBERNUM")
