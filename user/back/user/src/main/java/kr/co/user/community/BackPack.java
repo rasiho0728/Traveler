@@ -1,6 +1,6 @@
 package kr.co.user.community;
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
-import kr.co.user.member.Member;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import kr.co.user.member.MemberVO;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +30,7 @@ public class BackPack {
 
     @ManyToOne
     @JoinColumn(name = "MEMBERNUM", nullable = false)
-    private Member member;
+    private MemberVO member;
 
     @Column(name = "ROOMNUM", columnDefinition = "number(10)", nullable = false)
     private Long roomNum;
@@ -40,8 +42,9 @@ public class BackPack {
     @Column(name = "CONTENT", columnDefinition = "clob", nullable = false)
     private String content;
 
-    @Column(name = "CDATE", columnDefinition = "date default sysdate", nullable = false)
-    private Date cDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date cdate;
 
     @Column(name = "HIT", columnDefinition = "number(7) default 0", nullable = false)
     private Long hit;
