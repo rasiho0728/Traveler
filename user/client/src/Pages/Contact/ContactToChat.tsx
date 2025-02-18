@@ -159,10 +159,11 @@ const ContactToChat: React.FC = () => {
         const element = document.getElementById(id);
         if (element) {
             if (ref.current) {
+                console.log(ref.current.scrollHeight)
                 ref.current.scrollTo(animate ? {
                     top: element.offsetTop - 90, // 요소의 상단 위치
                     behavior: 'smooth'      // 부드럽게 스크롤
-                } : { top: element.offsetTop - 90, });
+                } : { top: ref.current.scrollHeight, });
             }
 
         }
