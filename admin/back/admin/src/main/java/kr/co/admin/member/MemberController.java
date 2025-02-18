@@ -15,14 +15,10 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    // @GetMapping //회원목록 불러오기
-    // public List<Member> listMember() {
-    //     return memberService.list();
-    // }
     @GetMapping // 회원목록 전체데이터 + 페이징처리
     public ResponseEntity<?> listMember(
-        @RequestParam(defaultValue = "1") int page,
-        @RequestParam(defaultValue = "10") int size
+        @RequestParam(defaultValue = "1") int page, //시작페이지
+        @RequestParam(defaultValue = "10") int size //페이지 나타낼 데이터 수
     ) {
         return ResponseEntity.ok().body(memberService.getMemberListWithPagination(page, size));
     }
