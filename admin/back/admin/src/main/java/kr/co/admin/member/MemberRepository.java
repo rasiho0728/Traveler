@@ -7,19 +7,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface MemberRepository extends JpaRepository<MemberVO, Long> {
     @Query(value = "SELECT num, USERNAME, EMAIL, MDATE from MEMBER ORDER BY 1 DESC", nativeQuery = true)
-    List<Member> findAllMember();
+    List<MemberVO> findAllMember();
 
     @Modifying // delete나 update같은 데이터 변경 쿼리를 사용할 때 쓰는 어노테이션
     @Transactional // delete나 update같은 쿼리 실행할 때 트랜잭션 처리를 위해 필요요
-    @Query("DELETE FROM MEMBER WHERE num=:num")
+    @Query("DELETE FROM MemberVO m WHERE m.num=:num")
     void deleteMemberByNum(Long num);
 
     // 페이징 처리
     @Query(value = "SELECT * FROM(SELECT b.* , ROW_NUMBER() OVER(ORDER BY b.num DESC) as row_num " +
                     " FROM MEMBER b) WHERE row_num  BETWEEN :startRow AND :endRow", nativeQuery = true)
-    List<Member> findByNumWithPagination(@Param("startRow") int startRow, @Param("endRow") int endRow);
+    List<MemberVO> findByNumWithPagination(@Param("startRow") int startRow, @Param("endRow") int endRow);
 
 
     @Query(value = "SELECT COUNT(*) FROM MEMBER", nativeQuery = true)
