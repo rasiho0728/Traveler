@@ -13,8 +13,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
-import kr.co.user.member.Member;
 import kr.co.user.member.MemberVO;
 import lombok.Data;
 import lombok.Getter;
