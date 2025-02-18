@@ -17,7 +17,8 @@ public class BusVO {
     private Date schedule;
     private String departure;
     private String destination;
-    private String departure_of_time;
-    private String destination_of_time;
+    private String departureoftime;
+    private String destinationoftime;
     private String sitnum;
+    
 }

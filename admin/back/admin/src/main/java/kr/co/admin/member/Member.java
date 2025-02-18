@@ -2,7 +2,6 @@ package kr.co.admin.member;
 
 import java.util.Date;
 import java.util.List;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -24,8 +23,8 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-@Entity
-@SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
+// @Entity
+// @SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
 public class Member {
     @Id
     @GeneratedValue(generator = "member_seq_gen", strategy = GenerationType.SEQUENCE)
@@ -60,7 +59,12 @@ public class Member {
     private Long company;
 
     @Column(name = "MDATE", columnDefinition = "date default sysdate", nullable = false)
-    private Date mdate; 
+    private Date mdate;
+
+    // 2025-02-18 장지원 마이페이지 자기소개글 컬럼 추가
+    @Column(name = "INTRO", columnDefinition = "varchar2(50)", nullable = false)
+    private String intro = "내용을 입력하세요.";  // 기본값 설정
+
 
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(

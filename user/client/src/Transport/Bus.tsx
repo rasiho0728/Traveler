@@ -20,7 +20,7 @@ const Bus: React.FC = () => {
     setError(null);
     try {
       const response = await axios.get(
-        'https://apis.data.go.kr/1613000/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey=XDMNsafrFJZRccQEUvJz2OG9IvqT7nEe%2FNjC6Twlm5H%2BWSJnH69syP9Su%2BlWuAGnG1DfL9%2FjHAHo6H0YXTMQ9g%3D%3D&pageNo=1&numOfRows=10&_type=json&depTerminalId=NAEK010&arrTerminalId=NAEK300&depPlandTime=20250214&busGradeId=1'
+        'https://apis.data.go.kr/1613000/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey=XDMNsafrFJZRccQEUvJz2OG9IvqT7nEe%2FNjC6Twlm5H%2BWSJnH69syP9Su%2BlWuAGnG1DfL9%2FjHAHo6H0YXTMQ9g%3D%3D&pageNo=1&numOfRows=10&_type=json&depTerminalId=NAEK010&arrTerminalId=NAEK300&depPlandTime=20250218&busGradeId=1'
       );
 
       console.log('응답 데이터:', response);  // 응답 확인
