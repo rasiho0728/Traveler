@@ -1,11 +1,18 @@
 package kr.co.user.member;
 
+import java.util.List;
+
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import kr.co.user.chat.Chat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,17 +53,17 @@ public class MemberVO {
     @Column(nullable = false, length = 15)
     private String role;//일반사용자이거나 제휴회사 
 
-    @Column
+    @Column(name = "socialuser")
     private Boolean socialUser;//(true이면 소셜로그인, false이면 일반로그인)
 
-    @Column
-    private Boolean emailVerified = false;//이메일 인증여부(true여야 인증)
+    // @Column
+    // private Boolean emailVerified = false;//이메일 인증여부(true여야 인증)
 
-    @Column(length = 6)
-    private String emailVerificationCode;//이메일 인증코드 최대 6자리
+    // @Column(length = 6)
+    // private String emailVerificationCode;//이메일 인증코드 최대 6자리
 
     @Column
-    private Boolean isPartner = false;//일반회원 false, 제휴회사 true
+    private Boolean company = false;//일반회원 false, 제휴회사 true
 
     @Column(length = 50)
     private String companyName;//제휴회사이름(일반회원은 null)   
@@ -64,6 +71,10 @@ public class MemberVO {
     @Column(length = 50)
     private String companyType;//기업군(선택:숙박, 교통, 기타)
 
-    @Column(length = 10, unique = true)
-    private String businessNumber;//사업자등록번호
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(
+        name = "CHATLOG",
+        joinColumns = @JoinColumn(name="MEMBERNUM")
+    )
+    private List<Chat> chatlog;
 }

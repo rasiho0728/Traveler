@@ -21,7 +21,7 @@ public class UserApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				System.out.println("Cros Allow Origin 실행");
 				registry.addMapping("/**")
-						.allowedOrigins( "http://localhost:3001", "http://localhost:3001/")
+						.allowedOriginPatterns( "http://localhost:3001/", "http://localhost:3001")
 						.allowedHeaders("*")
 						.allowCredentials(true)
 						.allowedMethods("*")
