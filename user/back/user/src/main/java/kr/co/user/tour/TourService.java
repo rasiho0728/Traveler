@@ -1,4 +1,4 @@
-package kr.co.admin.tour;
+package kr.co.user.tour;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
