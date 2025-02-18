@@ -37,14 +37,14 @@ public class MemberService {
         memberVO.setPwd(passwordEncoder.encode(memberVO.getPwd()));
 
         // 기본 역할 설정 (제휴회사 여부에 따른 역할 부여)
-        if (memberVO.getIsPartner()) {
+        if (memberVO.getCompany()) {
             memberVO.setRole("ROLE_PARTNER");
         } else {
             memberVO.setRole("ROLE_USER");
         }
 
         // 기본 이메일 인증 상태 설정
-        memberVO.setEmailVerified(false);
+        // memberVO.setEmailVerified(false);
 
         // 회원 저장
         return memberRepository.save(memberVO);
@@ -63,7 +63,7 @@ public class MemberService {
 
         // 인증 코드 생성 및 저장
         String verificationCode = generateVerificationCode();
-        memberRepository.updateEmailVerificationCode(email, verificationCode);
+        // memberRepository.updateEmailVerificationCode(email, verificationCode);
 
         // 이메일 발송 로직은 실제 이메일 전송 서비스와 연동하여 구현해야 합니다.
     }
@@ -86,18 +86,18 @@ public class MemberService {
 
         // 인증 코드 비교
         MemberVO memberVO = member.get();
-        if (!memberVO.getEmailVerificationCode().equals(code)) {
-            throw new IllegalArgumentException("잘못된 인증 코드입니다.");
-        }
+        // if (!memberVO.getEmailVerificationCode().equals(code)) {
+        //     throw new IllegalArgumentException("잘못된 인증 코드입니다.");
+        // }
 
         // 이메일 인증 성공 처리
-        memberRepository.updateEmailVerification(email, true);
+        // memberRepository.updateEmailVerification(email, true);
     }
 
     // 제휴회사 회원 조회 (사업자 번호로 조회)
     public MemberVO getPartnerByBusinessNumber(String businessNumber) {
         // 사업자 번호로 제휴회사 조회
-        Optional<MemberVO> member = memberRepository.findByBusinessNumber(businessNumber);
+        Optional<MemberVO> member = memberRepository.findByCode(businessNumber);
 
         // 제휴회사가 없으면 예외 처리
         if (member.isEmpty()) {
