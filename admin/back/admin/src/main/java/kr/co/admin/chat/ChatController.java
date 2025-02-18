@@ -42,9 +42,9 @@ public class ChatController {
     }
 
     @PostMapping("/{username}")
-    public String addChating(@PathVariable("username") String username, @RequestParam("chat") String chat, @RequestParam("isBot") boolean isBot) {
-        String logFile = "Log_" + (isBot ? "Bot_" : "") +String.valueOf(LocalDate.now()).replaceAll("-", "")  + "_" + username + ".log";
-        String saveMsg = username + "||user||" + chat;
+    public String addChating(@PathVariable("username") String username, @RequestParam("chat") String chat) {
+        String logFile = "Log_" +String.valueOf(LocalDate.now()).replaceAll("-", "")  + "_" + username + ".log";
+        String saveMsg = username + "||admin||" + chat;
 
         try {
             // 파일 객체 생성
@@ -63,7 +63,7 @@ public class ChatController {
             bw.write(saveMsg); // 내용 쓰기
             bw.close(); // BufferedWriter 닫기
             System.out.println("파일이 성공적으로 생성되었습니다.");
-            chatService.addLogToUserName(username, logFile, isBot);
+            chatService.addLogToUserName(username, logFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

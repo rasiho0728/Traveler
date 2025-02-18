@@ -61,12 +61,12 @@ const ContactToChat: React.FC = () => {
 
         ws.onopen = () => {
             setIsConnect(true);
-            console.log("WebSocket 연결됨");
+            // console.log("WebSocket 연결됨");
         };
 
         ws.onclose = () => {
             setIsConnect(false);
-            console.log("WebSocket 연결 종료됨");
+            // console.log("WebSocket 연결 종료됨");
         };
 
         return () => ws.close();
@@ -157,14 +157,11 @@ const ContactToChat: React.FC = () => {
 
     const handleChatScroll = (ref: React.RefObject<HTMLDivElement>, id: string, animate: boolean = true) => {
         const element = document.getElementById(id);
-        if (element) {
-            if (ref.current) {
-                ref.current.scrollTo(animate ? {
-                    top: element.offsetTop - 90, // 요소의 상단 위치
-                    behavior: 'smooth'      // 부드럽게 스크롤
-                } : { top: element.offsetTop - 90, });
-            }
-
+        if (element && ref.current) {
+            ref.current.scrollTo(animate ? {
+                top: element.offsetTop - 90, // 요소의 상단 위치
+                behavior: 'smooth'      // 부드럽게 스크롤
+            } : { top: ref.current.scrollHeight, });
         }
     }
 
