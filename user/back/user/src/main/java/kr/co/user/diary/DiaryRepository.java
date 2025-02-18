@@ -1,6 +1,9 @@
 package kr.co.user.diary;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import kr.co.user.member.Member;
+
 import java.util.List;
 
 public interface DiaryRepository extends JpaRepository<Diary, Long> {

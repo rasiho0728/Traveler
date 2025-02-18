@@ -1,5 +1,8 @@
 package kr.co.user.diary;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -8,39 +11,43 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-@Entity
-@Table(name = "diaryPage")
+@Entity(name = "diarypage")
+// @Table
 @SequenceGenerator(name = "diarypage_seq_gen", sequenceName = "diarypage_seq", initialValue = 1, allocationSize = 1)
-public class DiaryPage {
+public class Diarypage {
     @Id
     @GeneratedValue(generator = "diarypage_seq_gen", strategy = GenerationType.SEQUENCE)
+    private Long num;
+   
+    @Column(name = "PAGE", columnDefinition = "number(2)")
     private Integer page;
 
-    @Column(name = "PTITLE", columnDefinition = "varchar2(150)", nullable = false)
+    @Column(name = "PTITLE", columnDefinition = "varchar2(150)")
     private String ptitle;
 
-    @Column(name = "CONTENT", columnDefinition = "varchar2(300)", nullable = false)
+    @Column(name = "CONTENT", columnDefinition = "varchar2(300)")
     private String content;
 
-    @Column(name = "LOCATION", columnDefinition = "varchar2(150)", nullable = false)
+    @Column(name = "LOCATION", columnDefinition = "varchar2(150)")
     private String location;
 
-    @Column(name = "HAPPY", columnDefinition = "FLOAT(5,2)", nullable = false)
+    @Column(name = "HAPPY", columnDefinition = "NUMBER(5,2)")
     private Float happy;
 
-    @Column(name = "UPSET", columnDefinition = "FLOAT(5,2)", nullable = false)
+    @Column(name = "UPSET", columnDefinition = "NUMBER(5,2)")
     private Float upset;
 
-    @Column(name = "EMBRESSED", columnDefinition = "FLOAT(5,2)", nullable = false)
+    @Column(name = "EMBRESSED", columnDefinition = "NUMBER(5,2)")
     private Float embressed;
 
-    @Column(name = "SAD", columnDefinition = "FLOAT(5,2)", nullable = false)
+    @Column(name = "SAD", columnDefinition = "NUMBER(5,2)")
     private Float sad;
 
-    @Column(name = "NEUTRALITY", columnDefinition = "FLOAT(5,2)", nullable = false)
+    @Column(name = "NEUTRALITY", columnDefinition = "NUMBER(5,2)")
     private Float neutrality;
 
     @ManyToOne
     @JoinColumn(name = "diarynum", referencedColumnName = "num")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Diary diary;
 }
