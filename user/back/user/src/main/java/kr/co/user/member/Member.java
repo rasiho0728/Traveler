@@ -26,8 +26,8 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-// @Entity
-// @SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
+//@Entity
+//@SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
 public class Member {
     @Id
     @GeneratedValue(generator = "member_seq_gen", strategy = GenerationType.SEQUENCE)
@@ -74,11 +74,6 @@ public class Member {
         joinColumns = @JoinColumn(name="MEMBERNUM")
     )
     private List<Chat> chatlog;
-
-//     //2025-02-18추가 최의진
-    @OneToMany
-    @JoinColumn(name="MEMBERNUM")
-    private List<Bus>bus;
 
 
     public Member(){
