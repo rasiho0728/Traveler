@@ -34,7 +34,7 @@ dependencies {
 
 	// 시큐리티를 위한 추가 - 로그인 구현 전까지 주석
 	// implementation 'org.springframework.boot:spring-boot-starter-validation'
-	// implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// implementation 'org.springframework.security:spring-security-messaging:6.1.2'
 
 	// jwt 모듈 추가 - 로그인 구현 전까지 주석
