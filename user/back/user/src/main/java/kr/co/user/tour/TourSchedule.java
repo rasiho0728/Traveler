@@ -1,4 +1,4 @@
-package kr.co.admin.tour;
+package kr.co.user.tour;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

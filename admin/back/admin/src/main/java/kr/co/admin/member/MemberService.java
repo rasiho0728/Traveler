@@ -14,7 +14,7 @@ public class MemberService {
     private MemberRepository memberRepository;
 
     // 전체조회
-    public List<Member> list(){
+    public List<MemberVO> list(){
         return memberRepository.findAllMember();
     }
 
@@ -24,11 +24,11 @@ public class MemberService {
     }
 
     // 회원 페이징
-    public Page<Member> getMemberListWithPagination(int page, int size){
+    public Page<MemberVO> getMemberListWithPagination(int page, int size){
         // startRow와 endRow계산
         int startRow = (page - 1) * size + 1;
         int endRow = startRow + size - 1;
-        List<Member> entity = memberRepository.findByNumWithPagination(startRow, endRow);
+        List<MemberVO> entity = memberRepository.findByNumWithPagination(startRow, endRow);
 
         // 전체 게시글 수 계산 (페이징을 위한)
         Long totalElememts = memberRepository.countAllMember();

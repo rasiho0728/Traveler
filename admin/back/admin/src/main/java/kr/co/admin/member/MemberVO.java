@@ -1,7 +1,6 @@
-package kr.co.user.member;
+package kr.co.admin.member;
 
 import java.util.List;
-
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -11,10 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import kr.co.user.bus.Bus;
-import kr.co.user.chat.Chat;
+import kr.co.admin.chat.Chat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,7 +26,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class MemberVO {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num;//고유 식별자
@@ -83,9 +79,4 @@ public class MemberVO {
         joinColumns = @JoinColumn(name="MEMBERNUM")
     )
     private List<Chat> chatlog;
-
-         //2025-02-18추가 최의진
-    @OneToMany
-    @JoinColumn(name = "MEMBERNUM")
-    private List<Bus> bus;
 }

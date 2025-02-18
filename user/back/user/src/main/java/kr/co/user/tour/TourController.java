@@ -1,4 +1,4 @@
-package kr.co.admin.tour;
+package kr.co.user.tour;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/tours", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/tours")
 @RequiredArgsConstructor
 public class TourController {
 
     private final TourService tourService;
 
     // ✅ 투어 등록 (이미지 & 스케줄 포함)
-    @PostMapping(value = "/upload")
+    @PostMapping(value = "/upload", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> uploadTour(@RequestBody Tour tour) {
         System.out.println("Received Tour Object: " + tour);
         tourService.saveTourWithDetails(tour);
