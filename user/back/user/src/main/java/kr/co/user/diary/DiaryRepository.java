@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface DiaryRepository extends JpaRepository<Diary, Long> {
-    List<Diary> findByMembernum_Num(Integer membernum);//특정 회원의 다이어리 목록 조회
+    // 게시글 번호로 정렬된 전체 게시글 조회
+    List<Diary> findAllByOrderByNumDesc();
 
     
 }
