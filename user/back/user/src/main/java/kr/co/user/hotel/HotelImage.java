@@ -15,7 +15,7 @@ public class HotelImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "HOTELNUM") 
+    @Column(name = "HOTELNUM",insertable=false, updatable=false) 
     private Long hotelNum;
 
     @Column(name = "IMGNAME", length = 200)

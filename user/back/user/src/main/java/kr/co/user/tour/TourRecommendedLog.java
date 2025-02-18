@@ -1,13 +1,15 @@
-package kr.co.admin.tour;
+package kr.co.user.tour;
 
 import jakarta.persistence.*;
-import kr.co.admin.member.Member;
-import kr.co.admin.member.MemberVO;
+import kr.co.user.member.Member;
+import kr.co.user.member.MemberVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "TOURRECOMMENDEDLOG")
@@ -21,10 +23,12 @@ public class TourRecommendedLog {
     private Long num;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "TOURNUM", nullable = false)
     private Tour tour;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "MEMBERNUM", nullable = false)
     private MemberVO member;
 
