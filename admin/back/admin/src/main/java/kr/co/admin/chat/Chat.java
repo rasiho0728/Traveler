@@ -1,4 +1,4 @@
-package kr.co.user.chat;
+package kr.co.admin.chat;
 
 import java.util.Date;
 

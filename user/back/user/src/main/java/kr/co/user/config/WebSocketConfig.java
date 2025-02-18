@@ -1,26 +1,16 @@
 package kr.co.user.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
-import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import kr.co.user.chat.FolderWatcher;
 
 @Configuration
-@EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
+@EnableWebSocket
+public class WebSocketConfig implements WebSocketConfigurer {
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-        //메세지를 수신하는 요청 엔드포인트
-        config.enableSimpleBroker("/topic");
-        //메세지를 송신하는 엔드포인트
-        config.setApplicationDestinationPrefixes("/app");
-    }
-
-    @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws") //연결될 엔드포인트
-                .setAllowedOriginPatterns("http://localhost:3001")
-                .withSockJS();
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(new FolderWatcher(), "/ws/folder-watch").setAllowedOrigins("*");
     }
 }

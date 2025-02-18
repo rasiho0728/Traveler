@@ -1,6 +1,6 @@
 // 2025.01.21. 19:35 생성자: 이학수, HTML템플릿을 리엑트로 조정
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 // import "./css/magnific-popup.css" // 알수 없음. 문제가 생길시 주석을 해제해 볼 것
 // import "./css/aos.css" // 알수 없음. 문제가 생길시 주석을 해제해 볼 것
 // import "./css/jquery.timepicker.css" // 알수 없음. 문제가 생길시 주석을 해제해 볼 것
@@ -55,6 +55,7 @@ import { geocoding } from './navermaps';
 
 
 import ContactToChat from './Pages/Contact/ContactToChat';
+import Passwordless from './Pages/Login/Passwordless';
 import MyBookshelf from './Pages/TourDiary/MyBookshelf';
 import MyDiary from './Pages/TourDiary/MyDiary';
 import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
@@ -63,8 +64,9 @@ import BusDetail from './Transport/BusDetail';
 import BusForm from './Transport/BusForm';
 
 function App() {
+        const { pathname } = useLocation();
         return (
-                <BrowserRouter>
+                <>
                         {/* 페이지 이동시 스크롤 상당으로 이동 시켜주는 컴포넌트 */}
                         <ScrollToTop />
                         <Header />
@@ -94,27 +96,30 @@ function App() {
                                 <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> 2025-02-07 조유경 추가
                                 <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> 2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
-                                <Route path='/traveler/login' element={<Login />} />
-                                <Route path='/traveler/signup' element={<SignUp />} />
+                                <Route path='/traveler/login' element={<Login />} />{/*2025-02-08 전준영 로그인 추가*/}
+                                <Route path='/traveler/passwordless' element={<Passwordless />} />{/*2025-02-08 전준영 패스워드리스로그인 추가*/}
+                                <Route path='/traveler/signup' element={<SignUp />} />{/*2025-02-08 전준영 회원가입 추가*/}
                                 <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
                                 <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                <Route path='/traveler/Transport/BusForm' element={<BusForm/>} />{/*2025-02-10최의진 추가 */}
-                                <Route path='/traveler/Transport/BusForm/Bus' element={<Bus/>} />{/*2025-02-15최의진 수정 */}
-                                <Route path='/traveler/Transport/BusForm/Bus/:id' element={<BusDetail/>} />{/*2025-02-15최의진 추가 */}
+                                <Route path='/traveler/Transport/BusForm' element={<BusForm />} />{/*2025-02-10최의진 추가 */}
+                                <Route path='/traveler/Transport/BusForm/Bus' element={<Bus />} />{/*2025-02-15최의진 수정 */}
+                                <Route path='/traveler/Transport/BusForm/Bus/:id' element={<BusDetail />} />{/*2025-02-15최의진 추가 */}
                                 <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
                                 {/* <Route path='/traveler/Transport/Airline' element={<Airline />} />2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Transport/MapRoad' element={<MapRoad />} />{/*2025-02-10최의진 추가 */}
                                 <Route path='/traveler/diary/:id' element={<TourDiary />} />
                                 <Route path='/traveler/diary' element={<Bookshelf />} />
-                                <Route path='/traveler/mydiary' element={<MyBookshelf/>}/>
-                                <Route path='/traveler/mydiary/:id' element={<MyDiary/>}/>
-                                <Route path='/traveler/mydiary/diaryupload' element={<TourDiaryUpload/>}/>                                
+                                <Route path='/traveler/mydiary' element={<MyBookshelf />} />
+                                <Route path='/traveler/mydiary/:id' element={<MyDiary />} />
+                                <Route path='/traveler/mydiary/diaryupload' element={<TourDiaryUpload />} />
                         </Routes>
                         <Footer />
-                        <Chat />
-                </BrowserRouter>
+                        {
+                                !pathname.includes('contact') && < Chat />
+                        }
+                </>
         );
 }
 

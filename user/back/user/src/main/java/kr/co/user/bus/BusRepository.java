@@ -8,4 +8,6 @@ public interface BusRepository extends JpaRepository<Bus, Long>{
     
     //이름(함수명)으로 규칙 지정
     List<Bus> findAllByOrderByNumDesc();
+
+   
 }

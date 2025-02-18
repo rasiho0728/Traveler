@@ -1,4 +1,4 @@
-package kr.co.user.member;
+package kr.co.admin.member;
 
 import java.util.Date;
 import java.util.List;
@@ -15,8 +15,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.SequenceGenerator;
-import kr.co.user.chat.Chat;
-import kr.co.user.security.Role;
+import kr.co.admin.chat.Chat;
+import kr.co.admin.security.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
