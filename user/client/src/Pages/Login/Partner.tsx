@@ -10,16 +10,42 @@ const Partner: React.FC = () => {
     const [email, setEmail] = useState("");
     const [company, setCompany] = useState("");
     const [companyType, setCompanyType] = useState("");
+    const [emailCode, setEmailCode] = useState(""); // 사용자가 입력할 인증 코드
+    const [generatedCode, setGeneratedCode] = useState(""); // 서버에서 받은 인증 코드
+    const [isVerified, setIsVerified] = useState(false); // 이메일 인증 여부
 
     // ID 중복 확인 핸들러
     const handleCheckDuplicateId = () => {
         alert(`아이디 사용 가능 여부 확인: ${id}`);
     };
 
-    // Email 인증 핸들러
+    // 이메일 인증 코드 전송 핸들러 (랜덤 코드 생성)
     const handleVerifyEmail = () => {
-        alert(`인증 이메일 보내는 중: ${email}`);
+        if (!email) {
+            alert("이메일을 입력해주세요!");
+            return;
+        }
+
+        // 랜덤 6자리 숫자 생성 (테스트용)
+        const code = Math.floor(100000 + Math.random() * 900000).toString();
+        setGeneratedCode(code);
+        alert(`인증 코드가 ${email}로 전송되었습니다! (테스트 코드: ${code})`);
     };
+
+    // 이메일 인증 코드 확인 핸들러
+    const handleVerifyEmailCode = () => {
+        if (emailCode === generatedCode) {
+            setIsVerified(true);
+            alert("이메일 인증이 완료되었습니다!");
+        } else {
+            alert("인증 코드가 올바르지 않습니다.");
+        }
+    };
+
+    // // Email 인증 핸들러
+    // const handleVerifyEmail = () => {
+    //     alert(`인증 이메일 보내는 중: ${email}`);
+    // };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -36,6 +62,11 @@ const Partner: React.FC = () => {
 
         if (!phone) {
             alert("전화번호는 필수 입력 사항입니다!");
+            return;
+        }
+
+        if (!isVerified) {
+            alert("이메일 인증을 완료해주세요!");
             return;
         }
 
@@ -218,6 +249,26 @@ const Partner: React.FC = () => {
                                 </button>
                             </div>
                         </div>
+                        {/* ✅ 이메일 인증 코드 입력 + 확인 버튼 */}
+                        <div className="wrap-input100 validate-input m-b-23" style={inputGroupStyle}>
+                            <span className="label-input100">인증 코드</span>
+                            <div style={inputContainerStyle}>
+                                <input
+                                    className="input100"
+                                    type="text" // ✅ 타입을 "text"로 변경
+                                    value={emailCode}
+                                    onChange={(e) => setEmailCode(e.target.value)}
+                                    placeholder="인증 코드 입력"
+                                    required
+                                    maxLength={6}
+                                />
+                                <span className="focus-input100" data-symbol="&#xf15a;"></span>
+
+                                <button type="button" style={checkBtnStyle} onClick={handleVerifyEmailCode}>
+                                    확인
+                                </button>
+                            </div>
+                        </div>
 
                         {/* 회원가입 버튼 */}
                         <div className="container-login100-form-btn">
@@ -230,7 +281,7 @@ const Partner: React.FC = () => {
                                 <button type="submit" className="login100-form-btn">새로운 제휴회사이신가요?</button>
                                 
                             </div> */}
-    
+
                         </div>
                     </form>
                 </div>

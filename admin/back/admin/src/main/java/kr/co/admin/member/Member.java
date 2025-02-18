@@ -1,4 +1,4 @@
-package kr.co.user.member;
+package kr.co.admin.member;
 
 import java.util.Date;
 import java.util.List;
@@ -14,11 +14,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
-import kr.co.user.bus.Bus;
-import kr.co.user.chat.Chat;
-import kr.co.user.security.Role;
+import kr.co.admin.chat.Chat;
+import kr.co.admin.security.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,8 +24,8 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-// @Entity
-// @SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
+@Entity
+@SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
 public class Member {
     @Id
     @GeneratedValue(generator = "member_seq_gen", strategy = GenerationType.SEQUENCE)
@@ -70,12 +68,6 @@ public class Member {
         joinColumns = @JoinColumn(name="MEMBERNUM")
     )
     private List<Chat> chatlog;
-
-//     //2025-02-18추가 최의진
-    @OneToMany
-    @JoinColumn(name="MEMBERNUM")
-    private List<Bus>bus;
-
 
     public Member(){
         this.name = "테스형";

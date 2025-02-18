@@ -34,6 +34,7 @@ public class RoomImage {
 
     @ManyToOne 
     @JoinColumn(name = "ROOMNUM",insertable=false, updatable=false) 
+    @JoinColumn(name = "num") 
     private Room room;
 
 }
