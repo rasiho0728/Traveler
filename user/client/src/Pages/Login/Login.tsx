@@ -57,7 +57,10 @@ const Login = () => {
 
               <div className="wrap-login100-form-btn passwordless">
                 <div className="login100-form-bgbtn"></div>
-                <button type="submit" className="login100-form-btn">패스워드리스 로그인</button>
+                {/* Link로 패스워드리스 페이지로 이동 */}
+                <Link to="/traveler/passwordless" className="login100-form-btn">
+                  패스워드리스 로그인
+                </Link>
               </div>
             </div>
 
@@ -66,19 +69,19 @@ const Login = () => {
             </div>
 
             <div className="flex-c-m">
-            <a href="#" className="login100-social-item bg1">
-    <img src="/images/kakao-talk.png" alt="Kakao Login" style={{ width: "40px", height: "40px" }} />
-  </a>
+              <a href="#" className="login100-social-item bg1">
+                <img src="/images/kakao-talk.png" alt="Kakao Login" style={{ width: "40px", height: "40px" }} />
+              </a>
               <a href="#" className="login100-social-item bg2">
-    <img src="/images/naver.png" alt="Naver Login" style={{ width: "40px", height: "40px" }} />
-  </a>
+                <img src="/images/naver.png" alt="Naver Login" style={{ width: "40px", height: "40px" }} />
+              </a>
               {/* <a href="#" className="login100-social-item bg3"><i className="fa4 fa-google"></i></a> */}
             </div>
 
             <div className="flex-col-c p-t-25">
               {/* Sign Up을 Link로 변경 */}
               <Link to="/traveler/signselect" className="txt2">아직 회원이 아니신가요? 회원가입</Link>
-              
+
             </div>
           </form>
         </div>
