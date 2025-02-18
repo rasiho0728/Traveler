@@ -1,14 +1,14 @@
-package kr.co.user.diary;
+// package kr.co.user.diary;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Service;
 
-@Service
-public class DairyService {
+// @Service
+// public class DairyService {
     
-    @Autowired
-    private DiaryRepository diaryRepository;
+//     @Autowired
+//     private DiaryRepository diaryRepository;
 
-    
 
-}
+
+// }
