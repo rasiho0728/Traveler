@@ -112,12 +112,14 @@ const MyPage: React.FC = () => {
         chart: {
             type: "line",
             backgroundColor: "transparent",
+            height:230,
         },
         title: {
             text: "",
             align: "left",
         },
-        xaxis: {
+        xAxis: {
+            type: "category",
             categories: ["일", "월", "화", "수", "목", "금", "토"], // ✅ X축 (주 단위)
         },
         yAxis: {
@@ -127,14 +129,32 @@ const MyPage: React.FC = () => {
             },
             minorTickInterval: 0.1,
             min: 1, // ✅ 최소값 설정하여 너무 아래로 내려가는 것 방지
+            max: 30, // y축 최대값 조정하여 그래프 압축
         },
         series: [
             {
                 name: "다이어리 개수",
-                data: [1, 3, 9, 27, 10, 2, 5, 0], // ✅ 로그 축에서 잘 보이는 데이터 예제
+                data: [1, 3, 2, 27, 10, 2, 5], // ✅ 로그 축에서 잘 보이는 데이터 예제
                 color: "#F27F62",
             },
         ],
+        responsive: {
+            rules: [
+                {
+                    condition: {
+                        maxWidth: 600,
+                    },
+                    chartOptions: {
+                        chart: {
+                            height: 230, // 모바일 화면에서는 230px
+                        },
+                        yAxis: {
+                            max: 20, // 모바일에서는 더 작은 값으로 압축
+                        },
+                    },
+                },
+            ],
+        },
     });
   return (
     <div className='MyPage'>
@@ -307,7 +327,7 @@ const MyPage: React.FC = () => {
                 <div className='diary-box'>
                     <div className='my-blog-text'>
                         <h2>다이어리 목록</h2>
-                        <a href='/traveler/diary'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
+                        <a href='/traveler/mydiary'><i className="fa fa-plus" aria-hidden="true"></i>더보기</a>
                     </div>
                     <div className='big-box'>
                         <div className='diary'>
