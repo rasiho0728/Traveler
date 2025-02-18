@@ -64,6 +64,10 @@ public class Member {
     @Column(name = "MDATE", columnDefinition = "date default sysdate", nullable = false)
     private Date mdate; 
 
+    // 2025-02-18 장지원 마이페이지 자기소개글 컬럼 추가
+    @Column(name = "INTRO", columnDefinition = "varchar2(50)", nullable = false)
+    private String intro = "내용을 입력하세요.";  // 기본값 설정
+
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "CHATLOG",
