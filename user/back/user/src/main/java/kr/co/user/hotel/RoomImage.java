@@ -1,5 +1,7 @@
 package kr.co.user.hotel;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +33,7 @@ public class RoomImage {
     private String imgName;
 
     @ManyToOne 
-    @JoinColumn(name = "ROOMNUM") 
+    @JoinColumn(name = "ROOMNUM",insertable=false, updatable=false) 
     private Room room;
 
 }

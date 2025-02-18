@@ -29,9 +29,19 @@ const BusForm: React.FC = () => {
     };
   }, []);
 
-  const handleReservationClick = () => {
-    navigate('/traveler/Transport/BusForm/Bus')
-  }
+    const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        const formData = new FormData();
+        // formData
+      } catch (error) {
+        
+      }
+    }
+
+  // const handleReservationClick = () => {
+  //   navigate('/traveler/Transport/BusForm/Bus')
+  // }
   return (
     <div>
       <div className='js-halfheight mb-4'
@@ -93,7 +103,7 @@ const BusForm: React.FC = () => {
               </div>
               <div className="form-group">
                 <input type="submit" value="예약하기" className="btn btn-primary py-3 px-5" 
-                onClick={handleReservationClick}/>
+                />
               </div>
             </div>
           </form>
