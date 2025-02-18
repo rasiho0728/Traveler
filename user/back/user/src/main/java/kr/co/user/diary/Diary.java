@@ -3,15 +3,8 @@ package kr.co.user.diary;
 import java.sql.Date;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import kr.co.user.member.Member;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name ="diary")
+@Table(name = "diary")
 @SequenceGenerator(name = "diary_seq_gen", sequenceName = "diary_seq", initialValue = 1, allocationSize = 1)
 public class Diary {
     @Id
@@ -45,10 +38,10 @@ public class Diary {
     @Column(name = "DDATE", columnDefinition = "date default sysdate", nullable = false)
     private Date ddate;
 
-    @OneToMany(orphanRemoval = true) // Diary 삭제시 연관된 댓글도 함께 삭제
-    @JoinColumn(name = "diarynum")
+    @OneToMany(mappedBy = "diary", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DiaryPage> diaryPage;
-    
-    private Integer mambernum;
 
+    @ManyToOne
+    @JoinColumn(name = "mambernum", referencedColumnName = "num")
+    private Member member;
 }

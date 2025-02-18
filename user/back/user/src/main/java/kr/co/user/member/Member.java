@@ -32,8 +32,6 @@ import lombok.Setter;
 @SequenceGenerator(name = "member_seq_gen", sequenceName = "member_seq", initialValue = 1, allocationSize = 1)
 public class Member {
     @Id
-    @OneToMany
-    @JoinColumn(name = "mambernum")
     @GeneratedValue(generator = "member_seq_gen", strategy = GenerationType.SEQUENCE)
     private Long num;
 
