@@ -122,7 +122,7 @@ const LikePieChart = () => {
   };
 
   return (
-    <div style={{ marginTop: '40px' }}>
+    <div>
       <h4>감정 태그 분석 (파이 차트)</h4>
       <Pie data={data} />
     </div>
@@ -132,11 +132,15 @@ const LikePieChart = () => {
 const LikePage: React.FC = () => {
   return (
     <div>
-      <div style={{ textAlign: 'center' }}>
-        <h2>여행 스타일 분석</h2>
-        <LikeChart />
-        <h2>감정 태그 분석</h2>
-        <LikePieChart />
+      <div className='Chartchart' style={{ textAlign: 'center', display:'flex', flexDirection:'column' }}>
+        <div className='chart-box' style={{ marginBottom:'200px'}}>
+          <h2>여행 스타일 분석</h2>
+          <LikeChart />
+        </div>
+        <div className='chart-box'>
+          <h2>감정 태그 분석</h2>
+          <LikePieChart />
+        </div>
       </div>
     </div>
   );
