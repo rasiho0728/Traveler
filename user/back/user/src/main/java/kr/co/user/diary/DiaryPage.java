@@ -3,6 +3,8 @@ package kr.co.user.diary;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -49,5 +51,6 @@ public class Diarypage {
     @ManyToOne
     @JoinColumn(name = "diarynum", referencedColumnName = "num")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference //자식(Diarypage)에서 부모(Diary) 참조 제거 (무한 루프 방지)
     private Diary diary;
 }

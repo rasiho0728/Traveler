@@ -3,6 +3,9 @@ package kr.co.user.diary;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,9 +51,11 @@ public class Diary {
     private Date ddate;
 
     @OneToMany(mappedBy = "diary", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference //부모(Diary)에서 자식(Diarypage) 관리
     private List<Diarypage> diaryPage;
 
     @ManyToOne
-    @JoinColumn(name = "mambernum", referencedColumnName = "num")
-    private MemberVO membernum;
+    @JoinColumn(name = "membernum", referencedColumnName = "num")
+    @JsonBackReference //자식(Diary)에서 부모(MemberVO) 참조 제거 (무한 루프 방지)
+    private MemberVO member;
 }

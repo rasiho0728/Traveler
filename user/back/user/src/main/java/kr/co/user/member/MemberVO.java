@@ -2,6 +2,8 @@ package kr.co.user.member;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -15,6 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import kr.co.user.bus.Bus;
 import kr.co.user.chat.Chat;
+import kr.co.user.diary.Diary;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -84,8 +87,13 @@ public class MemberVO {
     )
     private List<Chat> chatlog;
 
-         //2025-02-18추가 최의진
+    //2025-02-18추가 최의진
     @OneToMany
     @JoinColumn(name = "MEMBERNUM")
     private List<Bus> bus;
+
+    @OneToMany
+    @JoinColumn(name = "MEMBERNUM")
+    @JsonManagedReference //부모(MemberVO)에서 자식(Diary) 리스트 관리
+    private List<Diary> diary;
 }

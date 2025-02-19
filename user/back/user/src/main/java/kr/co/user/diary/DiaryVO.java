@@ -2,6 +2,7 @@ package kr.co.user.diary;
 
 import java.util.Date;
 
+import kr.co.user.member.MemberVO;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +18,5 @@ public class DiaryVO {
     private Integer isshare;
     private String thumbnail;
     private String title;
-    private Long mambernum;
+    private MemberVO mamber;
 }
