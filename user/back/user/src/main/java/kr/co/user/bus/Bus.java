@@ -2,6 +2,7 @@ package kr.co.user.bus;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +45,14 @@ public class Bus {
 
     @ManyToOne
     @JoinColumn(name = "membernum",nullable = false)
+    @JsonBackReference
     private MemberVO member;
     
+    // //2025-02-19추가
+    // @Column(name = "arrplanttime") // 도착 예정 시간
+    // private Date arrPlandTime;
+
+    // @Column(name = "depplanttime") // 출발 예정 시간
+    // private Date depPlandTime;
 
 }
