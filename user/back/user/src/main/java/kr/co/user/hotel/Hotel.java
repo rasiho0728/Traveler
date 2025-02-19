@@ -56,6 +56,6 @@ public class Hotel {
     @Column(name = "HDATE")
     private Date hdate;
 
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
-    private List<HotelImage> images;
+    // @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    // private List<HotelImage> images;
 }
