@@ -93,6 +93,7 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
   }
 
   const tabEvents = (e: any, id: any) => {
+    console.log(id)
     e.preventDefault();
     document.getElementById("tab1")?.classList.remove("active")
     document.getElementById("tab2")?.classList.remove("active")
@@ -133,8 +134,8 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
 
           <div className="nav nav-pills justify-content-between text-center" role="tablist">
             <a className="flex-fill rounded border-0 nav-link active" data-bs-toggle="tab" id="tab1" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 1) }} role="tab" aria-selected="true">배낭톡</a>
-            {/* <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab2" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 2) }} role="tab" aria-selected="false">여행</a>
-            <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab3" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 3) }} role="tab" aria-selected="false">교통</a> */}
+            <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab2" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 2) }} role="tab" aria-selected="false">여행</a>
+            {/* <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab3" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 3) }} role="tab" aria-selected="false">교통</a> */}
           </div>
         </div>
         <div className="tab-content border-top">
@@ -186,7 +187,7 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
               </li>
             </ul>
           </div>
-          <div className="tab-pane fade" id="tab-conatain3" role="tabpanel">
+          {/* <div className="tab-pane fade" id="tab-conatain3" role="tabpanel">
             <ul className="list-unstyled list-group list-group-custom list-group-flush mb-0">
               <li className="list-group-item px-md-4 py-3 py-md-4">
                 <a href="#!" className="d-flex">
@@ -279,7 +280,7 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
       </div>
