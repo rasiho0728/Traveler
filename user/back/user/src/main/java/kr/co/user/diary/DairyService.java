@@ -86,7 +86,7 @@ public class DairyService {
     }
     
 
-    // 📌 String을 Date로 변환하는 메서드 추가
+    //String을 Date로 변환하는 메서드 추가
     private Date convertToDate(Object value) {
         if (value instanceof Date) {
             return (Date) value; // 이미 Date라면 그대로 반환
@@ -103,10 +103,10 @@ public class DairyService {
 
     //삭제
     public void deleteDiary(Long num) {
-        // 1️⃣ 다이어리 존재 여부 확인
+        // 다이어리 존재 여부 확인
         Diary diary = diaryRepository.findById(num)
                 .orElseThrow(() -> new RuntimeException("Diary not found with ID: " + num));
-        // 2️⃣ 다이어리 삭제
+        // 다이어리 삭제
         diaryRepository.delete(diary);
     }
     
@@ -117,11 +117,23 @@ public class DairyService {
     }
     
     // 디테일
-    public Diary getPromoteByNum(Long num) { 
+    public Diary getDiaryPages(Long num) { 
         Diary diary = diaryRepository.findById(num)
                 .orElseThrow(() -> new RuntimeException("상세보기에 실패했습니다."));
         diary.setHit(diary.getHit() + 1);
         diaryRepository.save(diary);
         return diary;
+    }
+
+    public List<Diarypage> getDiaryPagesDetail(Long diaryNum) {
+        //다이어리 존재 여부 확인
+        Diary diary = diaryRepository.findById(diaryNum)
+                .orElseThrow(() -> new RuntimeException("Diary not found with ID: " + diaryNum));
+        //해당 다이어리의 페이지 목록 반환
+        return diarypageRepository.findByDiaryNum(diary.getNum());
+    }
+
+    public List<Diary> getLatestDiaries() {
+        return diaryRepository.findTop9ByOrderByNumDesc();
     }
 }

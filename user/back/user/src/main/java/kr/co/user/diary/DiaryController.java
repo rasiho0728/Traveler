@@ -50,12 +50,26 @@ public class DiaryController {
             return ResponseEntity.ok("다이어리가 성공적으로 삭제되었습니다.");
     }
 
-    // 다이어리 페이지 조회
+    // 다이어리 조회
     @GetMapping("/detail/{num}")
-    public ResponseEntity<Diary> getPromoteByNum(@PathVariable("num") Long num) {
-        Diary diary = dairyService.getPromoteByNum(num);
+    public ResponseEntity<Diary> getDiaryPages(@PathVariable("num") Long num) {
+        Diary diary = dairyService.getDiaryPages(num);
         return ResponseEntity.ok(diary);
     }
+
     
+     //특정 다이어리의 페이지 목록 조회
+     @GetMapping("/{num}/pages")
+     public ResponseEntity<List<Diarypage>> getDiaryPagesDetail(@PathVariable("num") Long num) {
+         List<Diarypage> diaryPages = dairyService.getDiaryPagesDetail(num);
+         return ResponseEntity.ok(diaryPages);
+     }
     
+
+     // 최신 9개 다이어리 가져오기
+    @GetMapping("/latest")
+    public ResponseEntity<List<Diary>> getLatestDiaries() {
+        List<Diary> latestDiaries = dairyService.getLatestDiaries();
+        return ResponseEntity.ok(latestDiaries);
+    }
 }
