@@ -13,7 +13,7 @@ public interface BackPackRepository extends JpaRepository<BackPack, Long> {
     // @Query(value = "SELECT * FROM BACKPACK ORDER BY NUM DESC", nativeQuery = true)
     // List<BackPack> getList();
 
-    @Query("SELECT b FROM BackPack b WHERE b.member.num = :memberNum")
-    List<BackPack> findBackPackByMemberNum(@Param("memberNum") Long memberNum);
+    // @Query("SELECT b FROM BackPack b WHERE b.member.num = :memberNum")
+    // List<BackPack> findBackPackByMemberNum(@Param("memberNum") Long memberNum);
 
 }

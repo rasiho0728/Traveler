@@ -15,43 +15,43 @@ public class BackPackService {
     private BackPackRepository backpackRepository;
 
     @Autowired
-    private MemberRepository memberRepository;
+    // private MemberRepository memberRepository;
 
     public List<BackPack> getAllBackPackList(){
         return backpackRepository.findAllByOrderByNumDesc();
     }    
 
-    // public BackPack createBackPack(BackPackVO vo){
+    public BackPack createBackPack(BackPackVO vo){
 
 
-    //     BackPack backpack = new BackPack();
-    //     backpack.setTitle(vo.getTitle());
-    //     backpack.setContent(vo.getContent());
-    //     backpack.setHit(0L);
-    //     backpack.setHeart(0L); 
-
-    //     if (vo.getMember() != null) {
-    //         backpack.setMember(vo.getMember());
-    //     }
-    //     return backpackRepository.save(backpack);
-    // }
-
-
-    public BackPack createBackPack(BackPackVO vo) {
-        // 1. MemberVO에서 Member 엔티티를 가져오기 위해 MemberNum을 기반으로 Member 조회
-        MemberVO member = memberRepository.findById(vo.getMember().getNum())
-                .orElseThrow(() -> new RuntimeException("Member not found"));
-        // 2. BackPack 객체 생성
         BackPack backpack = new BackPack();
         backpack.setTitle(vo.getTitle());
         backpack.setContent(vo.getContent());
         backpack.setHit(0L);
-        backpack.setHeart(0L);
-        // 3. 조회된 Member 객체를 BackPack에 설정
-        backpack.setMember(member);
-        // 4. BackPack 저장
+        backpack.setHeart(0L); 
+
+        if (vo.getMember() != null) {
+            backpack.setMember(vo.getMember());
+        }
         return backpackRepository.save(backpack);
     }
+
+
+    // public BackPack createBackPack(BackPackVO vo) {
+    //     // 1. MemberVO에서 Member 엔티티를 가져오기 위해 MemberNum을 기반으로 Member 조회
+    //     MemberVO member = memberRepository.findById(vo.getMember().getNum())
+    //             .orElseThrow(() -> new RuntimeException("Member not found"));
+    //     // 2. BackPack 객체 생성
+    //     BackPack backpack = new BackPack();
+    //     backpack.setTitle(vo.getTitle());
+    //     backpack.setContent(vo.getContent());
+    //     backpack.setHit(0L);
+    //     backpack.setHeart(0L);
+    //     // 3. 조회된 Member 객체를 BackPack에 설정
+    //     backpack.setMember(member);
+    //     // 4. BackPack 저장
+    //     return backpackRepository.save(backpack);
+    // }
 
     
     // public BackPack createBackPack(BackPackVO vo) {

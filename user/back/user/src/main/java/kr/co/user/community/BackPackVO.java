@@ -2,7 +2,6 @@ package kr.co.user.community;
 
 import java.util.Date;
 import java.util.List;
-import kr.co.user.member.Member;
 import kr.co.user.member.MemberVO;
 import lombok.Data;
 import lombok.Getter;
