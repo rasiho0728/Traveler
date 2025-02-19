@@ -33,12 +33,6 @@ public class HotelController {
         return hotelRepository.findById(num).orElse(null);
     }
 
-    // 위치(location)에 해당하는 호텔들을 조회하는 메서드
-    // @GetMapping("/location/{location}")
-    // public List<Hotel> getHotelsByLocation(@PathVariable String location) {
-    // return hotelRepository.findByLocation(location);
-    // }
-
     // 특정 호텔 번호에 해당하는 호텔 이미지를 조회하는 메서드
     @GetMapping("/{hotelNum}/images")
     public List<HotelImage> getHotelImages(@PathVariable Long hotelNum) {

@@ -26,4 +26,19 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
                         @Param("startRow") int startRow,
                         @Param("endRow") int endRow);
 
+        // @Query(value = """
+        // SELECT NUM, NAME, RATING, CONTENT, LOCATION, THUMBNAIL, HIT, HDATE
+        // FROM (
+        // SELECT h.*, ROWNUM AS row_num
+        // FROM (SELECT * FROM HOTEL
+        // WHERE NAME LIKE %:name%
+        // ORDER BY NUM DESC) h
+        // )
+        // WHERE row_num BETWEEN :startRow AND :endRow
+        // ORDER BY row_num
+        // """, nativeQuery = true)
+        // List<Hotel> findByNameContainingOrderByNumDesc(@Param("name") String name,
+        // @Param("startRow") int startRow,
+        // @Param("endRow") int endRow);
+
 }
