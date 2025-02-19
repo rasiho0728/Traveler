@@ -62,6 +62,7 @@ import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
 import Bus from './Transport/Bus';
 import BusDetail from './Transport/BusDetail';
 import BusForm from './Transport/BusForm';
+import TravelTogether from './Pages/TravelTogether/TravelTogether';
 
 function App() {
         const { pathname } = useLocation();
@@ -96,6 +97,7 @@ function App() {
                                 <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> 2025-02-07 조유경 추가
                                 <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> 2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
+                                <Route path='/traveler/travelTogether' element={<TravelTogether />} /> {/*2025-02-19 장지원 함께떠나요 추가 */}
                                 <Route path='/traveler/login' element={<Login />} />{/*2025-02-08 전준영 로그인 추가*/}
                                 <Route path='/traveler/passwordless' element={<Passwordless />} />{/*2025-02-08 전준영 패스워드리스로그인 추가*/}
                                 <Route path='/traveler/signup' element={<SignUp />} />{/*2025-02-08 전준영 회원가입 추가*/}
