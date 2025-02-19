@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 
-const BagTalk: React.FC<{ data: any }> = (props) => {
+const BagTalk: React.FC<{ data: any, setIsBot: (e:boolean) => void }> = (props) => {
   const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
   const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
   const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
   const Avatar6 = require("../../assets/images/xs/avatar6.jpg");
   const Avatar7 = require("../../assets/images/xs/avatar7.jpg");
   const Avatar10 = require("../../assets/images/xs/avatar10.jpg");
-  const { data } = props;
+  const { data, setIsBot } = props;
   const [chatData, setChatData] = useState([...data]);
   const [activeChatIndex, setActiveChatIndex] = useState(0);
   const [txtMessage, setTxtMessage] = useState("");
@@ -93,19 +93,18 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
   }
 
   const tabEvents = (e: any, id: any) => {
-    console.log(id)
     e.preventDefault();
     document.getElementById("tab1")?.classList.remove("active")
     document.getElementById("tab2")?.classList.remove("active")
-    document.getElementById("tab3")?.classList.remove("active")
+    // document.getElementById("tab3")?.classList.remove("active")
     document.getElementById("tab" + id)?.classList.add("active")
 
     document.getElementById("tab-conatain1")?.classList.remove("active")
     document.getElementById("tab-conatain1")?.classList.add("show")
     document.getElementById("tab-conatain2")?.classList.remove("active")
     document.getElementById("tab-conatain2")?.classList.add("show")
-    document.getElementById("tab-conatain3")?.classList.remove("active")
-    document.getElementById("tab-conatain3")?.classList.add("show")
+    // document.getElementById("tab-conatain3")?.classList.remove("active")
+    // document.getElementById("tab-conatain3")?.classList.add("show")
     document.getElementById("tab-conatain" + id)?.classList.add("active")
     document.getElementById("tab-conatain" + id)?.classList.add("show")
   }
@@ -133,8 +132,8 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
           </div>
 
           <div className="nav nav-pills justify-content-between text-center" role="tablist">
-            <a className="flex-fill rounded border-0 nav-link active" data-bs-toggle="tab" id="tab1" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 1) }} role="tab" aria-selected="true">배낭톡</a>
-            <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab2" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 2) }} role="tab" aria-selected="false">여행</a>
+            <a className="flex-fill rounded border-0 nav-link active" data-bs-toggle="tab" id="tab1" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 1); setIsBot(false) }} role="tab" aria-selected="true">배낭톡</a>
+            <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab2" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 2); setIsBot(true) }} role="tab" aria-selected="false">여행</a>
             {/* <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab3" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 3) }} role="tab" aria-selected="false">교통</a> */}
           </div>
         </div>
@@ -148,7 +147,7 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
                       <img className="avatar rounded-circle" src={d.image} alt="" />
                       <div className="flex-fill ms-3 text-truncate">
                         <h6 className="d-flex justify-content-between mb-0"><span>{d.Name}</span> <small className="msg-time">{d.lastSeen}</small></h6>
-                        <span className="text-muted">{d.messages.length > 0 ? d.messages[d.messages.length - 1].message : ""}</span>
+                        <span className="text-muted">{d.data.messages.length > 0 ? d.data.messages[d.data.messages.length - 1].message : ""}</span>
                       </div>
                     </a>
                   </li>
@@ -289,16 +288,16 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
           <div className="d-flex">
             <a href="hr-dashboard" title="Home"><i className="icofont-arrow-left fs-4"></i></a>
             <a href="#!" title="">
-              <img className="avatar rounded" src={chatData[activeChatIndex].image} alt="avatar" />
+              {/* <img className="avatar rounded" src={chatData[activeChatIndex].image} alt="avatar" /> */}
             </a>
             <div className="ms-3">
               <h6 className="mb-0">{chatData[activeChatIndex].Name}</h6>
-              <small className="text-muted">Last seen: {chatData[activeChatIndex].lastSeen}</small>
+              {/* <small className="text-muted">Last seen: {chatData[activeChatIndex].lastSeen}</small> */}
             </div>
           </div>
           <div className="d-flex">
             <a className="nav-link py-2 px-3 d-block d-xl-none chatlist-toggle" href="!#" onClick={(e) => onClickToggle(e)}><i className="fa fa-bars"></i></a>
-            <div className="nav-item list-inline-item d-block d-xl-none">
+            {/* <div className="nav-item list-inline-item d-block d-xl-none">
               <Dropdown className="hide-toggle">
                 <Dropdown.Toggle as="a" className="nav-link text-muted"><i className="fa fa-ellipsis-v"></i></Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu shadow border-0">
@@ -308,34 +307,26 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
                   <li><a className="dropdown-item" href="!#"><i className="fa fa-info-circle"></i> Info</a></li>
                 </Dropdown.Menu>
               </Dropdown>
-
-            </div>
+            </div> */}
           </div>
         </div>
         <ul id="chatHistory" className="chat-history list-unstyled mb-0 py-lg-5 py-md-4 py-3 flex-grow-1">
           {
-            chatData[activeChatIndex].messages.map((data: any, i: number) => {
+            chatData[activeChatIndex].data.messages.map((data: any, i: number) => {
               return (
-                <li key={"messages" + i} className={data.type === 'received' ? "mb-3 d-flex flex-row align-items-end" : "mb-3 d-flex flex-row-reverse align-items-end"}>
-                  <div className={`max-width-70 ${data.type === 'received' ? "" : "text-end"}`}>
+                <li key={"messages" + i} className={data.type === 'user' ? "mb-3 d-flex flex-row align-items-end" : "mb-3 d-flex flex-row-reverse align-items-end"}>
+                  <div className={`max-width-70 ${data.type === 'user' ? "" : "text-end"}`}>
                     <div className="user-info mb-1">
-                      {data.type === 'received' ? <img className="avatar sm rounded-circle me-1" src={chatData[activeChatIndex].image} alt="avatar" /> : null}
-                      <span className="text-muted small">{data.time}</span>
+                      {data.type === 'user' ? <img className="avatar sm rounded-circle me-1" src={chatData[activeChatIndex].image} alt="avatar" /> : null}
+                      {/* <span className="text-muted small">{data.time}</span> */}
                     </div>
-                    <div className={`card border-0 p-3 ${data.type === 'received' ? "" : "color-bg-100 text-light"}`}>
+                    <div className={`card border-0 p-3 ${data.type === 'user' ? "" : "color-bg-100 text-light"}`}>
                       <div className="message">
                         {data.message}
-                        <p className="mb-0">
-                          {
-                            data.images.map((d: any, i: number) => {
-                              return <img key={"images" + i} className="w120 img-thumbnail" src={d} alt="" />
-                            })
-                          }
-                        </p>
                       </div>
                     </div>
                   </div>
-                  <div className="btn-group">
+                  {/* <div className="btn-group">
                     <Dropdown className="hide-toggle">
                       <Dropdown.Toggle as="a" variant="" id="" className="nav-link py-2 px-3 text-muted">
                         <i className="fa fa-ellipsis-v"></i>
@@ -347,7 +338,7 @@ const BagTalk: React.FC<{ data: any }> = (props) => {
                         <li><a className="dropdown-item" href="#!" onClick={(e) => { e.preventDefault(); onDeleteMessage(i) }}>Delete</a></li>
                       </Dropdown.Menu>
                     </Dropdown>
-                  </div>
+                  </div> */}
                 </li>
               )
             })
