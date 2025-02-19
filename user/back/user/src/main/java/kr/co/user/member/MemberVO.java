@@ -93,4 +93,14 @@ public class MemberVO {
     @JoinColumn(name = "MEMBERNUM")
     @JsonManagedReference
     private List<Bus> bus;
+
+    // 2025-02-19 추가(조유경)
+    @OneToMany
+    @JoinColumn(name = "MEMBERNUM")
+    private List<BackPack> backpack;
+
+    @OneToMany
+    @JoinColumn(name = "MEMBERNUM")
+    @JsonManagedReference
+    private List<Diary> diary;
 }
