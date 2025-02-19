@@ -16,14 +16,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Setter
 @NoArgsConstructor
 @SequenceGenerator(
-    name = "TOUR_SEQ_GENERATOR", // JPA에서 사용할 시퀀스 이름
-    sequenceName = "TOUR_SEQ",   // DB에 생성할 실제 시퀀스 이름
-    allocationSize = 1           // 시퀀스 증가 값 (1씩 증가)
+    name = "tour_seq_generator",
+    sequenceName = "tour_seq", // Oracle에서 사용할 시퀀스명
+    allocationSize = 1 // 1씩 증가
 )
 public class Tour {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TOUR_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tour_seq_generator")
     @Column(name = "NUM")
     private Long num;  // 기본키 (시퀀스 적용됨)
 
@@ -31,7 +31,7 @@ public class Tour {
     private String name;
 
     @Column(name = "RATING")
-    private Integer rating;
+    private Double rating;
 
     @Column(name = "CONTENT", columnDefinition = "CLOB")
     private String content;
@@ -59,14 +59,14 @@ public class Tour {
     private Date tDate;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TourImage> images;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TourSchedule> schedules;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TourRecommendedLog> recommendedLogs;
 }
