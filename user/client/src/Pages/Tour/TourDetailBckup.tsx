@@ -3,61 +3,22 @@ import React, { useEffect, useState } from 'react'
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
 import ImgCarousel from '../../Comm/ImgCarousel';
 import TourSchedule from './TourSchedule';
-import axios from 'axios';
 
 registerLocale("ko", ko);
-// 🟢 투어 일정 아이템 (각 날짜별 일정 항목)
-interface ScheduleItem {
-    title: string;
-    type: string;
-    description: string;
-}
-
-// 🟢 날짜별 일정 데이터 (ex: { 1: [일정1, 일정2], 2: [일정3] })
-interface ScheduleData {
-    [day: number]: ScheduleItem[];
-}
-
-// 🟢 투어 상세 정보 (백엔드에서 가져오는 데이터 구조)
-interface TourData {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    schedules: ScheduleData;
-}
 
 const TourDetail: React.FC = () => {
     // 차후 사용시 주석 해제
     // const num = useParams()
     const [isOpen, setIsOpen] = useState(false);
     const [selectedDay, setSelectedDay] = useState(1);
-    const [tourData, setTourData] = useState<TourData | null>(null);
-    const [tourSchedule, setTourSchedule] = useState<Record<number, ScheduleItem[]>>({});
+
     const [rating, setRating] = useState<number>(0);
     const [review, setReview] = useState<string>("");
     const [reviews, setReviews] = useState<{ rating: number; text: string }[]>([]);
-    const { tourId } = useParams<{ tourId: string }>();  // ✅ URL에서 tourId 가져오기
-    const [loading, setLoading] = useState(true);  // ✅ 로딩 상태
-    
-    useEffect(() => {
-        if (!tourId) return;
-    
-        axios.get(`/api/tours/${tourId}`) // ✅ 경로를 "/api/tours/${tourId}"로 수정
-            .then((response) => {
-                setTourData(response.data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("투어 데이터를 불러오는 중 오류 발생:", error);
-                setLoading(false);
-            });
-    }, [tourId]);
-    
 
     // 리뷰 제출 핸들러 => 리뷰 보기로 기능 변경 필요
     const handleSubmit = () => {
@@ -70,12 +31,6 @@ const TourDetail: React.FC = () => {
     const openModal = () => {
         setIsOpen(true);
     };
-
-    useEffect(() => {
-        axios.get(`/api/tours/${tourId}/schedules`)
-            .then((res) => setTourSchedule(res.data))
-            .catch((err) => console.error('일정 데이터 로드 실패:', err));
-    }, [tourId]);
 
     useEffect(() => {
         // 요소의 [data-scrollax] 옵션을 분석 적용
@@ -101,15 +56,13 @@ const TourDetail: React.FC = () => {
     }, []);
     return (
         <div>
-            <div className="hero-wrap js-halfheight" style={{ backgroundImage: `url(${tourData?.image || "/images/bg_5.jpg"})` }}>
+            <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/bg_5.jpg')" }}>
                 <div className="overlay"></div>
                 <div className="container">
                     <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span className="mr-2"><Link to="/traveler/tour">Tour</Link></span></p>
-                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>
-    {tourData?.title || "여행지 이름"}
-</h1>
+                            <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>파리,이탈리아</h1>
                         </div>
                     </div>
                 </div>
@@ -206,10 +159,10 @@ const TourDetail: React.FC = () => {
                                             <i className="icon-star-o"></i>
                                             {4} / 5 별점</span>
                                     </p>
-                                    <p>{tourData?.description || "여행지 설명이 없습니다."}</p>
+                                    <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                                 </div>
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                <TourSchedule schedules={tourSchedule} />
+                                    {/* <TourSchedule /> */}
                                     <h4 className="mb-4">여행지 미리 둘러보기</h4>
 
                                     <div className="block-16">
