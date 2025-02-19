@@ -44,4 +44,10 @@ public class MypageService{
         List<Chat> chatLogs = mypageRepository.adminChatList(username);
         return chatLogs.size() > 5 ? chatLogs.subList(0, 5) : chatLogs;
     }
+
+    public List<String> getRecentBackPack(String username) {
+        List<String> titles = mypageRepository.findRecentBackPack(username);
+        return titles.size() > 3 ? titles.subList(0, 3) : titles;
+    }
+    
 }
