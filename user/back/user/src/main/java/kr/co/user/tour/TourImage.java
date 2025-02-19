@@ -13,16 +13,18 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TourImage {
-    
+
+    @SequenceGenerator(name = "tour_image_seq_generator", sequenceName = "tour_image_seq", // Oracle 시퀀스 이름
+            allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TOURINFONUM") // 기존 TOURINFONUM을 PK로 사용
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tour_image_seq_generator")
+    @Column(name = "TOURINFONUM")
     private Long tourInfoNum;
 
     @Column(name = "IMGNAME", length = 200)
     private String imgName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TOURNUM", nullable = false)
     @JsonBackReference
     private Tour tour;
