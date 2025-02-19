@@ -17,6 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import kr.co.user.bus.Bus;
 import kr.co.user.chat.Chat;
+import kr.co.user.community.BackPack;
 import kr.co.user.diary.Diary;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -92,9 +93,4 @@ public class MemberVO {
     @JoinColumn(name = "MEMBERNUM")
     @JsonManagedReference
     private List<Bus> bus;
-
-    @OneToMany
-    @JoinColumn(name = "MEMBERNUM")
-    @JsonManagedReference //부모(MemberVO)에서 자식(Diary) 리스트 관리
-    private List<Diary> diary;
 }
