@@ -18,6 +18,6 @@ public class BusVO {
     private String departureoftime;
     private String destinationoftime;
     private String sitnum;
-    private MemberVO member;
+    private Long member;
     
 }

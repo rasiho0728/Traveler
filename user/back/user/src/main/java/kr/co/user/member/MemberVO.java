@@ -90,6 +90,7 @@ public class MemberVO {
     //2025-02-18추가 최의진
     @OneToMany
     @JoinColumn(name = "MEMBERNUM")
+    @JsonManagedReference
     private List<Bus> bus;
 
     @OneToMany
