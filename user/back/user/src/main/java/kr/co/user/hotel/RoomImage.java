@@ -33,6 +33,7 @@ public class RoomImage {
     private String imgName;
 
     @ManyToOne 
+    // @JoinColumn(name = "ROOMNUM",insertable=false, updatable=false) 
     @JoinColumn(name = "num") 
     private Room room;
 

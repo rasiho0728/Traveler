@@ -6,17 +6,46 @@ import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 import '../../css/hotel.css';
-
+import axios from 'axios';
 
 registerLocale("ko", ko);
 
 const Hotel: React.FC = () => {
     const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
     const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
+    const [hotels, setHotels] = useState([]); // 호텔 데이터를 저장할 state
+    const [loading, setLoading] = useState(true); // 데이터 로딩 상태를 저장할 state
+    const [error, setError] = useState<string | null>(null); // 에러 발생 시 메시지를 저장할 state
+    const [num, setNum] = useState(1); // num state 추가 및 초기값 설정
+
     const handleClick = (address: string) => {
         const formattedAddress = encodeURIComponent(address);
         window.open('https://www.google.com/maps?q=${formattedAddress}');
     };
+
+
+
+    useEffect(() => {
+        const fetchHotels = async () => {
+            setLoading(true);
+            setError(null);
+
+            try {
+                const response = await axios.get(`http://localhost:81/userBack/api/hotels`);
+                if (response.data && response.data.content) {
+                    setHotels(response.data.content);
+                } else {
+                    throw new Error('Invalid response data');
+                }
+            } catch (error) {
+                console.error('Error fetching hotels:', error);
+                setError('호텔 정보를 불러오는 중 오류가 발생했습니다.');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchHotels();
+    }, [num]); // num이 변경될 때마다 실행
 
     useEffect(() => {
         // 요소의 [data-scrollax] 옵션을 분석 적용
@@ -59,19 +88,19 @@ const Hotel: React.FC = () => {
                     <div className="row">
                         <div className="col-lg-3 sidebar">
                             <div className="sidebar-wrap bg-light ftco-animate">
-                                <h3 className="heading mb-4">도시 찾기</h3>
+                                <h3 className="heading mb-4">호텔 찾기</h3>
                                 <form action="#">
                                     <div className="fields">
                                         {/* 도시 입력 필드 */}
                                         <div className="form-group">
-                                            <label htmlFor="destination">도시</label>
+                                            <label htmlFor="destination">호텔</label>
                                             <div className="input-icon">
                                                 <i className="icon-location-pin"></i>
                                                 <input
                                                     type="text"
                                                     id="destination"
                                                     className="form-control"
-                                                    placeholder="도시 또는 지역명"
+                                                    placeholder="호텔 명"
                                                 />
                                             </div>
                                         </div>
@@ -172,11 +201,6 @@ const Hotel: React.FC = () => {
                             <div className="row">
                                 <div className="col-md-4 ftco-animate">
                                     <div className="destination">
-                                        {/* <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-1.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link> */}
                                         <Link
                                             to="/traveler/hotels/1"
                                             className="img img-2 d-flex justify-content-center align-items-center"
@@ -200,9 +224,7 @@ const Hotel: React.FC = () => {
                                                         <span>8 Rating</span>
                                                     </p>
                                                 </div>
-                                                {/* <div className="two">
-                                                    <span className="price per-price">$40<br /><small>/night</small></span>
-                                                </div> */}
+
                                             </div>
                                             <p>
                                                 한국관광협회중앙회 호텔업등급관리국에서 3성으로 인증받은 호텔입니다.</p>
@@ -217,138 +239,6 @@ const Hotel: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-2.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="/traveler/hotels/1">Hotel, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price per-price">$40<br /><small>/night</small></span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                <span className="ml-auto"><Link to="/traveler/hotels/:num">상세정보</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div> */}
-                                {/* <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-3.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="/traveler/hotels/1">Hotel, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price per-price">$40<br /><small>/night</small></span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                <span className="ml-auto"><Link to="#">Book Now</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-4.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="/traveler/hotels/1">Hotel, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price per-price">$40<br /><small>/night</small></span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                <span className="ml-auto"><Link to="#">Book Now</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div> */}
-                                {/* <div className="col-md-4 ftco-animate">
-                                    <div className="destination">
-                                        <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-5.jpg)" }}>
-                                            <div className="icon d-flex justify-content-center align-items-center">
-                                                <span className="icon-search2"></span>
-                                            </div>
-                                        </Link>
-                                        <div className="text p-3">
-                                            <div className="d-flex">
-                                                <div className="one">
-                                                    <h3><Link to="/traveler/hotels/1">Hotel, Italy</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
-                                                </div>
-                                                <div className="two">
-                                                    <span className="price per-price">$40<br /><small>/night</small></span>
-                                                </div>
-                                            </div>
-                                            <p>Far far away, behind the word mountains, far from the countries</p>
-                                            <hr />
-                                            <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> Miami, Fl</span>
-                                                <span className="ml-auto"><Link to="#">Book Now</Link></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div> */}
                                 <div className="col-md-4 ftco-animate">
                                     <div className="destination">
                                         <Link to="/traveler/hotels/1" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/hotel-6.jpg)" }}>

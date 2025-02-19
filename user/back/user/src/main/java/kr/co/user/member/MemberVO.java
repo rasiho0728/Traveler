@@ -11,7 +11,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import kr.co.user.bus.Bus;
 import kr.co.user.chat.Chat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -81,4 +83,9 @@ public class MemberVO {
         joinColumns = @JoinColumn(name="MEMBERNUM")
     )
     private List<Chat> chatlog;
+
+         //2025-02-18추가 최의진
+    @OneToMany
+    @JoinColumn(name = "MEMBERNUM")
+    private List<Bus> bus;
 }
