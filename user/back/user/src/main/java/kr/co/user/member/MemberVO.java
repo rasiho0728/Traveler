@@ -2,6 +2,8 @@ package kr.co.user.member;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -87,5 +89,6 @@ public class MemberVO {
          //2025-02-18추가 최의진
     @OneToMany
     @JoinColumn(name = "MEMBERNUM")
+    @JsonManagedReference
     private List<Bus> bus;
 }
