@@ -2,7 +2,6 @@ package kr.co.user.community;
 
 import java.util.Date;
 import java.util.List;
-import kr.co.user.member.MemberVO;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +18,9 @@ public class BackPackVO {
     private Date cdate;
     private Long hit;
     private Long heart;  
-    private MemberVO member;  
-    private List<String> imgNames;  
+    private Long member;
+    private Long roomNum;  
+    private List<String> imgnames;  
     private List<MultipartFile> images;
+    private List<String> tags;
 }
