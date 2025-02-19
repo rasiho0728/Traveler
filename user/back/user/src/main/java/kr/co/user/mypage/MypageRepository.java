@@ -19,4 +19,17 @@ public interface MypageRepository extends JpaRepository<MemberVO, Long>{
     // 관리자(직원)과의 최근 대화 5개 조회 (type = 0)
     @Query("SELECT c FROM MemberVO m JOIN m.chatlog c WHERE m.username = :username AND c.type = 0 ORDER BY c.cdate DESC")
     List<Chat> adminChatList(@Param("username") String username);
+
+    // -----------아직 수정중입니다 테이블명이랑 컬럼명 다른사람이한거보고 바꿔야함--------------
+    // 사용자가 올린 여행 블로그 글 (최신순 5개)
+    // @Query("SELECT b FROM BlogPost b WHERE b.username = :username ORDER BY b.createdAt DESC")
+    // List<BlogPost> findRecentBlogs(@Param("username") String username);
+
+    // 사용자가 최근 본 플레이리스트 5개
+    // @Query("SELECT p FROM Playlist p WHERE p.username = :username ORDER BY p.viewDate DESC")
+    // List<Playlist> findRecentPlaylists(@Param("username") String username);
+
+    // 사용자가 최근 작성한 일기 5개
+    // @Query("SELECT d FROM Diary d WHERE d.username = :username ORDER BY d.createdAt DESC")
+    // List<Diary> findRecentDiaries(@Param("username") String username);
 }
