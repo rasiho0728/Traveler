@@ -19,14 +19,14 @@ public class ChatService {
     }
 
     @Transactional
-    public void addLogToUserName(String userName, String fileName, boolean isBot) {
+    public void addLogToUserName(String userName, String fileName) {
         // 기존 Member를 조회
         MemberVO member = chatRepository.findByUsername(userName)
             .orElseThrow(() -> new RuntimeException("Member not found"));
 
         Chat chat = new Chat();
         chat.setLogfile(fileName);
-        chat.setType((isBot ? 1L : 0L));
+        chat.setType(0L);
         chat.setCdate(new Date());
 
         List<Chat> chatlogs = member.getChatlog();
