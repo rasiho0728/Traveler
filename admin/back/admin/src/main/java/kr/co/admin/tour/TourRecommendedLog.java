@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "TOURRECOMMENDEDLOG")
 @Getter
@@ -16,15 +18,21 @@ import java.util.Date;
 @NoArgsConstructor
 public class TourRecommendedLog {
 
+    @SequenceGenerator(name = "tour_recommended_log_seq_generator", sequenceName = "tour_recommended_log_seq", // 새로운
+                                                                                                               // 시퀀스 이름
+            allocationSize = 1)
     @Id
-    @Column(name = "NUM") // 기존 NUM을 PK로 사용
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tour_recommended_log_seq_generator")
+    @Column(name = "NUM")
     private Long num;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "TOURNUM", nullable = false)
     private Tour tour;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "MEMBERNUM", nullable = false)
     private MemberVO member;
 
