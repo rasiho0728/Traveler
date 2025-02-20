@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class BackPackController {
     }
 
     @PostMapping
-    public BackPack createGallery(BackPackVO vo) throws IOException{
+    public BackPack createBackPack(@ModelAttribute BackPackVO vo) throws IOException {
         List<String> imageNames = new ArrayList<>();
         System.out.println("Logs==========>" + uploadDir);
         if (vo.getImages() != null) {
@@ -45,12 +46,12 @@ public class BackPackController {
                 if (!multipartFile.isEmpty()) {
                     String originalFileName = multipartFile.getOriginalFilename();
                     System.out.println(originalFileName);
-                    Path destinationFile = uploadDir.resolve(originalFileName).normalize();
                     try {
+                        Path destinationFile = uploadDir.resolve(originalFileName).normalize();
                         Files.copy(multipartFile.getInputStream(), destinationFile);
                     } catch (FileAlreadyExistsException e) {
-                       System.out.println("파일이 이미 존재 합니다.");
-                    } finally{
+                        System.out.println("파일이 이미 존재 합니다.");
+                    } finally {
                         imageNames.add(originalFileName);
                     }
                 }
@@ -58,7 +59,7 @@ public class BackPackController {
         } else {
             imageNames.add("");
         }
-        vo.setImgNames(imageNames);
+        vo.setImgnames(imageNames);
         return backpapackService.createBackPack(vo);
     }
 
@@ -68,12 +69,12 @@ public class BackPackController {
     }
 
     @GetMapping("/detail")
-    public BackPack getBackPackByNum(Long num){
+    public BackPack getBackPackByNum(Long num) {
         return backpapackService.getBackPackByNum(num);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteBackPack(Long num){
+    public ResponseEntity<?> deleteBackPack(Long num) {
         backpapackService.delete(num);
         return ResponseEntity.ok().body(num + "번재 데이터 삭제 완료");
     }

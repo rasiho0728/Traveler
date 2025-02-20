@@ -5,7 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 //2025-02-13수정 최의진
 const BusForm: React.FC = () => {
   const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
-  const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
+  // const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
+  const [depPlaceNm, setDepPlaceNm] = useState('');
+  const [arrPlaceNm, setArrPlaceNm] = useState('');
+  const [arrPlandTime, setArrPlandTime] = useState('');
   const navigate = useNavigate()
   useEffect(() => {
     // 요소의 [data-scrollax] 옵션을 분석 적용
@@ -29,21 +32,13 @@ const BusForm: React.FC = () => {
     };
   }, []);
 
-    const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      try {
-        const formData = new FormData();
-        // formData
-      } catch (error) {
-        
-      }
+  
+    const handleBusClick = () => {
+      navigate(`/traveler/Transport/BusForm/Bus`);
     }
-
-  // const handleReservationClick = () => {
-  //   navigate('/traveler/Transport/BusForm/Bus')
-  // }
   return (
     <div>
+      
       <div className='js-halfheight mb-4'
         style={{
           backgroundImage: "url('/images/transport/palace.jpg')", 
@@ -56,7 +51,7 @@ const BusForm: React.FC = () => {
       <div className="container">
         <div className="sidebar-wrap bg-light ftco-animate">
           <h3 className="heading mb-4">가는 편 승차원 정보</h3>
-          <form action="#">
+          <form action="#" >
             <div className="fields">
             <div className="form-group">
                 <div className="select-wrap one-third">
@@ -103,7 +98,7 @@ const BusForm: React.FC = () => {
               </div>
               <div className="form-group">
                 <input type="submit" value="예약하기" className="btn btn-primary py-3 px-5" 
-                />
+               onClick={handleBusClick} />
               </div>
             </div>
           </form>

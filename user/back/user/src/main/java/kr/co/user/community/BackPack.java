@@ -1,8 +1,14 @@
 package kr.co.user.community;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +36,7 @@ public class BackPack {
 
     @ManyToOne
     @JoinColumn(name = "MEMBERNUM", nullable = false)
+    @JsonBackReference
     private MemberVO member;
 
     @Column(name = "ROOMNUM", columnDefinition = "number(10)", nullable = false)
@@ -51,4 +58,15 @@ public class BackPack {
 
     @Column(name = "HEART", columnDefinition = "number(7) default 0", nullable = false)
     private Long heart;
+
+    @ElementCollection
+    @CollectionTable(name = "BACKPACKIMAGE", joinColumns = @JoinColumn(name = "BNUM"))
+    @Column(name = "IMGNAME", length = 100)
+    private List<String> imgNames = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "TAG", joinColumns = @JoinColumn(name = "BACKPACKNUM"))
+    @Column(name = "TAG", length = 30)
+    private List<String> tags = new ArrayList<>();
+
 }
