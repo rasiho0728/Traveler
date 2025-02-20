@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown } from "react-bootstrap";
 
-const BagTalk: React.FC<{ data: any, setIsBot: (e:boolean) => void }> = (props) => {
+const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props) => {
   const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
   const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
   const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
@@ -19,7 +19,7 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e:boolean) => void }> = (props) 
       if (chatHistory) {
         chatHistory.scrollTo({
           top: chatHistory.scrollHeight + 100,
-          behavior: 'smooth'
+          // behavior: 'smooth'
         });
       }
     }, 10);
@@ -147,7 +147,7 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e:boolean) => void }> = (props) 
                       <img className="avatar rounded-circle" src={d.image} alt="" />
                       <div className="flex-fill ms-3 text-truncate">
                         <h6 className="d-flex justify-content-between mb-0"><span>{d.Name}</span> <small className="msg-time">{d.lastSeen}</small></h6>
-                        <span className="text-muted">{d.data.messages.length > 0 ? d.data.messages[d.data.messages.length - 1].message : ""}</span>
+                        <span className="text-muted">{d.data[0].messages.length > 0 ? d.data[0].messages[d.data[0].messages.length - 1].message : ""}</span>
                       </div>
                     </a>
                   </li>
@@ -312,35 +312,38 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e:boolean) => void }> = (props) 
         </div>
         <ul id="chatHistory" className="chat-history list-unstyled mb-0 py-lg-5 py-md-4 py-3 flex-grow-1">
           {
-            chatData[activeChatIndex].data.messages.map((data: any, i: number) => {
-              return (
-                <li key={"messages" + i} className={data.type === 'user' ? "mb-3 d-flex flex-row align-items-end" : "mb-3 d-flex flex-row-reverse align-items-end"}>
-                  <div className={`max-width-70 ${data.type === 'user' ? "" : "text-end"}`}>
-                    <div className="user-info mb-1">
-                      {data.type === 'user' ? <img className="avatar sm rounded-circle me-1" src={chatData[activeChatIndex].image} alt="avatar" /> : null}
-                      {/* <span className="text-muted small">{data.time}</span> */}
-                    </div>
-                    <div className={`card border-0 p-3 ${data.type === 'user' ? "" : "color-bg-100 text-light"}`}>
-                      <div className="message">
-                        {data.message}
+            chatData[activeChatIndex].data.map((dates: any) => {
+              return dates.messages.map((d: any, i: number) => {
+                return (
+                  <li key={"messages" + i} className={d.type === 'user' ? "mb-3 d-flex flex-row align-items-end" : "mb-3 d-flex flex-row-reverse align-items-end"}>
+                    <div className={`max-width-70 ${d.type === 'user' ? "" : "text-end"}`}>
+                      <div className="user-info mb-1">
+                        {d.type === 'user' ? <img className="avatar sm rounded-circle me-1" src={chatData[activeChatIndex].image} alt="avatar" /> : null}
+                        {/* <span className="text-muted small">{d.time}</span> */}
+                        {/* <span className="text-muted small">{dates.messages.length}</span> */}
+                      </div>
+                      <div className={`card border-0 p-3 ${d.type === 'user' ? "" : "color-bg-100 text-light"}`}>
+                        <div className="message">
+                          {d.message}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  {/* <div className="btn-group">
-                    <Dropdown className="hide-toggle">
-                      <Dropdown.Toggle as="a" variant="" id="" className="nav-link py-2 px-3 text-muted">
-                        <i className="fa fa-ellipsis-v"></i>
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu as="ul" className="border-0 shadow">
-                        <li><a className="dropdown-item" href="#!">Edit</a></li>
-                        <li><a className="dropdown-item" href="#!">Share</a></li>
-                        <li><a className="dropdown-item" href="#!" onClick={(e) => { e.preventDefault(); onDeleteMessage(i) }}>Delete</a></li>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div> */}
-                </li>
-              )
+                    {/* <div className="btn-group">
+                      <Dropdown className="hide-toggle">
+                        <Dropdown.Toggle as="a" variant="" id="" className="nav-link py-2 px-3 text-muted">
+                          <i className="fa fa-ellipsis-v"></i>
+                        </Dropdown.Toggle>
+  
+                        <Dropdown.Menu as="ul" className="border-0 shadow">
+                          <li><a className="dropdown-item" href="#!">Edit</a></li>
+                          <li><a className="dropdown-item" href="#!">Share</a></li>
+                          <li><a className="dropdown-item" href="#!" onClick={(e) => { e.preventDefault(); onDeleteMessage(i) }}>Delete</a></li>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div> */}
+                  </li>
+                )
+              })
             })
           }
         </ul>

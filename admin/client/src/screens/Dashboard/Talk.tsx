@@ -22,7 +22,7 @@ interface Chating {
 
 interface ChatingLog {
   Name: string;
-  data: { date: string; messages: Array<{ message: string; type: string; }> }
+  data: Array<{ date: string; messages: Array<{ message: string; type: string; }> }>;
 }
 
 const Talk: React.FC = () => {
@@ -37,11 +37,7 @@ const Talk: React.FC = () => {
     const result = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/chat`);
     const chatLogByUsers = result.data;
     setChats(chatLogByUsers);
-    // const chats = await result.data.filter((item: ChatLogs) => item.type === 0);
-    // const chatBots = await result.data.filter((item: ChatLogs) => item.type === 1);
-    // const sortedChats = await chats.sort((a: ChatLogs, b: ChatLogs) => a.cdate.localeCompare(b.cdate))
-    // setChats(sortedChats);
-    // fetchLogContent(sortedChats);
+    await test(chatLogByUsers);
   }
 
   const test = async (chatList: ChatLogByUsers[]) => {
@@ -54,17 +50,18 @@ const Talk: React.FC = () => {
         const data: any = [];
         chats.map((chat) => {
           const date = chat.date;
-          const messages: any[] = []
+          const messages: any = []
           chat.chats.map((c) => {
-            messages.push({ messages: c.content, type: c.isUser ? 'user' : 'admin' })
+            messages.push({ message: c.content, type: c.isUser ? 'user' : 'admin' })
           })
           data.push({ date, messages })
         })
         chatAppData.push({ Name: name, data: data })
       })
     )
-    // console.log(chatAppData[0].Name)
     setChatAppData(chatAppData)
+    console.log(chatAppData)
+    setIsLoading(0);
   }
 
   useEffect(() => {
@@ -108,6 +105,7 @@ const Talk: React.FC = () => {
     const ws = new WebSocket(`${process.env.REACT_APP_BACK_END_URL}/ws/folder-watch`);
 
     ws.onmessage = (event) => {
+      console.log(isLoading)
       getFileList();
     };
 
@@ -188,15 +186,15 @@ const Talk: React.FC = () => {
   //   },
   // ]
 
-  if(chatAppData.length > 0){
-    return <></>
+  if (chatAppData.length === 0) {
+    return <div>로딩</div>
   }
 
   return (
     <div className="container-xxl">
-      <div className="row clearfix g-3">
+      <div key={isLoading} className="row clearfix g-3">
         {/* <Chattile data={chatAppData} /> */}
-        <BagTalk data={chatAppData} setIsBot={e => setIsBot} />
+        <BagTalk data={chatAppData} setIsBot={e => setIsBot}/>
       </div>
     </div>
   )
