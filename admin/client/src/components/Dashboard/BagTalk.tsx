@@ -1,14 +1,20 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Dropdown } from "react-bootstrap";
 
-const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props) => {
-  const Avatar1 = require("../../assets/images/xs/avatar1.jpg");
-  const Avatar2 = require("../../assets/images/xs/avatar2.jpg");
-  const Avatar4 = require("../../assets/images/xs/avatar4.jpg");
-  const Avatar6 = require("../../assets/images/xs/avatar6.jpg");
-  const Avatar7 = require("../../assets/images/xs/avatar7.jpg");
-  const Avatar10 = require("../../assets/images/xs/avatar10.jpg");
-  const { data, setIsBot } = props;
+const BagTalk: React.FC<{ data: any, isBot: boolean, setIsBot: (e: boolean) => void }> = (props) => {
+  const Avatar = [
+    require("../../assets/images/xs/avatar1.jpg"),
+    require("../../assets/images/xs/avatar2.jpg"),
+    require("../../assets/images/xs/avatar3.jpg"),
+    require("../../assets/images/xs/avatar4.jpg"),
+    require("../../assets/images/xs/avatar5.jpg"),
+    require("../../assets/images/xs/avatar6.jpg"),
+    require("../../assets/images/xs/avatar7.jpg"),
+    require("../../assets/images/xs/avatar8.jpg"),
+    require("../../assets/images/xs/avatar9.jpg"),
+    require("../../assets/images/xs/avatar10.jpg")
+  ]
+  const { data, isBot, setIsBot } = props;
   const [chatData, setChatData] = useState([...data]);
   const [activeChatIndex, setActiveChatIndex] = useState(0);
   const [txtMessage, setTxtMessage] = useState("");
@@ -23,91 +29,26 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
         });
       }
     }, 10);
-  }, [])
+  }, []);
+
+  const handleSubmit = (username: string) => {
+    const addChat = async (chat: string) => {
+      const data = new FormData();
+      data.append('chat', chat);
+      data.append('isBot', `${isBot}`)
+      await axios.post(`${process.env.REACT_APP_BACK_END_URL}/chat/${username}`, data);
+    }
+    addChat(txtMessage)
+    setTxtMessage('');
+  }
+
+  const handleKeyEnter = (e: React.KeyboardEvent, username: string) => {
+    if (e.key.toLowerCase() === 'enter' && txtMessage) {
+      handleSubmit(username);
+    }
+  }
 
   const onChangeMessageText = (e: any) => { setTxtMessage(e) }
-
-  const onMessgeSend = () => {
-    if (txtMessage !== "") {
-      var dd = chatData;
-      var d = new Date();
-      var am_pm = "AM";
-      if (d.getHours() >= 12) {
-        am_pm = "PM";
-      }
-      dd[activeChatIndex].messages.push({
-        message: txtMessage,
-        type: 'send',
-        images: [],
-        time: `${d.getHours()}:${d.getMinutes()} ${am_pm}`
-      })
-      setChatData([...dd]);
-      setTxtMessage("")
-      setTimeout(() => {
-        const chatHistory = document.getElementById("chatHistory")
-        if (chatHistory) {
-          chatHistory.scrollTo({
-            top: chatHistory.scrollHeight + 100,
-            behavior: 'smooth'
-          });
-        }
-      }, 10);
-
-      setTimeout(() => {
-        onBackMessage();
-        const chatHistory = document.getElementById("chatHistory")
-        if (chatHistory) {
-          chatHistory.scrollTo({
-            top: chatHistory.scrollHeight + 100,
-            behavior: 'smooth'
-          });
-        }
-      }, 1500);
-    }
-  }
-
-  const onBackMessage = () => {
-
-    var dd = chatData;
-    var d = new Date();
-    var am_pm = "AM";
-    if (d.getHours() >= 12) {
-      am_pm = "PM";
-    }
-    dd[activeChatIndex].messages.push({
-      message: "Hey, I m Fine.",
-      type: 'received',
-      images: [],
-      time: `${d.getHours()}:${d.getMinutes()} ${am_pm}`
-    })
-
-    setChatData([...dd])
-  }
-
-  const onDeleteMessage = (index: any) => {
-
-    var dd = chatData;
-    dd[activeChatIndex].messages.splice(index, 1);
-
-    setChatData([...dd])
-  }
-
-  const tabEvents = (e: any, id: any) => {
-    e.preventDefault();
-    document.getElementById("tab1")?.classList.remove("active")
-    document.getElementById("tab2")?.classList.remove("active")
-    // document.getElementById("tab3")?.classList.remove("active")
-    document.getElementById("tab" + id)?.classList.add("active")
-
-    document.getElementById("tab-conatain1")?.classList.remove("active")
-    document.getElementById("tab-conatain1")?.classList.add("show")
-    document.getElementById("tab-conatain2")?.classList.remove("active")
-    document.getElementById("tab-conatain2")?.classList.add("show")
-    // document.getElementById("tab-conatain3")?.classList.remove("active")
-    // document.getElementById("tab-conatain3")?.classList.add("show")
-    document.getElementById("tab-conatain" + id)?.classList.add("active")
-    document.getElementById("tab-conatain" + id)?.classList.add("show")
-  }
 
   function onClickToggle(e: any) {
     e.preventDefault();
@@ -121,8 +62,6 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
     }
   }
 
-
-
   return (
     <div className="col-12 d-flex">
       <div id="chatMenuList" className="card card-chat border-right border-top-0 border-bottom-0 order-0 w380 ">
@@ -131,10 +70,9 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
             <input type="text" className="form-control mb-1" placeholder="Search..." />
           </div>
 
-          <div className="nav nav-pills justify-content-between text-center" role="tablist">
-            <a className="flex-fill rounded border-0 nav-link active" data-bs-toggle="tab" id="tab1" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 1); setIsBot(false) }} role="tab" aria-selected="true">배낭톡</a>
-            <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab2" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 2); setIsBot(true) }} role="tab" aria-selected="false">여행</a>
-            {/* <a className="flex-fill rounded border-0 nav-link" data-bs-toggle="tab" id="tab3" href="#!" onClick={(e) => { e.preventDefault(); tabEvents(e, 3) }} role="tab" aria-selected="false">교통</a> */}
+          <div className="nav nav-pills justify-content-between text-center">
+            <a className={`flex-fill rounded border-0 nav-link ${!isBot && "active"}`} href="#!" onClick={(e) => { e.preventDefault(); setIsBot(false) }}>1 : 1</a>
+            <a className={`flex-fill rounded border-0 nav-link ${isBot && "active"}`} href="#!" onClick={(e) => { e.preventDefault(); setIsBot(true) }}>챗봇</a>
           </div>
         </div>
         <div className="tab-content border-top">
@@ -144,10 +82,10 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
                 chatData.map((d, i) => {
                   return <li key={"545" + i} className={`list-group-item px-md-4 py-3 py-md-4 ${activeChatIndex === i ? 'open' : ''}`}>
                     <a href="#!" className="d-flex" onClick={(e) => { e.preventDefault(); setActiveChatIndex(i) }}>
-                      <img className="avatar rounded-circle" src={d.image} alt="" />
+                      <img className="avatar rounded-circle" src={Avatar[i % 10]} alt="" />
                       <div className="flex-fill ms-3 text-truncate">
-                        <h6 className="d-flex justify-content-between mb-0"><span>{d.Name}</span> <small className="msg-time">{d.lastSeen}</small></h6>
-                        <span className="text-muted">{d.data[0].messages.length > 0 ? d.data[0].messages[d.data[0].messages.length - 1].message : ""}</span>
+                        <h6 className="d-flex justify-content-between mb-0"><span>{d.Name}</span> {/*<small className="msg-time">{d.lastSeen}</small>*/}</h6>
+                        <span className="text-muted">{d.data[d.data.length - 1].messages.length > 0 ? d.data[d.data.length - 1].messages[d.data[d.data.length - 1].messages.length - 1].message : ""}</span>
                       </div>
                     </a>
                   </li>
@@ -155,138 +93,13 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
               }
             </ul>
           </div>
-          <div className="tab-pane fade" id="tab-conatain2" role="tabpanel">
-            <ul className="list-unstyled list-group list-group-custom list-group-flush mb-0">
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <div className="avatar rounded-circle no-thumbnail">GI</div>
-                  <div className="flex-fill ms-3 text-truncate">
-                    <h6 className="d-flex justify-content-between mb-0"><span>Design UI</span> <small className="msg-time">9/10/2020</small></h6>
-                    <span className="text-muted">The point of using Lorem Ipsum</span>
-                  </div>
-                </a>
-              </li>
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <div className="avatar rounded-circle no-thumbnail">AD</div>
-                  <div className="flex-fill ms-3 text-truncate">
-                    <h6 className="d-flex justify-content-between mb-0"><span>Angular Dev Team</span> <small className="msg-time">22/8/2020</small></h6>
-                    <span className="text-muted">If you are going to use a passage</span>
-                  </div>
-                </a>
-              </li>
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <div className="avatar rounded-circle no-thumbnail">AT</div>
-                  <div className="flex-fill ms-3 text-truncate">
-                    <h6 className="d-flex justify-content-between mb-0"><span>Account Team</span> <small className="msg-time">11/7/2020</small></h6>
-                    <span className="text-muted">The point of using Lorem Ipsum</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-          {/* <div className="tab-pane fade" id="tab-conatain3" role="tabpanel">
-            <ul className="list-unstyled list-group list-group-custom list-group-flush mb-0">
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <img className="avatar rounded-circle" src={Avatar2} alt="" />
-                  <div className="flex-fill ms-3 text-truncate">
-                    <div className="d-flex justify-content-between mb-0">
-                      <h6 className="mb-0">Chris Fox</h6>
-                      <div className="text-muted">
-                        <i className="fa fa-heart ps-2"></i>
-                        <i className="fa fa-trash ps-2"></i>
-                      </div>
-                    </div>
-                    <span className="text-muted">chris.fox@mytask.com</span>
-                  </div>
-                </a>
-              </li>
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <img className="avatar rounded-circle" src={Avatar1} alt="" />
-                  <div className="flex-fill ms-3 text-truncate">
-                    <div className="d-flex justify-content-between mb-0">
-                      <h6 className="mb-0">Barbara Kelly</h6>
-                      <div className="text-muted">
-                        <i className="fa fa-heart-o ps-2"></i>
-                        <i className="fa fa-trash ps-2"></i>
-                      </div>
-                    </div>
-                    <span className="text-muted">barbara.kelly@mytask.com</span>
-                  </div>
-                </a>
-              </li>
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <img className="avatar rounded-circle" src={Avatar10} alt="" />
-                  <div className="flex-fill ms-3 text-truncate">
-                    <div className="d-flex justify-content-between mb-0">
-                      <h6 className="mb-0">Brian Swader</h6>
-                      <div className="text-muted">
-                        <i className="fa fa-heart-o ps-2"></i>
-                        <i className="fa fa-trash ps-2"></i>
-                      </div>
-                    </div>
-                    <span className="text-muted">brian.swader@mytask.com</span>
-                  </div>
-                </a>
-              </li>
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <img className="avatar rounded-circle" src={Avatar7} alt="" />
-                  <div className="flex-fill ms-3 text-truncate">
-                    <div className="d-flex justify-content-between mb-0">
-                      <h6 className="mb-0">Richard Foos</h6>
-                      <div className="text-muted">
-                        <i className="fa fa-heart ps-2"></i>
-                        <i className="fa fa-trash ps-2"></i>
-                      </div>
-                    </div>
-                    <span className="text-muted">richard.foos@mytask.com</span>
-                  </div>
-                </a>
-              </li>
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <img className="avatar rounded-circle" src={Avatar4} alt="" />
-                  <div className="flex-fill ms-3 text-truncate">
-                    <div className="d-flex justify-content-between mb-0">
-                      <h6 className="mb-0">Frank Camly</h6>
-                      <div className="text-muted">
-                        <i className="fa fa-heart-o ps-2"></i>
-                        <i className="fa fa-trash ps-2"></i>
-                      </div>
-                    </div>
-                    <span className="text-muted">frank.camly@mytask.com</span>
-                  </div>
-                </a>
-              </li>
-              <li className="list-group-item px-md-4 py-3 py-md-4">
-                <a href="#!" className="d-flex">
-                  <img className="avatar rounded-circle" src={Avatar6} alt="" />
-                  <div className="flex-fill ms-3 text-truncate">
-                    <div className="d-flex justify-content-between mb-0">
-                      <h6 className="mb-0">Brian Swader</h6>
-                      <div className="text-muted">
-                        <i className="fa fa-heart-o ps-2"></i>
-                        <i className="fa fa-trash ps-2"></i>
-                      </div>
-                    </div>
-                    <span className="text-muted">brianswader@mytask.com</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div> */}
         </div>
 
       </div>
       <div className="card card-chat-body border-0 order-1 w-100 px-4 px-md-5 py-3 py-md-4">
         <div className="chat-header d-flex justify-content-between align-items-center border-bottom pb-3">
           <div className="d-flex">
-            <a href="hr-dashboard" title="Home"><i className="icofont-arrow-left fs-4"></i></a>
+            <a href="community" title="Home"><i className="icofont-arrow-left fs-4"></i></a>
             <a href="#!" title="">
               {/* <img className="avatar rounded" src={chatData[activeChatIndex].image} alt="avatar" /> */}
             </a>
@@ -297,17 +110,6 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
           </div>
           <div className="d-flex">
             <a className="nav-link py-2 px-3 d-block d-xl-none chatlist-toggle" href="!#" onClick={(e) => onClickToggle(e)}><i className="fa fa-bars"></i></a>
-            {/* <div className="nav-item list-inline-item d-block d-xl-none">
-              <Dropdown className="hide-toggle">
-                <Dropdown.Toggle as="a" className="nav-link text-muted"><i className="fa fa-ellipsis-v"></i></Dropdown.Toggle>
-                <Dropdown.Menu className="dropdown-menu shadow border-0">
-                  <li><a className="dropdown-item" href="!#"><i className="fa fa-camera"></i> Share Images</a></li>
-                  <li><a className="dropdown-item" href="!#"><i className="fa fa-video-camera"></i> Video Call</a></li>
-                  <li><a className="dropdown-item" href="!#"><i className="fa fa-gear"></i> Settings</a></li>
-                  <li><a className="dropdown-item" href="!#"><i className="fa fa-info-circle"></i> Info</a></li>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div> */}
           </div>
         </div>
         <ul id="chatHistory" className="chat-history list-unstyled mb-0 py-lg-5 py-md-4 py-3 flex-grow-1">
@@ -318,7 +120,7 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
                   <li key={"messages" + i} className={d.type === 'user' ? "mb-3 d-flex flex-row align-items-end" : "mb-3 d-flex flex-row-reverse align-items-end"}>
                     <div className={`max-width-70 ${d.type === 'user' ? "" : "text-end"}`}>
                       <div className="user-info mb-1">
-                        {d.type === 'user' ? <img className="avatar sm rounded-circle me-1" src={chatData[activeChatIndex].image} alt="avatar" /> : null}
+                        {d.type === 'user' ? <img className="avatar sm rounded-circle me-1" src={Avatar[activeChatIndex % 10]} alt="avatar" /> : null}
                         {/* <span className="text-muted small">{d.time}</span> */}
                         {/* <span className="text-muted small">{dates.messages.length}</span> */}
                       </div>
@@ -328,29 +130,23 @@ const BagTalk: React.FC<{ data: any, setIsBot: (e: boolean) => void }> = (props)
                         </div>
                       </div>
                     </div>
-                    {/* <div className="btn-group">
-                      <Dropdown className="hide-toggle">
-                        <Dropdown.Toggle as="a" variant="" id="" className="nav-link py-2 px-3 text-muted">
-                          <i className="fa fa-ellipsis-v"></i>
-                        </Dropdown.Toggle>
-  
-                        <Dropdown.Menu as="ul" className="border-0 shadow">
-                          <li><a className="dropdown-item" href="#!">Edit</a></li>
-                          <li><a className="dropdown-item" href="#!">Share</a></li>
-                          <li><a className="dropdown-item" href="#!" onClick={(e) => { e.preventDefault(); onDeleteMessage(i) }}>Delete</a></li>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </div> */}
                   </li>
                 )
               })
             })
           }
         </ul>
-        <div className="chat-message">
-          <textarea typeof="text" className="form-control" value={txtMessage} placeholder="Enter text here..." onChange={(e) => { onChangeMessageText(e.target.value); }}></textarea>
-          <button className="btn btn-dark" type="button" onClick={onMessgeSend}>Send</button>
-        </div>
+        {
+          !isBot &&
+          <div className="chat-message">
+            <textarea typeof="text" className="form-control"
+              style={{ resize: 'none' }}
+              value={txtMessage} placeholder="Enter text here..."
+              onChange={(e) => { onChangeMessageText(e.target.value); }}
+              onKeyDown={e => handleKeyEnter(e, chatData[activeChatIndex].Name)} />
+            <button className="btn btn-dark" type="button" onClick={_ => handleSubmit(chatData[activeChatIndex].Name)}>Send</button>
+          </div>
+        }
       </div>
     </div>
   );

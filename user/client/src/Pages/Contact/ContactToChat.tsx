@@ -25,8 +25,6 @@ const ContactToChat: React.FC = () => {
     const [isBot, setIsBot] = useState(false)
     const [chat, setChat] = useState('');
     const [isConnect, setIsConnect] = useState(true);
-    const chatContainerRef = useRef<HTMLDivElement>(null);
-    const chatBotContainerRef = useRef<HTMLDivElement>(null);
 
     const dateObj = (dateString: string = '') => {
         if (dateString === '') return new Date()
@@ -50,6 +48,7 @@ const ContactToChat: React.FC = () => {
 
     useEffect(() => {
         getFileList();
+        changeActive(isBot ? 2 : 1);
     }, []);
 
     useEffect(() => {
@@ -57,6 +56,7 @@ const ContactToChat: React.FC = () => {
 
         ws.onmessage = (event) => {
             getFileList();
+            changeActive(isBot ? 2 : 1);
         };
 
         ws.onopen = () => {
@@ -104,7 +104,7 @@ const ContactToChat: React.FC = () => {
     }
 
     const handleKeyEnter = (e: React.KeyboardEvent) => {
-        if (e.key.toLowerCase() === 'enter') {
+        if (e.key.toLowerCase() === 'enter' && chat) {
             handleSubmit();
         }
     }
@@ -135,7 +135,7 @@ const ContactToChat: React.FC = () => {
                         chats.push({ isUser, name, content });
                     }
 
-                    return { date: chatData.cdate, chats }; // ✅ 반환 값으로 처리!
+                    return { date: chatData.cdate, chats };
                 } catch (error) {
                     return { date: chatData.cdate, chats: [] };
                 }
@@ -168,19 +168,19 @@ const ContactToChat: React.FC = () => {
         }, 10)
     }
 
+    const changeActive = (e: number) => {
+        setTimeout(() => {
+            document.getElementById('v-tab1')?.classList.remove('active');
+            document.getElementById('v-tab2')?.classList.remove('active');
+
+            document.getElementById(`v-tab${e}`)?.classList.add('active');
+        }, 100)
+    }
+
     const drawChatUI = () => {
         let chatList: ChatLogs[] = chats;
         const isNotToday = (date: string) => { return dateObj(date).toLocaleDateString() !== dateObj().toLocaleDateString() };
-        const isNotInToday = dateObj(chatList[chatList.length - 1]?.cdate).toLocaleDateString() !== dateObj().toLocaleDateString()
-
-        const changeActive = (e: number) => {
-            setTimeout(() => {
-                document.getElementById('v-tab1')?.classList.remove('active');
-                document.getElementById('v-tab2')?.classList.remove('active');
-
-                document.getElementById(`v-tab${e}`)?.classList.add('active');
-            }, 100)
-        }
+        const isNotInToday = dateObj(chatList[chatList.length - 1]?.cdate).toLocaleDateString() !== dateObj().toLocaleDateString()   
 
         return (
             <div key={isLoading} className="row mb-5">
@@ -189,7 +189,7 @@ const ContactToChat: React.FC = () => {
                     <div className="nav-link-wrap my-3">
                         <div className="nav nav-pills nav-fill" id="v-pills-tab">
                             <div className='col-md-4'>
-                                <button className="nav-link active" id="v-tab1"
+                                <button className="nav-link" id="v-tab1"
                                     onClick={_ => { setIsBot(false); chatList = chats; fetchLogContent(chats); changeActive(1) }}
                                 >
                                     1:1
@@ -239,7 +239,7 @@ const ContactToChat: React.FC = () => {
                     }
                     <div
                         id={isBot ? '123' : '456'}
-                        ref={isBot ? chatBotContainerRef : chatContainerRef}
+                        // ref={isBot ? chatBotContainerRef : chatContainerRef}
                         style={{
                             height: '400px',
                             overflowY: 'auto',
