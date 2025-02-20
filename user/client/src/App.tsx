@@ -62,6 +62,7 @@ import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
 import Bus from './Transport/Bus';
 import BusForm from './Transport/BusForm';
 import BusReservation from './Transport/BusReservation';
+import TourSchedule from './Pages/Tour/TourSchedule';
 
 function App() {
         const { pathname } = useLocation();
@@ -76,7 +77,8 @@ function App() {
                                 <Route path='/traveler/about' element={<About />} />
                                 <Route path='/traveler/tour' element={<Tour />} />
                                 <Route path='/traveler/tour/rate' element={<Rate />} />
-                                <Route path='/traveler/tour/:num' element={<TourDetail />} />
+                                <Route path='/traveler/tour/:tourId' element={<TourDetail />} />
+                                <Route path="/tours/:tourId/schedules" element={<TourSchedule />} />
                                 <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
                                 <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
                                 <Route path='/traveler/hotels' element={<Hotel2 />} />
