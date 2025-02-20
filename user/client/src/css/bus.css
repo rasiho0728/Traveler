@@ -13,7 +13,39 @@
   
   .buslist .heading {
     text-align: center;
-    font-size: 24px;
+    font-size: 24px;/* 기본 좌석 버튼 스타일 */
+    .seat {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-color: #e0e0e0;
+      text-align: center;
+      line-height: 50px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    
+    /* 클릭된 좌석 스타일 */
+    .seat.clicked {
+      background-color: #4CAF50; /* 선택된 좌석은 초록색 */
+      color: white;
+    }
+    
+    /* 선택할 수 없는 좌석 스타일 */
+    .seat.disabled {
+      background-color: #d3d3d3; /* 선택 불가 좌석은 회색 */
+      cursor: not-allowed;
+    }
+    
+    /* 좌석 행 스타일 */
+    .seat-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
     color: #333;
     font-weight: bold;
     margin-bottom: 20px; /* 제목 아래 여백 */
@@ -63,4 +95,37 @@
     padding: 15px;
     text-align: center;
     border-bottom: 1px solid #ddd;
+}
+/* 기본 좌석 버튼 스타일 */
+.seat {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: #e0e0e0;
+  text-align: center;
+  line-height: 50px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* 클릭된 좌석 스타일 */
+.seat.clicked {
+  background-color: #4CAF50; /* 선택된 좌석은 초록색 */
+  color: white;
+}
+
+/* 선택할 수 없는 좌석 스타일 */
+.seat.disabled {
+  background-color: #d3d3d3; /* 선택 불가 좌석은 회색 */
+  cursor: not-allowed;
+}
+
+/* 좌석 행 스타일 */
+.seat-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
