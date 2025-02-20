@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import { Link } from 'react-router-dom';
-import 'font-awesome/css/font-awesome.min.css';
 import { registerLocale } from "react-datepicker";
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 import '../../css/hotel.css';
 import axios from 'axios';
-import 'react-dates/lib/css/_datepicker.css';
 import Pagenation from '../../Comm/Pagenation';
 import { Modal, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 registerLocale("ko", ko);
