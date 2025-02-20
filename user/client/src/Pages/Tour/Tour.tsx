@@ -22,6 +22,9 @@ interface TourData {
     images: { img_name: string }[]; // ✅ 추가
     schedules: { day: number; place: string; content: string }[]; // ✅ 추가
 }
+interface RecommendationProps {
+    place: string;
+}
 
 const Tour: React.FC = () => {
     const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
@@ -74,8 +77,12 @@ const Tour: React.FC = () => {
     
     useEffect(() => {
         const allDestinations = ["서울", "제주도", "부산", "강원도"];
-        setRecommendedPlace(allDestinations[Math.floor(Math.random() * allDestinations.length)]);
-    }, []);// ✅ 최초 마운트 시 한 번만 실행
+        const randomPlace = allDestinations[Math.floor(Math.random() * allDestinations.length)];
+        console.log("🔥 추천 여행지:", randomPlace); // 콘솔에서 값 확인
+        setRecommendedPlace(randomPlace);
+    }, []);
+    
+    
 
     
 
@@ -110,7 +117,8 @@ const Tour: React.FC = () => {
         <ChartComponent title="만족도가 높은 여행지 TOP 3" categories={satisfactionData.categories} data={satisfactionData.data} label="만족도" />
         <ChartComponent title="최근 많이 가는 여행지 TOP 3" categories={visitData.categories} data={visitData.data} label="방문 수" />
     </div>
-    <RecommendationList place={recommendedPlace || ""} />
+    <RecommendationList place={recommendedPlace} />
+
 </div>
             
             <section className="tour-list-user">
@@ -234,7 +242,7 @@ const Tour: React.FC = () => {
             <div className="destination">
                 <Link to={`/traveler/tour/${tour.num}`} 
                     className="img img-2 d-flex justify-content-center align-items-center" 
-                    style={{ backgroundImage: `url(/images/${tour.thumbnail || "default.jpg"})` }}>
+                    style={{ backgroundImage: `url(/images/${tour.thumbnail})` }}>
                     <div className="icon d-flex justify-content-center align-items-center">
                         <span className="icon-search2"></span>
                     </div>

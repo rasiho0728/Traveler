@@ -121,24 +121,23 @@ const ContactToChat: React.FC = () => {
     }, [isLoading])
 
     const fetchLogContent = async (chatList: ChatLogs[]) => {
-        const data: Chating[] = [];
         setIsLoading(1);
-        await Promise.all(
+        const data = await Promise.all(
             chatList.map(async (chatData) => {
                 try {
-                    const response = await axios(`${process.env.REACT_APP_FILES_URL}/logs/${chatData.logfile}`);  // public 폴더 기준 경로
-                    const text = await response.data;
-                    // console.log(1, text)
+                    const response = await axios(`${process.env.REACT_APP_FILES_URL}/logs/${chatData.logfile}`);
+                    const text = response.data;
+
                     const chats: any[] = [];
-                    text.split('\n').map(async (line: string) => {
+                    for (const line of text.split('\n')) {
                         const [name, type, content] = line.split('||');
-                        const isUser = type === 'user' ? true : false;
-                        chats.push({ isUser: isUser, name: name, content: content })
-                    });
-                    data.push({ date: chatData.cdate, chats: chats })
+                        const isUser = type === 'user';
+                        chats.push({ isUser, name, content });
+                    }
+
+                    return { date: chatData.cdate, chats }; // ✅ 반환 값으로 처리!
                 } catch (error) {
-                    data.push({ date: chatData.cdate, chats: [] })
-                    // console.error('Failed to fetch log file:', error);
+                    return { date: chatData.cdate, chats: [] };
                 }
             })
         );
@@ -146,35 +145,68 @@ const ContactToChat: React.FC = () => {
     }
 
     const chatScrollToBottom = () => {
-        const isNotInToday = dateObj(chatings[chatings.length - 1]?.date).toLocaleDateString() !== dateObj().toLocaleDateString()
-        const id = `chat${isBot ? 'Bot' : ''}${chatings.length - (isNotInToday ? 0 : 1)}`;
-        if (isBot) {
-            handleChatScroll(chatBotContainerRef, id, false)
-        } else {
-            handleChatScroll(chatContainerRef, id, false)
+        if (chatings.length > 0) {
+            const isNotInToday = dateObj(chatings[chatings.length - 1].date).toLocaleDateString() !== dateObj().toLocaleDateString()
+            const id = `chat${isBot ? 'Bot' : ''}${chatings.length - (isNotInToday ? 0 : 1)}`;
+            // console.log(1, id, chatings.length, chatings, isNotInToday);
+            isBot ? handleChatScroll("123", id, false) : handleChatScroll("456", id, false)
         }
     }
 
-    const handleChatScroll = (ref: React.RefObject<HTMLDivElement>, id: string, animate: boolean = true) => {
-        const element = document.getElementById(id);
-        if (element && ref.current) {
-            ref.current.scrollTo(animate ? {
-                top: element.offsetTop - 90, // 요소의 상단 위치
-                behavior: 'smooth'      // 부드럽게 스크롤
-            } : { top: ref.current.scrollHeight, });
-        }
+    const handleChatScroll = (id: string, eid: string, animate: boolean = true) => {
+        // console.log(id, eid)
+        setTimeout(() => {
+            const scrollelement = document.getElementById(id);
+            const element = document.getElementById(eid);
+            if (element && scrollelement) {
+                // console.log(element.offsetParent, element.parentElement?.style.display, element.offsetTop - 53)
+                scrollelement.scrollTo(animate ? {
+                    top: element.offsetTop - 53, // 요소의 상단 위치
+                    behavior: 'smooth'      // 부드럽게 스크롤
+                } : { top: scrollelement.scrollHeight, });
+            }
+        }, 10)
     }
 
-    const drawChatUI = (chatList: ChatLogs[]) => {
+    const drawChatUI = () => {
+        let chatList: ChatLogs[] = chats;
         const isNotToday = (date: string) => { return dateObj(date).toLocaleDateString() !== dateObj().toLocaleDateString() };
         const isNotInToday = dateObj(chatList[chatList.length - 1]?.cdate).toLocaleDateString() !== dateObj().toLocaleDateString()
 
+        const changeActive = (e: number) => {
+            setTimeout(() => {
+                document.getElementById('v-tab1')?.classList.remove('active');
+                document.getElementById('v-tab2')?.classList.remove('active');
+
+                document.getElementById(`v-tab${e}`)?.classList.add('active');
+            }, 100)
+        }
+
         return (
-            <div className="row mb-5">
+            <div key={isLoading} className="row mb-5">
+
                 <div className='col-md-3 border p-0' style={{ height: '500px', overflowY: 'auto', display: isListVisiable ? 'block' : 'none' }}>
+                    <div className="nav-link-wrap my-3">
+                        <div className="nav nav-pills nav-fill" id="v-pills-tab">
+                            <div className='col-md-4'>
+                                <button className="nav-link active" id="v-tab1"
+                                    onClick={_ => { setIsBot(false); chatList = chats; fetchLogContent(chats); changeActive(1) }}
+                                >
+                                    1:1
+                                </button>
+                            </div>
+                            <div className='col-md-8'>
+                                <button className="nav-link" id="v-tab2"
+                                    onClick={_ => { setIsBot(true); chatList = chatBots; fetchLogContent(chatBots); changeActive(2) }}
+                                >
+                                    챗봇
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <button className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
                         style={{ height: '80px', color: '#bbb' }}
-                        onClick={_ => { handleChatScroll(isBot ? chatBotContainerRef : chatContainerRef, `chat${isBot ? 'Bot' : ''}${chatList.length - (isNotInToday ? 0 : 1)}`) }}>
+                        onClick={_ => { handleChatScroll((isBot ? '123' : '456'), `chat${isBot ? 'Bot' : ''}${chatList.length - (isNotInToday ? 0 : 1)}`) }}>
                         <span className='h6 m-0 text-dark'>{dateObj().toLocaleDateString()} 문의</span>
                     </button>
                     {
@@ -184,14 +216,14 @@ const ContactToChat: React.FC = () => {
                                 <button key={idx}
                                     className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
                                     style={{ height: '80px', color: '#bbb' }}
-                                    onClick={_ => { handleChatScroll(isBot ? chatBotContainerRef : chatContainerRef, `chat${isBot ? 'Bot' : ''}${chatList.length - 1 - idx}`) }}
+                                    onClick={_ => { handleChatScroll(isBot ? '123' : '456', `chat${isBot ? 'Bot' : ''}${chatList.length - 1 - idx}`) }}
                                 >
                                     <span className='h6 m-0 text-dark'>문의 내역: {dateObj(chat.cdate).toLocaleDateString()}</span>
                                 </button>)
                         })
                     }
                 </div>
-                <div className={`${isListVisiable ? 'col-md-9' : 'col-md-12'} border pt-3 bg-opacity-10`}
+                <div key={isLoading} className={`${isListVisiable ? 'col-md-9' : 'col-md-12'} border pt-3 bg-opacity-10`}
                     style={{
                         background: `${isBot ?
                             'linear-gradient(160deg,rgba(0, 201, 252, 0.69) 20%, rgb(255, 255, 255)) ' :
@@ -206,6 +238,7 @@ const ContactToChat: React.FC = () => {
                         )
                     }
                     <div
+                        id={isBot ? '123' : '456'}
                         ref={isBot ? chatBotContainerRef : chatContainerRef}
                         style={{
                             height: '400px',
@@ -319,14 +352,6 @@ const ContactToChat: React.FC = () => {
                                 문의 내역
                             </button>
 
-                            <button className="nav-link" id="v-pills-mission-tab"
-                                data-bs-toggle="pill" data-bs-target="#v-pills-mission" role="tab"
-                                aria-controls="v-pills-mission" aria-selected="false"
-                                onClick={_ => { fetchLogContent(chatBots); chatScrollToBottom(); setIsBot(true); }}
-                            >
-                                챗봇 내역
-                            </button>
-
                             <button className="nav-link" id="v-pills-goal-tab"
                                 data-bs-toggle="pill" data-bs-target="#v-pills-goal" role="tab"
                                 ria-controls="v-pills-goal" aria-selected="false">
@@ -337,13 +362,7 @@ const ContactToChat: React.FC = () => {
                     <div className="tab-content ftco-animate" id="v-pills-tabContent">
                         <div className="tab-pane show active" id="v-pills-whatwedo" role="tabpanel" aria-labelledby="v-pills-whatwedo-tab">
                             {
-                                drawChatUI(chats)
-                            }
-                        </div>
-
-                        <div className="tab-pane" id="v-pills-mission" role="tabpanel" aria-labelledby="v-pills-mission-tab">
-                            {
-                                drawChatUI(chatBots)
+                                drawChatUI()
                             }
                         </div>
 
