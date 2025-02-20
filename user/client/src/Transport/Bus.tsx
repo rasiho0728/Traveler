@@ -16,7 +16,7 @@ const Bus: React.FC = () => {
   const [data, setData] = useState<BusTime[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  const API_KEY = 'XDMNsafrFJZRccQEUvJz2OG9IvqT7nEe%2FNjC6Twlm5H%2BWSJnH69syP9Su%2BlWuAGnG1DfL9%2FjHAHo6H0YXTMQ9g%3D%3D';
   // 날짜 형식 변환 함수
   const formatDate = (timestamp: number): string => {
     const hour = Math.floor((timestamp % 10000) / 100); // Extract hour
@@ -29,8 +29,7 @@ const Bus: React.FC = () => {
     setError(null);
     try {
       const response = await axios.get(
-        'https://apis.data.go.kr/1613000/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey=XDMNsafrFJZRccQEUvJz2OG9IvqT7nEe%2FNjC6Twlm5H%2BWSJnH69syP9Su%2BlWuAGnG1DfL9%2FjHAHo6H0YXTMQ9g%3D%3D&pageNo=1&numOfRows=30&_type=json&depTerminalId=NAEK010&arrTerminalId=NAEK700&depPlandTime=20250219&busGradeId=1'
-      );
+`https://apis.data.go.kr/1613000/ExpBusInfoService/getStrtpntAlocFndExpbusInfo?serviceKey=${API_KEY}&pageNo=1&numOfRows=30&_type=json&depTerminalId=NAEK010&arrTerminalId=NAEK700&depPlandTime=20250219&busGradeId=1`      );
       // console.log('응답 데이터:', response.data);  // 응답 전체 확인
       // console.log('아이템 데이터:', response.data.response.body.items.item); // items.item 확인
       const fetchedData = response.data.response.body.items.item || [];
