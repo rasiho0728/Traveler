@@ -48,11 +48,6 @@ public class Bus {
     @JsonBackReference
     private MemberVO member;
     
-    // //2025-02-19추가
-    // @Column(name = "arrplanttime") // 도착 예정 시간
-    // private Date arrPlandTime;
-
-    // @Column(name = "depplanttime") // 출발 예정 시간
-    // private Date depPlandTime;
+ 
 
 }
