@@ -17,6 +17,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import kr.co.user.bus.Bus;
 import kr.co.user.chat.Chat;
+import kr.co.user.community.BackPack;
+import kr.co.user.diary.Diary;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -86,9 +88,19 @@ public class MemberVO {
     )
     private List<Chat> chatlog;
 
-         //2025-02-18추가 최의진
+    //2025-02-18추가 최의진
     @OneToMany
     @JoinColumn(name = "MEMBERNUM")
     @JsonManagedReference
     private List<Bus> bus;
+
+    // 2025-02-19 추가(조유경)
+    @OneToMany
+    @JoinColumn(name = "MEMBERNUM")
+    private List<BackPack> backpack;
+
+    @OneToMany
+    @JoinColumn(name = "MEMBERNUM")
+    @JsonManagedReference
+    private List<Diary> diary;
 }

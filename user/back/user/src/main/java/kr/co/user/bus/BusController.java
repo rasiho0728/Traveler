@@ -25,17 +25,6 @@ public class BusController {
     @Autowired
     private BusService busService;
 
-    // 외부 API에서 버스 예약 정보 가져오기
-    // @GetMapping("/fetch-external")
-    // public ResponseEntity<List<Bus>> fetchExternalBusData() {
-    //     try {
-    //         List<Bus> buses = busService.fetchExternalBusData();
-    //         return ResponseEntity.ok(buses);
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-    //                 .body(null);
-    //     }
-    // }
 
     // 버스 예매
     @PostMapping

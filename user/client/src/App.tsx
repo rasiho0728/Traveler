@@ -60,8 +60,9 @@ import MyBookshelf from './Pages/TourDiary/MyBookshelf';
 import MyDiary from './Pages/TourDiary/MyDiary';
 import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
 import Bus from './Transport/Bus';
-import BusDetail from './Transport/BusDetail';
 import BusForm from './Transport/BusForm';
+import BusReservation from './Transport/BusReservation';
+import TourSchedule from './Pages/Tour/TourSchedule';
 
 function App() {
         const { pathname } = useLocation();
@@ -76,7 +77,8 @@ function App() {
                                 <Route path='/traveler/about' element={<About />} />
                                 <Route path='/traveler/tour' element={<Tour />} />
                                 <Route path='/traveler/tour/rate' element={<Rate />} />
-                                <Route path='/traveler/tour/:num' element={<TourDetail />} />
+                                <Route path='/traveler/tour/:tourId' element={<TourDetail />} />
+                                <Route path="/tours/:tourId/schedules" element={<TourSchedule />} />
                                 <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
                                 <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
                                 <Route path='/traveler/hotels' element={<Hotel2 />} />
@@ -102,9 +104,9 @@ function App() {
                                 <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
                                 <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                <Route path='/traveler/Transport/BusForm' element={<BusForm />} />{/*2025-02-10최의진 추가 */}
-                                <Route path='/traveler/Transport/BusForm/Bus' element={<Bus />} />{/*2025-02-15최의진 수정 */}
-                                <Route path='/traveler/Transport/BusForm/Bus/:id' element={<BusDetail />} />{/*2025-02-15최의진 추가 */}
+                                <Route path='/traveler/Transport/busform' element={<BusForm />} />{/*2025-02-10최의진 추가 */}
+                                <Route path='/traveler/Transport/busform/bus' element={<Bus />} />{/*2025-02-15최의진 수정 */}
+                                <Route path='/traveler/Transport/busform/bus/reservation' element={<BusReservation/>} />{/*2025-02-15최의진 추가 */}
                                 <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
                                 {/* <Route path='/traveler/Transport/Airline' element={<Airline />} />2025-02-06최의진 추가 */}

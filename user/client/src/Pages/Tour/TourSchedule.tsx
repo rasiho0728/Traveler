@@ -32,7 +32,7 @@ const TourSchedule: React.FC<TourScheduleProps> = ({ schedules }) => {
     useEffect(() => {
         if (!tourId) return;
     
-        axios.get(`/api/tours/${tourId}/schedules`)
+        axios.get(`http://localhost:81/userBack/api/tours/${tourId}/schedules`)
             .then((response) => {
                 const data: TourSchedule[] = response.data; // ✅ 명시적으로 TourSchedule 배열 타입 지정
     
@@ -116,7 +116,7 @@ const TourSchedule: React.FC<TourScheduleProps> = ({ schedules }) => {
                                     />
                                 ) : (
                                     <h4 className="tour-schedule-step-title">
-                                        {item.title} <small>({item.type})</small>
+                                        {item.title} <small></small>
                                     </h4>
                                 )}
                                 <p className="tour-schedule-step-desc">{item.description}</p>
