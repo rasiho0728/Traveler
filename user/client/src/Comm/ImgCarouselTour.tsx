@@ -4,7 +4,7 @@ interface ImgCarouselProps {
     data: Array<any>
 }
 
-const ImgCarousel: React.FC<ImgCarouselProps> = ({
+const ImgCarouselTour: React.FC<ImgCarouselProps> = ({
     data,
 }) => {
     const [c_len, setC_len] = useState(0)
@@ -140,7 +140,7 @@ const ImgCarousel: React.FC<ImgCarouselProps> = ({
                             data.map((e, i) => (
                                 <div key={i} className={`owl-item img-item ${i == 0 ? 'active' : ''}`} style={{ width: `${carouselItemWidth}px` }}>
                                     <div className="item">
-                                        <div className="hotel-img" style={{ backgroundImage: `url(/images/hotel-${e}.jpg)` }}></div>
+                                        <div className="hotel-img" style={{ backgroundImage: `url(/images/${e})` }}></div>
                                     </div>
                                 </div>
                             ))
@@ -169,4 +169,4 @@ const ImgCarousel: React.FC<ImgCarouselProps> = ({
     )
 }
 
-export default ImgCarousel
+export default ImgCarouselTour
