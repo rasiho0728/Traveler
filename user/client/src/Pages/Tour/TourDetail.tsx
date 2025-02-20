@@ -206,7 +206,7 @@ const TourDetail: React.FC = () => {
                                 </div>
                                 <div className="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
 
-                                    <span>Our Best hotels &amp; Rooms</span>
+                                    <span>당신에게 딱 맞는 여행을 찾아보세요</span>
                                     <h2>{tourData?.name}</h2>
                                     <p className="rate mb-5">
                                         <span className="loc"><Link to="#"><i className="icon-map"></i>{tourData?.location}</Link></span>
