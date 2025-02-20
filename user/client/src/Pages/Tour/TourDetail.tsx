@@ -5,7 +5,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 import { Link, useParams } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
-import ImgCarousel from '../../Comm/ImgCarousel';
+import ImgCarouselTour from '../../Comm/ImgCarouselTour';
 import TourSchedule from './TourSchedule';
 import axios from 'axios';
 
@@ -16,7 +16,10 @@ interface ScheduleItem {
     type: string;
     description: string;
 }
-
+interface TourImage {
+    tour_info_num: number;
+    img_name: string;
+}
 // 🟢 날짜별 일정 데이터 (ex: { 1: [일정1, 일정2], 2: [일정3] })
 interface ScheduleData {
     [day: number]: ScheduleItem[];
@@ -24,11 +27,19 @@ interface ScheduleData {
 
 // 🟢 투어 상세 정보 (백엔드에서 가져오는 데이터 구조)
 interface TourData {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    schedules: ScheduleData;
+    num: number;
+    name: string;
+    rating: number;
+    content: string;
+    days: number;
+    location: string;
+    thumbnail: string;
+    hit: number;
+    theme: string;
+    video_link: string | null;
+    images: TourImage[];
+    schedules: ScheduleItem[];
+    tdate: string;
 }
 
 const TourDetail: React.FC = () => {
@@ -43,12 +54,13 @@ const TourDetail: React.FC = () => {
     const [reviews, setReviews] = useState<{ rating: number; text: string }[]>([]);
     const { tourId } = useParams<{ tourId: string }>();  // ✅ URL에서 tourId 가져오기
     const [loading, setLoading] = useState(true);  // ✅ 로딩 상태
-    
+
     useEffect(() => {
         if (!tourId) return;
-    
-        axios.get(`/api/tours/${tourId}`) // ✅ 경로를 "/api/tours/${tourId}"로 수정
+
+        axios.get(`http://localhost:81/userBack/api/tours/${tourId}`) // ✅ 경로를 "/api/tours/${tourId}"로 수정
             .then((response) => {
+                console.log("API 응답:", response.data);
                 setTourData(response.data);
                 setLoading(false);
             })
@@ -57,7 +69,7 @@ const TourDetail: React.FC = () => {
                 setLoading(false);
             });
     }, [tourId]);
-    
+
 
     // 리뷰 제출 핸들러 => 리뷰 보기로 기능 변경 필요
     const handleSubmit = () => {
@@ -72,7 +84,7 @@ const TourDetail: React.FC = () => {
     };
 
     useEffect(() => {
-        axios.get(`/api/tours/${tourId}/schedules`)
+        axios.get(`http://localhost:81/userBack/api/tours/${tourId}/schedules`)
             .then((res) => setTourSchedule(res.data))
             .catch((err) => console.error('일정 데이터 로드 실패:', err));
     }, [tourId]);
@@ -101,15 +113,15 @@ const TourDetail: React.FC = () => {
     }, []);
     return (
         <div>
-            <div className="hero-wrap js-halfheight" style={{ backgroundImage: `url(${tourData?.image || "/images/bg_5.jpg"})` }}>
+            <div className="hero-wrap js-halfheight" style={{ backgroundImage: `url(/images/${tourData?.thumbnail})` }}>
                 <div className="overlay"></div>
                 <div className="container">
                     <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
                         <div className="col-md-9 ftco-animate text-center" data-scrollax={"{\"properties\": {\"translateY\": \"70%\"}}"}>
                             <p className="breadcrumbs" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}><span className="mr-2"><Link to="/traveler/home">Home</Link></span> <span className="mr-2"><Link to="/traveler/tour">Tour</Link></span></p>
                             <h1 className="mb-3 bread" data-scrollax={"{\"properties\": {\"translateY\": \"30%\", \"opacity\": 1.6}}"}>
-    {tourData?.title || "여행지 이름"}
-</h1>
+                                {tourData?.name || "여행지 이름"}
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -190,26 +202,25 @@ const TourDetail: React.FC = () => {
                         <div className="col-lg-9">
                             <div className="row">
                                 <div className="col-md-12 ftco-animate">
-                                    <ImgCarousel data={[1, 2, 3]} />
+                                    <ImgCarouselTour data={tourData?.images.map(img => img.img_name) || []} />
                                 </div>
                                 <div className="col-md-12 hotel-single mt-4 mb-5 ftco-animate">
 
-                                    <span>Our Best hotels &amp; Rooms</span>
-                                    <h2>파리,이탈리아</h2>
+                                    <span>당신에게 딱 맞는 여행을 찾아보세요</span>
+                                    <h2>{tourData?.name}</h2>
                                     <p className="rate mb-5">
-                                        <span className="loc"><Link to="#"><i className="icon-map"></i> 291 South 21th Street, Suite 721 New York NY 10016</Link></span>
-                                        <span className="star" style={{ color: "#f85959", fontWeight: "bold", fontSize: "11px", }}>
-                                            <i className="icon-star"></i>
-                                            <i className="icon-star"></i>
-                                            <i className="icon-star"></i>
-                                            <i className="icon-star"></i>
-                                            <i className="icon-star-o"></i>
-                                            {4} / 5 별점</span>
+                                        <span className="loc"><Link to="#"><i className="icon-map"></i>{tourData?.location}</Link></span>
+                                        <span className="star" style={{ color: "#f85959", fontWeight: "bold", fontSize: "11px" }}>
+                                            {[...Array(5)].map((_, index) => (
+                                                <i key={index} className={index < (tourData?.rating || 0) ? "icon-star" : "icon-star-o"}></i>
+                                            ))}
+                                            {tourData?.rating} / 5 별점
+                                        </span>
                                     </p>
-                                    <p>{tourData?.description || "여행지 설명이 없습니다."}</p>
+                                    <p>{tourData?.content || "여행지 설명이 없습니다."}</p>
                                 </div>
                                 <div className="col-md-12 hotel-single ftco-animate mb-5 mt-4">
-                                <TourSchedule schedules={tourSchedule} />
+                                    <TourSchedule schedules={tourSchedule} />
                                     <h4 className="mb-4">여행지 미리 둘러보기</h4>
 
                                     <div className="block-16">
