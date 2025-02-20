@@ -8,7 +8,7 @@ const ChatApp: React.FC = () => {
     <div className="container-xxl">
       <div className="row clearfix g-3">
         <Chattile data={chatAppData} />
-        <BagTalk data={chatAppData} />
+        {/* <BagTalk data={chatAppData} /> */}
       </div>
     </div>
   )

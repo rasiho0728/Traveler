@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,15 +37,15 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
-    @GetMapping("/{username}")
-    public List<Chat> getChatLogByMembernum(@PathVariable("username") String username) {
-        return chatService.getChatlogs(username);
+    @GetMapping
+    public List<Map<String, Object>> getChatLogByMembernum() {
+        return chatService.getChatlogs();
     }
 
     @PostMapping("/{username}")
     public String addChating(@PathVariable("username") String username, @RequestParam("chat") String chat) {
         String logFile = "Log_" +String.valueOf(LocalDate.now()).replaceAll("-", "")  + "_" + username + ".log";
-        String saveMsg = username + "||admin||" + chat;
+        String saveMsg = "관리자||admin||" + chat;
 
         try {
             // 파일 객체 생성

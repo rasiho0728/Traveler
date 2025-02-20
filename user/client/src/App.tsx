@@ -60,9 +60,9 @@ import MyBookshelf from './Pages/TourDiary/MyBookshelf';
 import MyDiary from './Pages/TourDiary/MyDiary';
 import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
 import Bus from './Transport/Bus';
-import BusForm from './Transport/BusForm';
 import BusReservation from './Transport/BusReservation';
 import TourSchedule from './Pages/Tour/TourSchedule';
+import BusForm from './Transport/BusForm';
 
 function App() {
         const { pathname } = useLocation();
