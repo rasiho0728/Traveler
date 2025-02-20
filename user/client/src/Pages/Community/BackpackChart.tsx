@@ -16,7 +16,7 @@ ChartJS.register(
 
 ChartJS_Pie.register(ArcElement, Tooltip, Legend);
 
-const LikeChart = () => {
+const BackpackChart = () => {
   const data: ChartData<'bar' | 'line'> = {
     labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
     datasets: [
@@ -109,7 +109,7 @@ const LikeChart = () => {
   );
 };
 
-const LikePieChart = () => {
+const BackpackPieChart = () => {
   const data = {
     labels: ['행복', '설렘', '신남', '우울', '슬픔'],
     datasets: [
@@ -135,11 +135,11 @@ const LikePage: React.FC = () => {
       <div className='Chartchart' style={{ textAlign: 'center', display:'flex', flexDirection:'column' }}>
         <div className='chart-box' style={{ marginBottom:'200px'}}>
           <h2>여행 스타일 분석</h2>
-          <LikeChart />
+          <BackpackChart />
         </div>
         <div className='chart-box'>
           <h2>감정 태그 분석</h2>
-          <LikePieChart />
+          <BackpackPieChart />
         </div>
       </div>
     </div>

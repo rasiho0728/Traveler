@@ -5,7 +5,7 @@ import { Provider } from "@lyket/react";
 import { LikeButton } from "@lyket/react";
 import '../../css/likeDetail.css';
 
-const LikeDetail: React.FC = () => {
+const BackpackDetail: React.FC = () => {
     useEffect(() => {
         handleScroll();
         window.addEventListener("scroll", handleScroll);
@@ -204,4 +204,4 @@ const LikeDetail: React.FC = () => {
     );
 };
 
-export default LikeDetail;
+export default BackpackDetail;

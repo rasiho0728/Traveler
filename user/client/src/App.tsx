@@ -29,8 +29,6 @@ import Coalition from './Pages/Coalition/Coalition';
 import TourDetail from './Pages/Tour/TourDetail';
 import CoalitionAccount from './Pages/Coalition/CoalitionAccount';
 import Chat from './Pages/Chat/Chat';
-import Like from './Pages/Community/Like';
-import LikeDetail from './Pages/Community/LikeDetail';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Login/SignUp';
 import Transport from './Transport/Transport';
@@ -40,7 +38,7 @@ import TourMusicRecommended from './Pages/Tour/TourMusicRecommended';
 import SubwayDetail from './Transport/SubwayDetail';
 import ReservationForm from './Pages/Hotel/ReservationForm';
 import HotelDetail2 from './Pages/Hotel/HotelDetail2';
-import LikeMemo from './Pages/Community/LikeMemo';
+import LikeMemo from './Pages/Community/BackpackForm';
 import MyPage from './Pages/MyPage/MyPage';
 import WeatherAPI from './Pages/Weather/weather';
 // import Airline from './Transport/Airline';
@@ -62,6 +60,9 @@ import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
 import Bus from './Transport/Bus';
 import BusDetail from './Transport/BusDetail';
 import BusForm from './Transport/BusForm';
+import BackpackDetail from './Pages/Community/BackpackDetail';
+import BackpackList from './Pages/Community/BackpackList';
+import BackpackForm from './Pages/Community/BackpackForm';
 
 function App() {
         const { pathname } = useLocation();
@@ -89,12 +90,9 @@ function App() {
                                 <Route path='/traveler/coalition/:num' element={<CoalitionDetail />} />
                                 <Route path='/traveler/coalition/new' element={<CoalitionForm />} />
                                 <Route path='/traveler/coalition/account' element={<CoalitionAccount />} />
-                                <Route path='/traveler/community' element={<Like />} /> {/*2025-02-07 조유경 추가 */}
-                                <Route path='/traveler/community/:num' element={<LikeDetail />} /> {/*2025-02-07 조유경 추가 */}
-                                <Route path='/traveler/LikeMemo' element={<LikeMemo />} /> {/*2025-02-07 조유경 추가 */}
-                                {/* <Route path='/traveler/backpack' element={<Backpack />} /> 2025-02-07 조유경 추가
-                                <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> 2025-02-07 조유경 추가
-                                <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> 2025-02-07 조유경 추가 */}
+                                <Route path='/traveler/community' element={<BackpackList />} /> {/*2025-02-07 조유경 추가 */}
+                                <Route path='/traveler/community/:num' element={<BackpackDetail />} /> {/*2025-02-07 조유경 추가 */}
+                                <Route path='/traveler/BackpackForm' element={<BackpackForm />} /> {/*2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
                                 <Route path='/traveler/login' element={<Login />} />{/*2025-02-08 전준영 로그인 추가*/}
                                 <Route path='/traveler/passwordless' element={<Passwordless />} />{/*2025-02-08 전준영 패스워드리스로그인 추가*/}

@@ -4,34 +4,49 @@ import { Editor } from '@toast-ui/react-editor';
 import colorPlugin from '@toast-ui/editor-plugin-color-syntax';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import codeSyntaxHighlightPlugin from '@toast-ui/editor-plugin-code-syntax-highlight';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import "prismjs/themes/prism.css";
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import { Trie } from '../../Comm/Trie';
+import axios from 'axios';
+import { EditorType } from '@toast-ui/editor';
 
 
-const LikeMemo: React.FC = () => {
-    useEffect(() => {
-        const handleResize = () => updateHalfHeight();
-        handleScroll();
-        appear_animate();
+const BackpackForm: React.FC = () => {
+    const [backpack, setBackpack] = useState<string[]>([]);
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const [tags, setTags] = useState<string[]>([]);
+    const [tagInput, setTagInput] = useState("");
+    const [image, setImage] = useState<File>();
+    const [images, setImages] = useState<File[]>([]);
+    const [imageName, setImageName] = useState<string>();
+    const [imageNames, setImageNames] = useState<string[]>([]);
 
-        window.addEventListener("scroll", handleScroll);
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
-    // Trie 자동완성 기능 추가
-    const [suggestions, setSuggestions] = useState<string[]>([]);
     const [cursorPosition, setCursorPosition] = useState<{ x: number; y: number } | null>(null);
     const editorRef = useRef<Editor>(null);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        handleScroll();
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        appear_animate();
+    }, []);
+
+    useEffect(() => {
+        updateHalfHeight();
+        window.addEventListener("resize", updateHalfHeight);
+        return () => window.removeEventListener("resize", updateHalfHeight);
+    }, []);
+
+
+    // Trie 자동완성 기능 추가
     const trie = new Trie();
     const words = [
         "배낭여행", "국내여행", "혼자여행", "1박2일 여행", "2박3일 여행", "여행코스", "여행일정", "여행후기",
@@ -44,34 +59,67 @@ const LikeMemo: React.FC = () => {
     words.forEach((word) => trie.insert(word));
 
     // 입력 감지하여 자동완성 실행
-    const handleEditorInput = () => {
+    // const handleEditorInput = () => {
+    //     if (editorRef.current) {
+    //         // const content = editorRef.current.getInstance().getMarkdown();
+    //         const instance = editorRef.current.getInstance();
+    //         const content = instance.getMarkdown();
+    //         const words = content.split(/\s+/);
+    //         const lastWord = words[words.length - 1];
+
+    //         if (lastWord.length > 1) {
+    //             setBackpack(trie.searchPrefix(lastWord));
+
+    //             // 커서 위치 가져오기
+    //             const selection = window.getSelection();
+    //             if (selection && selection.rangeCount > 0) {
+    //                 const range = selection.getRangeAt(0);
+    //                 const rect = range.getBoundingClientRect();
+    //                 // setCursorPosition({ x: rect.left, y: rect.bottom + 5});
+    //                 const editorScrollTop = instance.getScrollTop();
+    //                 setCursorPosition({
+    //                     x: rect.left,
+    //                     y: rect.top + editorScrollTop + 25 // 커서 아래로 여유 공간 추가
+    //                 });
+    //             }
+    //         } else {
+    //             setBackpack([]);
+    //         }
+    //     }
+    // };
+
+    // Editor 내용이 변경될 때 호출되는 함수 (자동완성 기능 유지)
+    const handleEditorChange = () => {
         if (editorRef.current) {
-            // const content = editorRef.current.getInstance().getMarkdown();
             const instance = editorRef.current.getInstance();
+            const contentHtml = document.getElementsByClassName('ProseMirror')[1].innerHTML; // ProseMirror에서 HTML 읽기
+            setContent(contentHtml); // 상태 업데이트
+
+            // 자동완성 기능 유지
             const content = instance.getMarkdown();
             const words = content.split(/\s+/);
             const lastWord = words[words.length - 1];
 
             if (lastWord.length > 1) {
-                setSuggestions(trie.searchPrefix(lastWord));
+                setBackpack(trie.searchPrefix(lastWord));
 
                 // 커서 위치 가져오기
                 const selection = window.getSelection();
                 if (selection && selection.rangeCount > 0) {
                     const range = selection.getRangeAt(0);
                     const rect = range.getBoundingClientRect();
-                    // setCursorPosition({ x: rect.left, y: rect.bottom + 5});
                     const editorScrollTop = instance.getScrollTop();
                     setCursorPosition({
                         x: rect.left,
-                        y: rect.top + editorScrollTop + 25 // 커서 아래로 여유 공간 추가
+                        y: rect.top + editorScrollTop + 25
                     });
                 }
             } else {
-                setSuggestions([]);
+                setBackpack([]);
             }
         }
     };
+
 
     // 자동완성 단어 클릭 시: 기존 단어를 대체하고 삽입
     const handleSuggestionClick = (word: string) => {
@@ -83,15 +131,11 @@ const LikeMemo: React.FC = () => {
             instance.setMarkdown(words.join(" ") + " "); // 업데이트
 
             setTimeout(() => {
-                setSuggestions([]); // 자동완성 목록 닫기 (딜레이 적용)
+                setBackpack([]); // 자동완성 목록 닫기 (딜레이 적용)
                 instance.focus(); // 강제 포커스 유지
             }, 100); // 클릭 이벤트가 먼저 실행되도록 조정
         }
     };
-
-    // 해시태그 입력 기능 추가
-    const [tags, setTags] = useState<string[]>([]);
-    const [tagInput, setTagInput] = useState("");
 
     // 해시태그 추가 (5개 제한, 10자 이하 제한)
     const handleTagKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -124,6 +168,80 @@ const LikeMemo: React.FC = () => {
     const removeTag = (tagToRemove: string) => {
         setTags(tags.filter(tag => tag !== tagToRemove));
     };
+
+    // const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { files } = e.target;
+    //     if (files) {
+    //         const fileArray = Array.from(files);
+    //         setImage(fileArray);
+    //     }
+    // }
+
+    // 에디터 내용이 변경될 때
+    // const handleEditorChange = (e: EditorType) => {
+    //     const data = document.getElementsByClassName('ProseMirror')[1].innerHTML; //prosemirror클래스를 읽어서 data에 넣는다.
+    //     setContent(data);
+    // }
+
+    useEffect(() => {
+        // 1. DB에서 가져온 HTML이라고 가정
+        const htmlString = '';
+        // 2. Editor DOM 내용에 HTML 주입
+        editorRef.current?.getInstance().setHTML(htmlString);
+    }, []);
+
+    useEffect(() => {
+        if (image !== undefined) setImages([...images, image as File]);
+    }, [image])
+
+    useEffect(() => {
+        if (imageName !== undefined) setImageNames([...imageNames, imageName as string]);
+    }, [imageName])
+
+    // 에디터 내용에서 이미지 경로 업데이트
+    const changeContentData = (data: string, fileIndex: number): string => {
+        let start = data.indexOf(`src="data:`); // 이미지 시작 위치
+        let end = data.indexOf(`" alt="[사진]"`) + 12; // 이미지 끝 위치
+        if (start === -1) return data; // 이미지가 없으면 종료
+        else {
+            let dataFront = data.substring(0, start) + "IMG_PATH_" + imageNames[fileIndex] // 이미지 경로 변경
+            let dataElse = data.substring(end);
+            return dataFront + changeContentData(dataElse, fileIndex + 1);
+        }
+    }
+
+    const contentData = changeContentData(content, 0);
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!title || !content) {
+            alert("제목과 내용을 입력해주세요.");
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append("title", title);
+            formData.append("content", contentData);
+            formData.append("tags", JSON.stringify(tags)); // JSON으로 변경
+            // formData.append("tags", tags.join(",")); // 태그는 문자열로 변환
+            images.forEach((file, index) => {
+                formData.append(`image`, file)
+            });
+            const response = await axios.post(`${process.env.REACT_APP_BACK_END_URL}/api/backpack`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            console.log(response.data);
+            navigate('/traveler/community');
+        } catch (error) {
+            console.error("백엔드 전송 오류:", error);
+            alert("게시글 등록에 실패했습니다.");
+        }
+
+    };
+
 
     return (
         <div className="like-memo">
@@ -159,11 +277,15 @@ const LikeMemo: React.FC = () => {
                 style={{ maxWidth: '900px', margin: '50px auto', padding: '20px' }}>
                 <div className="like-memo-suggestion-form">
                     <h2 style={{ textAlign: 'center' }}>배낭 후기</h2>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         {/* 제목 입력 */}
                         <div className='like-memo-input-group' style={{ marginBottom: '15px' }}>
                             <label htmlFor="title" className='like-memo-label'>제목</label>
-                            <input type='text' name='title' placeholder='제목을 입력해주세요'
+                            <input type='text'
+                                name='title'
+                                value={title}
+                                placeholder='제목을 입력해주세요'
+                                onChange={e => setTitle(e.target.value)}
                                 required className="like-memo-input"
                                 style={{ width: '100%', height: '40px' }} />
                         </div>
@@ -171,9 +293,13 @@ const LikeMemo: React.FC = () => {
                         {/* 해시태그 입력 */}
                         <div className='like-memo-input-group' style={{ marginBottom: '15px' }}>
                             <label htmlFor="tags" className='like-memo-label'>해시태그 (최대 5개, 10자 제한)</label>
-                            <input type='text' name='tags' placeholder='해시태그 입력 후 Enter 키를 누르세요'
-                                value={tagInput} onChange={(e) => setTagInput(e.target.value)}
-                                onKeyPress={handleTagKeyPress} className="like-memo-input"
+                            <input type='text'
+                                name='tags'
+                                placeholder='해시태그 입력 후 Enter 키를 누르세요'
+                                value={tagInput}
+                                onChange={(e) => setTagInput(e.target.value)}
+                                onKeyPress={handleTagKeyPress}
+                                className="like-memo-input"
                                 style={{ width: '100%', height: '40px' }} />
                         </div>
 
@@ -208,10 +334,30 @@ const LikeMemo: React.FC = () => {
                                 usageStatistics={false}
                                 hideModeSwitch={true}
                                 plugins={[codeSyntaxHighlightPlugin, colorPlugin]}
-                                onChange={handleEditorInput} />
+                                onChange={handleEditorChange}
+                                hooks={{
+                                    // 이미지를 표시하기 위해 Hooks를 활용하여 blob 형식의 File 객체를 받아 img 태그에 주입한다.
+                                    // callback(url, string)을 사용해 url은 src, text는 alt 속성으로 설정하여 화면에 이미지가 표시되도록 한다.
+                                    addImageBlobHook: async (blob, callback) => {
+                                        // console.log(blob);  //file name:
+                                        const file = blob as File; //file 이라는 변수선언
+                                        setImage(file); // 사진값,파일 배열 형식 선언
+                                        setImageName(file.name);
+                                        // console.log(file)   //바이너리 코드 출력
+                                        const reader = new FileReader();  //파일을 읽어준다.(reader로 읽어줌)
+                                        reader.readAsDataURL(file);   //바이너리 코드를 url로 읽어준다
+                                        reader.onloadend = () => {     //사진 읽어주는거 마치기(loadend)
+                                            const f = reader.result as string
+                                            // console.log(1,f);
+                                            callback(f, "[사진]");
+                                            //사진주소, file이름
+                                        }
+                                    },
+                                }}
+                            />
 
                             {/* 🔹 자동완성 드롭다운 */}
-                            {suggestions.length > 0 && cursorPosition && (
+                            {backpack.length > 0 && cursorPosition && (
                                 <div className="like-memo-autocomplete-dropdown"
                                     style={{
                                         position: "fixed",
@@ -226,7 +372,7 @@ const LikeMemo: React.FC = () => {
                                     }}
                                     onMouseDown={(e) => e.stopPropagation()} // 자동완성 목록 클릭 방해 방지
                                 >
-                                    {suggestions.map((word, index) => (
+                                    {backpack.map((word, index) => (
                                         <div key={index}
                                             onMouseDown={(e) => {
                                                 e.preventDefault(); // 기본 클릭 이벤트 방지
@@ -257,8 +403,8 @@ const LikeMemo: React.FC = () => {
 
                 {/* 등록하기 버튼 */}
                 <div className="like-memo-button-container" style={{ textAlign: 'center', marginTop: '40px', marginBottom: '100px' }}>
-                    <Link
-                        to='/traveler/community'
+                    <button
+                        type="submit"
                         className="like-memo-btn"
                         style={{
                             display: 'inline-block',
@@ -274,13 +420,16 @@ const LikeMemo: React.FC = () => {
                             border: 'none',
                             boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'
                         }}
+                        // onClick={() => window.location.href = '/traveler/community'} // 페이지 이동
+                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#E04848'} // hover 효과
+                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#FF5A5F'}
                     >
                         등록하기
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default LikeMemo;
+export default BackpackForm;

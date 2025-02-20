@@ -1,11 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Provider, LikeButton } from "@lyket/react";
-import LikeChart from './LikeChart'; // ✅ 차트 추가
-import '../../css/like.css'
+import BackpackChart from './BackpackChart'; // 차트 추가
+import '../../css/BackpackList.css'
+import axios from 'axios';
 
-const Like: React.FC = () => {
+export interface BackPackVO{
+    num: number;          // 게시글 번호
+    roomNum: number;      // 방 번호
+    title: string;        // 제목
+    content: string;      // 내용
+    cdate: string;        // 작성일 
+    hit: number;          // 조회수
+    heart: number;        // 좋아요 수
+    img_names: string[];  // 이미지 파일 리스트
+    tags: string[];       // 태그 리스트
+}
+
+const BackpackList: React.FC = () => {
+    // const [backpack, setBackpack] = useState<BackPackVO>([]);
+    // const [totalPages, setTotalPages] = useState(0); // 총 페이지 수
+    // const [currentPage, setCurrentPage] = useState(1); // 기본 1값을 초기화
+    // const [startPage, setStartPage] = useState(1);
+    // const [endPage, setEndPage] = useState(1);
+    // const [title, setTitle] = useState(''); // 제목 검색
+    // const navigate = useNavigate();
+    // const itemsPerPage = 8; // 페이지당 항목 수
+    // const pagePerBlock = 5; // 한 블럭에 표시할 페이지 수
+    // const filePath = `${process.env.REACT_APP_FILES_URL}/`;
+
+    // const getBackpackList = async () => {
+    //     try {
+    //         const response = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/api/backpack`, {
+    //             page: currentPage, // 오청할 페이지 번호
+    //             size: itemsPerPage, // 한 페이지당 항목 수 
+    //             title: title, // 검색할 제목
+    //         });
+    //     } catch (error) {
+    //         setAllPosts(response.data.content);
+    //         setTotalPages(response.data.total_pages);
+    //     }
+    // };
+
+
     useEffect(() => {
         handleScroll();
         window.addEventListener("scroll", handleScroll);
@@ -25,6 +63,11 @@ const Like: React.FC = () => {
             window.removeEventListener("resize", updateHalfHeight);
         };
     }, []);
+
+    // const formatDate = (dateString: string) => {
+    //     const date = new Date(dateString);
+    //     return date.toLocaleDateString() + " " + date.toLocaleTimeString();
+    //   };
 
     const blogPosts = [
         { id: 1, title: "노을이 질 때 가면 더 예쁜 한강 야경 명소 BEST", image: "/images/image_1.jpg", category: "여행" },
@@ -63,14 +106,13 @@ const Like: React.FC = () => {
                         <div className="like-chart-container" style={{ textAlign: "center" }}>
                             <h4 className="like-chart-title">여행 스타일 분석</h4>
                             <div style={{ width: "100%", maxWidth: "500px", height: "400px", margin: "0 auto" }}>
-                                <LikeChart />
+                                <BackpackChart />
                             </div>
                         </div>
                     </div>
                     <div className="container">
                         <Provider apiKey="acc0dbccce8e557db5ebbe6d605aaa">
                             <div className="row">
-                                {/* 차트있던곳곳 */}
 
                                 {/* ✅ 오른쪽 - 게시글 리스트 (4열 유지) */}
                                 <div className="col-md-9">
@@ -110,7 +152,7 @@ const Like: React.FC = () => {
                         <div className="row mt-5">
                             <div className="col text-center">
                                 <Link
-                                    to='/traveler/LikeMemo'
+                                    to='/traveler/BackpackForm'
                                     className="btn btn-primary"
                                     style={{
                                         display: 'inline-block',
@@ -158,4 +200,4 @@ const Like: React.FC = () => {
     )
 }
 
-export default Like;
+export default BackpackList;
