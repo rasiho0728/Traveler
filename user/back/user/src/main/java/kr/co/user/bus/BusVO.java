@@ -1,7 +1,6 @@
 package kr.co.user.bus;
 
 import java.util.Date;
-import kr.co.user.member.MemberVO;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

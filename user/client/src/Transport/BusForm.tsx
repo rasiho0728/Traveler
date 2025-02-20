@@ -33,12 +33,17 @@ const BusForm: React.FC = () => {
   }, []);
 
   
-    const handleBusClick = () => {
-      navigate(`/traveler/Transport/BusForm/Bus`);
-    }
+  const handleBusClick = (event: React.FormEvent) => {
+    event.preventDefault(); // Prevent form submission
+    // if (selectedFDate) {
+    //   const formattedDate = selectedFDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    //   `);
+    // }
+    navigate(`/traveler/Transport/busForm/bus`);
+  };
+
   return (
     <div>
-      
       <div className='js-halfheight mb-4'
         style={{
           backgroundImage: "url('/images/transport/palace.jpg')", 
@@ -68,7 +73,6 @@ const BusForm: React.FC = () => {
                   <select name="" id="" className="form-control">
                     <option value="">도착지</option>
                     <option value="">부산</option>
-                 
                   </select>
                 </div>
               </div>
@@ -80,7 +84,7 @@ const BusForm: React.FC = () => {
                   className="form-control" // Bootstrap 스타일
                   locale="ko" // 로케일 설정
                   id="checkin_date"
-                  placeholderText="Date from" // 플레이스홀더
+                  placeholderText="가는날" // 플레이스홀더
                 />
               </div>
               {/* <div className="form-group">
@@ -94,12 +98,23 @@ const BusForm: React.FC = () => {
                   placeholderText="Date to" // 플레이스홀더
                 />
               </div> */}
-              <div className="form-group">
+            <div className="form-group">
+                <div className="select-wrap one-third">
+                  <div className="icon"><span className="ion-ios-arrow-down"></span></div>
+                  <select name="" id="" className="form-control">
+                    <option value="">등급</option>
+                    <option value="">우등</option>
+                  </select>
+                </div>
               </div>
               <div className="form-group">
-                <input type="submit" value="예약하기" className="btn btn-primary py-3 px-5" 
-               onClick={handleBusClick} />
-              </div>
+              <input 
+                type="submit" 
+                value="예약하기" 
+                className="btn btn-primary py-3 px-5" 
+                onClick={(event) => handleBusClick(event)} 
+              />
+            </div>
             </div>
           </form>
         </div>
