@@ -3,7 +3,7 @@ package kr.co.user.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+//2025-02-15 전준영 생성
 @RestController
 @RequestMapping("/api/member")
 public class MemberController {
