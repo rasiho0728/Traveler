@@ -153,8 +153,8 @@ const MyDiary: React.FC = () => {
   return (
     <div className={`book ${isEditing ? "editing" : ""}`}>
       {/* 'box' div로 감싸기 */}
-      <div className="box">
-        <div className="bookinfo">
+      <div className="box" style={{marginTop: "120px", marginBottom: "100px"}}>
+        <div className="bookinfo" >
           <HTMLFlipBook
             width={450}
             height={550}

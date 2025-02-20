@@ -98,6 +98,10 @@
     white-space: nowrap;
 }
 
+.box{
+    margin-top: 80px;
+}
+
 /* 첫 번째와 마지막 페이지 배경 제거 */
 .book .page:first-child,
 .book .page:last-child {
@@ -125,7 +129,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
 }
 
 /* 책 내용 스타일 */

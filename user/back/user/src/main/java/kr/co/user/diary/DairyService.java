@@ -2,6 +2,7 @@ package kr.co.user.diary;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -110,12 +111,36 @@ public class DairyService {
         diaryRepository.delete(diary);
     }
     
-
     // 리스트
-    public List<Diary> getAllDiary() {
-        return diaryRepository.findAllByOrderByNumDesc();
+    public List<DiaryVO> getAllDiary() {
+        List<Diary> diaries = diaryRepository.findAllByOrderByNumDesc();
+        List<DiaryVO> diaryVOList = new ArrayList<>();
+
+        for (Diary diary : diaries) {
+            DiaryVO diaryVO = new DiaryVO();
+            diaryVO.setNum(diary.getNum());
+            diaryVO.setTitle(diary.getTitle());
+            diaryVO.setDdate(diary.getDdate());
+            diaryVO.setHeart(diary.getHeart());
+            diaryVO.setHit(diary.getHit());
+            diaryVO.setIsshare(diary.getIsshare());
+            diaryVO.setThumbnail(diary.getThumbnail());
+            diaryVO.setMembernum(diary.getMember().getNum()); // membernum을 직접 매핑
+            
+            // 추가적으로 member도 매핑하여 사용할 수 있습니다
+            MemberVO memberVO = new MemberVO();
+            memberVO.setNum(diary.getMember().getNum());
+            memberVO.setName(diary.getMember().getName());
+            // 필요한 다른 MemberVO의 속성들을 설정할 수 있습니다.
+            diaryVO.setMember(memberVO);
+
+            diaryVOList.add(diaryVO);
+        }
+
+        return diaryVOList;
     }
-    
+
+
     // 디테일
     public Diary getDiaryPages(Long num) { 
         Diary diary = diaryRepository.findById(num)
@@ -133,7 +158,14 @@ public class DairyService {
         return diarypageRepository.findByDiaryNum(diary.getNum());
     }
 
-    public List<Diary> getLatestDiaries() {
-        return diaryRepository.findTop9ByOrderByNumDesc();
+    //공유 다이어리 9개
+    public List<Diary> getShareDiaryList() {
+        return diaryRepository.shareDiaryList();
     }
+
+    //나의 다이어리
+    public List<Object[]> getMyDiaryList(Long membernum) {
+        return diaryRepository.myDiaryList(membernum);
+    }
+    
 }

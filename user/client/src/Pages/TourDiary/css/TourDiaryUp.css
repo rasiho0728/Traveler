@@ -1,199 +1,168 @@
+/* Custom Font */
 @font-face {
-    font-family: 'Ownglyph UNZ';
-    src: url('/public/fonts/Ownglyph UNZ.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Ownglyph UNZ';
+  src: url('/public/fonts/Ownglyph UNZ.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* 전체 책 스타일 */
-.book .album-web {
-    width: 60%;
-    max-width: 600px;
-    height: auto;
-    text-align: center;
+.book-container .album-web {
+  width: 60%;
+  max-width: 600px;
+  height: auto;
+  text-align: center;
 }
 
-/* 각 페이지에 그림자 추가 */
-.book .page {
-    font-family: 'Ownglyph UNZ', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #333;
-    background-image: url('/public/images/Diaryinner.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    box-shadow: 0 1.5em 3em -1em rgb(48, 47, 47);
+/* 페이지 스타일 */
+.book-container .page {
+  font-family: 'Ownglyph UNZ', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #333;
+  background-image: url('/public/images/Diaryinner.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-shadow: 0 1.5em 3em -1em rgb(48, 47, 47);
 }
 
 /* 커버 페이지 스타일 */
-.book .cover {
-    background-color: rgb(248, 255, 225);
-    box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
+.book-container .cover {
+  background-color: rgb(248, 255, 225);
+  box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
 }
 
-.book .cover h2 {
-    white-space: nowrap;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2em;
-    font-weight: bold;
+.book-container .cover h2 {
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  font-weight: bold;
 }
 
 /* 첫 번째, 마지막 페이지 스타일 */
-.book .firstcover, 
-.book .lastcover {
-    display: flex;
-    justify-content: center;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 2px solid #000;
+.book-container .firstcover, 
+.book-container .lastcover {
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid #000;
 }
 
-.book .firstcover {
-    transform: translateX(-250px);
-    background-image: url('/public/images/Diarycover.jpg');
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+.book-container .firstcover {
+  transform: translateX(-250px);
+  background-image: url('/public/images/Diarycover.jpg');
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.book .lastcover {
-    transform: translateX(250px);
-    background-image: url('/public/images/Diarycoverback.png');
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+.book-container .lastcover {
+  transform: translateX(250px);
+  background-image: url('/public/images/Diarycoverback.png');
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
-/* 텍스트 가운데 정렬 */
-.book .firstcover h2, 
-.book .lastcover h2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-    white-space: nowrap;
-}
-
-/* 첫 번째와 마지막 페이지 배경 제거 */
-.book .page:first-child,
-.book .page:last-child {
-    background-color: transparent;
-    box-shadow: none;
+/* 첫 번째와 마지막 페이지 텍스트 중앙 정렬 */
+.book-container .firstcover h2, 
+.book-container .lastcover h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* 페이지 번호 스타일 */
-.book .page-number {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    font-weight: bold;
-    color: #555;
+.book-container .page-number {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
 }
 
 /* 책 배경 스타일 */
-.book {
-    background-image: url('/public/images/diary.jpg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.book-container .book {
+  background-image: url('/public/images/diary.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 책 내용 스타일 */
-.book .bookinfo {
-    width: 70vw;
-    max-width: 1000px;
-    height: auto;
-    padding: 20px;
+.book-container .book .bookinfo {
+  width: 70vw;
+  max-width: 1000px;
+  height: auto;
+  padding: 20px;
 }
 
-.book .bookinfo .img{
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* 이미지에 그림자 추가 */
-    border-radius: 10px; /* 모서리를 둥글게 */
+.book-container .book .bookinfo .img {
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* 이미지에 그림자 추가 */
+  border-radius: 10px; /* 모서리를 둥글게 */
 }
 
-/* 버튼과 폼 스타일 */
-.book .btn,
-.book .form-control {
-    padding: 0.5em var(--padding-x);
-    border-width: 2px;
-    border-style: solid;
-    font-size: 1em;
-    line-height: 1.2;
-    color: inherit;
-    appearance: none;
-}
-
-.book .btn {
-    background-color: aquamarine;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    --padding-x: 1.2em;
-    border-color: transparent;
-}
-
-.book .form-control {
-    --padding-x: 0.5em;
-}
-
-.book input {
-    text-align: center;
+/* 버튼 스타일 */
+.book-container .book .btn,
+.book-container .book .form-control {
+  padding: 0.5em var(--padding-x);
+  border-width: 2px;
+  border-style: solid;
+  font-size: 1em;
+  line-height: 1.2;
+  color: inherit;
+  appearance: none;
 }
 
 /* 수정 버튼 스타일 */
-/* 수정 버튼 스타일 */
-.book .edit-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-  }
-  
-  .book .edit-button:hover {
-    background-color: #45a049;
-  }
-  
-  /* 수정 폼 스타일 - 책 오른쪽 배치 */
+.book-container .book .edit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+  margin-bottom: 20px;
+}
 
+.book-container .book .edit-button:hover {
+  background-color: #45a049;
+}
 
-/* 수정 폼이 오른쪽으로 보이도록 설정 */
-.book .edit-form {
-    margin-top: 200px;
-    margin-right: 100px;
+/* 수정 폼 스타일 */
+.book-container .book .edit-form {
+  margin-top: 200px;
+  margin-right: 100px;
   position: absolute;
   top: 0;
-  right: -400px; /* 초기에는 화면 밖에 위치 */
-  /* height: 100vh; */
+  right: -400px; /* 화면 밖에 초기 위치 */
   width: 400px;
   background-color: #f9f9f9;
   padding: 20px;
@@ -201,133 +170,123 @@
   transition: right 0.5s ease-in-out;
   overflow-y: auto;
 }
-.book.editing {
-    padding-right: 400px;
-    transition: transform 0.5s ease-in-out;
-  }
-  /* 수정 버튼 클릭 시 폼이 오른쪽에서 나타남 */
-  .book.editing .edit-form {
-    right: 0;
-  }
-  
-  /* 폼 스타일 개선 */
-  .book .edit-form form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center; /* 버튼을 가운데 정렬 */
-  }
-  
-  .book .edit-form .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .book .edit-form label {
-    font-weight: bold;
-  }
-  
-  .book .edit-form input,
-  .book .edit-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .book .edit-form textarea {
-    height: 100px;
-    resize: vertical;
-  }
-  
-  .book .edit-form .form-actions {
-    display: flex;
-    justify-content: center; /* 버튼을 가로로 가운데 정렬 */
-    gap: 10px;
-    width: 100%;
-  }
-  
-  .book .edit-form button {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .book .edit-form button[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .book .edit-form button[type="submit"]:hover {
-    background-color: #45a049;
-  }
-  
-  .book .edit-form button[type="button"] {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .book .edit-form button[type="button"]:hover {
-    background-color: #d32f2f;
-  }
-  
-  /* 📌 반응형 디자인 */
-  @media screen and (max-width: 1024px) {
-    .book .edit-form {
+
+.book-container .book.editing {
+  padding-right: 400px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.book-container .book.editing .edit-form {
+  right: 0;
+}
+
+/* 폼 스타일 개선 */
+.book-container .book .edit-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.book-container .book .edit-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.book-container .book .edit-form label {
+  font-weight: bold;
+}
+
+.book-container .book .edit-form input,
+.book-container .book .edit-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.book-container .book .edit-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.book-container .book .edit-form .form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.book-container .book .edit-form button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.book-container .book .edit-form button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+}
+
+.book-container .book .edit-form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.book-container .book .edit-form button[type="button"] {
+  background-color: #f44336;
+  color: white;
+}
+
+.book-container .book .edit-form button[type="button"]:hover {
+  background-color: #d32f2f;
+}
+
+/* 반응형 디자인 */
+@media screen and (max-width: 1024px) {
+  .book .edit-form {
       width: 350px;
-    }
   }
-  
-  @media screen and (max-width: 768px) {
-    .book .edit-form {
+}
+
+@media screen and (max-width: 768px) {
+  .book .edit-form {
       width: 100%;
       right: -100%;
-    }
-  
-    .book.editing .edit-form {
-      right: 0;
-    }
-  
-    .book .edit-button {
-      bottom: 10px;
-      right: 10px;
-    }
   }
 
+  .book-container .book.editing .edit-form {
+      right: 0;
+  }
 
+  .book-container .book .edit-button {
+      bottom: 10px;
+      right: 10px;
+  }
+}
 
-
-
-  /* 전체 컨테이너 */
-.cover-container {
+/* 표지 및 제목 입력 필드 스타일 */
+.book-container .cover-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #dfcaad;
-}
-.title-container{
-  margin-bottom: 10px;
+  padding-top: 50px;
 }
 
-/* 제목 입력 필드 스타일 */
-.title-input {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  max-width: 400px;
-
+.book-container .title-input {
+  margin-top: 50px;
+  margin-bottom: 20px;
   width: 100%;
+  max-width: 400px;
   padding: 12px;
   font-size: 18px;
   border: 2px solid #007bff;
@@ -338,30 +297,28 @@
   transition: all 0.3s ease-in-out;
 }
 
-.title-input:focus {
+.book-container .title-input:focus {
   border-color: #0056b3;
   box-shadow: 0px 4px 15px rgba(0, 86, 179, 0.3);
 }
 
-
-/* 표지 선택 영역 */
-.cover-options {
+/* 표지 선택 스타일 */
+.book-container .cover-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-top: 10px;
 }
 
-/* 표지 이미지 스타일 */
-.cover-item {
-  width: 130px;
-  height: 200px;
+.book-container .cover-item {
+  width: 150px;
+  height: 220px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   margin: 10px;
 }
 
-.cover-item img {
+.book-container .cover-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -380,8 +337,9 @@
 }
 
 /* 생성 버튼 스타일 */
-.create-book-button {
+.book-container .create-book-button {
   margin-top: 30px;
+  margin-bottom: 20px;
   padding: 12px 20px;
   font-size: 18px;
   border: none;
@@ -393,5 +351,28 @@
 }
 
 .create-book-button:hover {
+  background-color: #0056b3;
+}
+
+.diary-btn {
+  display: flex;  /* Flexbox를 사용하여 중앙 정렬 */
+  justify-content: center;  /* 수평 중앙 정렬 */
+  align-items: center;  /* 수직 중앙 정렬 */
+  margin-top: 20px;  /* 버튼 위쪽 여백 */
+}
+
+.diary-btn button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  display: inline-block;  /* 버튼을 inline-block으로 설정 */
+}
+
+.diary-btn button:hover {
   background-color: #0056b3;
 }

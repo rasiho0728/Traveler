@@ -38,13 +38,7 @@
     }
   }
 
-/* 전체 페이지 배경과 레이아웃 설정 */
-body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f4f4f4;
-    padding-top: 50px;
-    /* 상단 여백 */
-}
+
 
 /* 컨테이너 및 내부 레이아웃 */
 .buscontainer {

@@ -58,4 +58,5 @@ public class Diary {
     @JoinColumn(name = "membernum", referencedColumnName = "num")
     @JsonBackReference //자식(Diary)에서 부모(MemberVO) 참조 제거 (무한 루프 방지)
     private MemberVO member;
+
 }

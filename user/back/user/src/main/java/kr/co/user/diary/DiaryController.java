@@ -27,8 +27,8 @@ public class DiaryController {
 
     //리스트 조회
     @GetMapping("/list")
-    public List<Diary> getAllDiary() {
-        return dairyService.getAllDiary();
+    public List<DiaryVO> getAllDiary() {
+        return dairyService.getAllDiary();  // DiaryVO 리스트 반환
     }
 
     // 다이어리 업로드
@@ -66,10 +66,20 @@ public class DiaryController {
      }
     
 
-     // 최신 9개 다이어리 가져오기
-    @GetMapping("/latest")
-    public ResponseEntity<List<Diary>> getLatestDiaries() {
-        List<Diary> latestDiaries = dairyService.getLatestDiaries();
-        return ResponseEntity.ok(latestDiaries);
+    // 공유 다이어리 9개 가져오기
+    @GetMapping("/share")
+    public ResponseEntity<List<Diary>> getShareDiaries() {
+        List<Diary> shareDiaries = dairyService.getShareDiaryList();
+        return ResponseEntity.ok(shareDiaries);
     }
+
+    //나의 다이어리// 컨트롤러 수정
+    @GetMapping("/mydiary/{membernum}")
+    public ResponseEntity<List<Object[]>> getMyDiaryList(@PathVariable("membernum") Long membernum) {
+        List<Object[]> myDiaryList = dairyService.getMyDiaryList(membernum);
+        return ResponseEntity.ok(myDiaryList);
+    }
+
+
+
 }

@@ -73,10 +73,8 @@ const TourDiaryUpload: React.FC = () => {
 
   const user = { name: "홍길동" };
 
-  // 페이지가 홀수 개면 마지막에 빈 페이지 추가
   const adjustedPages = pages.length % 2 !== 0 ? [...pages, { number: (pages.length + 1).toString(), imageUrl: "", comment: "", address: "" }] : pages;
 
-  // 📌 pages가 비어 있으면 기본 페이지 제공
   const finalPages = adjustedPages.length === 0
     ? [{ number: "1", imageUrl: "", comment: "아직 페이지가 없습니다.", address: "" },
       { number: "2", imageUrl: "", comment: "아직 페이지가 없습니다.", address: "" }
@@ -103,18 +101,30 @@ const TourDiaryUpload: React.FC = () => {
     setIsEditing(false);
   };
 
+  // 이미지 파일을 읽어 URL로 변환하는 함수
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewPage({ ...newPage, imageUrl: reader.result as string });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="book-container">
       {!isBookCreated ? (
         <div className="cover-container">
           <div className="title-container">
-          <input
-            type="text"
-            placeholder="다이어리 제목을 입력하세요"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="title-input"
-          />
+            <input
+              type="text"
+              placeholder="다이어리 제목을 입력하세요"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="title-input"
+            />
           </div>
           <div className="cover-options">
             {coverOptions.map((cover, index) => (
@@ -131,54 +141,72 @@ const TourDiaryUpload: React.FC = () => {
         </div>
       ) : (
         <div className={`book ${isEditing ? "editing" : ""}`}>
-          <div className="box">
-            <div className="bookinfo">
-            <HTMLFlipBook
-            width={450}
-            height={550}
-            minWidth={300}
-            maxWidth={1200}
-            minHeight={400}
-            maxHeight={1200}
-            showCover={true}
-            flippingTime={1000}
-            style={{ margin: "0 auto" }}
-            maxShadowOpacity={0.5}
-            className="album-web"
-            startPage={0}
-            size="stretch"
-            drawShadow={true}
-            usePortrait={false}
-            startZIndex={0}
-            autoSize={true}
-            mobileScrollSupport={false}
-            clickEventForward={false}
-            useMouseEvents={true}
-            swipeDistance={50}
-            showPageCorners={true}
-            disableFlipByClick={false}
-          >
-                <FirstPageCover />
-                <PageCover />
-                {finalPages.map((page) => (
-                  <Page key={page.number} number={page.number} user={user.name}>
-                    {page.imageUrl && <img src={page.imageUrl} alt={`Page ${page.number}`} className="page-image" />}
-                    <p>{page.address}</p>
-                    <h4>{page.comment}</h4>
-                  </Page>
-                ))}
-                <PageCover />
-                <LastPageCover />
-              </HTMLFlipBook>
+          <div className="book-box">
+            <div className="box">
+              <div className="bookinfo">
+                <HTMLFlipBook
+                  width={450}
+                  height={550}
+                  minWidth={300}
+                  maxWidth={1200}
+                  minHeight={400}
+                  maxHeight={1200}
+                  showCover={true}
+                  flippingTime={1000}
+                  style={{ margin: "0 auto" }}
+                  maxShadowOpacity={0.5}
+                  className="album-web"
+                  startPage={0}
+                  size="stretch"
+                  drawShadow={true}
+                  usePortrait={false}
+                  startZIndex={0}
+                  autoSize={true}
+                  mobileScrollSupport={false}
+                  clickEventForward={false}
+                  useMouseEvents={true}
+                  swipeDistance={50}
+                  showPageCorners={true}
+                  disableFlipByClick={false}
+                >
+                  <FirstPageCover />
+                  <PageCover />
+                  {finalPages.map((page) => (
+                    <Page key={page.number} number={page.number} user={user.name}>
+                      {page.imageUrl && <img src={page.imageUrl} alt={`Page ${page.number}`} className="page-image" />}
+                      <p>{page.address}</p>
+                      <h4>{page.comment}</h4>
+                    </Page>
+                  ))}
+                  <PageCover />
+                  <LastPageCover />
+                </HTMLFlipBook>
+              </div>
+            </div>
+            <div className="diary-btn" style={{ visibility: isEditing ? "hidden" : "visible" }}>
+              <button onClick={handleEditButtonClick} className="edit-button">새 페이지 추가</button>
             </div>
           </div>
-          <button onClick={handleEditButtonClick} className="edit-button">새 페이지 추가</button>
+
           {isEditing && (
             <div className="edit-form">
               <form onSubmit={handleFormSubmit}>
-                <input type="text" placeholder="이미지 URL" value={newPage.imageUrl} onChange={(e) => setNewPage({ ...newPage, imageUrl: e.target.value })} />
-                <input type="text" placeholder="장소" value={newPage.address} onChange={(e) => setNewPage({ ...newPage, address: e.target.value })} />
-                <input type="text" placeholder="코멘트" value={newPage.comment} onChange={(e) => setNewPage({ ...newPage, comment: e.target.value })} />
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                />
+                <input
+                  type="text"
+                  placeholder="장소"
+                  value={newPage.address}
+                  onChange={(e) => setNewPage({ ...newPage, address: e.target.value })}
+                />
+                <input
+                  type="text"
+                  placeholder="코멘트"
+                  value={newPage.comment}
+                  onChange={(e) => setNewPage({ ...newPage, comment: e.target.value })}
+                />
                 <button type="submit">저장</button>
                 <button type="button" onClick={handleCancelButtonClick}>취소</button>
               </form>

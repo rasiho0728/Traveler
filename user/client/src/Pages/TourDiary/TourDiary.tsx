@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HTMLFlipBook from "react-pageflip";
-import "./css/TourDiaryUp.css";
+import "./css/TourDiary.css";
 import { useParams } from "react-router-dom";
 
 // PageCoverProps에서 children을 옵셔널로 처리
@@ -153,7 +153,7 @@ const TourDiaryUpload: React.FC = () => {
   return (
     <div className={`book ${isEditing ? "editing" : ""}`}>
       {/* 'box' div로 감싸기 */}
-      <div className="box">
+      <div className="box" style={{marginTop: "120px", marginBottom: "100px"}}>
         <div className="bookinfo">
           <HTMLFlipBook
             width={450}

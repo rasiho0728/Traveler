@@ -34,7 +34,7 @@ const Bookshelf: React.FC = () => {
 
   const DiaryList = async() => {
     try{
-      const response = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/api/diary/list`);
+      const response = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/api/diary/share`);
       console.log(response.data)
       setAllPosts(response.data); // 전체 게시글
       setTotalPages(response.data.total_pages);
@@ -78,7 +78,7 @@ const chunkArray = (array: Diary[], size: number) => {
             <div className="bookCover">
               
               <img
-                src={`${process.env.PUBLIC_URL}/images/${diary.thumbnail}`}
+                src={`/images/${diary.thumbnail}`}
                 alt={diary.title}
                 className="shelfImage"
                 style={{boxShadow : "5px 5px 25px rgba(0, 0, 0, 0.5)"}}

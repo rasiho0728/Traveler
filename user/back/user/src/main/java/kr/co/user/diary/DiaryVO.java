@@ -18,5 +18,6 @@ public class DiaryVO {
     private Integer isshare;
     private String thumbnail;
     private String title;
-    private MemberVO mamber;
+    private MemberVO member;
+    private Long membernum;
 }
