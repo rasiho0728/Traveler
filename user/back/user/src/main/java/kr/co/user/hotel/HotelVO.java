@@ -20,6 +20,6 @@ public class HotelVO {
     private String thumbnail;
     private Integer hit;
     private Date hdate;
-    private List<MultipartFile> images; // 업로드하는 파일 처리
-    private List<String> imgNames; // DB에서 자뎌온 이미지 파일 이름 관리
+    // private List<MultipartFile> images; // 업로드하는 파일 처리
+    // private List<String> imgNames; // DB에서 자뎌온 이미지 파일 이름 관리
 }

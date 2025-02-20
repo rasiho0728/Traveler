@@ -15,10 +15,15 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Getter
 @Setter
 @NoArgsConstructor
+@SequenceGenerator(
+    name = "tour_seq_generator",
+    sequenceName = "tour_seq", // Oracle에서 사용할 시퀀스명
+    allocationSize = 1 // 1씩 증가
+)
 public class Tour {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tour_seq_generator")
     @Column(name = "NUM")
     private Long num;  // 기본키 (시퀀스 적용됨)
 
@@ -26,7 +31,7 @@ public class Tour {
     private String name;
 
     @Column(name = "RATING")
-    private Integer rating;
+    private Double rating;
 
     @Column(name = "CONTENT", columnDefinition = "CLOB")
     private String content;

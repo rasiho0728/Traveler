@@ -21,10 +21,11 @@ public class TourSchedule {
     @Column(name = "PLACE", length = 150, nullable = false)
     private String place;
 
-    @Column(name = "CONTENT", columnDefinition = "CLOB", nullable = false)
+    @Lob
+    @Column(name = "CONTENT", nullable = false)
     private String content;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "TOURNUM", nullable = false)
     @JsonBackReference // 🔹 순환 참조 방지
     private Tour tour;

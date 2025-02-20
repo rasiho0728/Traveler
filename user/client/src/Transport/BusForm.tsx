@@ -5,7 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 //2025-02-13수정 최의진
 const BusForm: React.FC = () => {
   const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
-  const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
+  // const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
+  const [depPlaceNm, setDepPlaceNm] = useState('');
+  const [arrPlaceNm, setArrPlaceNm] = useState('');
+  const [arrPlandTime, setArrPlandTime] = useState('');
   const navigate = useNavigate()
   useEffect(() => {
     // 요소의 [data-scrollax] 옵션을 분석 적용
@@ -29,19 +32,16 @@ const BusForm: React.FC = () => {
     };
   }, []);
 
-    const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      try {
-        const formData = new FormData();
-        // formData
-      } catch (error) {
-        
-      }
-    }
+  
+  const handleBusClick = (event: React.FormEvent) => {
+    event.preventDefault(); // Prevent form submission
+    // if (selectedFDate) {
+    //   const formattedDate = selectedFDate.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+    //   `);
+    // }
+    navigate(`/traveler/Transport/busForm/bus`);
+  };
 
-  // const handleReservationClick = () => {
-  //   navigate('/traveler/Transport/BusForm/Bus')
-  // }
   return (
     <div>
       <div className='js-halfheight mb-4'
@@ -56,7 +56,7 @@ const BusForm: React.FC = () => {
       <div className="container">
         <div className="sidebar-wrap bg-light ftco-animate">
           <h3 className="heading mb-4">가는 편 승차원 정보</h3>
-          <form action="#">
+          <form action="#" >
             <div className="fields">
             <div className="form-group">
                 <div className="select-wrap one-third">
@@ -73,7 +73,6 @@ const BusForm: React.FC = () => {
                   <select name="" id="" className="form-control">
                     <option value="">도착지</option>
                     <option value="">부산</option>
-                 
                   </select>
                 </div>
               </div>
@@ -85,7 +84,7 @@ const BusForm: React.FC = () => {
                   className="form-control" // Bootstrap 스타일
                   locale="ko" // 로케일 설정
                   id="checkin_date"
-                  placeholderText="Date from" // 플레이스홀더
+                  placeholderText="가는날" // 플레이스홀더
                 />
               </div>
               {/* <div className="form-group">
@@ -99,12 +98,23 @@ const BusForm: React.FC = () => {
                   placeholderText="Date to" // 플레이스홀더
                 />
               </div> */}
-              <div className="form-group">
+            <div className="form-group">
+                <div className="select-wrap one-third">
+                  <div className="icon"><span className="ion-ios-arrow-down"></span></div>
+                  <select name="" id="" className="form-control">
+                    <option value="">등급</option>
+                    <option value="">우등</option>
+                  </select>
+                </div>
               </div>
               <div className="form-group">
-                <input type="submit" value="예약하기" className="btn btn-primary py-3 px-5" 
-                />
-              </div>
+              <input 
+                type="submit" 
+                value="예약하기" 
+                className="btn btn-primary py-3 px-5" 
+                onClick={(event) => handleBusClick(event)} 
+              />
+            </div>
             </div>
           </form>
         </div>

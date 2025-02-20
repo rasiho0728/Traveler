@@ -138,7 +138,7 @@ const ImgCarousel: React.FC<ImgCarouselProps> = ({
                     <div className="owl-stage img-carousel" style={{ transform: "translate3d(0px, 0px, 0px)", transition: "all", width: "4830px" }}>
                         {
                             data.map((e, i) => (
-                                <div className={`owl-item img-item ${i == 0 ? 'active' : ''}`} style={{ width: `${carouselItemWidth}px` }}>
+                                <div key={i} className={`owl-item img-item ${i == 0 ? 'active' : ''}`} style={{ width: `${carouselItemWidth}px` }}>
                                     <div className="item">
                                         <div className="hotel-img" style={{ backgroundImage: `url(/images/hotel-${e}.jpg)` }}></div>
                                     </div>
@@ -158,7 +158,7 @@ const ImgCarousel: React.FC<ImgCarouselProps> = ({
                 <div className="owl-dots">
                     {
                         Array.from({ length: c_len }, (_, i) => i).map((i) => (
-                            <button key={i} className={`owl-dot img-dot ${i == 0 ? 'active' : ''}`} onClick={_ => handleDotClick(i)}>
+                            <button key={`dot-${i}`} className={`owl-dot img-dot ${i == 0 ? 'active' : ''}`} onClick={_ => handleDotClick(i)}>
                                 <span></span>
                             </button>
                         ))

@@ -52,16 +52,16 @@ import CoalitionDetail from './Pages/Coalition/CoalitionDetail';
 import Bookshelf from './Pages/TourDiary/Bookshelf';
 import MapRoad from './Transport/MapRoad';
 import { geocoding } from './navermaps';
-
-
 import ContactToChat from './Pages/Contact/ContactToChat';
 import Passwordless from './Pages/Login/Passwordless';
 import MyBookshelf from './Pages/TourDiary/MyBookshelf';
 import MyDiary from './Pages/TourDiary/MyDiary';
 import TourDiaryUpload from './Pages/TourDiary/TourDiaryUpload';
 import Bus from './Transport/Bus';
-import BusDetail from './Transport/BusDetail';
+import BusReservation from './Transport/BusReservation';
+import TourSchedule from './Pages/Tour/TourSchedule';
 import BusForm from './Transport/BusForm';
+import TravelTogether from './Pages/TravelTogether/TravelTogether';
 
 function App() {
         const { pathname } = useLocation();
@@ -76,7 +76,8 @@ function App() {
                                 <Route path='/traveler/about' element={<About />} />
                                 <Route path='/traveler/tour' element={<Tour />} />
                                 <Route path='/traveler/tour/rate' element={<Rate />} />
-                                <Route path='/traveler/tour/:num' element={<TourDetail />} />
+                                <Route path='/traveler/tour/:tourId' element={<TourDetail />} />
+                                <Route path="/tours/:tourId/schedules" element={<TourSchedule />} />
                                 <Route path='/traveler/tour/recommended' element={<TourRecommended />} />
                                 <Route path='/traveler/tour/music' element={<TourMusicRecommended onClose={() => { }} />} />
                                 <Route path='/traveler/hotels' element={<Hotel2 />} />
@@ -96,15 +97,16 @@ function App() {
                                 <Route path='/traveler/backpack/:num' element={<BackpackDetail />} /> 2025-02-07 조유경 추가
                                 <Route path='/traveler/BackpackMemo' element={<BackpackMemo />} /> 2025-02-07 조유경 추가 */}
                                 <Route path='/traveler/mypage' element={<MyPage />} /> {/*2025-02-08 장지원 마이페이지 추가 */}
+                                <Route path='/traveler/travelTogether' element={<TravelTogether />} /> {/*2025-02-19 장지원 함께떠나요 추가 */}
                                 <Route path='/traveler/login' element={<Login />} />{/*2025-02-08 전준영 로그인 추가*/}
                                 <Route path='/traveler/passwordless' element={<Passwordless />} />{/*2025-02-08 전준영 패스워드리스로그인 추가*/}
                                 <Route path='/traveler/signup' element={<SignUp />} />{/*2025-02-08 전준영 회원가입 추가*/}
                                 <Route path='/traveler/signselect' element={<SignSelect />} />  {/*2025-02-10 전준영 회원가입 선택 추가*/}
                                 <Route path='/traveler/partner' element={<Partner />} />  {/*2025-02-10 전준영 제휴회사가입 추가*/}
                                 <Route path='/traveler/Transport' element={<Transport />} />  {/*2025-02-04최의진 추가 */}
-                                <Route path='/traveler/Transport/BusForm' element={<BusForm />} />{/*2025-02-10최의진 추가 */}
-                                <Route path='/traveler/Transport/BusForm/Bus' element={<Bus />} />{/*2025-02-15최의진 수정 */}
-                                <Route path='/traveler/Transport/BusForm/Bus/:id' element={<BusDetail />} />{/*2025-02-15최의진 추가 */}
+                                <Route path='/traveler/Transport/busform' element={<BusForm />} />{/*2025-02-10최의진 추가 */}
+                                <Route path='/traveler/Transport/busform/bus' element={<Bus />} />{/*2025-02-15최의진 수정 */}
+                                <Route path='/traveler/Transport/busform/bus/reservation' element={<BusReservation/>} />{/*2025-02-15최의진 추가 */}
                                 <Route path='/traveler/Transport/Train' element={<SubwayDetail />} />{/*2025-02-06최의진 추가 */}
                                 <Route path='/traveler/Weather/weather' element={<WeatherAPI />} /> {/* 2025-02-10 황보도연 추가 */}
                                 {/* <Route path='/traveler/Transport/Airline' element={<Airline />} />2025-02-06최의진 추가 */}
