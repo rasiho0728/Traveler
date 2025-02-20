@@ -1,12 +1,8 @@
 package kr.co.user.member;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
-
+//2025-02-15 전준영 생성
 public interface MemberRepository extends JpaRepository<MemberVO, Long> {
     
     // 아이디로 회원 조회

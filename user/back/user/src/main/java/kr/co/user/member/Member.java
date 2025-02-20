@@ -14,15 +14,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import kr.co.user.bus.Bus;
 import kr.co.user.chat.Chat;
 import kr.co.user.security.Role;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
+//2025-02-15 전준영 생성
 @Data
 @Getter
 @Setter
