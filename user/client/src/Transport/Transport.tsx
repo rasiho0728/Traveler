@@ -84,7 +84,7 @@ const Transport: React.FC = () => {
                                             <p>서울에서 부산까지 고속버스</p>
                                             <hr />
                                             <p className="bottom-area d-flex">
-                                                <span className="ml-auto"><Link to="/traveler/Transport/BusForm">Discover</Link></span>
+                                                <span className="ml-auto"><Link to="/traveler/Transport/busForm">Discover</Link></span>
                                             </p>
                                         </div>
                                     </div>
