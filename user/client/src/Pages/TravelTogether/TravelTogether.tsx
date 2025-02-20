@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../../css/travelTogether.css";
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
@@ -8,6 +8,12 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
 const TravelTogether: React.FC = () => {
+    const [activeBox, setActiveBox] = useState<string>('f-box1');
+    const handleTabClick = (boxId: string) => {
+        setActiveBox(boxId);
+    };
+
+
     // 주석처리한거는 나중에 back할때 데이터 연결을 위해 진짜 필요한것
     // const getRandomData = () => {
     //     const today = new Date();
@@ -196,16 +202,25 @@ const TravelTogether: React.FC = () => {
                                     <div className='f-list'>
                                         <ul className='friend-list-big'>
                                             <li>
-                                                <a href="#">친구목록</a>
+                                                <a onClick={() => handleTabClick('f-box1')}
+                                                className={activeBox === 'f-box1' ? 'active' : ''}>
+                                                    친구목록
+                                                </a>
                                             </li> {/* 검색도 있도록 만들기1 */}
                                             <li>
-                                                <a href="#">친구추가</a>
+                                                <a onClick={() => handleTabClick('f-box2')}
+                                                className={activeBox === 'f-box2' ? 'active' : ''}>
+                                                    친구추가
+                                                </a>
                                             </li> {/* 검색도 있도록 만들기2 */}
                                             <li>
-                                                <a href="#">친구신청</a>
+                                                <a onClick={() => handleTabClick('f-box3')}
+                                                className={activeBox === 'f-box3' ? 'active' : ''}>
+                                                    친구신청
+                                                </a>
                                             </li>
                                         </ul>
-                                        <div className='f-box1'>
+                                        <div className={`f-box1 ${activeBox === 'f-box1' ? 'active' : ''}`}>
                                             <ul>
                                                 <li><img src="/images/pizza.PNG" alt="치즈피자" />테스형1 <span>내용을 적어주세요.</span></li>
                                                 <li><img src="/images/pizza.PNG" alt="치즈피자" />테스형2 <span>여행이 곧 삶, 삶이 곧 여행</span></li>
@@ -213,7 +228,7 @@ const TravelTogether: React.FC = () => {
                                             </ul>
                                         </div>
 
-                                        <div className='f-box2'>
+                                        <div className={`f-box2 ${activeBox === 'f-box2' ? 'active' : ''}`}>
                                             <form action="" className='search-box'>
                                                 <input type="text" className='search-txt' name='' placeholder='검색어를 입력하세요.' />
                                                 <button className='searchFriend-btn' type='submit'>
@@ -222,7 +237,7 @@ const TravelTogether: React.FC = () => {
                                             </form>
                                         </div>
 
-                                        <div className='f-box3'>
+                                        <div className={`f-box3 ${activeBox === 'f-box3' ? 'active' : ''}`}>
                                             <ul>
                                                 <li>
                                                     <div className='unknownFriend'>
