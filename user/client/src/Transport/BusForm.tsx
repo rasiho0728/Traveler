@@ -44,7 +44,6 @@ const BusForm: React.FC = () => {
 
   return (
     <div>
-      
       <div className='js-halfheight mb-4'
         style={{
           backgroundImage: "url('/images/transport/palace.jpg')", 
@@ -74,7 +73,6 @@ const BusForm: React.FC = () => {
                   <select name="" id="" className="form-control">
                     <option value="">도착지</option>
                     <option value="">부산</option>
-                 
                   </select>
                 </div>
               </div>
