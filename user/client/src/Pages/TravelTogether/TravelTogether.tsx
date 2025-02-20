@@ -126,7 +126,7 @@ const TravelTogether: React.FC = () => {
         xAxis: {
             categories: ['서울', '부산', '강원도', '제주도'], // X축 라벨
             title: {
-                text: '지역'
+                text: '지역 선호도 %'
             }
         },
         yAxis: [
@@ -205,11 +205,55 @@ const TravelTogether: React.FC = () => {
                                                 <a href="#">친구신청</a>
                                             </li>
                                         </ul>
-                                        <div className='f-box'>
+                                        <div className='f-box1'>
                                             <ul>
                                                 <li><img src="/images/pizza.PNG" alt="치즈피자" />테스형1 <span>내용을 적어주세요.</span></li>
                                                 <li><img src="/images/pizza.PNG" alt="치즈피자" />테스형2 <span>여행이 곧 삶, 삶이 곧 여행</span></li>
                                                 <li><img src="/images/pizza.PNG" alt="치즈피자" />테스형2 <span>나는 날으는 피자</span></li>
+                                            </ul>
+                                        </div>
+
+                                        <div className='f-box2'>
+                                            <form action="" className='search-box'>
+                                                <input type="text" className='search-txt' name='' placeholder='검색어를 입력하세요.' />
+                                                <button className='searchFriend-btn' type='submit'>
+                                                    <i className='fa-solid fa-magnifying-glass' />
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                        <div className='f-box3'>
+                                            <ul>
+                                                <li>
+                                                    <div className='unknownFriend'>
+                                                        <img src="/images/pizza.PNG" alt="치즈피자" />
+                                                        호호씨1
+                                                    </div>
+                                                    <div className='friend-btn'>
+                                                        <button>수락</button>
+                                                        <button>거절</button>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className='unknownFriend'>
+                                                        <img src="/images/pizza.PNG" alt="치즈피자" />
+                                                        호호씨2
+                                                    </div>
+                                                    <div className='friend-btn'>
+                                                        <button>수락</button>
+                                                        <button>거절</button>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className='unknownFriend'>
+                                                        <img src="/images/pizza.PNG" alt="치즈피자" />
+                                                        호호씨3
+                                                    </div>
+                                                    <div className='friend-btn'>
+                                                        <button>수락</button>
+                                                        <button>거절</button>
+                                                    </div>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
