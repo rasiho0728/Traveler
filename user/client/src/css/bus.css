@@ -1,4 +1,4 @@
-/* buslist 스타일 */
+/******* buslist 스타일 **************/
 .buslist {
     background-color: #fff; /* 배경색 */
     padding: 20px; /* 내부 여백 */
@@ -14,62 +14,8 @@
   .buslist .heading {
     text-align: center;
     font-size: 24px;/* 기본 좌석 버튼 스타일 */
-    .seat {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      background-color: #e0e0e0;
-      text-align: center;
-      line-height: 50px;
-      margin: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-    
-    /* 클릭된 좌석 스타일 */
-    .seat.clicked {
-      background-color: #4CAF50; /* 선택된 좌석은 초록색 */
-      color: white;
-    }
-    
-    /* 선택할 수 없는 좌석 스타일 */
-    .seat.disabled {
-      background-color: #d3d3d3; /* 선택 불가 좌석은 회색 */
-      cursor: not-allowed;
-    }
-    
-    /* 좌석 행 스타일 */
-    .seat-row {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 20px; /* 제목 아래 여백 */
-  }
   
-  /* 반응형 디자인 (작은 화면일 경우) */
-  @media (max-width: 991px) {
-    .buslist {
-      padding: 15px;
-    }
-    .buslist .heading {
-      font-size: 20px;
-    }
   }
-  
-  @media (max-width: 767px) {
-    .buslist {
-      padding: 10px;
-    }
-    .buslist .heading {
-      font-size: 18px;
-    }
-  }
-
 /* 컨테이너 및 내부 레이아웃 */
 .buscontainer {
     max-width: 1200px;
@@ -96,7 +42,31 @@
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
-/* 기본 좌석 버튼 스타일 */
+/***********************************************/
+/*Busreservation*/
+/*json데이터 버스 정보 불러오기*/
+.busdetail{
+ display: flex;
+ justify-Content: center;
+ margin-top: 20px; 
+}
+.busdetail table {
+  border-collapse: collapse;
+  width: 80%;
+}
+.busdetail th {
+
+  border: 1px solid #d3d3d3;
+  padding: 8px;
+  text-align: center;
+}
+.busdetail td{
+  border: 1px solid #d3d3d3;
+  padding: 8px;
+  text-align: center;
+}
+
+/* 기본 버스 좌석 버튼 스타일 */
 .seat {
   display: inline-block;
   width: 50px;
@@ -110,22 +80,24 @@
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
-
-/* 클릭된 좌석 스타일 */
-.seat.clicked {
-  background-color: #4CAF50; /* 선택된 좌석은 초록색 */
-  color: white;
+.seat-wrapper{
+  width: 300px;
+  margin: auto;
 }
-
-/* 선택할 수 없는 좌석 스타일 */
-.seat.disabled {
-  background-color: #d3d3d3; /* 선택 불가 좌석은 회색 */
-  cursor: not-allowed;
-}
-
-/* 좌석 행 스타일 */
 .seat-row {
   display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  justify-content: space-between; /* 좌석들 사이에 균등 간격 추가 */
+  margin-bottom: 10px; /* 각 행 사이의 간격 추가 */
+}
+
+.seat-pair {
+  display: flex; /* 두 좌석을 한 그룹으로 묶어서 가로로 배치 */
+  gap: 5px; /* 좌석들 사이 간격 */
+  margin-right: 10px; /* 두 그룹(A1A2, A3A4) 간의 간격을 줄임 */
+}
+
+
+.seat.clicked {
+  background-color: #5cb85c; /* 선택된 좌석 배경 색 */
+  color: white; /* 선택된 좌석 텍스트 색 */
 }
