@@ -422,7 +422,6 @@ const BackpackForm: React.FC = () => {
                         }}
                         // onClick={() => window.location.href = '/traveler/community'} // 페이지 이동
                         onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#E04848'} // hover 효과
-                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#FF5A5F'}
                     >
                         등록하기
                     </button>
