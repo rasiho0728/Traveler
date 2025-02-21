@@ -1,7 +1,6 @@
 package kr.co.user.bus;
 
-import java.io.IOException;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,7 +27,7 @@ public class BusController {
 
     // 버스 예매
     @PostMapping
-    public ResponseEntity<Bus> createBus(@RequestBody BusVO vo) {
+    public ResponseEntity<?> updateBus(@RequestBody BusVO vo) {
         System.out.println("테스트-------------------------------" + vo);
         try {
             Bus createBus = busService.createBus(vo);
@@ -36,9 +35,12 @@ public class BusController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         }
-
     }
-
+    // @PostMapping
+    // public Bus createBus(@RequestBody BusVO vo){
+    //     Bus createBus = busService.creat
+    //     return busService.createBus(vo);
+    // }
     // 버스 목록
     @GetMapping
     public Page<Bus> getallBus(
@@ -48,13 +50,11 @@ public class BusController {
         return busService.getBusListWithPagination(departure, page, size);
     }
 
-    // 버스 정보
+   // 버스 정보
     @GetMapping("/detail")
     public Bus getBusByNum(@RequestParam("num") Long num) {
         return busService.getBusByNum(num);
     }
 
-    // 버스 목록 조회(페이징 + 검색 가능)
-    // @GetMapping
 
 }

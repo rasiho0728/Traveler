@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import kr.co.user.member.MemberVO;
+
 public interface BusRepository extends JpaRepository<Bus, Long> {
 
     // DB에 존재하는 객체
@@ -15,6 +17,8 @@ public interface BusRepository extends JpaRepository<Bus, Long> {
     @Query(value = "SELECT * FROM bus ORDER BY NUM DESC", nativeQuery = true)
     List<Bus> getBusList(); // 쿼리 직접 지정(리스트에 관한)
 
+    // List<Bus> findByMembernum(MemberVO member);
+    
     // 검색 및 페이징 처리
     @Query(value = """
                   SELECT * FROM (SELECT b.*, ROW_NUMBER() OVER (ORDER BY b.num DESC) as row_num
