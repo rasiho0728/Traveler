@@ -241,7 +241,7 @@ const Hotel: React.FC = () => {
                                                 </Link>
                                                 <div className="text p-3">
                                                     <div className="d-flex">
-                                                        <div className="one">
+                                                        <div className="hotel-one">
                                                             <h3>
                                                                 <Link to={`/traveler/hotels/${hotel.num}`}>
                                                                     {hotel.name}

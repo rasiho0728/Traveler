@@ -1,169 +1,166 @@
 .hotel-reservForm {
- margin-top: 36px;
-  padding: 20px;
-  /* background-color: #f9f9f9; */
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 36px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .hotel-reservForm__fields {
-  margin: 0;
+    margin: 0;
 }
 
 .hotel-reservForm__custom-margin {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .hotel-reservForm__select-wrap {
-  position: relative;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  padding-right: 30px;
+    position: relative;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    padding-right: 30px;
 }
 
 .hotel-reservForm__select-wrap select.form-control {
-  width: 100%;
-  height: 40px;
-  padding: 6px 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .hotel-reservForm__select-wrap .icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .hotel-reservForm__room-details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .hotel-reservForm__room-details img {
-  max-width: 50%;
-  height: auto;
-  border-radius: 5px;
-  margin-left: 20px;
+    max-width: 50%;
+    height: auto;
+    border-radius: 5px;
+    margin-left: 20px;
 }
 
 .hotel-reservForm__room-details h5 {
-  font-size: 20px;
-  margin-bottom: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .hotel-reservForm__room-details p {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 .hotel-reservForm__room-details p strong {
-  font-size: 18px;
-  color: #007bff;
+    font-size: 18px;
+    color: #007bff;
+}
+
+.hotel-reservForm__submit-btn,
+.hotel-reservForm__go-back-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .hotel-reservForm__submit-btn {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    background-color: #007bff;
+    color: white;
 }
 
 .hotel-reservForm__submit-btn:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .hotel-reservForm__go-back-btn {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  border-radius: 5px;
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
+    background-color: #6c757d;
+    color: white;
+    text-align: center;
+    text-decoration: none;
 }
 
 .hotel-reservForm__go-back-btn:hover {
-  background-color: #5a6268;
+    background-color: #5a6268;
 }
 
-@media (max-width: 768px) {
-  .hotel-reservForm__room-details {
-    flex-direction: column;
-    align-items: center;
+.hotel-reservForm__title {
+    font-size: 77px;
+    font-weight: bold;
     text-align: center;
-  }
-
-  .hotel-reservForm__room-details img {
-    max-width: 80%;
-    margin-left: 0;
-    margin-top: 15px;
-  }
-
-  .hotel-reservForm__submit-btn,
-  .hotel-reservForm__go-back-btn {
-    width: 100%;
-  }
-  .hotel-reservForm__title {
-  font-size: 77px; /* 더 큰 글씨 크기 */
-  font-weight: bold; /* 두껍게 */
-  text-align: center; /* 가운데 정렬 */
-  color: #333; /* 어두운 회색 글자 색 */
-  margin-bottom: 30px; /* 아래쪽 여백 추가 */
-  position: relative; /* 장식 추가를 위한 위치 지정 */
+    color: #333;
+    margin-bottom: 30px;
+    position: relative;
 }
 
 .hotel-reservForm__title::after {
-  margin-top: 300px;
-  content: ""; /* 장식용 선 */
-  display: block;
-  width: 50px; /* 선의 너비 */
-  height: 3px; /* 선의 높이 */
-  background-color: #007bff; /* 파란색 */
-  margin: 10px auto 0; /* 위아래 여백과 가운데 정렬 */
-  border-radius: 2px; /* 둥근 모서리 */
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 10px auto 0;
+    border-radius: 2px;
 }
-.hotel-detail-ml-auto,
-.mx-auto {
-  margin-left: auto !important; }
+
+@media (max-width: 768px) {
+    .hotel-reservForm__room-details {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hotel-reservForm__room-details img {
+        max-width: 80%;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .hotel-reservForm__submit-btn,
+    .hotel-reservForm__go-back-btn {
+        width: 100%;
+    }
+
+    .hotel-detail-ml-auto,
+    .mx-auto {
+        margin-left: auto !important;
+    }
 }
-.hotel-icon-map-o:before {
-  content: "\f278";
-}
+
 .hotel-icon-map-o {
-  cursor: pointer; /* 커서를 포인터로 변경 */
+    cursor: pointer;
 }
 
 .hotel-detail-price {
-  font-size: 18px;
-  font-weight: bold;
-  color: #007bff;
-  white-space: nowrap; /* 텍스트가 한 줄에 유지되도록 설정 */
-  overflow: hidden; /* 박스 크기를 초과하는 텍스트 숨김 */
-  text-overflow: ellipsis; /* 초과 텍스트를 '...'로 표시 */
-  display: block; /* 블록 레벨 요소로 강제 설정 */
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
 }
 
 .hotel-detail-price.per-price {
-  text-align: right; /* 텍스트를 오른쪽 정렬 */
-  font-size: 14px;
-  color: #6c757d;
-  margin-top: 5px; /* 텍스트 간격 조정 */
+    text-align: right;
+    font-size: 14px;
+    color: #6c757d;
+    margin-top: 5px;
 }
 
 .hotel-search-form .form-control {
@@ -175,30 +172,108 @@
 .hotel-search-form .btn {
     border-radius: 5px;
     padding: 10px 20px;
-    background-color: #e02b34; 
+    background-color: #e02b34;
     color: #fff;
 }
+
 .hotel-row {
     padding: 20px 0;
-    margin-top: 50px; 
-    background-color: #f8f9fa; 
-}
-.rate .hotel-icon-star {
-    font-size: 1.2rem; /* 별점 크기 */
-    color: gold; /* 별점 색상 */
-}
-.hotel-rate .hotel-icon-star {
-    color: black; /* 별 아이콘 색상 */
+    margin-top: 50px;
+    background-color: #f8f9fa;
 }
 
-.hotel-rate .hotel-rating-value {
-    color: black; /* 평점 숫자 색상 */
+.rate .hotel-icon-star {
+    font-size: 1.2rem;
+    color: gold;
 }
+
 .hotel-rate {
-    background-color: gold; /* 배경색을 금색으로 변경 */
-    padding: 5px; /* 필요에 따라 padding 추가 */
-    border-radius: 5px; /* 필요에 따라 border-radius 추가 */
+    background-color: gold;
+    padding: 7px;
+    border-radius: 10px;
     width: 50px;
     text-align: center;
+    align-items: center;
+    display: flex;
+    min-width: 20px;
+    height: 30px;
 }
 
+.hotel-detail-col-lg-9 {
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.hotel-detail-rating-value {
+    background-color: gold;
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+    white-space: nowrap;
+    font-size: 14px;
+    display: flex;
+}
+
+.hotel-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-detail-rate .hotel-detail-content {
+    flex-grow: 1;
+    height: 30px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    background-color: #0056b3;
+}
+
+.hotel-detail-rate {
+    background-color: gold;
+    padding: 7px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    border: 50px;
+}
+
+.hotel-detail-rate .hotel-icon-star {
+    color: black;
+}
+
+.hotel-detail-rate .hotel-rating-value {
+    color: black;
+}
+
+.hotel-detail-rate {
+    display: flex;
+    align-items: center;
+    width: 50px;
+    height: 30px;
+}
+
+.hotel-address {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.hotel-address p {
+    margin-right: 20px;
+}
+
+.hotel-detail-map {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #351515;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.hotel-rate.mb-5 {
+    background-color: gold;
+    padding: 7px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+}
