@@ -63,6 +63,7 @@ const BackpackChart = () => {
 
   const options: ChartOptions<'bar' | 'line'> = {
     responsive: true,
+    maintainAspectRatio:false,
     plugins: {
       legend: {
         position: 'top',

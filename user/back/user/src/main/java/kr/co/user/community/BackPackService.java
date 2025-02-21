@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import kr.co.user.member.MemberRepository;
@@ -19,6 +22,21 @@ public class BackPackService {
 
     public List<BackPack> getAllBackPackList() {
         return backpackRepository.findAllByOrderByNumDesc(); // 전체 게시글 목록 조회(최신순)
+    }
+
+        public Page<BackPack> getBackPackListWithPagination(String title, int page, int size) {
+        // startRow와 endRow 계산
+        int startRow = (page - 1) * size + 1; // 페이지의 첫 번째 데이터 위치
+        int endRow = startRow + size - 1; // 페이지의 마지막 데이터 위치
+        System.out.println("시작과 끝=====>" + startRow + "/" + endRow);
+        // 데이터베이스에서 검색된 리스트 가져오기 (해당 페이지의 데이터만 조회)
+        List<BackPack> entity = backpackRepository.findByTitleContainingOrderByNumDesc(title, startRow, endRow);
+        System.out.println("리스트 사이즈 : " + entity.size());
+        // 전체 검색 결과 개수 가져오기 (페이지네이션을 위해 필요)
+        int totalElements = backpackRepository.countByTitleContaining(title);
+
+        // PageImpl을 사용하여 Page 객체로 반환
+        return new PageImpl<>(entity, PageRequest.of(page - 1, size), totalElements);
     }
 
     public BackPack createBackPack(BackPackVO vo) { // 새로운 게시글 생성

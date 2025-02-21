@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,7 +52,7 @@ public class BackPackController { // BackPackService로 비즈니스 로직 실�
                     String originalFileName = multipartFile.getOriginalFilename();
                     System.out.println(originalFileName);
                     try {
-                        // 파일 저장 경로 
+                        // 파일 저장 경로
                         Path destinationFile = uploadDir.resolve(originalFileName).normalize();
                         Files.copy(multipartFile.getInputStream(), destinationFile);
                     } catch (FileAlreadyExistsException e) {
@@ -65,6 +67,14 @@ public class BackPackController { // BackPackService로 비즈니스 로직 실�
         }
         vo.setImgnames(imageNames); // 이미지 파일명 성정 후 게시글 생성
         return backpapackService.createBackPack(vo);
+    }
+
+    @GetMapping
+    public Page<BackPack> getAllBackPack(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size", defaultValue = "9") int size,
+            @RequestParam(name = "title", defaultValue = "") String title) {
+        return backpapackService.getBackPackListWithPagination(title, page, size);
     }
 
     // 전체 게시글 조회

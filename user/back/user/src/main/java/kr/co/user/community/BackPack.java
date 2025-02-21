@@ -20,6 +20,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import kr.co.user.member.MemberVO;
@@ -31,6 +32,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity // initialValue: 1부터 시작 // allocationSize: 1씩 증가
+@Table(name = "BACKPACK")
 @SequenceGenerator(name = "backpack_seq_gen", sequenceName = "backpack_seq", initialValue = 1, allocationSize = 1)
 public class BackPack {
     @Id // PK

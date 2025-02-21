@@ -1,20 +1,148 @@
-.like-container{
-    .container{
+.like-container {
+    .container {
+        margin: auto;
+    }
+
+    .like-BigBox > .container{
         margin: 0;
     }
 
-    .like-BigBox{
+    .like-BigBox {
         display: flex;
-        justify-content:center;
+        justify-content: space-between;
     }
+
     .like-chart-container {
         width: 100%;
         max-width: 500px; /* 기존보다 크게 설정 */
         height: 400px; /* 기존보다 높이 증가 */
         padding: 20px;
-        /* background: white;  */
-        /* border-radius: 10px; */
-        /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  */
+    }
+
+    .search-box {
+        display: flex;
+        justify-content: flex-end; /* 검색창을 우측 정렬 */
+        padding: 10px;
+        margin-bottom: 20px; /* 검색창과 컨텐츠 간격 */
+        position: relative;
+        z-index: 100; /* 다른 요소 위에 위치하도록 설정 */
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #ccc; /* 테두리 추가 */
+        padding: 8px;
+        width: 100%;
+        max-width: 400px;
+        background: white; /* 검색창 배경색 추가 */
+        border-radius: 30px; /* 버튼과 동일한 둥근 모양 */
+        position: relative;
+        z-index: 10; /* 클릭 가능하도록 설정 */
+    }
+
+    .form-search {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 30px; /* 검색창 둥글게 */
+        outline: none;
+        cursor: text; /* 입력 필드 클릭 가능 */
+        background: #f8f9fa;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        border: none;
+        background: #FF5A5F; /* 작성하기 버튼과 동일한 색상 */
+        color: white;
+        border-radius: 30px;
+        cursor: pointer; /* 검색 버튼 손가락 모양 */
+        transition: background 0.3s ease;
+        font-weight: bold;
+    }
+
+    .btn-primary:hover {
+        background: #E04848; /* hover 시 색상 변경 */
+        color: white !important;
+        transform: none !important; /*  크기 변경 방지 */
+        padding: 10px 20px !important; /* 패딩 유지 */
+        border: none !important; /* 테두리 변경 방지 */
+    }
+
+    /* 검색 버튼과 입력 필드 클릭 가능하게 설정 */
+    .search-box, .search-container, .form-search, .btn-primary {
+        pointer-events: auto !important;
+    }
+
+    /* 이미지 표시 문제 해결 */
+    .block-20 {
+        width: 100%;
+        height: 200px;
+        background-size: cover; /* 배경 이미지 꽉 차게 */
+        background-position: center; /* 중앙 정렬 */
+        border-radius: 10px;
+        cursor: pointer; /* 이미지 클릭 가능 */
+    }
+
+    /* 게시글 리스트 항목에 커서 추가 */
+    .blog-entry {
+        cursor: pointer;
+    }
+
+    /* 🔥 작성하기 버튼 스타일 추가 */
+    .write-button {
+        display: inline-block;
+        background-color: #FF5A5F; /* 로그인 버튼과 동일한 색상 */
+        color: white;
+        padding: 12px 20px;
+        border-radius: 30px;  /* 로그인 버튼처럼 둥글게 */
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background 0.3s ease; /* 크기 변경 방지 */
+        cursor: pointer;
+        border: none;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+        width: 150px; /* 버튼 크기를 유지 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+        margin-bottom: 20px; /* 페이지네이션과 간격 추가 */
+    }
+
+    /* 🔥 마우스 오버 시 크기 변화 방지 */
+    .write-button:hover {
+        background-color: #E04848; /* hover 시 색상 변경 */
+        color: white;
+        transform: none !important; /* 크기 변경 방지 */
+        padding: 12px 20px !important; /* 패딩 유지 */
+        width: 150px !important; /* 너비 유지 */
+    }
+
+    .chart-box{
+        width: 500px;
+    }
+
+    .mini-backpack{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
     
+
+    .minimini-backpack{
+        padding: 20px;
+        background: #fff;
+        width: 290px;
+        border-radius: 20px;
+        border: 2px solid black;
+    }
+
+    .megaLikeBox{
+        width: 1920px;
+        margin: auto;
+        padding: 0 30px;
+        background: #fff !important;
+    }
 }

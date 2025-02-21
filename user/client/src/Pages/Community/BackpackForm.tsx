@@ -10,7 +10,7 @@ import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import "prismjs/themes/prism.css";
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import { Trie } from '../../Comm/Trie';
-import axios from 'axios';
+import axios from 'axios'; 
 import { EditorType } from '@toast-ui/editor';
 
 
@@ -420,8 +420,9 @@ const BackpackForm: React.FC = () => {
                             border: 'none',
                             boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'
                         }}
-                        // onClick={() => window.location.href = '/traveler/community'} // 페이지 이동
+                        onClick={() => window.location.href = '/traveler/community'} // 페이지 이동
                         onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#E04848'} // hover 효과
+                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#FF5A5F'}
                     >
                         등록하기
                     </button>
