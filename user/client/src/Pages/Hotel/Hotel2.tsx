@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { appear_animate, handleScroll, updateHalfHeight } from '../../Comm/CommomFunc';
 import { Link } from 'react-router-dom';
-// import 'font-awesome/css/font-awesome.min.css';
 import { registerLocale } from "react-datepicker";
 import { ko } from "date-fns/locale/ko"; // 한국어 로케일 가져오기
 import '../../css/hotel.css';
