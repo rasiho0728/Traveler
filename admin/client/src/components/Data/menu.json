@@ -1,6 +1,12 @@
 {
     "menu": [
         {
+            "name": "마이페이지",
+            "routerLink": [""],
+            "iconClass": "icofont-user fs-5",
+            "children": []
+        },
+        {
             "name": "회원팀",
             "routerLink": [""],
             "identifier": "dashboard",

@@ -11,23 +11,19 @@ interface ChatLogs {
 }
 
 interface ChatLogByUsers {
+  name: string;
   username: string;
   chatlog: Array<ChatLogs>;
 }
 
-interface Chating {
-  date: string;
-  chats: Array<{ isUser: boolean; name: string; content: string; }>;
-}
-
 interface ChatingLog {
   Name: string;
+  username: string;
   data: Array<{ date: string; messages: Array<{ message: string; type: string; }> }>;
 }
 
 const Talk: React.FC = () => {
   const [chats, setChats] = useState<ChatLogByUsers[]>([]);
-  const [chatings, setChatings] = useState<Chating[]>([]);
   const [isLoading, setIsLoading] = useState(0);
   const [isConnect, setIsConnect] = useState(true);
   const [isBot, setIsBot] = useState(false);
@@ -51,7 +47,8 @@ const Talk: React.FC = () => {
   const test = async (chatList: ChatLogByUsers[]) => {
     const chatAppData: ChatingLog[] = [];
     for (const chat of chatList) {
-      const name = chat.username;
+      const name = chat.name;
+      const username = chat.username;
       const chatlog = chat.chatlog.filter((item: ChatLogs) => item.type === (isBot ? 1 : 0));
       const chats = await fetchLogContent(chatlog);
 
@@ -63,7 +60,7 @@ const Talk: React.FC = () => {
         })),
       }));
 
-      chatAppData.push({ Name: name, data });
+      chatAppData.push({ Name: name, username:username, data });
     }
     setChatAppData(chatAppData)
     // console.log(chatAppData)

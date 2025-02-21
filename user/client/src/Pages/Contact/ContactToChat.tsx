@@ -180,13 +180,13 @@ const ContactToChat: React.FC = () => {
     const drawChatUI = () => {
         let chatList: ChatLogs[] = chats;
         const isNotToday = (date: string) => { return dateObj(date).toLocaleDateString() !== dateObj().toLocaleDateString() };
-        const isNotInToday = dateObj(chatList[chatList.length - 1]?.cdate).toLocaleDateString() !== dateObj().toLocaleDateString()   
+        const isNotInToday = dateObj(chatList[chatList.length - 1]?.cdate).toLocaleDateString() !== dateObj().toLocaleDateString()
 
         return (
             <div key={isLoading} className="row mb-5">
 
-                <div className='col-md-3 border p-0' style={{ height: '500px', overflowY: 'auto', display: isListVisiable ? 'block' : 'none' }}>
-                    <div className="nav-link-wrap my-3">
+                <div className='col-md-3 border p-0' style={{ height: '500px', display: isListVisiable ? 'block' : 'none' }}>
+                    <div className="nav-link-wrap py-3 d-flex justify-content-center border-bottom">
                         <div className="nav nav-pills nav-fill" id="v-pills-tab">
                             <div className='col-md-4'>
                                 <button className="nav-link" id="v-tab1"
@@ -204,24 +204,26 @@ const ContactToChat: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <button className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
-                        style={{ height: '80px', color: '#bbb' }}
-                        onClick={_ => { handleChatScroll((isBot ? '123' : '456'), `chat${isBot ? 'Bot' : ''}${chatList.length - (isNotInToday ? 0 : 1)}`) }}>
-                        <span className='h6 m-0 text-dark'>{dateObj().toLocaleDateString()} 문의</span>
-                    </button>
-                    {
-                        [...chatList].reverse().map((chat, idx) => {
-                            if (!isNotToday(chat.cdate)) return <></>
-                            return (
-                                <button key={idx}
-                                    className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
-                                    style={{ height: '80px', color: '#bbb' }}
-                                    onClick={_ => { handleChatScroll(isBot ? '123' : '456', `chat${isBot ? 'Bot' : ''}${chatList.length - 1 - idx}`) }}
-                                >
-                                    <span className='h6 m-0 text-dark'>문의 내역: {dateObj(chat.cdate).toLocaleDateString()}</span>
-                                </button>)
-                        })
-                    }
+                    <div className='col-md-12 p-0' style={{ height: '417px', overflowY: 'auto', display: isListVisiable ? 'block' : 'none' }}>
+                        <button className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
+                            style={{ height: '80px', color: '#bbb' }}
+                            onClick={_ => { handleChatScroll((isBot ? '123' : '456'), `chat${isBot ? 'Bot' : ''}${chatList.length - (isNotInToday ? 0 : 1)}`) }}>
+                            <span className='h6 m-0 text-dark'>{dateObj().toLocaleDateString()} 문의</span>
+                        </button>
+                        {
+                            [...chatList].reverse().map((chat, idx) => {
+                                if (!isNotToday(chat.cdate)) return <></>
+                                return (
+                                    <button key={idx}
+                                        className='border-bottom d-flex align-items-center justify-content-center btn btn-light rounded-0 w-100'
+                                        style={{ height: '80px', color: '#bbb' }}
+                                        onClick={_ => { handleChatScroll(isBot ? '123' : '456', `chat${isBot ? 'Bot' : ''}${chatList.length - 1 - idx}`) }}
+                                    >
+                                        <span className='h6 m-0 text-dark'>문의 내역: {dateObj(chat.cdate).toLocaleDateString()}</span>
+                                    </button>)
+                            })
+                        }
+                    </div>
                 </div>
                 <div key={isLoading} className={`${isListVisiable ? 'col-md-9' : 'col-md-12'} border pt-3 bg-opacity-10`}
                     style={{

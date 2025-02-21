@@ -20,6 +20,7 @@ const BagTalk: React.FC<{ data: any, isBot: boolean, setIsBot: (e: boolean) => v
   const [txtMessage, setTxtMessage] = useState("");
 
   useEffect(() => {
+    console.log(chatData);
     setTimeout(() => {
       const chatHistory = document.getElementById("chatHistory")
       if (chatHistory) {
@@ -84,7 +85,7 @@ const BagTalk: React.FC<{ data: any, isBot: boolean, setIsBot: (e: boolean) => v
                     <a href="#!" className="d-flex" onClick={(e) => { e.preventDefault(); setActiveChatIndex(i) }}>
                       <img className="avatar rounded-circle" src={Avatar[i % 10]} alt="" />
                       <div className="flex-fill ms-3 text-truncate">
-                        <h6 className="d-flex justify-content-between mb-0"><span>{d.Name}</span> {/*<small className="msg-time">{d.lastSeen}</small>*/}</h6>
+                        <h6 className="d-flex justify-content-between mb-0"><span>{d.Name}({d.username})</span> <small className="msg-time">{new Date(d.data[d.data.length - 1].date).toLocaleDateString()}</small></h6>
                         <span className="text-muted">{d.data[d.data.length - 1].messages.length > 0 ? d.data[d.data.length - 1].messages[d.data[d.data.length - 1].messages.length - 1].message : ""}</span>
                       </div>
                     </a>
@@ -104,8 +105,8 @@ const BagTalk: React.FC<{ data: any, isBot: boolean, setIsBot: (e: boolean) => v
               {/* <img className="avatar rounded" src={chatData[activeChatIndex].image} alt="avatar" /> */}
             </a>
             <div className="ms-3">
-              <h6 className="mb-0">{chatData[activeChatIndex].Name}</h6>
-              {/* <small className="text-muted">Last seen: {chatData[activeChatIndex].lastSeen}</small> */}
+              <h6 className="mb-0">{chatData[activeChatIndex].Name}({chatData[activeChatIndex].username})</h6>
+              <small className="text-muted">Last date: {new Date(chatData[activeChatIndex].data[chatData[activeChatIndex].data.length - 1].date).toLocaleDateString()}</small>
             </div>
           </div>
           <div className="d-flex">
@@ -121,7 +122,7 @@ const BagTalk: React.FC<{ data: any, isBot: boolean, setIsBot: (e: boolean) => v
                     <div className={`max-width-70 ${d.type === 'user' ? "" : "text-end"}`}>
                       <div className="user-info mb-1">
                         {d.type === 'user' ? <img className="avatar sm rounded-circle me-1" src={Avatar[activeChatIndex % 10]} alt="avatar" /> : null}
-                        {/* <span className="text-muted small">{d.time}</span> */}
+                        <span className="text-muted small">{new Date(dates.date).toLocaleDateString()}</span>
                         {/* <span className="text-muted small">{dates.messages.length}</span> */}
                       </div>
                       <div className={`card border-0 p-3 ${d.type === 'user' ? "" : "color-bg-100 text-light"}`}>
