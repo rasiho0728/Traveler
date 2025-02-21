@@ -81,7 +81,7 @@ export const TotalEmployeesChartData = {
     options:{
         align: 'center',
         chart: {
-            height: 250,
+            height: 200,
             type: 'donut',
             align: 'center',
         },
