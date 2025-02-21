@@ -6,9 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const BusForm: React.FC = () => {
   const [selectedFDate, setSelectedFDate] = useState<Date | null>(null);
   // const [selectedTDate, setSelectedTDate] = useState<Date | null>(null);
-  const [depPlaceNm, setDepPlaceNm] = useState('');
-  const [arrPlaceNm, setArrPlaceNm] = useState('');
-  const [arrPlandTime, setArrPlandTime] = useState('');
+
   const navigate = useNavigate()
   useEffect(() => {
     // 요소의 [data-scrollax] 옵션을 분석 적용

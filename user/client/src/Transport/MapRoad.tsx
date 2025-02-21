@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import '../css/maproad.css';
 import axios from "axios";
 // import { geocoding } from "../navermaps";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MapRoad = () => {
   const [startPoint, setStartPoint] = useState("");
@@ -114,44 +114,60 @@ const MapRoad = () => {
   }, []);
 
   return (
-    <div className="MR-container">
-      <h1 className="MR-heading">최단 경로 찾기</h1>
-      <div className="MR-input-area">
-        <input
-          type="text"
-          placeholder="출발지"
-          value={startPoint}
-          onChange={(e) => setStartPoint(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="도착지"
-          value={endPoint}
-          onChange={(e) => setEndPoint(e.target.value)}
-        />
-        <button onClick={findRoute}>길찾기</button>
-      </div>
-      <div id="map" className="MR-result-map">
-        {distance && <p>총 거리: {distance}m</p>}
-        {routeDetails && routeDetails.length > 0 && (
-          <div>
-            <h3>경로 단계:</h3>
-            <ul>
-              {routeDetails.map((step: any, index: number) => (
-                <li key={index}>
-                  <p>{step.instruction}</p>
-                  <p>거리: {step.distance}m</p>
-                </li>
-              ))}
-            </ul>
+    <div>
+      <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/hotels/hotelbackground2.jpg')" }}>
+        <div className="overlay"></div>
+        <div className="container">
+          <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
+            <div className="col-md-9 ftco-animate text-center" data-scrollax='{"properties": {"translateY": "70%"}}'>
+              <p className="breadcrumbs" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>
+                <span className="mr-2"><Link to="/traveler/home">경로 추천</Link></span>
+                <span>Hotel</span>
+              </p>
+              <h1 className="mb-3 bread" data-scrollax='{"properties": {"translateY": "30%", "opacity": 1.6}}'>숙박</h1>
+            </div>
           </div>
-        )}
+        </div>
       </div>
-      <button className="MR-back-button" onClick={() => navigate(-1)}>이전 페이지로</button>
-      <div className="MR-search-area">
-        <h3>이전 검색 결과</h3>
-        <p>출발지: {startPoint || "없음"}</p>
-        <p>목적지: {endPoint || "없음"}</p>
+      <div className="MR-container">
+        <h1 className="MR-heading">최단 경로 찾기</h1>
+        <div className="MR-input-area">
+          <input
+            type="text"
+            placeholder="출발지"
+            value={startPoint}
+            onChange={(e) => setStartPoint(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="도착지"
+            value={endPoint}
+            onChange={(e) => setEndPoint(e.target.value)}
+          />
+          <button onClick={findRoute}>길찾기</button>
+        </div>
+        <div id="map" className="MR-result-map">
+          {distance && <p>총 거리: {distance}m</p>}
+          {routeDetails && routeDetails.length > 0 && (
+            <div>
+              <h3>경로 단계:</h3>
+              <ul>
+                {routeDetails.map((step: any, index: number) => (
+                  <li key={index}>
+                    <p>{step.instruction}</p>
+                    <p>거리: {step.distance}m</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <button className="MR-back-button" onClick={() => navigate(-1)}>이전 페이지로</button>
+        <div className="MR-search-area">
+          <h3>이전 검색 결과</h3>
+          <p>출발지: {startPoint || "없음"}</p>
+          <p>목적지: {endPoint || "없음"}</p>
+        </div>
       </div>
     </div>
   );

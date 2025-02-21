@@ -20,7 +20,7 @@ public class Diarypage {
     @Id
     @GeneratedValue(generator = "diarypage_seq_gen", strategy = GenerationType.SEQUENCE)
     private Long num;
-   
+
     @Column(name = "PAGE", columnDefinition = "number(2)")
     private Integer page;
 
@@ -51,7 +51,7 @@ public class Diarypage {
     @ManyToOne
     @JoinColumn(name = "diarynum", referencedColumnName = "num")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference //자식(Diarypage)에서 부모(Diary) 참조 제거 (무한 루프 방지)
+    @JsonBackReference // 자식(Diarypage)에서 부모(Diary) 참조 제거 (무한 루프 방지)
     private Diary diary;
-    
+
 }

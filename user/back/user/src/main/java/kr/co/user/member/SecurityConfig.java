@@ -34,6 +34,7 @@ public class SecurityConfig {
                 .httpBasic((basic) -> basic.disable())
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/member/**").permitAll() // 추가!
                         .requestMatchers("/**").permitAll()
                         .anyRequest().permitAll()) // 모든 요청에 대해 인증을 요구
                 // JWT 토큰 필터 추가: JwtTokenFilter를 BasicAuthenticationFilter 전에 추가하여 JWT 토큰을 검증
