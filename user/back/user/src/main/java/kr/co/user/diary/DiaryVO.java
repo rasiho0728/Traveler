@@ -1,7 +1,6 @@
 package kr.co.user.diary;
 
 import java.util.Date;
-
 import kr.co.user.member.MemberVO;
 import lombok.Data;
 import lombok.Getter;

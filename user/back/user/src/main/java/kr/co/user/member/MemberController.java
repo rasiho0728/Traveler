@@ -42,4 +42,5 @@ public class MemberController {
         MemberVO partner = memberService.getPartnerByBusinessNumber(businessNumber);
         return ResponseEntity.ok(partner);
     }
+
 }

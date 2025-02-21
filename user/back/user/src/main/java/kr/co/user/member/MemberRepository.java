@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 //2025-02-15 전준영 생성
 public interface MemberRepository extends JpaRepository<MemberVO, Long> {
+
     
     // 아이디로 회원 조회
     Optional<MemberVO> findByUsername(String username);

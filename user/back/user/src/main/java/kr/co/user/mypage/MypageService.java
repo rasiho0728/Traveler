@@ -45,9 +45,16 @@ public class MypageService{
         return chatLogs.size() > 5 ? chatLogs.subList(0, 5) : chatLogs;
     }
 
+    // 최신블로그 3개 가져오기
     public List<String> getRecentBackPack(String username) {
         List<String> titles = mypageRepository.findRecentBackPack(username);
         return titles.size() > 3 ? titles.subList(0, 3) : titles;
     }
+    
+    // 최신 예약내역 5가지 가져오기
+    public List<String> getHotelReserve(String email){
+        return mypageRepository.findLatestHotelContentsByEmail(email);
+    }
+
     
 }

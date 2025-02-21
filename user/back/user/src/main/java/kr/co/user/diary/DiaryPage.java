@@ -53,5 +53,4 @@ public class Diarypage {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonBackReference // 자식(Diarypage)에서 부모(Diary) 참조 제거 (무한 루프 방지)
     private Diary diary;
-
 }

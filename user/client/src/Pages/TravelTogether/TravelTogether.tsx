@@ -203,19 +203,19 @@ const TravelTogether: React.FC = () => {
                                         <ul className='friend-list-big'>
                                             <li>
                                                 <a onClick={() => handleTabClick('f-box1')}
-                                                className={activeBox === 'f-box1' ? 'active' : ''}>
+                                                    className={activeBox === 'f-box1' ? 'active' : ''}>
                                                     친구목록
                                                 </a>
                                             </li> {/* 검색도 있도록 만들기1 */}
                                             <li>
                                                 <a onClick={() => handleTabClick('f-box2')}
-                                                className={activeBox === 'f-box2' ? 'active' : ''}>
+                                                    className={activeBox === 'f-box2' ? 'active' : ''}>
                                                     친구추가
                                                 </a>
                                             </li> {/* 검색도 있도록 만들기2 */}
                                             <li>
                                                 <a onClick={() => handleTabClick('f-box3')}
-                                                className={activeBox === 'f-box3' ? 'active' : ''}>
+                                                    className={activeBox === 'f-box3' ? 'active' : ''}>
                                                     친구신청
                                                 </a>
                                             </li>
@@ -229,8 +229,12 @@ const TravelTogether: React.FC = () => {
                                         </div>
 
                                         <div className={`f-box2 ${activeBox === 'f-box2' ? 'active' : ''}`}>
-                                            <form action="" className='search-box'>
-                                                <input type="text" className='search-txt' name='' placeholder='검색어를 입력하세요.' />
+                                            <form className='search-box'>
+                                                <input
+                                                    type="text"
+                                                    className='search-txt'
+                                                    placeholder='검색어를 입력하세요.'
+                                                />
                                                 <button className='searchFriend-btn' type='submit'>
                                                     <i className='fa-solid fa-magnifying-glass' />
                                                 </button>
