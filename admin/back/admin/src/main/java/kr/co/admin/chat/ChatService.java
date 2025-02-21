@@ -26,11 +26,13 @@ public class ChatService {
         for (Tuple t : tuples) {
             if(map.get("username") == null){
                 map.put("username", t.get("username"));
+                map.put("name", t.get("name"));
                 map.put("chatlog", chats);
                 result.add(map);
             }else if(!map.get("username").equals(t.get("username"))){
                 chats = new ArrayList<>();
                 map.put("username", t.get("username"));
+                map.put("name", t.get("name"));
                 map.put("chatlog", chats);
                 result.add(map);
                 map = new HashMap<>();

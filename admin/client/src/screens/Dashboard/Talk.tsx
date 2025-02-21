@@ -11,56 +11,59 @@ interface ChatLogs {
 }
 
 interface ChatLogByUsers {
+  name: string;
   username: string;
   chatlog: Array<ChatLogs>;
 }
 
-interface Chating {
-  date: string;
-  chats: Array<{ isUser: boolean; name: string; content: string; }>;
-}
-
 interface ChatingLog {
   Name: string;
+  username: string;
   data: Array<{ date: string; messages: Array<{ message: string; type: string; }> }>;
 }
 
 const Talk: React.FC = () => {
   const [chats, setChats] = useState<ChatLogByUsers[]>([]);
-  const [chatings, setChatings] = useState<Chating[]>([]);
   const [isLoading, setIsLoading] = useState(0);
   const [isConnect, setIsConnect] = useState(true);
   const [isBot, setIsBot] = useState(false);
   const [chatAppData, setChatAppData] = useState<ChatingLog[]>([]);
 
+
   const getFileList = async () => {
     const result = await axios.get(`${process.env.REACT_APP_BACK_END_URL}/chat`);
     const chatLogByUsers = result.data;
-    setChats(chatLogByUsers);
+
+    const sortedData = chatLogByUsers.map((user: any) => ({
+      ...user,
+      chatlog: user.chatlog.sort((a: any, b: any) => new Date(a.cdate).getTime() - new Date(b.cdate).getTime())
+    }));
+
+    setChats(sortedData);
+    // console.log(sortedData)
     await test(chatLogByUsers);
   }
 
   const test = async (chatList: ChatLogByUsers[]) => {
-    const chatAppData: ChatingLog[] = []
-    await Promise.all(
-      chatList.map(async (chat) => {
-        const name = chat.username;
-        const chatlog = chat.chatlog.filter((item: ChatLogs) => item.type === (isBot ? 1 : 0));
-        const chats = await fetchLogContent(chatlog);
-        const data: any = [];
-        chats.map((chat) => {
-          const date = chat.date;
-          const messages: any = []
-          chat.chats.map((c) => {
-            messages.push({ message: c.content, type: c.isUser ? 'user' : 'admin' })
-          })
-          data.push({ date, messages })
-        })
-        chatAppData.push({ Name: name, data: data })
-      })
-    )
+    const chatAppData: ChatingLog[] = [];
+    for (const chat of chatList) {
+      const name = chat.name;
+      const username = chat.username;
+      const chatlog = chat.chatlog.filter((item: ChatLogs) => item.type === (isBot ? 1 : 0));
+      const chats = await fetchLogContent(chatlog);
+
+      const data: any = chats.map((chat) => ({
+        date: chat.date,
+        messages: chat.chats.map((c) => ({
+          message: c.content,
+          type: c.isUser ? "user" : "admin",
+        })),
+      }));
+
+      chatAppData.push({ Name: name, username:username, data });
+    }
     setChatAppData(chatAppData)
-    console.log(chatAppData)
+    // console.log(chatAppData)
     setIsLoading(0);
   }
 
@@ -71,28 +74,27 @@ const Talk: React.FC = () => {
   }, [chats, isBot])
 
   const fetchLogContent = async (chatList: ChatLogs[]) => {
-    const data: Chating[] = [];
     setIsLoading(1);
-    await Promise.all(
+    const data = await Promise.all(
       chatList.map(async (chatData) => {
         try {
-          const response = await axios(`${process.env.REACT_APP_FILES_URL}/logs/${chatData.logfile}`);  // public 폴더 기준 경로
-          const text = await response.data;
-          // console.log(1, text)
+          const response = await axios(`${process.env.REACT_APP_FILES_URL}/logs/${chatData.logfile}`);
+          const text = response.data;
+
           const chats: any[] = [];
-          text.split('\n').map(async (line: string) => {
+          for (const line of text.split('\n')) {
             const [name, type, content] = line.split('||');
-            const isUser = type === 'user' ? true : false;
-            chats.push({ isUser: isUser, name: name, content: content })
-          });
-          data.push({ date: chatData.cdate, chats: chats })
+            const isUser = type === 'user';
+            chats.push({ isUser, name, content });
+          }
+
+          return { date: chatData.cdate, chats };
         } catch (error) {
-          data.push({ date: chatData.cdate, chats: [] })
-          // console.error('Failed to fetch log file:', error);
+          return { date: chatData.cdate, chats: [] };
         }
       })
     );
-    setChatings(data);
+    // setChatings(data);
     // console.log(data);
     return data;
   }
@@ -105,7 +107,6 @@ const Talk: React.FC = () => {
     const ws = new WebSocket(`${process.env.REACT_APP_BACK_END_URL}/ws/folder-watch`);
 
     ws.onmessage = (event) => {
-      console.log(isLoading)
       getFileList();
     };
 
@@ -120,73 +121,9 @@ const Talk: React.FC = () => {
     };
 
     return () => ws.close();
-  }, []);
+  }, [isBot]);
 
-  // const fetchLogContent = async (chatList: ChatLogByUsers) => {
-  //   const data: Chating[] = [];
-  //   setIsLoading(1);
-  //   await Promise.all(
-  //     chatList.chatlog.filter((item: ChatLogs) => item.type === (isBot ? 1 : 0)).map(async (chatData) => {
-  //       try {
-  //         const response = await axios(`${process.env.REACT_APP_FILES_URL}/logs/${chatData.logfile}`);  // public 폴더 기준 경로
-  //         const text = await response.data;
-  //         // console.log(1, text)
-  //         const chats: any[] = [];
-  //         text.split('\n').map(async (line: string) => {
-  //           const [name, type, content] = line.split('||');
-  //           const isUser = type === 'user' ? true : false;
-  //           chats.push({ isUser: isUser, name: name, content: content })
-  //         });
-  //         data.push({ date: chatData.cdate, chats: chats })
-  //       } catch (error) {
-  //         data.push({ date: chatData.cdate, chats: [] })
-  //         // console.error('Failed to fetch log file:', error);
-  //       }
-  //     })
-  //   );
-  //   setChatings(data);
-  //   console.log(data);
-  // }
-
-
-  // const chatAppData: ChatingLog[] = [
-  //   {
-  //     Name: "나그네",
-  //     // lastSeen: "12:37 PM",
-  //     data: {
-  //       date: '2025-02-19',
-  //       messages: [
-  //         {
-  //           message: "안녕하세요, 다음주 월~수 호텔 000 예약했는데 수영장 운영하나요?",
-  //           type: "user",
-  //           // time: "10:10 AM, Today"
-  //         },
-  //         {
-  //           message: "네 문의해보니 시간은 1300~1800 입니다",
-  //           type: 'admin',
-  //           // time: "10:10 AM, Today"
-  //         },
-  //         {
-  //           message: "감사합니다 입장료 무료맞죠?",
-  //           type: 'user',
-  //           // time: "10:10 AM, Today"
-  //         },
-  //         {
-  //           message: "네 맞습니다",
-  //           type: 'admin',
-  //           // time: "10:10 AM, Today"
-  //         },
-  //         {
-  //           message: "감사합니다",
-  //           type: 'user',
-  //           // time: "10:10 AM, Today"
-  //         },
-  //       ]
-  //     }
-  //   },
-  // ]
-
-  if (chatAppData.length === 0) {
+  if (chatAppData.length === 0 && isConnect) {
     return <div>로딩</div>
   }
 
@@ -194,7 +131,7 @@ const Talk: React.FC = () => {
     <div className="container-xxl">
       <div key={isLoading} className="row clearfix g-3">
         {/* <Chattile data={chatAppData} /> */}
-        <BagTalk data={chatAppData} setIsBot={e => setIsBot}/>
+        <BagTalk data={chatAppData} isBot={isBot} setIsBot={e => setIsBot(e)} />
       </div>
     </div>
   )

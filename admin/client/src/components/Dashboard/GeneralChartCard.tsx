@@ -7,7 +7,7 @@ const GeneralChartCard: React.FC<{ identity?: any, Title: any, TitleRight?: any,
     const [option, setOption] = useState(data.options);
     const [series, setSeries] = useState(data.options.series);
     return (
-        <div className="card">
+        <div className="card h-100">
             <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
                 <h6 className="mb-0 fw-bold ">{Title}</h6>
                 {TitleRight ? <h4 className="mb-0 fw-bold">{TitleRight}</h4> : null}
