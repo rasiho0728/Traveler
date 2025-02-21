@@ -98,6 +98,11 @@ const Tour: React.FC = () => {
     const satisfactionData = { categories: ["서울", "제주도", "부산"], data: [95, 90, 88] };
     const visitData = { categories: ["서울", "부산", "강원도"], data: [5000, 4800, 4500] };
   
+    const ad = (a:any) => {
+        console.log(a)
+        return <></>
+    }
+
     return (
         <div>
             <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/bg_3.jpg')" }}>
@@ -242,10 +247,13 @@ const Tour: React.FC = () => {
             <div className="destination">
                 <Link to={`/traveler/tour/${tour.num}`} 
                     className="img img-2 d-flex justify-content-center align-items-center" 
-                    style={{ backgroundImage: `url(/images/${tour.thumbnail})` }}>
+                    style={{ backgroundImage: `url('${process.env.REACT_APP_FILES_URL}/img/tour/${tour.thumbnail}')` }}>
                     <div className="icon d-flex justify-content-center align-items-center">
                         <span className="icon-search2"></span>
                     </div>
+                    {
+                        ad(`url(${process.env.REACT_APP_FILES_URL}/img/tour/${tour.thumbnail})`)
+                    }
                 </Link>
                 <div className="text p-3">
     <h3><Link to={`/traveler/tour/${tour.num}`}>{tour.name}</Link></h3>

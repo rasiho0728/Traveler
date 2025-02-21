@@ -140,7 +140,7 @@ const ImgCarouselTour: React.FC<ImgCarouselProps> = ({
                             data.map((e, i) => (
                                 <div key={i} className={`owl-item img-item ${i == 0 ? 'active' : ''}`} style={{ width: `${carouselItemWidth}px` }}>
                                     <div className="item">
-                                        <div className="hotel-img" style={{ backgroundImage: `url(/images/${e})` }}></div>
+                                        <div className="hotel-img" style={{ backgroundImage: `url(${process.env.REACT_APP_FILES_URL}/img/tour/${e})` }}></div>
                                     </div>
                                 </div>
                             ))

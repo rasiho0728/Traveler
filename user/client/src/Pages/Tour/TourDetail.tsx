@@ -113,7 +113,7 @@ const TourDetail: React.FC = () => {
     }, []);
     return (
         <div>
-            <div className="hero-wrap js-halfheight" style={{ backgroundImage: `url(/images/${tourData?.thumbnail})` }}>
+            <div className="hero-wrap js-halfheight" style={{ backgroundImage: `url(${process.env.REACT_APP_FILES_URL}/img/tour/${tourData?.thumbnail})` }}>
                 <div className="overlay"></div>
                 <div className="container">
                     <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">

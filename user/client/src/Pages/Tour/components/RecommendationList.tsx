@@ -38,7 +38,7 @@ const RecommendationList: React.FC<RecommendationProps> = ({ place }) => {
                     <Link to={`/traveler/tour/${randomTour.num}`}
                         className="img img-2 d-flex justify-content-center align-items-center"
                         style={{
-                            backgroundImage: `url(/images/${randomTour.thumbnail || "default.jpg"})`,
+                            backgroundImage: `url(${process.env.REACT_APP_FILES_URL}/img/tour/${randomTour.thumbnail || "default.jpg"})`,
                             height: "200px",
                             backgroundSize: "cover",
                             borderRadius: "10px",
