@@ -19,38 +19,38 @@ const Login = () => {
   };
 
   return (
-    <div className={`wrapper ${isSubmitted ? "form-success" : ""}`}>
-      <div className="container">
+    <div className={`adminlogin ${isSubmitted ? "form-success" : ""}`}>
+      <div className="admin-container">
         <h1>관리자님 환영합니다</h1>
         {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
         {!isSubmitted ? (
-          <form className="form" onSubmit={handleLogin}>
-            <div className="input-container" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0px" }}>
+          <form className="admin-form" onSubmit={handleLogin}>
+            <div className="admin-input-container">
               <input 
                 type="text" 
                 placeholder="아이디" 
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)} 
-                style={{ textAlign: "center", marginBottom: "5px" }} 
+                className="admin-input"
               />
               <input 
                 type="password" 
                 placeholder="비밀번호" 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
-                style={{ textAlign: "center" }} 
+                className="admin-input"
               />
             </div>
-            <button type="submit" id="login-button" style={{ marginTop: "15px" ,  marginRight: "2px"}}>
+            <button type="submit" id="admin-login-button" className="admin-button">
               로그인
             </button>
-            <button type="submit" id="login-button" style={{ marginTop: "15px" }}>
+            <button type="submit" id="admin-passwordless-button" className="admin-button">
               패스워드리스
             </button>
           </form>
         ) : null}
       </div>
-      <ul className="bg-bubbles">
+      <ul className="admin-bg-bubbles">
         {[...Array(10)].map((_, i) => (
           <li key={i}></li>
         ))}

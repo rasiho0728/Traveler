@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const SingUp: React.FC = () => {
+    const SingUp: React.FC = () => {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -11,33 +13,62 @@ const SingUp: React.FC = () => {
     const [emailCode, setEmailCode] = useState(""); // 사용자가 입력할 인증 코드
     const [generatedCode, setGeneratedCode] = useState(""); // 서버에서 받은 인증 코드
     const [isVerified, setIsVerified] = useState(false); // 이메일 인증 여부
+    const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
 
-    // ID 중복 확인 핸들러
-    const handleCheckDuplicateId = () => {
-        alert(`아이디 사용 가능 여부 확인: ${id}`);
+
+    // ID 중복 확인 요청 (서버연동)
+    const handleCheckDuplicateId = async () => {
+        try {
+            const response = await axios.post("http://localhost:81/userBack/api/auth/idCheck", { username: id });
+            if (response.data.exists) {
+                alert("이미 사용 중인 아이디입니다.");
+            } else {
+                alert("사용 가능한 아이디입니다.");
+            }
+        } catch (error) {
+            console.error("ID 중복 확인 오류:", error);
+            alert("ID 중복 확인 중 오류가 발생했습니다.");
+        }
     };
 
-    // 이메일 인증 코드 전송 핸들러 (랜덤 코드 생성)
-    const handleVerifyEmail = () => {
+    // 이메일 인증 요청 (서버에 이메일 전송)
+    const handleVerifyEmail = async () => {
         if (!email) {
             alert("이메일을 입력해주세요!");
             return;
         }
 
-        // 랜덤 6자리 숫자 생성 (테스트용)
-        const code = Math.floor(100000 + Math.random() * 900000).toString();
-        setGeneratedCode(code);
-        alert(`인증 코드가 ${email}로 전송되었습니다! (테스트 코드: ${code})`);
+        try {
+            const response = await axios.post("http://localhost:81/userBack/api/auth/emailCheck", { email });
+            if (response.data === 0) {
+                alert(`인증 코드가 ${email}로 전송되었습니다.`);
+            } else {
+                alert("이미 사용 중인 이메일입니다.");
+            }
+        } catch (error) {
+            console.error("이메일 인증 요청 오류:", error);
+            alert("이메일 인증 요청 중 오류가 발생했습니다.");
+        }
     };
 
-    // 이메일 인증 코드 확인 핸들러
-    const handleVerifyEmailCode = () => {
-        if (emailCode === generatedCode) {
-            setIsVerified(true);
-            alert("이메일 인증이 완료되었습니다!");
-        } else {
-            alert("인증 코드가 올바르지 않습니다.");
+    // 이메일 인증 코드 확인 (서버에 인증 코드 전송)
+    const handleVerifyEmailCode = async () => {
+        try {
+            const response = await axios.post("http://localhost:81/userBack/api/auth/emailCheck/certification", {
+                email,
+                code: emailCode
+            });
+
+            if (response.data) {
+                setIsVerified(true);
+                alert("이메일 인증이 완료되었습니다!");
+            } else {
+                alert("인증 코드가 올바르지 않습니다.");
+            }
+        } catch (error) {
+            console.error("이메일 인증 코드 확인 오류:", error);
+            alert("이메일 인증 코드 확인 중 오류가 발생했습니다.");
         }
     };
 
@@ -254,8 +285,8 @@ const SingUp: React.FC = () => {
                                     required
                                     maxLength={6}
                                 />
-                                  <span className="focus-input100" data-symbol="&#xf15a;"></span>
-                               
+                                <span className="focus-input100" data-symbol="&#xf15a;"></span>
+
                                 <button type="button" style={checkBtnStyle} onClick={handleVerifyEmailCode}>
                                     확인
                                 </button>

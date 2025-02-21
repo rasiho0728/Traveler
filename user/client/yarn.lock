@@ -2123,6 +2123,7 @@
   dependencies:
     "@swc/helpers" "^0.5.0"
 
+<<<<<<< HEAD
 "@react-google-maps/api@^2.20.6":
   version "2.20.6"
   resolved "https://registry.yarnpkg.com/@react-google-maps/api/-/api-2.20.6.tgz#8463a4db10dd2764b14da4bfe942a584693eb4b3"
@@ -2145,6 +2146,8 @@
   resolved "https://registry.yarnpkg.com/@react-google-maps/marker-clusterer/-/marker-clusterer-2.20.0.tgz#6b64177843a60c66e0ebaf85037a47ecd07007df"
   integrity sha512-tieX9Va5w1yP88vMgfH1pHTacDQ9TgDTjox3tLlisKDXRQWdjw+QeVVghhf5XqqIxXHgPdcGwBvKY6UP+SIvLw==
 
+=======
+>>>>>>> d7cefc334c283d467f0992b0920000ef01173d7b
 "@reduxjs/toolkit@^2.5.1":
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-2.5.1.tgz#29ff1d6dd1cb35e57836e7ca37090063d39703ef"
@@ -6947,7 +6950,11 @@ internmap@^1.0.0:
   resolved "https://registry.yarnpkg.com/internmap/-/internmap-1.0.1.tgz#0017cc8a3b99605f0302f2b198d272e015e5df95"
   integrity sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw==
 
+<<<<<<< HEAD
 invariant@2.2.4, invariant@^2.2.4:
+=======
+invariant@^2.2.4:
+>>>>>>> d7cefc334c283d467f0992b0920000ef01173d7b
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -9520,6 +9527,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
+<<<<<<< HEAD
 prop-types-exact@^1.2.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/prop-types-exact/-/prop-types-exact-1.2.7.tgz#dba4509df22b72f79583bb82e22cce663b05f0e3"
@@ -9532,6 +9540,8 @@ prop-types-exact@^1.2.0:
     object.assign "^4.1.7"
     own-keys "^1.0.0"
 
+=======
+>>>>>>> d7cefc334c283d467f0992b0920000ef01173d7b
 prop-types-extra@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/prop-types-extra/-/prop-types-extra-1.1.1.tgz#58c3b74cbfbb95d304625975aa2f0848329a010b"
@@ -9540,7 +9550,11 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
+<<<<<<< HEAD
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+=======
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.8.1:
+>>>>>>> d7cefc334c283d467f0992b0920000ef01173d7b
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
