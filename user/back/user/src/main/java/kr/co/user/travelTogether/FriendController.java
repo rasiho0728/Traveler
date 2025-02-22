@@ -1,5 +1,8 @@
 package kr.co.user.travelTogether;
 
+import java.util.Collections;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,9 +35,10 @@ public class FriendController {
         return ResponseEntity.ok("친구 요청이 전송되었습니다.");
     }
 
-    // 🔹 친구 검색 (이메일로 사용자 조회)
     @GetMapping("/search")
-    public ResponseEntity<MemberVO> searchUserByEmail(@RequestParam("email") String email) {
-        return ResponseEntity.of(memberRepository.findByEmail(email));
+    public ResponseEntity<Map<String,String>> searchUserByEmail(@RequestParam("email") String email) {
+        return memberRepository.findByEmail(email)
+                .map(member -> ResponseEntity.ok(Collections.singletonMap("name", member.getName())))
+                .orElse(ResponseEntity.notFound().build());
     }
 }

@@ -6,12 +6,60 @@ import { subYears, format, max } from 'date-fns';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import axios from 'axios';
+
+interface UserResponse {
+    name: string;
+}
 
 const TravelTogether: React.FC = () => {
     const [activeBox, setActiveBox] = useState<string>('f-box1');
     const handleTabClick = (boxId: string) => {
         setActiveBox(boxId);
     };
+
+    // 2025.02.22 친구검색
+    const [searchEmail, setSearchEmail] = useState<string>(''); // 이메일 입력값
+    const [searchedUser, setSearchedUser] = useState<UserResponse | null>(null); // 검색된 사용자 정보
+    const [friendRequestSent, setFriendRequestSent] = useState<boolean>(false); // 친구 요청 상태
+
+    // 🔹 이메일로 사용자 검색 (Axios 사용)
+    const handleSearch = async (event: React.FormEvent) => {
+        event.preventDefault(); // 기본 폼 제출 방지
+
+        try {
+            const response = await axios.get<UserResponse>(`http://localhost:81/userBack/api/travelTogether/search`, {
+                params: { email: searchEmail } // ✅ `GET` 요청의 파라미터를 `params`로 전달
+            });
+
+            setSearchedUser(response.data); // ✅ `UserResponse` 타입 사용하여 상태 업데이트
+        } catch (error) {
+            console.error("검색 오류:", error);
+            setSearchedUser(null);
+            alert("사용자를 찾을 수 없습니다.");
+        }
+    };
+
+    // 🔹 친구 요청 보내기 (Axios 사용)
+    const handleSendFriendRequest = async () => {
+        if (!searchedUser) return;
+
+        try {
+            await axios.post(`http://localhost:81/userBack/api/travelTogether/send-request`, null, {
+                params: {
+                    userID: "내ID", // ✅ 실제 사용자 ID로 변경해야 함
+                    email: searchEmail
+                }
+            });
+
+            setFriendRequestSent(true); // ✅ 요청 성공 시 버튼 상태 변경
+            alert("친구 요청이 전송되었습니다!");
+        } catch (error) {
+            console.error("친구 요청 오류:", error);
+            alert("친구 요청을 보내는 데 실패했습니다.");
+        }
+    };
+
 
 
     // 주석처리한거는 나중에 back할때 데이터 연결을 위해 진짜 필요한것
@@ -229,16 +277,33 @@ const TravelTogether: React.FC = () => {
                                         </div>
 
                                         <div className={`f-box2 ${activeBox === 'f-box2' ? 'active' : ''}`}>
-                                            <form className='search-box'>
+                                            <form className='search-box' onSubmit={handleSearch}>
                                                 <input
                                                     type="text"
                                                     className='search-txt'
-                                                    placeholder='검색어를 입력하세요.'
+                                                    placeholder='이메일을 입력하세요.'
+                                                    value={searchEmail}
+                                                    onChange={(e) => setSearchEmail(e.target.value)}
                                                 />
                                                 <button className='searchFriend-btn' type='submit'>
                                                     <i className='fa-solid fa-magnifying-glass' />
                                                 </button>
                                             </form>
+                                            {/* 🔹 검색된 사용자 정보 표시 */}
+                                            {searchedUser && (
+                                                <ul className="search-result">
+                                                    <li>
+                                                        {searchedUser.name} {/* 🔹 사용자의 이름 출력 */}
+                                                        <button
+                                                            className="add-friend-btn"
+                                                            onClick={handleSendFriendRequest}
+                                                            disabled={friendRequestSent} // 요청이 이미 전송되었다면 버튼 비활성화
+                                                        >
+                                                            {friendRequestSent ? "요청됨" : "친구 신청"}
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            )}
                                         </div>
 
                                         <div className={`f-box3 ${activeBox === 'f-box3' ? 'active' : ''}`}>
