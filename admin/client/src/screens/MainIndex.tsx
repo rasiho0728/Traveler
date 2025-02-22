@@ -77,6 +77,7 @@ import Transportissue from "./Projects/Transportissue";
 import Roadissue from "./Projects/Roadissue";
 import MyPay from "./Projects/MyPay";
 import Login from "./Login/Login";
+import MyDashboard from "./Dashboard/MyDashboard";
 
 
 const MainIndex: React.FC = () => {
@@ -96,7 +97,7 @@ const isLoginPage = pathname.includes("/login/login");//로그인 페이지 체�
             {!isLoginPage && activekey !== "/chat-app" ? activekey === "/documentation" ? <PageHeader1 /> : <Header /> : ""}
             <div className="body d-flex py-lg-3 py-md-2">
                 <ReactRoutes>
-                    <Route path={`${process.env.REACT_APP_BASE_URL}/`} element={<HrDashboard />} />
+                    <Route path={`${process.env.REACT_APP_BASE_URL}/`} element={<MyDashboard />} />
                     <Route path={`${process.env.REACT_APP_BASE_URL}/login/login`} element={<Login />} />
                     <Route path={`${process.env.REACT_APP_BASE_URL}/hr-dashboard`} element={<HrDashboard />} />
                     <Route path={`${process.env.REACT_APP_BASE_URL}/community`} element={<Community />} /> {/*2025 02 07 장지원 커뮤니티 수정중 */}

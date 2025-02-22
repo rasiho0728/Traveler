@@ -14,9 +14,12 @@ public class BusVO {
     private Date schedule;
     private String departure;
     private String destination;
-    private String departureoftime;
-    private String destinationoftime;
+    private Date departureoftime;
+    private Date destinationoftime;
     private String sitnum;
     private Long member;
-    
+    //추가
+    // private Date selectedFDate;
+    // private Date departureTime; 
+    // private Date arrivalTime;
 }

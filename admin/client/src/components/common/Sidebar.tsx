@@ -138,8 +138,8 @@ const Sidebar: React.FC<{ activekey: any }> = (props) => {
                   <Link to={`${process.env.REACT_APP_BASE_URL}/${d.routerLink[0]}`} className={`m-link ${(d.routerLink[0] === activekey) ? "active" : ""}`} >
                     <i className={d.iconClass}></i>
                     <span>{d.name}</span>
-                    <span className="arrow icofont-dotted-down ms-auto text-end fs-5">
-                    </span>
+                    {/* <span className="arrow icofont-dotted-down ms-auto text-end fs-5">
+                    </span> */}
                   </Link>
                 </li>
               }

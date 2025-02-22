@@ -10,7 +10,7 @@ import kr.co.admin.member.MemberVO;
 import jakarta.persistence.Tuple;
 
 public interface ChatRepository extends JpaRepository<MemberVO, Long> {
-    @Query("SELECT m.username as username, m.chatlog as chatlog FROM MemberVO m")
+    @Query("SELECT m.username as username, m.name as name, m.chatlog as chatlog FROM MemberVO m")
     List<Tuple> getChatLogs();
 
     Optional<MemberVO> findByUsername(String userName);

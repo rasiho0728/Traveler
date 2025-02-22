@@ -3,12 +3,18 @@ package kr.co.admin.tour;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -18,60 +24,83 @@ public class TourService {
     private final TourScheduleRepository tourScheduleRepository;
     private final TourImageRepository tourImageRepository;
 
+    private String saveFile(MultipartFile file) {
+        try {
+            // ✅ 저장할 디렉토리 지정
+            String uploadDir = "./files/img/tour/";
+            Files.createDirectories(Paths.get(uploadDir)); // 디렉토리 없으면 생성
+
+            String originalFilename = file.getOriginalFilename();
+String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+String fileName = UUID.randomUUID().toString() + "." + extension;
+            Path filePath = Paths.get(uploadDir + fileName);
+    
+            // ✅ 파일 저장
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+    
+            // ✅ 저장된 파일 경로 반환
+            return fileName;
+        } catch (Exception e) {
+            throw new RuntimeException("파일 저장 실패: " + e.getMessage());
+        }
+    }
     // ✅ 투어 등록 (이미지 & 스케줄 포함)
     @Transactional
-public void saveTourWithDetails(Map<String, Object> data) {
-    Tour tour = new Tour();
-    tour.setName((String) data.get("name"));
-
-    // ✅ 변환 시 안전한 처리 (Double → Integer 변환 방어 코드 추가)
-    tour.setRating(data.get("rating") instanceof Number ? ((Number) data.get("rating")).doubleValue() : 0.0);
-    tour.setDays(data.get("days") instanceof Integer ? (Integer) data.get("days") : ((Number) data.get("days")).intValue());
-    tour.setHit(data.get("hit") instanceof Integer ? (Integer) data.get("hit") : ((Number) data.get("hit")).intValue());
-
-    tour.setContent((String) data.get("content"));
-    tour.setLocation((String) data.get("location"));
-    tour.setThumbnail((String) data.get("thumbnail"));
-    tour.setTheme((String) data.get("theme"));
-    tour.setVideoLink((String) data.get("videoLink"));
-    tour.setTDate(new Date());
-
-    // ✅ 부모 엔티티 저장
-    Tour savedTour = tourRepository.saveAndFlush(tour);
-
-    if (savedTour.getNum() == null) {
-        throw new RuntimeException("Tour 저장 실패: ID가 생성되지 않음");
-    }
-
-    // ✅ 이미지 저장
-    List<TourImage> tourImages = new ArrayList<>();
-    List<Map<String, Object>> imgList = (List<Map<String, Object>>) data.get("images");
-    if (imgList != null) {
-        for (Map<String, Object> o : imgList) {
-            TourImage image = new TourImage();
-            image.setImgName((String) o.get("img_name"));
-            image.setTour(savedTour);
-            tourImages.add(image);
+    public void saveTourWithDetails(Map<String, Object> data, MultipartFile thumbnailFile, List<MultipartFile> additionalImageFiles) {
+        Tour tour = new Tour();
+        tour.setName((String) data.get("name"));
+        tour.setRating(data.get("rating") instanceof Number ? ((Number) data.get("rating")).doubleValue() : 0.0);
+        tour.setDays(data.get("days") instanceof Number ? ((Number) data.get("days")).intValue() : 0);
+        tour.setHit(data.get("hit") instanceof Number ? ((Number) data.get("hit")).intValue() : 0);
+        tour.setContent((String) data.get("content"));
+        tour.setLocation((String) data.get("location"));
+        tour.setTheme((String) data.get("theme"));
+        tour.setVideoLink((String) data.get("videoLink"));
+        tour.setTDate(new Date());
+    
+        // ✅ 1️⃣ 썸네일 저장 (파일 있을 경우에만)
+        if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
+            String savedThumbnailPath = saveFile(thumbnailFile);
+            tour.setThumbnail(savedThumbnailPath); // 저장된 경로를 DB에 저장
         }
-        tourImageRepository.saveAll(tourImages);
-    }
-
-    // ✅ 스케줄 저장
-    List<TourSchedule> tourSchedules = new ArrayList<>();
-    List<Map<String, Object>> scheduleList = (List<Map<String, Object>>) data.get("schedules");
-    if (scheduleList != null) {
-        for (Map<String, Object> o : scheduleList) {
-            TourSchedule schedule = new TourSchedule();
-            schedule.setTour(savedTour);
-            schedule.setDay(o.get("day") instanceof Integer ? (Integer) o.get("day") : ((Number) o.get("day")).intValue());
-            schedule.setContent((String) o.get("content"));
-            schedule.setPlace((String) o.get("place"));
-            tourSchedules.add(schedule);
+    
+        // ✅ 2️⃣ 부모 엔티티 저장 (ID 발급)
+        Tour savedTour = tourRepository.saveAndFlush(tour);
+        if (savedTour.getNum() == null) {
+            throw new RuntimeException("Tour 저장 실패: ID가 생성되지 않음");
         }
-        tourScheduleRepository.saveAll(tourSchedules);
+    
+        // ✅ 3️⃣ 추가 이미지 저장
+        List<TourImage> tourImages = new ArrayList<>();
+        if (additionalImageFiles != null) {
+            for (MultipartFile file : additionalImageFiles) {
+                if (!file.isEmpty()) {
+                    String savedImagePath = saveFile(file);
+                    TourImage image = new TourImage();
+                    image.setImgName(savedImagePath);
+                    image.setTour(savedTour);
+                    tourImages.add(image);
+                }
+            }
+            tourImageRepository.saveAll(tourImages);
+        }
+    
+        // ✅ 4️⃣ 스케줄 저장
+        List<TourSchedule> tourSchedules = new ArrayList<>();
+        List<Map<String, Object>> scheduleList = (List<Map<String, Object>>) data.get("schedules");
+        if (scheduleList != null) {
+            for (Map<String, Object> o : scheduleList) {
+                TourSchedule schedule = new TourSchedule();
+                schedule.setTour(savedTour);
+                schedule.setDay(o.get("day") instanceof Number ? ((Number) o.get("day")).intValue() : 0);
+                schedule.setContent((String) o.get("content"));
+                schedule.setPlace((String) o.get("place"));
+                tourSchedules.add(schedule);
+            }
+            tourScheduleRepository.saveAll(tourSchedules);
+        }
     }
-}
-
+    
 
     // ✅ 특정 투어 조회 (스케줄 & 이미지 포함)
     @Transactional(readOnly = true)
