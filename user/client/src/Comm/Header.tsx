@@ -71,12 +71,14 @@ const Header: React.FC = () => {
                             {/* <li className="nav-item active"><Link to="/traveler/home" className="nav-link">홈</Link></li> */}
                             {/* <li className="nav-item"><Link to="/traveler/about" className="nav-link">소개</Link></li> */}
                             <li className="nav-item"><Link to="/traveler/tour" className="nav-link">여행</Link></li>
-                            <li className="nav-item"><Link to="/traveler/backpack" className="nav-link">여행해듀오</Link></li>
+                            {/* <li className="nav-item"><Link to="/traveler/backpack" className="nav-link">여행해듀오</Link></li> */}
                             <li className="nav-item"><Link to="/traveler/diary" className="nav-link">여행다이어리</Link></li>
                             <li className="nav-item"><Link to="/traveler/hotels" className="nav-link">숙박</Link></li>
                             {/* <li className="nav-item"><Link to="/traveler/blog" className="nav-link">블로그</Link></li> */}
                             <li className="nav-item"><Link to="/traveler/Transport" className="nav-link">대중교통</Link></li>
                             <li className="nav-item"><Link to="/traveler/community" className="nav-link">나의 배낭</Link></li>
+                            {/* 2025-02-19 장지원 친구여행 메뉴 추가 */}
+                            <li className="nav-item"><Link to="/traveler/travelTogether" className="nav-link">함께 떠나요</Link></li>
                             {/* <li className="nav-item">
                                 <Link to="/traveler/contact" className="nav-link">Contact</Link>
                                 <a href='#' className="nav-link">커뮤니티</a>

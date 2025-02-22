@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Bookshelf.css"; // CSS import
+import "./css/Bookshelf.css"; // CSS import
 import { Link } from "react-router-dom";
 
 interface Book {
@@ -36,9 +36,10 @@ const Bookshelf: React.FC = () => {
             <Link to={`${book.id}`}>
             <div className="bookCover">
               <img
-                src={book.cover || "/placeholder.svg"}
+                src={book.cover}
                 alt={book.title}
                 className="shelfImage"
+                style={{boxShadow : "5px 5px 25px rgba(0, 0, 0, 0.5)"}}
               />
               {/* 타이틀 표시 부분 */}
               {hoveredBook === book.id && (
@@ -54,12 +55,17 @@ const Bookshelf: React.FC = () => {
   );
 
   return (
-    <div className="bookshelf" style={{ paddingTop: "100px" }}>
+    <div className="bookshelf" style={{ paddingTop: "170px" }}>
+      <div className="titlebox"  style={{ paddingTop: "90px" }}>
+        <h2 >공유 다이어리</h2>
+      </div>
       <div className="shelfContainer">
         {renderShelf(books.slice(0, 3))}
         {renderShelf(books.slice(3, 6))}
         {renderShelf(books.slice(6, 9))}
       </div>
+      
+       
     </div>
   );
 };

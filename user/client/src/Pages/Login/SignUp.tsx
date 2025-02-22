@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const SingUp: React.FC = () => {
+    const SingUp: React.FC = () => {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -8,32 +10,91 @@ const SingUp: React.FC = () => {
     const [ssn, setSsn] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    const [emailCode, setEmailCode] = useState(""); // 사용자가 입력할 인증 코드
+    const [generatedCode, setGeneratedCode] = useState(""); // 서버에서 받은 인증 코드
+    const [isVerified, setIsVerified] = useState(false); // 이메일 인증 여부
+    const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
-    // ID 중복 확인 핸들러
-    const handleCheckDuplicateId = () => {
-        alert(`아이디 사용 가능 여부 확인: ${id}`);
+
+
+    // ID 중복 확인 요청 (서버연동)
+    const handleCheckDuplicateId = async () => {
+        try {
+            const response = await axios.post("http://localhost:81/userBack/api/auth/idCheck", { username: id });
+            if (response.data.exists) {
+                alert("이미 사용 중인 아이디입니다.");
+            } else {
+                alert("사용 가능한 아이디입니다.");
+            }
+        } catch (error) {
+            console.error("ID 중복 확인 오류:", error);
+            alert("ID 중복 확인 중 오류가 발생했습니다.");
+        }
     };
 
-    // Email 인증 핸들러
-    const handleVerifyEmail = () => {
-        alert(`인증 이메일 보내는 중: ${email}`);
+    // 이메일 인증 요청 (서버에 이메일 전송)
+    const handleVerifyEmail = async () => {
+        if (!email) {
+            alert("이메일을 입력해주세요!");
+            return;
+        }
+
+        try {
+            const response = await axios.post("http://localhost:81/userBack/api/auth/emailCheck", { email });
+            if (response.data === 0) {
+                alert(`인증 코드가 ${email}로 전송되었습니다.`);
+            } else {
+                alert("이미 사용 중인 이메일입니다.");
+            }
+        } catch (error) {
+            console.error("이메일 인증 요청 오류:", error);
+            alert("이메일 인증 요청 중 오류가 발생했습니다.");
+        }
     };
+
+    // 이메일 인증 코드 확인 (서버에 인증 코드 전송)
+    const handleVerifyEmailCode = async () => {
+        try {
+            const response = await axios.post("http://localhost:81/userBack/api/auth/emailCheck/certification", {
+                email,
+                code: emailCode
+            });
+
+            if (response.data) {
+                setIsVerified(true);
+                alert("이메일 인증이 완료되었습니다!");
+            } else {
+                alert("인증 코드가 올바르지 않습니다.");
+            }
+        } catch (error) {
+            console.error("이메일 인증 코드 확인 오류:", error);
+            alert("이메일 인증 코드 확인 중 오류가 발생했습니다.");
+        }
+    };
+
+
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         if (ssn.length !== 7) {
-            alert("주민번호는 정확히 7자리여야합니다!");
+            alert("주민번호는 정확히 7자리여야 합니다!");
             return;
         }
 
         if (password !== confirmPassword) {
-            alert("비밀번호가 일치하지 않습니다");
+            alert("비밀번호가 일치하지 않습니다.");
             return;
         }
 
         if (!phone) {
             alert("전화번호는 필수 입력 사항입니다!");
+            return;
+        }
+
+        if (!isVerified) {
+            alert("이메일 인증을 완료해주세요!");
             return;
         }
 
@@ -189,14 +250,57 @@ const SingUp: React.FC = () => {
                             </div>
                         </div>
 
+                        {/* ✅ 이메일 인증 코드 입력 + 확인 버튼 (한 줄로 추가) */}
+                        {/* <div className="wrap-input100 validate-input m-b-15" style={inputContainerStyle}>
+                            <span className="label-input100">코드</span>
+                            <div style={inputContainerStyle}>
+                                <input
+                                    className="input100"
+                                    type="text"
+                                    value={emailCode}
+                                    onChange={(e) => setEmailCode(e.target.value)}
+                                    placeholder="인증 코드 입력"
+                                    required
+                                    maxLength={6}
+                                />
+                                <button
+                                    type="button"
+                                    style={checkBtnStyle}
+                                    onClick={handleVerifyEmailCode}
+                                >
+                                    확인
+                                </button>
+                            </div>
+                        </div> */}
+                        {/* ✅ 이메일 인증 코드 입력 + 확인 버튼 */}
+                        <div className="wrap-input100 validate-input m-b-23" style={inputGroupStyle}>
+                            <span className="label-input100">인증 코드</span>
+                            <div style={inputContainerStyle}>
+                                <input
+                                    className="input100"
+                                    type="text" // ✅ 타입을 "text"로 변경
+                                    value={emailCode}
+                                    onChange={(e) => setEmailCode(e.target.value)}
+                                    placeholder="인증 코드 입력"
+                                    required
+                                    maxLength={6}
+                                />
+                                <span className="focus-input100" data-symbol="&#xf15a;"></span>
+
+                                <button type="button" style={checkBtnStyle} onClick={handleVerifyEmailCode}>
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+
                         {/* 회원가입 버튼 */}
                         <div className="container-login100-form-btn">
                             <div className="wrap-login100-form-btn">
                                 <div className="login100-form-bgbtn"></div>
                                 <button type="submit" className="login100-form-btn">회원가입</button>
                             </div>
-            
-    
+
+
                         </div>
                     </form>
                 </div>

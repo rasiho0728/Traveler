@@ -1,320 +1,388 @@
-import type React from "react"
-import { useState, useRef } from "react"
-import { Link } from "react-router-dom"
+import axios from "axios";
+import React, { useState } from "react";
 
 interface Location {
-  name: string
-  description: string
-  image?: string
+  day: number;
+  place: string;
+  content: string;
 }
 
 interface Tour {
-  name: string
-  description: string
-  category: string
-  startDate: Date
-  endDate: Date
-  price: number
-  link: string
-  isBookable: boolean
-  mainImage?: string
-  additionalImages: string[]
-  locations: Location[]
+  name: string;
+  content: string;
+  location: string;
+  theme: string;
+  videoLink: string;
+  thumbnail: File | null;
+  images: File[];
+  schedules: Location[];
 }
 
 const TourUpload: React.FC = () => {
   const [newTour, setNewTour] = useState<Tour>({
     name: "",
-    description: "",
-    category: "",
-    startDate: new Date(),
-    endDate: new Date(),
-    price: 0,
-    link:"",
-    isBookable: false,
-    mainImage: "",
-    additionalImages: [],
-    locations: [],
-  })
+    content: "",
+    location: "서울",
+    theme: "EP",
+    videoLink: "",
+    thumbnail: null,
+    images: [],
+    schedules: [{ day: 1, place: "", content: "" }],
+  });
 
-  const fileInputRef = useRef<HTMLInputElement>(null)
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setNewTour((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setNewTour((prev) => ({ ...prev, [name]: value }))
-  }
+  const MBTI_CATEGORIES = ["EP", "EJ", "IP", "IJ"];
 
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>, field: "startDate" | "endDate") => {
-    setNewTour((prev) => ({ ...prev, [field]: e.target.value }))
-  }
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, field: "mainImage" | "additionalImages") => {
-    const file = e.target.files?.[0]
+  // ✅ 대표 이미지 업로드
+  const handleThumbnailUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        if (field === "mainImage") {
-          setNewTour((prev) => ({ ...prev, mainImage: reader.result as string }))
-        } else {
-          setNewTour((prev) => ({ ...prev, additionalImages: [...prev.additionalImages, reader.result as string] }))
-        }
-      }
-      reader.readAsDataURL(file)
+      setNewTour((prev) => ({ ...prev, thumbnail: file }));
     }
-  }
+  };
 
-  const handleLocationChange = (index: number, field: keyof Location, value: string) => {
-    setNewTour((prev) => {
-      const newLocations = [...prev.locations]
-      newLocations[index] = { ...newLocations[index], [field]: value }
-      return { ...prev, locations: newLocations }
-    })
-  }
-
-  const handleLocationImageUpload = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
-    const file = e.target.files?.[0]
+  const handleAdditionalImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        setNewTour((prev) => {
-          const newLocations = [...prev.locations]
-          newLocations[index] = { ...newLocations[index], image: reader.result as string }
-          return { ...prev, locations: newLocations }
-        })
-      }
-      reader.readAsDataURL(file)
+      setNewTour((prev) => ({
+        ...prev,
+        images: [...prev.images, file],
+      }));
     }
-  }
+  };
 
-  const addLocation = () => {
+  const removeAdditionalImage = (index: number) => {
     setNewTour((prev) => ({
       ...prev,
-      locations: [...prev.locations, { name: "", description: "", image: "" }],
-    }))
-  }
+      images: prev.images.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleLocationChange = (index: number, field: keyof Location, value: string | number) => {
+    setNewTour((prev) => {
+      const newLocations = [...prev.schedules];
+      newLocations[index] = { ...newLocations[index], [field]: value };
+      return { ...prev, schedules: newLocations };
+    });
+  };
+
+  const addLocation = () => {
+    if (newTour.schedules.length < 20) {
+      setNewTour((prev) => ({
+        ...prev,
+        schedules: [
+          ...prev.schedules,
+          { day: prev.schedules.length + 1, place: "", content: "" },
+        ],
+      }));
+    }
+  };
 
   const removeLocation = (index: number) => {
     setNewTour((prev) => ({
       ...prev,
-      locations: prev.locations.filter((_, i) => i !== index),
-    }))
-  }
+      schedules: prev.schedules.filter((_, i) => i !== index),
+    }));
+  };
 
-  const styles = {
-    squareUpload: {
-      position: "relative" as const,
-      width: "200px",
-      height: "200px",
+
+  // ✅ 백엔드로 데이터 전송
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    const formData = new FormData();
+  
+    // ✅ JSON 데이터 추가 (string으로 변환)
+    const jsonData = {
+      name: newTour.name,
+      content: newTour.content,
+      location: newTour.location,
+      theme: newTour.theme,
+      videoLink: newTour.videoLink,
+      images: newTour.images.map((file) => ({
+        img_name: file.name,
+      })),
+      schedules: newTour.schedules.map((location) => ({
+        day: location.day,
+        place: location.place,
+        content: location.content,
+      })),
+      days: newTour.schedules.length > 0 ? Math.max(...newTour.schedules.map(schedule => schedule.day)) : 0,
+      rating: 0,
+      hit: 0,
+    };
+  
+    formData.append("jsonData", JSON.stringify(jsonData));
+  
+    // ✅ 대표 이미지 추가
+    if (newTour.thumbnail) {
+      formData.append("thumbnail", newTour.thumbnail);
+    }
+  
+    // ✅ 추가 이미지 추가
+    newTour.images.forEach((file) => {
+      formData.append("additionalImages", file);
+    });
+  
+    // ✅ FormData 디버깅
+    console.log("📢 FormData 내용:");
+    for (let pair of formData.entries()) {
+      if (pair[1] instanceof File) {
+        console.log(`${pair[0]}: File Name - ${pair[1].name}`);
+      } else {
+        console.log(`${pair[0]}:`, pair[1]);
+      }
+    }
+  
+    try {
+      const response = await axios.post("http://localhost:82/adminBack/api/tours/upload", formData);
+      console.log("✅ 투어 등록 성공:", response.data);
+      alert("투어가 성공적으로 등록되었습니다!");
+    } catch (error) {
+      console.error("❌ 투어 등록 실패:", error);
+      alert("투어 등록에 실패했습니다.");
+    }
+  };
+  
+  
+
+  const styles: { [key: string]: React.CSSProperties } = {
+    imageContainer: {
+      display: "flex",
+      gap: "10px",
+      alignItems: "center",
+      flexWrap: "wrap",
+    },
+    uploadBox: {
+      position: "relative",
+      width: "120px",
+      height: "120px",
       border: "2px dashed #ccc",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       overflow: "hidden",
+      borderRadius: "8px",
+      cursor: "pointer",
     },
     fileInput: {
-      position: "absolute" as const,
+      position: "absolute",
       width: "100%",
       height: "100%",
       opacity: 0,
       cursor: "pointer",
     },
-    imgPreview: {
-      maxWidth: "100%",
-      maxHeight: "100%",
-      objectFit: "cover" as const,
+    imagePreview: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
     },
-  }
+    removeButton: {
+      position: "absolute",
+      top: "5px",
+      right: "5px",
+      background: "black",
+      color: "white",
+      border: "none",
+      borderRadius: "50%",
+      width: "20px",
+      height: "20px",
+      cursor: "pointer",
+      fontSize: "12px",
+    },
+    textarea: {
+      height: "100px",
+      overflowY: "auto",
+      resize: "none",
+    },
+  };
 
   return (
-    <div>
-      {/* Tour Upload Form */}
-      <div className="container mt-5">
-        <h1 className="mb-4">새 투어 등록</h1>
-        <form>
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              투어 이름
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={newTour.name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="description" className="form-label">
-              투어 설명
-            </label>
-            <textarea
-              className="form-control"
-              id="description"
-              name="description"
-              value={newTour.description}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="category" className="form-label">
-              카테고리
-            </label>
-            <select
-              className="form-select"
-              id="category"
-              name="category"
-              value={newTour.category}
-              onChange={handleInputChange}
-              required
-            >
-              <option value="">카테고리 선택</option>
-              <option value="culture">문화</option>
-              <option value="nature">자연</option>
-              <option value="history">역사</option>
-              <option value="activity">액티비티</option>
-            </select>
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="price" className="form-label">
-              1인당 가격 (원)
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="price"
-              name="price"
-              value={newTour.price}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-
-         
-
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="isBookable"
-              name="isBookable"
-              checked={newTour.isBookable}
-              onChange={(e) => setNewTour((prev) => ({ ...prev, isBookable: e.target.checked }))}
-            />
-            <label className="form-check-label" htmlFor="isBookable">
-              예약 가능 여부
-            </label>
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="mainImage" className="form-label">
-              대표 이미지
-            </label>
-            <div style={styles.squareUpload}>
-              <input
-                type="file"
-                style={styles.fileInput}
-                id="mainImage"
-                name="mainImage"
-                accept="image/*"
-                onChange={(e) => handleImageUpload(e, "mainImage")}
-              />
-              {newTour.mainImage && (
-                <img src={newTour.mainImage || "/placeholder.svg"} alt="Main" style={styles.imgPreview} />
-              )}
-            </div>
-          </div>
-
-          <div className="mb-3">
-           
-            <div className="row mt-2">
-              {newTour.additionalImages.map((img, index) => (
-                <div key={index} className="col-md-3 mb-2">
-                  <img
-                    src={img || "/placeholder.svg"}
-                    alt={`Additional ${index + 1}`}
-                    className="img-thumbnail"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mb-3">
-            
-            {newTour.locations.map((location, index) => (
-              <div key={index} className="card mb-3">
-                <div className="card-body">
-                  <input
-                    type="text"
-                    className="form-control mb-2"
-                    placeholder="장소 이름"
-                    value={location.name}
-                    onChange={(e) => handleLocationChange(index, "name", e.target.value)}
-                  />
-                  <textarea
-                    className="form-control mb-2"
-                    placeholder="장소 설명"
-                    value={location.description}
-                    onChange={(e) => handleLocationChange(index, "description", e.target.value)}
-                  />
-                  <div style={styles.squareUpload} className="mb-2">
-                    <input
-                      type="file"
-                      style={styles.fileInput}
-                      accept="image/*"
-                      onChange={(e) => handleLocationImageUpload(e, index)}
-                    />
-                    {location.image && (
-                      <img src={location.image || "/placeholder.svg"} alt={location.name} style={styles.imgPreview} />
-                    )}
-                  </div>
-                  <div className="d-flex justify-content-end">
-                  <div className="d-flex justify-content-end">
-                    <button type="button" className="btn btn-danger" onClick={() => removeLocation(index)}>
-                      삭제
-                    </button>
-                  </div>
-                  </div>
-                </div>
-              </div>
+    <div className="container mt-5">
+      <h1 className="mb-4">새 투어 등록</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="name" className="form-label">
+            투어 이름
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="name"
+            name="name"
+            value={newTour.name}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">투어 장소</label>
+          <select
+            className="form-select"
+            name="location"
+            value={newTour.location}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="서울">서울</option>
+            <option value="제주도">제주도</option>
+            <option value="부산">부산</option>
+            <option value="강원도">강원도</option>
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="content" className="form-label">
+            투어 설명
+          </label>
+          <textarea
+            className="form-control"
+            id="content"
+            name="content"
+            value={newTour.content}
+            onChange={handleInputChange}
+            style={styles.textarea}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">추천 카테고리 (MBTI 기반)</label>
+          <select
+            className="form-select"
+            name="theme"
+            value={newTour.theme}
+            onChange={handleInputChange}
+            required
+          >
+            {MBTI_CATEGORIES.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
             ))}
-           
-              <button type="button" className="btn btn-primary mb-2" onClick={addLocation}>
-                장소 추가
-              </button>
-            
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="link" className="form-label">
-              영상링크
-            </label>
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="videoLink" className="form-label">
+            비디오 링크
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="videoLink"
+            name="videoLink"
+            value={newTour.videoLink}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-3">
+        <label className="form-label">대표 이미지</label>
+        <div style={styles.imageContainer}>
+          <div style={styles.uploadBox}>
             <input
-              type="text"
-              className="form-control"
-              id="link"
-              name="link"
-              value={newTour.link}
-              onChange={handleInputChange}
-              required
+              type="file"
+              style={styles.fileInput}
+              accept="image/*"
+              onChange={handleThumbnailUpload}
+            />
+            {newTour.thumbnail ? (
+              <img src={URL.createObjectURL(newTour.thumbnail)} alt="대표 이미지" style={styles.imagePreview} />
+            ) : (
+              <span>+</span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ 추가 이미지 업로드 */}
+      <div className="mb-3">
+        <label className="form-label">추가 이미지</label>
+        <div style={styles.imageContainer}>
+          {newTour.images.map((image, index) => (
+            <div key={index} style={styles.uploadBox}>
+              <img src={URL.createObjectURL(image)} alt={`추가 이미지 ${index + 1}`} style={styles.imagePreview} />
+              <button
+                style={styles.removeButton}
+                type="button"
+                onClick={() => removeAdditionalImage(index)}
+              >
+                ×
+              </button>
+            </div>
+          ))}
+          <div style={styles.uploadBox}>
+            <input
+              type="file"
+              style={styles.fileInput}
+              accept="image/*"
+              onChange={handleAdditionalImageUpload}
             />
           </div>
-
-          <div className="mb-3">
-            <button type="submit" className="btn btn-success">
-              투어 등록
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
+        <div className="mb-3">
+          {newTour.schedules.map((location, index) => (
+            <div key={index} className="card mb-3">
+              <div className="card-body">
+                <select
+                  className="form-select mb-2"
+                  value={location.day}
+                  onChange={(e) =>
+                    handleLocationChange(index, "day", parseInt(e.target.value))
+                  }
+                >
+                  {[1, 2, 3, 4, 5].map((day) => (
+                    <option key={day} value={day}>
+                      {day}일차
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="text"
+                  className="form-control mb-2"
+                  placeholder="장소 이름"
+                  value={location.place}
+                  onChange={(e) =>
+                    handleLocationChange(index, "place", e.target.value)
+                  }
+                />
+                <textarea
+                  className="form-control mb-2"
+                  placeholder="장소 설명"
+                  value={location.content}
+                  onChange={(e) =>
+                    handleLocationChange(index, "content", e.target.value)
+                  }
+                  style={styles.textarea}
+                />
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => removeLocation(index)}
+                >
+                  삭제
+                </button>
+              </div>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={addLocation}
+          >
+            + 스케줄 추가
+          </button>
+        </div>
+        <button type="submit" className="btn btn-success">
+          투어 등록
+        </button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default TourUpload
-
+export default TourUpload;

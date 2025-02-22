@@ -30,6 +30,7 @@
     flex: 0.4;
     min-width: 180px;
     padding: 12px;
+    color: black;
     border: 1px solid rgba(200, 200, 200, 0.5); /* 연한 테두리 */
     border-radius: 8px;
     font-size: 16px;
@@ -40,6 +41,7 @@
     flex: 0.4;
     min-width: 180px;
     padding: 12px;
+    color: black;
     border: 1px solid rgba(200, 200, 200, 0.5); /* 연한 테두리 */
     border-radius: 8px;
     font-size: 16px;
@@ -65,6 +67,7 @@
 .home-search-bar .date-field {
     width: 100%;
     padding: 12px;
+    color: black;
     border: 1px solid rgba(200, 200, 200, 0.5);
     border-radius: 8px;
     font-size: 16px;

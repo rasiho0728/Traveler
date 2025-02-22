@@ -1,0 +1,20 @@
+.like-container{
+    .container{
+        margin: 0;
+    }
+
+    .like-BigBox{
+        display: flex;
+        justify-content:center;
+    }
+    .like-chart-container {
+        width: 100%;
+        max-width: 500px; /* 기존보다 크게 설정 */
+        height: 400px; /* 기존보다 높이 증가 */
+        padding: 20px;
+        /* background: white;  */
+        /* border-radius: 10px; */
+        /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  */
+    }
+    
+}

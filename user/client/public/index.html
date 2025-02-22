@@ -36,9 +36,25 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
   integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <!--카카오 맵 api-->
-  <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0b998fb74842d1e39d265724fb1257fc4&autoload=false"></script>
+
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
+  <!--네이버 map api-->
+  <script type="text/javascript" 
+  src="https://openapi.map.naver.com/v1/maps.js?ncpClientId=%REACT_APP_NAVER_CLIENT_ID%">
+  </script>
+  <!--구글 map api-->
+<script>
+  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    key: "AIzaSyAeD1uxDcg8St8QRAF4-Q7rVAhtx_5YMD8",
+    v: "weekly",
+    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+    // Add other bootstrap parameters as needed, using camel case.
+  });
+</script>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -56,6 +72,8 @@
   <script src="/vendor/daterangepicker/daterangepicker.js"></script>
   <script src="/vendor/countdowntime/countdowntime.js"></script>
   <script src="/js/main.js"></script>
+  
+
 </body>
 
 </html>

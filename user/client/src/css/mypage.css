@@ -21,6 +21,59 @@
         list-style: none;
     }
 
+    /* *******************************차트******************************** */
+    /* .chart-container{
+      border-radius: 7px;
+      background: #fff5eb;
+      padding: 0 15px
+    } */
+
+    .myChart .chart-container {
+      width: 100%;
+      height: 423px;
+      border-radius: 7px;
+      background: #fff5eb;
+      padding:0 15px 0 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .myChart .chart-container svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .myChart .chart-container > img{
+      position: absolute;
+      /* top: 0; */
+      width: 53.33333%;
+      bottom: -86px;
+      right: -10px;
+      opacity: 0.5;
+    }
+
+    .history-container {
+      display: flex; /* ✅ 한 줄 배치 */
+      justify-content: space-between; /* ✅ 좌우 간격 조정 */
+      align-items: flex-start;
+      width: 100%; /* ✅ 부모 요소 크기 맞춤 */
+      gap: 20px; /* ✅ 문의내역과 그래프 사이 간격 */
+      flex-wrap: wrap;
+    }
+
+    .apexcharts-bar-series.apexcharts-plot-series {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* ✅ 바 사이 간격 조정 */
+    }
+
+    .myChart{
+      flex: 1; /* ✅ 그래프가 적절한 비율로 축소 */
+      /* min-width: 300px; ✅ 최소 크기 지정 */
+      margin-top: 20px;
+    }
+
+
     .inner{
         max-width: 1360px;
         margin: 50px auto;
@@ -111,10 +164,15 @@
         border-top: 1px solid #ccc;
     }
     .log{
-        margin-top: 40px;
+        margin-top: 20px;
         display: flex;
+        justify-content: space-between;
         border-top: 1px solid #ccc;
-        flex-wrap: wrap;
+    }
+    .my-list{
+      display: flex;
+      /* justify-content: space-between; */
+      flex-wrap: wrap;
     }
     .my-bag,
     .my-blog{
@@ -123,7 +181,8 @@
     }
     .my-bag > h2,
     .my-blog > h2,
-    .chatting > h2{
+    .chatting > h2,
+    .myChart > h2{
         font-size: 20px;
         font-weight: 600;
         margin-bottom: 10px;
@@ -142,12 +201,21 @@
 
     .my-blog-text > a{
         color: #555;
+        margin-right: 10px;
     }
 
     .my-blog-text > a > i{
         font-size: 13px;
         margin-right: 3px;
         font-weight: 500;
+    }
+
+    .my-blog > ol > li > a{
+      color: #333;
+    }
+
+    .my-blog > ol > li > a:hover{
+      color: #f85959;
     }
 
     .bag-list > li{
@@ -158,13 +226,14 @@
     }
     .chatting{
         margin-top: 20px;
+        /* flex: 2; */
     }
     ol {
         counter-reset:li; /* Initiate a counter */
         margin-left: 10px; 
         padding: 0;
         font-family: sans-serif;
-        width: 330px;
+        /* width: 330px; */
         word-break: keep-all;
         li {
           list-style:none; /* Disable the normal item numbering */
@@ -265,17 +334,12 @@
       /* *****************************발자국 테이블****************************** */
       .foot{
         margin-top: 20px;
+        margin-right: 20px;
       }
       .foot > h2{
         font-size: 20px;
         font-weight: 600;
         margin-bottom: 10px;
-      }
-      .table-container{
-        /* position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); */
       }
 
       table {
@@ -318,8 +382,9 @@
       /* 최근 문의내역 */
       .talkBox{
         display: flex;
-        flex-wrap:wrap;
-        justify-content: space-between;
+        flex-direction: column;
+        /* flex-wrap:wrap; */
+        /* justify-content: space-between; */
       }
 
       .tt{
@@ -336,8 +401,8 @@
       }
 
       .talk{
-        margin-right: 15px;
-        max-width: 580px;
+        margin-bottom: 15px;
+        max-width: 660px;
         border-radius: 5px;
         border: 1px solid #ccc;
         box-sizing: border-box;
@@ -347,6 +412,7 @@
 
       .talk:nth-child(2){
         margin-right: 0;
+        margin-bottom: 0;
       }
 
       .tt-list ul {
@@ -384,7 +450,7 @@
     .edit-form {
         display: flex;
         flex-direction: column;
-        gap: 15px; /* 각 요소 사이 간격 */
+        gap: 5px; /* 각 요소 사이 간격 */
         max-width: 620px; /* 최대 너비 */
     }
 
@@ -414,6 +480,111 @@
         font-size: 16px;
     }
 
+    .box{
+      padding: 20px 18px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      box-shadow: 0px 0px 12px 1px #ccc;
+    }
+
+    .box > p{
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .box > ul > li{
+      padding-bottom: 1px;
+    }
+
+    .box > ul > li:nth-of-type(3){
+      padding-bottom: 0;
+    }
+
+    .box > ul > li > a{
+      color: #333;
+    }
+
+    .box > ul > li > a:hover{
+      color: #f85959;
+    }
+
+
+    /* ************************************다이어리 박스****************************** */
+    .diary-box{
+      margin-top: 20px;
+      max-width: 500px;
+    }
+
+    .big-box{
+      display: flex;
+      /* grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1f); */
+      gap: 30px;
+      flex-wrap:wrap;
+      margin: 20px 0;
+      justify-content: space-around;
+    }
+
+    .diary{
+      width: 200px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 5px;
+      position: relative;
+    }
+    .diary:hover img{
+      opacity: 0.7;
+      cursor: pointer;
+    }
+    .diary:hover button.diary-btn{
+      opacity: 1;
+    }
+
+    .diary > button.diary-btn{
+      /* padding: 10px; */
+      width: 90px;
+      height: 90px;
+      background:rgba(0, 0, 0, 0.4);
+      border: 2px solid #222;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform:translate(-50%, -50%);
+      border-radius:50%;
+      transition: 0.3s;
+      color: #fff;
+      opacity: 0;
+    }
+
+    .diary > img{
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    /* *************************다이어리 차트*********************** */
+    .diary-chart{
+      width: 100%;
+    }
+    .diary-chart > h2{
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .diary-chart-container{
+      max-width: 100%;
+      height: 230px; /* 높이를 줄여도 잘리지 않도록 설정 */
+      overflow: visible; /* 잘리지 않도록 설정 */
+      padding-bottom: 10px; /* 차트 내부 여백 추가 */
+      background-color: #f3f3f3;
+      border-radius: 7px;
+    }
+    .diary-chart-container svg {
+      width: 100%;
+      height: 100%;
+    }
 
       /* **********************************태블릿 미디어쿼리********************************* */
       @media (max-width: 1160px){
@@ -445,7 +616,40 @@
         ul.my-prolist > li:first-child{
             margin-top: 0;
         }
+        .log{
+          flex-direction: column;
+        }
+        .diary-box{
+          max-width: none;
+        }
+        .big-box{
+          flex-wrap: nowrap;
+        }
+        .talk{
+          max-width: none;
+        }
+        .talkBox{
+          display: block;
+        }
+        .history-container{
+          display: block;
+          width: none;
+        }
+        .myChart .chart-container {
+          /* height: 230px; */
+        }
+        .myChart .chart-container > img{
+          width: 25.33333%;
+          bottom: -45px;
+          right: 5px;
+        }
+        .diary-chart-container {
+          /* max-width: 100%;
+          height: 250px; ✅ 차트 높이 줄이기 */
+        }
       }
+
+
 
       /* **********************************모바일 미디어쿼리********************************* */
       
@@ -473,11 +677,39 @@
             margin-right: 0;
         }
         .my-history{
-            flex-direction: column;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-top: 40px;
+          border-top: 1px solid #ccc;
+          gap: 20px; /* ✅ 문의내역과 그래프 사이 간격 추가 */
         }
 
         ol{
-            width: 100%;
+            width: 95%;
+        }
+        .log{
+          flex-direction: column;
+        }
+        .diary-box{
+          max-width: none;
+        }
+        .big-box{
+          justify-content: center;
+          margin-top: 25px;
+        }
+        .diary:nth-child(2),
+        .diary:nth-child(3),
+        .diary:nth-child(4){
+          display: none;
+        }
+        .myChart .chart-container > img{
+          width: 33.33333%;
+          bottom: -30px;
+          right: -3px;
+        }
+        .diary-chart-container {
+          /* height: 200px; ✅ 더 작은 화면에서는 차트 높이 더 줄이기 */
         }
     }
   }

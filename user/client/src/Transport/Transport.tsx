@@ -78,21 +78,13 @@ const Transport: React.FC = () => {
                                             <div className="d-flex">
                                                 <div className="one">
                                                     <h3><Link to="#">고속버스 현황</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
+                                                    
                                                 </div>
                                             </div>
                                             <p>서울에서 부산까지 고속버스</p>
                                             <hr />
                                             <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i>부산광역시</span>
-                                                <span className="ml-auto"><Link to="/traveler/Transport/Road">Discover</Link></span>
+                                                <span className="ml-auto"><Link to="/traveler/Transport/busForm">Discover</Link></span>
                                             </p>
                                         </div>
                                     </div>
@@ -108,26 +100,17 @@ const Transport: React.FC = () => {
                                             <div className="d-flex">
                                                 <div className="one">
                                                     <h3><Link to="#">수도권 지하철</Link></h3>
-                                                    <p className="rate">
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star"></i>
-                                                        <i className="icon-star-o"></i>
-                                                        <span>8 Rating</span>
-                                                    </p>
                                                 </div>
                                             </div>
                                             <p>세계 최고의 지하철 서비스</p>
                                             <hr />
                                             <p className="bottom-area d-flex">
-                                                <span><i className="icon-map-o"></i> 서울특별시</span>
                                                 <span className="ml-auto"><Link to="/traveler/Transport/Train">Discover</Link></span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-4 ftco-animate">
+                                {/* <div className="col-md-4 ftco-animate">
                                     <div className="destination">                                                                                                                               
                                         <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/airline.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
@@ -156,7 +139,7 @@ const Transport: React.FC = () => {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-md-4 ftco-animate">
                                     <div className="destination">                                                                                                                               
                                         <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/FastMap.jpg)" }}>
@@ -187,6 +170,9 @@ const Transport: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
+                               <div>
+                                
+                               </div>
                             </div> 
                         </div>
                     </div>

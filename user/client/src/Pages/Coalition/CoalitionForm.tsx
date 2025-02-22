@@ -119,7 +119,7 @@ const CoalitionForm: React.FC = () => {
 
     return (
         <div>
-            <div className="hero-wrap js-halfheight" style={{ /*backgroundImage: "url('/images/bg_5.jpg')",*/ backgroundColor: "black" }}>
+            <div className="hero-wrap js-halfheight" style={{ backgroundImage: "url('/images/coalition.jpg')"}}>
                 <div className="overlay"></div>
                 <div className="container">
                     <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
