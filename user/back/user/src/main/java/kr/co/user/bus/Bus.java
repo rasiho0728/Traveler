@@ -2,7 +2,11 @@ package kr.co.user.bus;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,15 +34,23 @@ public class Bus {
     private Long num;
 
     private String buscode;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:MM")
     private Date schedule;
+
     private String departure;
     private String destination;
 
-    @Column(name = "departureoftime", columnDefinition = "CHAR(5)")
-    private String departureoftime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:MM")
+    private Date departureoftime;
 
-    @Column(name = "destinationoftime", columnDefinition = "CHAR(5)")
-    private String destinationoftime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:MM")
+    private Date destinationoftime;
+    // private Date departureoftime;
+    // private Date destinationoftime;
 
     @Column(name = "sitnum", columnDefinition = "CHAR(2)")
     private String sitnum;
@@ -48,6 +60,8 @@ public class Bus {
     @JsonBackReference
     private MemberVO member;
     
- 
+    // private Date selectedFDate;
+    // private Date departureTime; 
+    // private Date arrivalTime;
 
 }

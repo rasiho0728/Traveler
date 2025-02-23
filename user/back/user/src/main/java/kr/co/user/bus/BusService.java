@@ -35,11 +35,14 @@ public class BusService {
         businformation.setSchedule(new Date());
         businformation.setDeparture(vo.getDeparture());
         businformation.setDestination(vo.getDestination());
-        businformation.setDepartureoftime(vo.getDepartureoftime());
-        businformation.setDestinationoftime(vo.getDestinationoftime());
+        businformation.setDepartureoftime(new Date());
+        businformation.setDestinationoftime(new Date());
         businformation.setSitnum(vo.getSitnum());
         MemberVO member = memberRepository.findById(vo.getMember()).get(); // member 받아오기
         businformation.setMember(member);
+        // businformation.setSelectedFDate(new Date());
+        // businformation.setDepartureTime(new Date());
+        // businformation.setArrivalTime(new Date());
         return busRepository.save(businformation);
     }
 
@@ -52,7 +55,7 @@ public class BusService {
         return new PageImpl<>(bus, PageRequest.of(page - 1, size), totalElements);
     }
 
-    // 버스 디테일 정보
+   // 버스 디테일 정보
     public Bus getBusByNum(Long num) {
         Bus bus = busRepository.findById(num)
                 .orElseThrow(() -> new RuntimeException("상세보기 실패"));
