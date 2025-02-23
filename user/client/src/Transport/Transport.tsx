@@ -41,17 +41,18 @@ const Transport: React.FC = () => {
     }, [])
     return (
         <div>
-            <div className="hero-wrap js-halfheight" 
-            style={{ backgroundImage: "url('/images/transport/palace.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center', // 이미지 위치를 중앙에 맞추기
-            backgroundRepeat: 'no-repeat',
-            position: 'relative', // 요소의 위치를 상대적으로 설정
-            zIndex: -2,
-            backgroundColor:"rgba(0, 0, 0, 0.5);"
-            }}
+            <div className="hero-wrap js-halfheight"
+                style={{
+                    backgroundImage: "url('/images/transport/palace.jpg')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center', // 이미지 위치를 중앙에 맞추기
+                    backgroundRepeat: 'no-repeat',
+                    position: 'relative', // 요소의 위치를 상대적으로 설정
+                    zIndex: -2,
+                    backgroundColor: "rgba(0, 0, 0, 0.5);"
+                }}
             >
-            <div className="overlay" style={{ pointerEvents: 'none' }}></div>
+                <div className="overlay" style={{ pointerEvents: 'none' }}></div>
                 <div className="overlay"></div>
                 <div className="container">
                     <div className="row no-gutters slider-text js-halfheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -78,19 +79,16 @@ const Transport: React.FC = () => {
                                             <div className="d-flex">
                                                 <div className="one">
                                                     <h3><Link to="#">고속버스 현황</Link></h3>
-                                                    
                                                 </div>
                                             </div>
-                                            <p>서울에서 부산까지 고속버스</p>
-                                            <hr />
                                             <p className="bottom-area d-flex">
-                                                <span className="ml-auto"><Link to="/traveler/Transport/busForm">Discover</Link></span>
+                                                <span className="ml-auto" style={{position:"relative"}}><Link to="/traveler/Transport/busForm">시간표</Link></span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-4 ftco-animate">
-                                    <div className="destination">                                                                                                {/*images\transport\Seoulsubway.png */}                                 
+                                    <div className="destination">                                                                                                {/*images\transport\Seoulsubway.png */}
                                         <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/Seoulsubway.png)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
                                                 <span className="icon-search2"></span>
@@ -141,7 +139,7 @@ const Transport: React.FC = () => {
                                     </div>
                                 </div> */}
                                 <div className="col-md-4 ftco-animate">
-                                    <div className="destination">                                                                                                                               
+                                    <div className="destination">
                                         <Link to="#" className="img img-2 d-flex justify-content-center align-items-center" style={{ backgroundImage: "url(/images/transport/FastMap.jpg)" }}>
                                             <div className="icon d-flex justify-content-center align-items-center">
                                                 <span className="icon-search2"></span>
@@ -170,10 +168,10 @@ const Transport: React.FC = () => {
                                         </div>
                                     </div>
                                 </div>
-                               <div>
-                                
-                               </div>
-                            </div> 
+                                <div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div >

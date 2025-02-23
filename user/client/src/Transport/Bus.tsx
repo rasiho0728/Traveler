@@ -120,7 +120,7 @@ const Bus: React.FC = () => {
                             <td>{item.charge}원</td>
                             <td>
                               <Link to={`/traveler/Transport/busform/bus/reservation?${params}`}>
-                                선택
+                                예매
                               </Link>
                             </td>
                           </tr>
